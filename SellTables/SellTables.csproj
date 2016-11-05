@@ -206,6 +206,10 @@
     <Compile Include="Migrations\201611051053064_addDateOfCreation.Designer.cs">
       <DependentUpon>201611051053064_addDateOfCreation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611051205527_AddColumnOfDate.cs" />
+    <Compile Include="Migrations\201611051205527_AddColumnOfDate.Designer.cs">
+      <DependentUpon>201611051205527_AddColumnOfDate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Chapter.cs" />
@@ -1092,6 +1096,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611051053064_addDateOfCreation.resx">
       <DependentUpon>201611051053064_addDateOfCreation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611051205527_AddColumnOfDate.resx">
+      <DependentUpon>201611051205527_AddColumnOfDate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Resource.en.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
