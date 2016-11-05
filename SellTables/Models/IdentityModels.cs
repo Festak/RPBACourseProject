@@ -31,11 +31,11 @@ namespace SellTables.Models
         {
         }
 
-        public DbSet<Tag> Tags { get; set; }
+        public DbSet<Chapter> Chapters { get; set; }
         public DbSet<Rating> Rating { get; set; }
         public DbSet<Medal> Medals { get; set; }
         public DbSet<Creative> Creatives { get; set; }
-        public DbSet<Chapter> Chapters { get; set; }
+        public DbSet<Tag> Tags { get; set; }
 
         public static ApplicationDbContext Create()
         {

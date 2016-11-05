@@ -179,8 +179,8 @@ namespace SellTables.Migrations
             DropTable("dbo.AspNetUsers");
             DropTable("dbo.Ratings");
             DropTable("dbo.Creatives");
-            DropTable("dbo.Tags");
             DropTable("dbo.Chapters");
+            DropTable("dbo.Tags");
         }
     }
 }

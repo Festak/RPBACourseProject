@@ -2591,11 +2591,11 @@ input[type="button"].btn-block {
   content: "\e040";
 }
 
-.glyphicon-tag:before {
+.glyphicon-Chapter:before {
   content: "\e041";
 }
 
-.glyphicon-tags:before {
+.glyphicon-Chapters:before {
   content: "\e042";
 }
 
