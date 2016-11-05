@@ -3,12 +3,18 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Collections.Generic;
 
 namespace SellTables.Models
 {
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
+        public ICollection<Creative> Creatives { get; set; }
+        public ICollection<Medal> Medals { get; set; }
+        public string AvararUri { get; set; }
+
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -24,6 +30,12 @@ namespace SellTables.Models
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
+
+        public DbSet<Tag> Tags { get; set; }
+        public DbSet<Rating> Rating { get; set; }
+        public DbSet<Medal> Medals { get; set; }
+        public DbSet<Creative> Creatives { get; set; }
+        public DbSet<Chapter> Chapters { get; set; }
 
         public static ApplicationDbContext Create()
         {
