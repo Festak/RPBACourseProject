@@ -120,14 +120,26 @@
   <data name="ChooseLanguage" xml:space="preserve">
     <value>Choose Language</value>
   </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>Confirm Password</value>
+  </data>
   <data name="Country" xml:space="preserve">
     <value>Country</value>
   </data>
   <data name="Dark" xml:space="preserve">
     <value>Dark</value>
   </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="PasswordEquals" xml:space="preserve">
+    <value>Password must be equals!</value>
   </data>
   <data name="Styles" xml:space="preserve">
     <value>Styles</value>
