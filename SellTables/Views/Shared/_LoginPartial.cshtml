@@ -21,6 +21,14 @@
                 <li>@Html.ActionLink("Русский", "ChangeCulture", "Home", new { lang = "ru" }, new { })</li>
                 <li>@Html.ActionLink("English", "ChangeCulture", "Home", new { lang = "en" }, new { })</li>
             </ul>
+
+        </li>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">@Resources.Resource.Styles<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li onclick="setCookie('style', '1', '/')"><a>@Resources.Resource.Dark</a></li>
+                <li onclick="setCookie('style', '2', '/')"><a>@Resources.Resource.White</a></li>
+            </ul>
         </li>
     </ul>
     }
@@ -42,5 +50,19 @@ else
                 <li>@Html.ActionLink("English", "ChangeCulture", "Home", new { lang = "en" }, new { })</li>
             </ul>
         </li>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">@Resources.Resource.Styles<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li onclick="setCookie('style', '1', '/')"><a>@Resources.Resource.Dark</a></li>
+                <li onclick="setCookie('style', '2', '/')"><a>@Resources.Resource.White</a></li>
+            </ul>
+        </li>
     </ul>
 }
+
+<script type="text/javascript">
+    window.setCookie = setCookie = function(name, value, path) {
+        document.cookie = name + "=" + escape(value) + (path ? "; path=" + path : "");
+        return location.reload();
+    };
+</script>

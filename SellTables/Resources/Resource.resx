@@ -123,7 +123,16 @@
   <data name="Country" xml:space="preserve">
     <value>Страна</value>
   </data>
+  <data name="Dark" xml:space="preserve">
+    <value>Темный</value>
+  </data>
   <data name="Name" xml:space="preserve">
     <value>Имя</value>
+  </data>
+  <data name="Styles" xml:space="preserve">
+    <value>Стили</value>
+  </data>
+  <data name="White" xml:space="preserve">
+    <value>Светлый</value>
   </data>
 </root>
