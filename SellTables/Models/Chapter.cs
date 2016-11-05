@@ -16,8 +16,8 @@ namespace SellTables.Models
         public string Text { get; set; }
         public bool IsReading { get; set; }
 
-        public virtual ICollection<Tag> Tags { get; set; }
 
+        public virtual ICollection<Tag> Tags { get; set; }
         public Chapter() {
             Tags = new List<Tag>();
         }
