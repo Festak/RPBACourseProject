@@ -27,7 +27,8 @@ namespace SellTables
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                 "~/app/app.js",
-                "~/app/controllers/Index.js"
+                "~/app/controllers/Index.js",
+                "~/Scripts/scripts/tagcloud.js"
                 ));
                     
 
@@ -37,7 +38,7 @@ namespace SellTables
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/Site.css"));
         }
     }
 }
