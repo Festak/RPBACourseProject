@@ -1,4 +1,6 @@
 ﻿using MultilingualSite.Filters;
+using SellTables.Repositories;
+using SellTables.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +12,11 @@ namespace SellTables.Controllers
     [Culture]
     public class HomeController : Controller
     {
+
+        public HomeController() {
+
+            DependencyResolver.Current.GetService<UserService>();
+        }
 
         public ActionResult ChangeCulture(string lang)
         {
@@ -35,7 +42,12 @@ namespace SellTables.Controllers
             Response.Cookies.Add(cookie);
             return Redirect(returnUrl);
         }
-    
+
+        public JsonResult GetUsers() {
+            var allUsers = UserService.GetAllUsers();
+            return Json(allUsers, JsonRequestBehavior.AllowGet);
+        }
+
 
     public ActionResult Index()
         {

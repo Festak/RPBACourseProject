@@ -27,7 +27,8 @@ namespace SellTables
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                 "~/app/app.js",
-                "~/app/controllers/Index.js"
+                "~/app/controllers/Index.js",
+                "~/app/controllers/user.js"
                 ));
                     
 

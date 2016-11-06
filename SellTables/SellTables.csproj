@@ -188,8 +188,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ChaptersController.cs" />
+    <Compile Include="Controllers\CreativesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MedalsController.cs" />
+    <Compile Include="Controllers\RatingsController.cs" />
+    <Compile Include="Controllers\TagsController.cs" />
     <Compile Include="Filter\CultureAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -209,6 +214,10 @@
     <Compile Include="Migrations\201611051205527_AddColumnOfDate.cs" />
     <Compile Include="Migrations\201611051205527_AddColumnOfDate.Designer.cs">
       <DependentUpon>201611051205527_AddColumnOfDate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611061326011_ChangeModels.cs" />
+    <Compile Include="Migrations\201611061326011_ChangeModels.Designer.cs">
+      <DependentUpon>201611061326011_ChangeModels.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -236,11 +245,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource.resx</DependentUpon>
     </Compile>
+    <Compile Include="Services\UserService.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.js" />
     <Content Include="app\controllers\Index.js" />
+    <Content Include="app\controllers\user.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -1088,6 +1099,31 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Scripts\version.json" />
+    <Content Include="Views\Tags\Create.cshtml" />
+    <Content Include="Views\Tags\Delete.cshtml" />
+    <Content Include="Views\Tags\Details.cshtml" />
+    <Content Include="Views\Tags\Edit.cshtml" />
+    <Content Include="Views\Tags\Index.cshtml" />
+    <Content Include="Views\Medals\Create.cshtml" />
+    <Content Include="Views\Medals\Delete.cshtml" />
+    <Content Include="Views\Medals\Details.cshtml" />
+    <Content Include="Views\Medals\Edit.cshtml" />
+    <Content Include="Views\Medals\Index.cshtml" />
+    <Content Include="Views\Ratings\Create.cshtml" />
+    <Content Include="Views\Ratings\Delete.cshtml" />
+    <Content Include="Views\Ratings\Details.cshtml" />
+    <Content Include="Views\Ratings\Edit.cshtml" />
+    <Content Include="Views\Ratings\Index.cshtml" />
+    <Content Include="Views\Creatives\Create.cshtml" />
+    <Content Include="Views\Creatives\Delete.cshtml" />
+    <Content Include="Views\Creatives\Details.cshtml" />
+    <Content Include="Views\Creatives\Edit.cshtml" />
+    <Content Include="Views\Creatives\Index.cshtml" />
+    <Content Include="Views\Chapters\Create.cshtml" />
+    <Content Include="Views\Chapters\Delete.cshtml" />
+    <Content Include="Views\Chapters\Details.cshtml" />
+    <Content Include="Views\Chapters\Edit.cshtml" />
+    <Content Include="Views\Chapters\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1109,6 +1145,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611051205527_AddColumnOfDate.resx">
       <DependentUpon>201611051205527_AddColumnOfDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611061326011_ChangeModels.resx">
+      <DependentUpon>201611061326011_ChangeModels.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Resource.en.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

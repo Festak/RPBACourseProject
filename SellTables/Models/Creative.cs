@@ -23,6 +23,7 @@ namespace SellTables.Models
 
         public Creative() {
             CreationDate = DateTime.Now;
+            
             Chapters = new List<Chapter>();
             Ratings = new List<Rating>();
         }

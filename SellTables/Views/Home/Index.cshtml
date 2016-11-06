@@ -12,12 +12,15 @@
         </p>
         <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
     </div>
-    <div class="col-md-6">
+    <div ng-controller="UserController">
+    <i ng-click="getUsers()">Jeka zdes</i>
+    <div class="col-md-6" ng-repeat="user in users">
         Testing language locale:
         @Resources.Resource.ChooseLanguage
        @Resources.Resource.Name
-        фыв
+        {{user.UserName}}
     </div>
+        </div>
     <div class="col-md-2">
         <h2>Web Hosting</h2>
         <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
