@@ -19,6 +19,18 @@ namespace SellTables
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
+            bundles.Add(new ScriptBundle("~/bundles/angular").Include(
+                          "~/Scripts/angular.js",
+                          "~/Scripts/angular-route.js",
+                          "~/Scripts/angular-cookies.js",
+                          "~/Scripts/ng-inline-edit.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/app").Include(
+                "~/app/app.js",
+                "~/app/controllers/Index.js"
+                ));
+                    
+
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
