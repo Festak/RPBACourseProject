@@ -27,6 +27,12 @@
         <div style="width: 500px; height:200px; background-color: aqua" ng-controller="CreativeController" ng-init="getCreatives()">
             <div ng-repeat="creative in creatives">
                 <span>{{creative.Name}}</span>
+                <span>{{creative.Chapters}}</span>
+                <span>{{creative.Chapters.Name}}</span>
+                <div ng-repeat="chapter in creative.Chapters">
+                    <span>{{chapter.Name}}</span>
+                    <span>{{chapter.Text}}</span>
+                </div>
             </div>
         </div>
 
@@ -35,8 +41,14 @@
                 <div data-ng-repeat='item in items' class="well well-sm">
                     <div class="well well-sm">
                         <div class="col-md-8"><span>{{item.Name}}</span></div>
+                        <span>{{item.Chapters}}</span>
+                        <span>{{item.Chapters.Name}}</span>
+                        <div ng-repeat="chapter in item.Chapters">
+                            <span>{{chapter.Name}}</span>
+                            <span>{{chapter.Text}}</span>
+                        </div>
                         <div class="col-md-4"><span>Author</span></div>
-                    </div>
+                                       </div>
                     <div class="well well-sm">medalkis</div>
                     <div class="well">
                         Panel contentadasdas

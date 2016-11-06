@@ -72,12 +72,24 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -188,8 +200,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\ChaptersController.cs" />
-    <Compile Include="Controllers\CreativesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MedalsController.cs" />
@@ -203,21 +213,17 @@
     <Compile Include="Interfaces\IUserRepository.cs" />
     <Compile Include="Lucene\CreativeSearch.cs" />
     <Compile Include="Lucene\ChapterSearch.cs" />
-    <Compile Include="Migrations\201611050854382_DataBaseModelsAdd.cs" />
-    <Compile Include="Migrations\201611050854382_DataBaseModelsAdd.Designer.cs">
-      <DependentUpon>201611050854382_DataBaseModelsAdd.cs</DependentUpon>
+    <Compile Include="Migrations\201611061641173_test.cs" />
+    <Compile Include="Migrations\201611061641173_test.Designer.cs">
+      <DependentUpon>201611061641173_test.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201611051053064_addDateOfCreation.cs" />
-    <Compile Include="Migrations\201611051053064_addDateOfCreation.Designer.cs">
-      <DependentUpon>201611051053064_addDateOfCreation.cs</DependentUpon>
+    <Compile Include="Migrations\201611061643274_test1.cs" />
+    <Compile Include="Migrations\201611061643274_test1.Designer.cs">
+      <DependentUpon>201611061643274_test1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201611051205527_AddColumnOfDate.cs" />
-    <Compile Include="Migrations\201611051205527_AddColumnOfDate.Designer.cs">
-      <DependentUpon>201611051205527_AddColumnOfDate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611061326011_ChangeModels.cs" />
-    <Compile Include="Migrations\201611061326011_ChangeModels.Designer.cs">
-      <DependentUpon>201611061326011_ChangeModels.cs</DependentUpon>
+    <Compile Include="Migrations\201611061645032_test2.cs" />
+    <Compile Include="Migrations\201611061645032_test2.Designer.cs">
+      <DependentUpon>201611061645032_test2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -1116,16 +1122,6 @@
     <Content Include="Views\Ratings\Details.cshtml" />
     <Content Include="Views\Ratings\Edit.cshtml" />
     <Content Include="Views\Ratings\Index.cshtml" />
-    <Content Include="Views\Creatives\Create.cshtml" />
-    <Content Include="Views\Creatives\Delete.cshtml" />
-    <Content Include="Views\Creatives\Details.cshtml" />
-    <Content Include="Views\Creatives\Edit.cshtml" />
-    <Content Include="Views\Creatives\Index.cshtml" />
-    <Content Include="Views\Chapters\Create.cshtml" />
-    <Content Include="Views\Chapters\Delete.cshtml" />
-    <Content Include="Views\Chapters\Details.cshtml" />
-    <Content Include="Views\Chapters\Edit.cshtml" />
-    <Content Include="Views\Chapters\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1139,17 +1135,14 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201611050854382_DataBaseModelsAdd.resx">
-      <DependentUpon>201611050854382_DataBaseModelsAdd.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201611061641173_test.resx">
+      <DependentUpon>201611061641173_test.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611051053064_addDateOfCreation.resx">
-      <DependentUpon>201611051053064_addDateOfCreation.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201611061643274_test1.resx">
+      <DependentUpon>201611061643274_test1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611051205527_AddColumnOfDate.resx">
-      <DependentUpon>201611051205527_AddColumnOfDate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611061326011_ChangeModels.resx">
-      <DependentUpon>201611061326011_ChangeModels.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201611061645032_test2.resx">
+      <DependentUpon>201611061645032_test2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Resource.en.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

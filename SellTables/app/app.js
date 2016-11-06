@@ -10,18 +10,18 @@
 
       // this function fetches a random text and adds it to array
       $scope.more = function () {
-          $http({
-              method: "GET",
-              url: "https://baconipsum.com/api/?type=all-meat&paras=2&start-with-lorem=1"
-          }).success(function (data, status, header, config) {
-
-              // returned data contains an array of 2 sentences
-              for (line in data) {
-                  newItem = ($scope.items.length + 1) + ". " + data[line];
-                  $scope.items.push(newItem);
-              }
-              $scope.loading = false;
-          });
+          //$http({
+          //    method: "GET",
+          //    url: "/Home/GetCreatives"
+          //}).success(function (data, status, header, config) {
+          //    console.log(data);
+          //    // returned data contains an array of 2 sentences
+          //    for (line in data) {
+                 
+          //        $scope.items.push(line);
+          //    }
+          //    $scope.loading = false;
+          //});
       };
 
       // we call the function twice to populate the list
