@@ -22,3 +22,18 @@ select,
 textarea {
     max-width: 280px;
 }
+.scr {
+  height: 600px;
+  overflow: scroll;
+  border-radius: 5px;
+  margin: 0 auto;
+  padding: 0.5em;
+}
+.scr::-webkit-scrollbar {
+  width: 8px;
+  background-color: transparent;
+}
+.scr::-webkit-scrollbar-thumb {
+  background-color: #b0fccd;
+  border-radius: 10px;
+}
