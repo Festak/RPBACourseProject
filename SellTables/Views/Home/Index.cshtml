@@ -16,9 +16,36 @@
         Testing language locale:
         @Resources.Resource.ChooseLanguage
        @Resources.Resource.Name
-        фыв
+        <div data-ng-controller='testController'>
+            <div class='scr' when-scrolled='more()'>
+                <div data-ng-repeat='item in items' class="well well-sm">
+                    <div class="well well-sm">
+                        <div class="col-md-8"><span>Nazvanie</span></div>
+                        <div class="col-md-4"><span>Author</span></div>
+                    </div>
+                    <div class="well well-sm">medalkis</div>
+                    <div class="well">
+                        Panel contentadasdas
+                        <br /> dasd
+                        <br /> as
+                        <br /> divas
+                        <br />d asd
+                        <br /> asda
+                        <br /> ds asdas
+
+
+                    </div>
+                    <div class="well well-sm">
+                        <div class="col-md-4">zvezd</div>
+                        <div class="col-md-2">raiting</div>
+                        <div class="col-md-6">date</div>
+                    </div>
+                </div>
+            </div>
+            <div data-ng-show='loading'>Loading</div>
+        </div>
     </div>
-    <div class="col-md-2">
+    <div class="col-md-3">
         <h2>Web Hosting</h2>
         <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
         <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
