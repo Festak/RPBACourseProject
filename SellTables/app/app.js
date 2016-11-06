@@ -1,4 +1,4 @@
-﻿angular.module('app', ['user','appTest'])
+﻿angular.module('app', ['user','appTest','creative'])
   .controller('testController', ['$scope', '$http', function ($scope, $http) {
 
       $scope.savetest = function (noteText) {

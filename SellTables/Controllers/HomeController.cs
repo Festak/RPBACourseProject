@@ -16,6 +16,7 @@ namespace SellTables.Controllers
         public HomeController() {
 
             DependencyResolver.Current.GetService<UserService>();
+            DependencyResolver.Current.GetService<CreativeService>();
         }
 
         public ActionResult ChangeCulture(string lang)
@@ -48,8 +49,14 @@ namespace SellTables.Controllers
             return Json(allUsers, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult GetCreatives()
+        {
+            var allCreatives = CreativeService.GetAllCreatives();
+            return Json(allCreatives, JsonRequestBehavior.AllowGet);
+        }
 
-    public ActionResult Index()
+
+        public ActionResult Index()
         {
             return View();
         }
