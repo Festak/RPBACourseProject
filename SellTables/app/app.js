@@ -5,24 +5,34 @@
           console.log(noteText+" test");
       }
 
-      $scope.items = ["1. Scroll the list to load more"];
+      $scope.items = {};
       $scope.loading = true;
 
-      // this function fetches a random text and adds it to array
+
       $scope.more = function () {
-          //$http({
-          //    method: "GET",
-          //    url: "/Home/GetCreatives"
-          //}).success(function (data, status, header, config) {
-          //    console.log(data);
-          //    // returned data contains an array of 2 sentences
-          //    for (line in data) {
-                 
-          //        $scope.items.push(line);
-          //    }
-          //    $scope.loading = false;
-          //});
-      };
+          $http.get('/Home/GetCreatives').success(function (result) {
+
+              $scope.items.push(result);
+              console.log(result);
+              $scope.loading = false;
+          })
+          .error(function (data) {
+              console.log(data);
+          });
+      }
+
+      //$scope.more = function () {
+      //    $http({
+      //      method: "GET",
+      //   url: "/Home/GetCreatives"
+      //    }).success(function (result) {
+      //        console.log(data);
+      //        for (line in data) { 
+      //            $scope.items.push(line);
+      //       }
+      //        $scope.loading = false;
+      //    }) ;
+      //};
 
       // we call the function twice to populate the list
       $scope.more();

@@ -260,6 +260,8 @@
     <Compile Include="Services\CreativeService.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\ChapterViewModel.cs" />
+    <Compile Include="ViewModels\CreativeViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.js" />
