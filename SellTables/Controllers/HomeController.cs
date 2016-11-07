@@ -19,7 +19,7 @@ namespace SellTables.Controllers
 
         public HomeController() {
 
-           userService =  DependencyResolver.Current.GetService<UserService>();
+          userService =  DependencyResolver.Current.GetService<UserService>();
           creativeService =  DependencyResolver.Current.GetService<CreativeService>();
         }
 
@@ -56,7 +56,6 @@ namespace SellTables.Controllers
         public JsonResult GetCreatives()
         {
             var allCreatives = creativeService.GetAllCreatives();
-         //   string jsonResult = JsonConvert.SerializeObject(allCreatives);
             return Json(allCreatives, JsonRequestBehavior.AllowGet);
         }
       

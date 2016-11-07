@@ -50,13 +50,13 @@ namespace SellTables.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,Name,Rating,CreationDate,UserId")] Creative creative)
+        public ActionResult Create([Bind(Include = "Id,Name,Rating,CreationDate,UserId")] Creative creative)
         {
             if (ModelState.IsValid)
             {
                 creative.User = getCurrentUser();
-                db.Creatives.Add(creative);
-                await db.SaveChangesAsync();
+              db.Creatives.Add(creative);
+              //  await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 

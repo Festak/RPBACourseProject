@@ -18,10 +18,9 @@ namespace SellTables.Repositories
             db = new ApplicationDbContext();
         }
 
-      void IRepository<Creative>.Add(Creative item)
+        void IRepository<Creative>.Add(Creative item)
         {
-           db.Creatives.Add(item);
-           db.SaveChanges();
+            db.Creatives.Add(item);
         }
 
         ICollection<Creative> IRepository<Creative>.Find(Func<Creative, bool> predicate)
@@ -29,9 +28,9 @@ namespace SellTables.Repositories
             return db.Creatives.Where(predicate).ToList();
         }
 
-        async Task<Creative> IRepository<Creative>.Get(int id)
+        Creative IRepository<Creative>.Get(int id)
         {
-            return await db.Creatives.FindAsync(id);
+            return db.Creatives.Find(id);
         }
 
         ICollection<Creative> IRepository<Creative>.GetAll()
@@ -39,9 +38,9 @@ namespace SellTables.Repositories
             return db.Creatives.Include(c=>c.Chapters).Include(u=>u.User).ToList();
         }
 
-        async Task<bool> IRepository<Creative>.Remove(int id)
+        bool IRepository<Creative>.Remove(int id)
         {
-            var Creative = await db.Creatives.FindAsync(id);
+            var Creative = db.Creatives.Find(id);
 
             if (Creative != null)
             {

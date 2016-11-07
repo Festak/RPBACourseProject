@@ -28,9 +28,9 @@ namespace SellTables.Repositories
             return db.Medals.Where(predicate).ToList();
         }
 
-        async Task<Medal> IRepository<Medal>.Get(int id)
+        Medal IRepository<Medal>.Get(int id)
         {
-            return await db.Medals.FindAsync(id);
+            return db.Medals.Find(id);
         }
 
         ICollection<Medal> IRepository<Medal>.GetAll()
@@ -38,9 +38,9 @@ namespace SellTables.Repositories
             return db.Medals.ToList();
         }
 
-        async Task<bool> IRepository<Medal>.Remove(int id)
+        bool IRepository<Medal>.Remove(int id)
         {
-            var Medal = await db.Medals.FindAsync(id);
+            var Medal = db.Medals.Find(id);
 
             if (Medal != null)
             {

@@ -12,9 +12,9 @@ namespace SellTables.Interfaces
 
         ICollection<T> Find(Func<T, bool> predicate);
 
-      Task<T> Get(int id);
+      T Get(int id);
 
-        Task<bool> Remove(int id);
+        bool Remove(int id);
 
         void Add(T item);
         void Update(T item);

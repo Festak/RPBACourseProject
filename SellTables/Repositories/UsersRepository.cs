@@ -20,24 +20,24 @@ namespace SellTables.Repositories
             userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
         }
 
-        async Task<bool> IUserRepository.CheckUserRole(string userId)
+        bool IUserRepository.CheckUserRole(string userId)
         {
-            return await userManager.IsInRoleAsync(userId, "admin");
+            return userManager.IsInRole(userId, "admin");
         }
 
-        async Task<IdentityResult> IUserRepository.DeleteUser(ApplicationUser user)
+       IdentityResult IUserRepository.DeleteUser(ApplicationUser user)
         {
-            return await userManager.DeleteAsync(user);
+            return userManager.Delete(user);
         }
 
-        async Task<ApplicationUser> IUserRepository.FindUser(string userName)
+       ApplicationUser IUserRepository.FindUser(string userName)
         {
-            return await userManager.FindByNameAsync(userName);
+            return userManager.FindByName(userName);
         }
 
-       async Task<ApplicationUser> IUserRepository.FindUserById(string userId)
+       ApplicationUser IUserRepository.FindUserById(string userId)
         {
-           return await userManager.FindByIdAsync(userId);
+           return userManager.FindById(userId);
         }
 
         ICollection<ApplicationUser> IUserRepository.GetAllUsers()
@@ -50,9 +50,9 @@ namespace SellTables.Repositories
             return userManager.FindByName(id);
         }
 
-        async Task<IdentityResult> IUserRepository.UpdateUser(ApplicationUser user)
+        IdentityResult IUserRepository.UpdateUser(ApplicationUser user)
         {
-            return await userManager.UpdateAsync(user);
+            return userManager.Update(user);
         }
     }
 }

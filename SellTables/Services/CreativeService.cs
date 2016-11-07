@@ -22,11 +22,8 @@ namespace SellTables.Services
         internal List<CreativeViewModel> GetAllCreatives()
         {
             var listOfСreatives = InitCreatives(Repository.GetAll());
-            return listOfСreatives.ToList();
-        }
 
-    public void AddCreative(Creative creative) {  
-            Repository.Add(creative);
+            return listOfСreatives.ToList();
         }
 
 
@@ -55,8 +52,6 @@ namespace SellTables.Services
             return Chapters;
         }
 
-
-
         private CreativeViewModel InitCreative(Creative creative)
         {
             return null;
@@ -66,7 +61,5 @@ namespace SellTables.Services
         {
             return null;
         }
-
-
     }
 }

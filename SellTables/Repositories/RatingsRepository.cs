@@ -27,9 +27,9 @@ namespace SellTables.Repositories
             return db.Rating.Where(predicate).ToList();
         }
 
-        async Task<Rating> IRepository<Rating>.Get(int id)
+        Rating IRepository<Rating>.Get(int id)
         {
-            return await db.Rating.FindAsync(id);
+            return db.Rating.Find(id);
         }
 
         ICollection<Rating> IRepository<Rating>.GetAll()
@@ -37,9 +37,9 @@ namespace SellTables.Repositories
             return db.Rating.ToList();
         }
 
-        async Task<bool> IRepository<Rating>.Remove(int id)
+        bool IRepository<Rating>.Remove(int id)
         {
-            var Rating = await db.Rating.FindAsync(id);
+            var Rating = db.Rating.Find(id);
 
             if (Rating != null)
             {

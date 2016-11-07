@@ -11,11 +11,11 @@ namespace SellTables.Interfaces
     interface IUserRepository
     {
         ICollection<ApplicationUser> GetAllUsers();
-        Task<ApplicationUser> FindUser(string userName);
-        Task<ApplicationUser> FindUserById(string userId);
-        Task<IdentityResult> UpdateUser(ApplicationUser user);
-        Task<IdentityResult> DeleteUser(ApplicationUser user);
-        Task<bool> CheckUserRole(string userId);
+        ApplicationUser FindUser(string userName);
+        ApplicationUser FindUserById(string userId);
+        IdentityResult UpdateUser(ApplicationUser user);
+        IdentityResult DeleteUser(ApplicationUser user);
+        bool CheckUserRole(string userId);
         ApplicationUser GetCurrentUser(string id);
     }
 }

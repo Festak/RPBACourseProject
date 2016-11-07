@@ -27,9 +27,9 @@ namespace SellTables.Repositories
             return db.Chapters.Where(predicate).ToList();
         }
 
-        async Task<Chapter> IRepository<Chapter>.Get(int id)
+        Chapter IRepository<Chapter>.Get(int id)
         {
-            return await db.Chapters.FindAsync(id);
+            return db.Chapters.Find(id);
         }
 
         ICollection<Chapter> IRepository<Chapter>.GetAll()
@@ -37,9 +37,9 @@ namespace SellTables.Repositories
             return db.Chapters.ToList();
         }
 
-        async Task<bool> IRepository<Chapter>.Remove(int id)
+        bool IRepository<Chapter>.Remove(int id)
         {
-            var Chapter = await db.Chapters.FindAsync(id);
+            var Chapter = db.Chapters.Find(id);
 
             if (Chapter != null)
             {
