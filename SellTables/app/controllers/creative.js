@@ -3,12 +3,11 @@ angular.module('creative', [])
   .controller('CreativeController', ['$scope', '$http', function ($scope, $http) {
       $scope.creatives = [];
       $scope.shownCreatives = [];
+      $scope.loading = true;
       var current = 1;
       var count = 4;
       $scope.getCreatives = function () {
           $http.get('/Home/GetCreativesRange?start=' + current + '&count=' + count).success(function (result) {
-
-              
               result.forEach(function (item, i, arr) {
                   $scope.creatives.push(item);
               });
@@ -16,6 +15,7 @@ angular.module('creative', [])
           .error(function (data) {
               console.log(data);
           });
+          $scope.loading = false;
           current += count;
       }
 
@@ -26,21 +26,12 @@ angular.module('creative', [])
       }
 
       $scope.load = function () {
-          
-          $http.get('/Home/GetCreativesRange?start=' + current + '&count=' + count).success(function (result) {
 
-              
-              result.forEach(function (item, i, arr) {
-                  $scope.creatives.push(item);
-              });
-          })
-          .error(function (data) {
-              console.log(data);
-          });
-          current += count;
-          
+          $scope.getCreatives();
+
       }
-      
+    
+
   }])
     .directive("whenScrolled", function () {
         return {

@@ -36,12 +36,12 @@
                         <div class="col-md-6">{{creative.CreationDate}}</div>
                     </div>
                 </div>
+                <div data-ng-show='loading'>Loading</div>
             </div>
         </div>
     </div>
     <div class="col-md-3 col-sd-4" ng-controller="TagController" ng-init="getTags()">
         <div id="div1">
-
             <a href="http://codepen.io/fatihbs" class="red" ng-repeat="tag in tags">{{tag.Description}}</a>
         </div>
     </div>
