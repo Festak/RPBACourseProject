@@ -231,6 +231,14 @@
     <Compile Include="Migrations\201611070610581_test3.Designer.cs">
       <DependentUpon>201611070610581_test3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611071251511_asd.cs" />
+    <Compile Include="Migrations\201611071251511_asd.Designer.cs">
+      <DependentUpon>201611071251511_asd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611071252255_assa.cs" />
+    <Compile Include="Migrations\201611071252255_assa.Designer.cs">
+      <DependentUpon>201611071252255_assa.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Chapter.cs" />
@@ -1165,6 +1173,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611070610581_test3.resx">
       <DependentUpon>201611070610581_test3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611071251511_asd.resx">
+      <DependentUpon>201611071251511_asd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611071252255_assa.resx">
+      <DependentUpon>201611071252255_assa.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Resource.en.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

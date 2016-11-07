@@ -21,7 +21,7 @@
 
         <div data-ng-controller='CreativeController'>
             <div class='scr' ng-init='getCreatives()' when-scrolled="load()">
-                <div data-ng-repeat='creative in shownCreatives' class="well well-sm">
+                <div data-ng-repeat='creative in creatives' class="well well-sm">
                     <div class="well well-sm">
                         <div class="col-md-8"><span>{{creative.Name}}</span></div>
                         <div class="col-md-4"><span>{{creative.User.UserName}}</span></div>

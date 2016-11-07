@@ -23,6 +23,15 @@ namespace SellTables.Services
             var listOfUsers = Repository.GetAll();
             return listOfUsers.ToList();
         }
-                
+
+        internal static List<Creative> GetCreativesRange(int start, int count)
+        {
+            var listOfUsers = ((CreativesRepository)Repository).GetRange(start, count);
+            if (listOfUsers == null) {
+                return null;
+            }
+            return listOfUsers.ToList();
+        }
+
     }
 }
