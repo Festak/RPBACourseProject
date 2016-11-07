@@ -29,7 +29,7 @@ namespace SellTables
                 "~/app/app.js",
                 "~/app/controllers/Index.js",
                 "~/app/controllers/creative.js",
-                "~/app/controllers/user.js"
+                "~/app/controllers/user.js",
                 "~/app/controllers/Index.js",
                 "~/Scripts/scripts/tagcloud.js"
                 ));

@@ -23,6 +23,6 @@ namespace SellTables.Services
             var listOfUsers = Repository.GetAll();
             return listOfUsers.ToList();
         }
-
+                
     }
 }

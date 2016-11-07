@@ -5,7 +5,7 @@
           console.log(noteText+" test");
       }
 
-      $scope.items = {};
+      $scope.items = [];
       $scope.loading = true;
 
 
