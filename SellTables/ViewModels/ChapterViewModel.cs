@@ -18,7 +18,6 @@ namespace SellTables.ViewModels
         public bool IsReading { get; set; }
 
         public int CreativeId { get; set; }
-        //   public Creative Creative { get; set; }
 
 
         public ICollection<Tag> Tags { get; set; }

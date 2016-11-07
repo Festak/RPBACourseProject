@@ -14,11 +14,13 @@ namespace SellTables.Controllers
     [Culture]
     public class HomeController : Controller
     {
+        CreativeService creativeService;
+        UserService userService;
 
         public HomeController() {
 
-            DependencyResolver.Current.GetService<UserService>();
-            DependencyResolver.Current.GetService<CreativeService>();
+           userService =  DependencyResolver.Current.GetService<UserService>();
+          creativeService =  DependencyResolver.Current.GetService<CreativeService>();
         }
 
         public ActionResult ChangeCulture(string lang)
@@ -47,23 +49,17 @@ namespace SellTables.Controllers
         }
 
         public JsonResult GetUsers() {
-            var allUsers = UserService.GetAllUsers();
+            var allUsers = userService.GetAllUsers();
             return Json(allUsers, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult GetCreatives()
         {
-            var allCreatives = CreativeService.GetAllCreatives();
+            var allCreatives = creativeService.GetAllCreatives();
          //   string jsonResult = JsonConvert.SerializeObject(allCreatives);
             return Json(allCreatives, JsonRequestBehavior.AllowGet);
         }
       
-
-       // public IHttpActionResult GetAllCreatives()
-       // {
-      //      return Oz(CreativeService.GetAllCreatives());
-      //  }
-
         public ActionResult Index()
         {
             return View();

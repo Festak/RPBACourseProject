@@ -13,7 +13,7 @@ namespace SellTables.Models
         [Range(0,5)]
         public int Value { get; set; }
 
-        public int ChapterId { get; set; }
-        public Chapter Chapter{ get; set; }
+        public int? ChapterId { get; set; }
+        public virtual Chapter Chapter{ get; set; }
     }
 }

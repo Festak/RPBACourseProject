@@ -11,14 +11,14 @@ namespace SellTables.Services
 {
     public class UserService
     {
-        private static IUserRepository Repository;
+        private IUserRepository Repository;
 
         public UserService()
         {
             Repository = new UsersRepository();
         }
 
-        internal static List<ApplicationUser> GetAllUsers()
+        internal List<ApplicationUser> GetAllUsers()
         {
             var listOfUsers = Repository.GetAllUsers();
             return listOfUsers.ToList();
