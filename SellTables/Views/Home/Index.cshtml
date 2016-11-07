@@ -12,19 +12,16 @@
         </p>
         <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-6" data-ng-controller='CreativeController'>
         Testing language locale:
         @Resources.Resource.ChooseLanguage
        @Resources.Resource.Name
 
-    
-
-        <div data-ng-controller='CreativeController'>
             <div class='scr' ng-init='getCreatives()'>
                 <div data-ng-repeat='creative in creatives' class="well well-sm">
                     <div class="well well-sm">
                         <div class="col-md-8"><span>{{creative.Name}}</span></div>
-                        <div class="col-md-4"><span>{{creative.User.UserName}}</span></div>
+                        <div class="col-md-4"><span>{{creative.UserName}}</span></div>
                                        </div>
                     <div class="well well-sm">medalkis</div>
                     
@@ -40,7 +37,6 @@
                     </div>      
             </div>
         </div>
-            </div>
     </div>
     <div class="col-md-3">
         <h2>Web Hosting</h2>

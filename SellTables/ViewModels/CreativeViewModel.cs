@@ -18,7 +18,7 @@ namespace SellTables.Models
 
         public CreativeViewModel()
         {
-
+            Chapters = new List<Chapter>();
         }
 
 
