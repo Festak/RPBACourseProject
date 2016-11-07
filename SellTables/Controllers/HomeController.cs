@@ -1,4 +1,5 @@
 ﻿using MultilingualSite.Filters;
+using Newtonsoft.Json;
 using SellTables.Repositories;
 using SellTables.Services;
 using System;
@@ -53,6 +54,7 @@ namespace SellTables.Controllers
         public JsonResult GetCreatives()
         {
             var allCreatives = CreativeService.GetAllCreatives();
+         //   string jsonResult = JsonConvert.SerializeObject(allCreatives);
             return Json(allCreatives, JsonRequestBehavior.AllowGet);
         }
       

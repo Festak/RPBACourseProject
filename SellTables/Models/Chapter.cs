@@ -17,10 +17,10 @@ namespace SellTables.Models
         public bool IsReading { get; set; }
 
         public int CreativeId { get; set; }
-        public Creative Creative { get; set; }
+     //   public Creative Creative { get; set; }
 
 
-        public virtual ICollection<Tag> Tags { get; set; }
+        public ICollection<Tag> Tags { get; set; }
         public Chapter() {
             Tags = new List<Tag>();
         }
