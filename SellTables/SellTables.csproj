@@ -232,10 +232,6 @@
     <Compile Include="Migrations\201611070610581_test3.Designer.cs">
       <DependentUpon>201611070610581_test3.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201611071034504_virtualReturn.cs" />
-    <Compile Include="Migrations\201611071034504_virtualReturn.Designer.cs">
-      <DependentUpon>201611071034504_virtualReturn.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Chapter.cs" />
@@ -1084,6 +1080,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\scripts\tagcloud.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -1170,9 +1167,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611070610581_test3.resx">
       <DependentUpon>201611070610581_test3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611071034504_virtualReturn.resx">
-      <DependentUpon>201611071034504_virtualReturn.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Resource.en.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

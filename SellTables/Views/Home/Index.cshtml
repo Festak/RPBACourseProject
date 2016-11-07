@@ -16,7 +16,8 @@
 
         @Html.ActionLink("Add creative", "Create", "Creative")
 
-            <div class='scr' ng-init='getCreatives()'>
+        <div data-ng-controller='CreativeController'>
+            <div class='scr' ng-init='getCreatives()' when-scrolled="load()">
                 <div data-ng-repeat='creative in creatives' class="well well-sm">
                     <div class="well well-sm">
                         <div class="col-md-8"><span>{{creative.Name}}</span></div>
@@ -38,6 +39,18 @@
         </div>
     </div>
     <div class="col-md-3">
-    
+        <div id="div1">
+            <a href="http://codepen.io/fatihbs">JS</a>
+            <a href="http://codepen.io/fatihbs" class="red">CSS3</a>
+            <a href="http://codepen.io/fatihbs">HTML5</a>
+            <a href="http://codepen.io/fatihbs">DIV</a>
+            <a href="http://codepen.io/fatihbs" class="blue">style</a>
+            <a href="http://codepen.io/fatihbs">SEO</a>
+            <a href="http://codepen.io/fatihbs" class="red">3D</a>
+            <a href="http://codepen.io/fatihbs" class="yellow">JavaScript</a>
+            <a href="http://codepen.io/fatihbs">-.-</a>
+            <a href="http://codepen.io/fatihbs" class="red">CSS</a>
+            <a href="http://codepen.io/fatihbs">*_*</a>
+        </div>
     </div>
 </div>

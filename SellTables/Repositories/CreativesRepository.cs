@@ -36,7 +36,22 @@ namespace SellTables.Repositories
 
         ICollection<Creative> IRepository<Creative>.GetAll()
         {
-            return db.Creatives.Include(c=>c.Chapters).Include(u=>u.User).ToList();
+            return db.Creatives.Include(c => c.Chapters).ToList();
+        }
+
+        public ICollection<Creative> GetRange(int start, int count)
+        {
+            using (var dbc = new ApplicationDbContext())
+            {
+                if (!(dbc.Creatives.Include(c => c.Chapters).Where(c => c.Id >= start && c.Id < start + count) == null))
+                {
+                    return dbc.Creatives.Include(c => c.Chapters).Where(c => c.Id >= start && c.Id < start + count).ToList();
+                }
+                else
+                {
+                    return null;
+                }
+            }
         }
 
         bool IRepository<Creative>.Remove(int id)
