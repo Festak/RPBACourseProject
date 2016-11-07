@@ -6,7 +6,7 @@ angular.module('creative', [])
       var current = 1;
       var count = 4;
       $scope.getCreatives = function () {
-          $http.get('Home/GetCreativesRange?start=' + current + '&count=' + count).success(function (result) {
+          $http.get('/Home/GetCreativesRange?start=' + current + '&count=' + count).success(function (result) {
 
               
               result.forEach(function (item, i, arr) {
@@ -27,7 +27,7 @@ angular.module('creative', [])
 
       $scope.load = function () {
           
-          $http.get('Home/GetCreativesRange?start=' + current + '&count=' + count).success(function (result) {
+          $http.get('/Home/GetCreativesRange?start=' + current + '&count=' + count).success(function (result) {
 
               
               result.forEach(function (item, i, arr) {

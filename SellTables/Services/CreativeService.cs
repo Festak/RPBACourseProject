@@ -65,9 +65,9 @@ namespace SellTables.Services
         {
             return null;
         }
-        internal static List<Creative> GetCreativesRange(int start, int count)
+        internal List<CreativeViewModel> GetCreativesRange(int start, int count, ApplicationDbContext db)
         {
-            var listOfUsers = ((CreativesRepository)Repository).GetRange(start, count);
+            var listOfUsers = InitCreatives(((CreativesRepository)Repository).GetRange(start, count, db));
             if (listOfUsers == null) {
                 return null;
             }

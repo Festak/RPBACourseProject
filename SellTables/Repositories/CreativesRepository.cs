@@ -39,10 +39,9 @@ namespace SellTables.Repositories
             return db.Creatives.Include(c => c.Chapters).ToList();
         }
 
-        public ICollection<Creative> GetRange(int start, int count)
+        public ICollection<Creative> GetRange(int start, int count, ApplicationDbContext dbc)
         {
-            using (var dbc = new ApplicationDbContext())
-            {
+          
                 if (!(dbc.Creatives.Include(c => c.Chapters).Where(c => c.Id >= start && c.Id < start + count) == null))
                 {
                     return dbc.Creatives.Include(c => c.Chapters).Where(c => c.Id >= start && c.Id < start + count).ToList();
@@ -51,7 +50,7 @@ namespace SellTables.Repositories
                 {
                     return null;
                 }
-            }
+            
         }
 
         bool IRepository<Creative>.Remove(int id)

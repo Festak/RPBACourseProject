@@ -3,16 +3,16 @@
 }
 
 <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-3 col-sd-2">
         <p>
-          Most popular
+            Most popular
             and last visited.
         </p>
     </div>
-    <div class="col-md-6" data-ng-controller='CreativeController'>
+    <div class="col-md-6 col-sd-6" data-ng-controller='CreativeController'>
         Testing language locale:
         @Resources.Resource.ChooseLanguage
-       @Resources.Resource.Name
+        @Resources.Resource.Name
 
         @Html.ActionLink("Add creative", "Create", "Creative")
 
@@ -22,23 +22,24 @@
                     <div class="well well-sm">
                         <div class="col-md-8"><span>{{creative.Name}}</span></div>
                         <div class="col-md-4"><span>{{creative.UserName}}</span></div>
-                                       </div>
+                    </div>
                     <div class="well well-sm">medalkis</div>
-                    
+
                     <div class="well">
                         <div ng-repeat="chapter in creative.Chapters">
-                        <span>{{chapter.Name}}</span>
-                            </div>
+                            <span>{{chapter.Name}}</span>
+                        </div>
                     </div>
                     <div class="well well-sm">
                         <div class="col-md-4">zvezdi</div>
                         <div class="col-md-2">{{creative.Rating}}</div>
-                        <div class="col-md-6">{{creative.CreationDate}}</div> 
-                    </div>      
+                        <div class="col-md-6">{{creative.CreationDate}}</div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-3 col-sd-4">
         <div id="div1">
             <a href="http://codepen.io/fatihbs">JS</a>
             <a href="http://codepen.io/fatihbs" class="red">CSS3</a>

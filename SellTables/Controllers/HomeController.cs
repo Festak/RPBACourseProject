@@ -1,5 +1,6 @@
 ﻿using MultilingualSite.Filters;
 using Newtonsoft.Json;
+using SellTables.Models;
 using SellTables.Repositories;
 using SellTables.Services;
 using System;
@@ -16,6 +17,7 @@ namespace SellTables.Controllers
     {
         CreativeService creativeService;
         UserService userService;
+        ApplicationDbContext db = new ApplicationDbContext();
 
         public HomeController() {
 
@@ -60,7 +62,7 @@ namespace SellTables.Controllers
         }
 
         public JsonResult GetCreativesRange(int start, int count) {
-            var rangeCreatives = CreativeService.GetCreativesRange(start, count);
+            var rangeCreatives = creativeService.GetCreativesRange(start, count, db);
             //   string jsonResult = JsonConvert.SerializeObject(allCreatives);
             return Json(rangeCreatives, JsonRequestBehavior.AllowGet);
         }
