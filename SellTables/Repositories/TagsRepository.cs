@@ -18,7 +18,7 @@ namespace SellTables.Repositories
             db = new ApplicationDbContext();
         }
 
-        void IRepository<Tag>.Add(Tag item)
+        void IRepository<Tag>.Add(Tag item, ApplicationDbContext db)
         {
             db.Tags.Add(item);
         }
@@ -28,9 +28,9 @@ namespace SellTables.Repositories
             return db.Tags.Where(predicate).ToList();
         }
 
-        async Task<Tag> IRepository<Tag>.Get(int id)
+        Tag IRepository<Tag>.Get(int id)
         {
-            return await db.Tags.FindAsync(id);
+            return db.Tags.Find(id);
         }
 
         ICollection<Tag> IRepository<Tag>.GetAll()
@@ -38,9 +38,9 @@ namespace SellTables.Repositories
             return db.Tags.ToList();
         }
 
-        async Task<bool> IRepository<Tag>.Remove(int id)
+        bool IRepository<Tag>.Remove(int id)
         {
-            var Tag = await db.Tags.FindAsync(id);
+            var Tag = db.Tags.Find(id);
 
             if (Tag != null)
             {

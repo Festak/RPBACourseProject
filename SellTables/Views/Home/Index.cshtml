@@ -3,51 +3,46 @@
 }
 
 <div class="row">
-    <div class="col-md-3">
-        <h2>Getting started</h2>
+    <div class="col-md-3 col-sd-2">
         <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
+            Most popular
+            and last visited.
         </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-6 col-sd-6" data-ng-controller='CreativeController'>
         Testing language locale:
         @Resources.Resource.ChooseLanguage
-       @Resources.Resource.Name
-        <div data-ng-controller='testController'>
-            <div class='scr' when-scrolled='more()'>
-                <div data-ng-repeat='item in items' class="well well-sm">
+        @Resources.Resource.Name
+
+        @Html.ActionLink("Add creative", "Create", "Creative")
+
+        <div data-ng-controller='CreativeController'>
+            <div class='scr' ng-init='getCreatives()' when-scrolled="load()">
+                <div data-ng-repeat='creative in creatives' class="well well-sm">
                     <div class="well well-sm">
-                        <div class="col-md-8"><span>Nazvanie</span></div>
-                        <div class="col-md-4"><span>Author</span></div>
+                        <div class="col-md-8"><span>{{creative.Name}}</span></div>
+                        <div class="col-md-4"><span>{{creative.UserName}}</span></div>
                     </div>
                     <div class="well well-sm">medalkis</div>
+
                     <div class="well">
-                        Panel contentadasdas
-                        <br /> dasd
-                        <br /> as
-                        <br /> divas
-                        <br />d asd
-                        <br /> asda
-                        <br /> ds asdas
-
-
+                        <div ng-repeat="chapter in creative.Chapters">
+                            <span>{{chapter.Name}}</span>
+                        </div>
                     </div>
                     <div class="well well-sm">
-                        <div class="col-md-4">zvezd</div>
-                        <div class="col-md-2">raiting</div>
-                        <div class="col-md-6">date</div>
+                        <div class="col-md-4">zvezdi</div>
+                        <div class="col-md-2">{{creative.Rating}}</div>
+                        <div class="col-md-6">{{creative.CreationDate}}</div>
                     </div>
                 </div>
+                <div data-ng-show='loading'>Loading</div>
             </div>
-            <div data-ng-show='loading'>Loading</div>
         </div>
     </div>
-    <div class="col-md-3">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+    <div class="col-md-3 col-sd-4" ng-controller="TagController" ng-init="getTags()">
+        <div id="div1">
+            <a href="http://codepen.io/fatihbs" class="red" ng-repeat="tag in tags">{{tag.Description}}</a>
+        </div>
     </div>
 </div>

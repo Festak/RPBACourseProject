@@ -18,7 +18,7 @@ namespace SellTables.Controllers
         // GET: Chapters
         public async Task<ActionResult> Index()
         {
-            var chapters = db.Chapters.Include(c => c.Creative);
+            var chapters = db.Chapters;
             return View(await chapters.ToListAsync());
         }
 

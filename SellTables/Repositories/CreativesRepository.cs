@@ -18,9 +18,10 @@ namespace SellTables.Repositories
             db = new ApplicationDbContext();
         }
 
-        void IRepository<Creative>.Add(Creative item)
+        void IRepository<Creative>.Add(Creative item, ApplicationDbContext db)
         {
             db.Creatives.Add(item);
+            db.SaveChanges();
         }
 
         ICollection<Creative> IRepository<Creative>.Find(Func<Creative, bool> predicate)
@@ -28,19 +29,33 @@ namespace SellTables.Repositories
             return db.Creatives.Where(predicate).ToList();
         }
 
-        async Task<Creative> IRepository<Creative>.Get(int id)
+        Creative IRepository<Creative>.Get(int id)
         {
-            return await db.Creatives.FindAsync(id);
+            return db.Creatives.Find(id);
         }
 
         ICollection<Creative> IRepository<Creative>.GetAll()
         {
-            return db.Creatives.ToList();
+            return db.Creatives.Include(c => c.Chapters).ToList();
         }
 
-        async Task<bool> IRepository<Creative>.Remove(int id)
+        public ICollection<Creative> GetRange(int start, int count, ApplicationDbContext dbc)
         {
-            var Creative = await db.Creatives.FindAsync(id);
+          
+                if (!(dbc.Creatives.Include(c => c.Chapters).Where(c => c.Id >= start && c.Id < start + count) == null))
+                {
+                    return dbc.Creatives.Include(c => c.Chapters).Where(c => c.Id >= start && c.Id < start + count).ToList();
+                }
+                else
+                {
+                    return null;
+                }
+            
+        }
+
+        bool IRepository<Creative>.Remove(int id)
+        {
+            var Creative = db.Creatives.Find(id);
 
             if (Creative != null)
             {

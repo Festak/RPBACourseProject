@@ -1,10 +1,13 @@
 ﻿using MultilingualSite.Filters;
+using Newtonsoft.Json;
+using SellTables.Models;
 using SellTables.Repositories;
 using SellTables.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Http;
 using System.Web.Mvc;
 
 namespace SellTables.Controllers
@@ -12,25 +15,29 @@ namespace SellTables.Controllers
     [Culture]
     public class HomeController : Controller
     {
+        CreativeService CreativeService;
+        UserService UserService;
+        TagService TagService;
+        ApplicationDbContext db = new ApplicationDbContext();
 
         public HomeController() {
 
-            DependencyResolver.Current.GetService<UserService>();
+          UserService =  DependencyResolver.Current.GetService<UserService>();
+          CreativeService =  DependencyResolver.Current.GetService<CreativeService>();
+            TagService = DependencyResolver.Current.GetService<TagService>();
         }
 
         public ActionResult ChangeCulture(string lang)
         {
             string returnUrl = Request.UrlReferrer.AbsolutePath;
-            // Список культур
             List<string> cultures = new List<string>() { "ru", "en"};
             if (!cultures.Contains(lang))
             {
                 lang = "ru";
             }
-            // Сохраняем выбранную культуру в куки
             HttpCookie cookie = Request.Cookies["lang"];
             if (cookie != null)
-                cookie.Value = lang;   // если куки уже установлено, то обновляем значение
+                cookie.Value = lang;  
             else
             {
 
@@ -48,24 +55,29 @@ namespace SellTables.Controllers
             return Json(allUsers, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult GetCreatives()
+        {
+            var allCreatives = CreativeService.GetAllCreatives();
+            return Json(allCreatives, JsonRequestBehavior.AllowGet);
+        }
 
-    public ActionResult Index()
+        public JsonResult GetCreativesRange(int start, int count) {
+            var rangeCreatives = CreativeService.GetCreativesRange(start, count, db);
+            return Json(rangeCreatives, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetTags() {
+            var allTags = TagService.GetAllTags();
+            return Json(allTags, JsonRequestBehavior.AllowGet);
+        }
+
+
+      
+
+        public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
     }
 }

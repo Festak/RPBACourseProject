@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using SellTables.Models;
+using Microsoft.AspNet.Identity;
 
 namespace SellTables.Controllers
 {
@@ -40,26 +41,31 @@ namespace SellTables.Controllers
         // GET: Creatives/Create
         public ActionResult Create()
         {
-            ViewBag.UserId = new SelectList(db.Users, "Id", "AvararUri");
+            ViewBag.UserId = new SelectList(db.Users, "Id", "UserName");
             return View();
         }
 
-        // POST: Creatives/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,Name,Rating,CreationDate,UserId")] Creative creative)
+        public ActionResult Create([Bind(Include = "Id,Name,Rating,CreationDate,UserId")] Creative creative)
         {
             if (ModelState.IsValid)
             {
-                db.Creatives.Add(creative);
-                await db.SaveChangesAsync();
+                creative.User = getCurrentUser();
+              db.Creatives.Add(creative);
+              //  await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.UserId = new SelectList(db.Users, "Id", "AvararUri", creative.UserId);
+            ViewBag.UserId = new SelectList(db.Users, "Id", "UserName", creative.UserId);
             return View(creative);
+        }
+
+        public ApplicationUser getCurrentUser()
+        {
+            if (!System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
+                return null;
+            return db.Users.Find(System.Web.HttpContext.Current.User.Identity.GetUserId());
         }
 
         // GET: Creatives/Edit/5
@@ -74,7 +80,7 @@ namespace SellTables.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.UserId = new SelectList(db.Users, "Id", "AvararUri", creative.UserId);
+            ViewBag.UserId = new SelectList(db.Users, "Id", "UserName", creative.UserId);
             return View(creative);
         }
 
@@ -91,7 +97,7 @@ namespace SellTables.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.UserId = new SelectList(db.Users, "Id", "AvararUri", creative.UserId);
+            ViewBag.UserId = new SelectList(db.Users, "Id", "UserName", creative.UserId);
             return View(creative);
         }
 

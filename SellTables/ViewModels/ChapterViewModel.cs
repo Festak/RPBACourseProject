@@ -1,14 +1,15 @@
-﻿using System;
+﻿using SellTables.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace SellTables.Models
+namespace SellTables.ViewModels
 {
-    public class Chapter
+    public class ChapterViewModel
     {
-        [Key]
+ 
         public int Id { get; set; }
         [MaxLength(20)]
         public string Name { get; set; }
@@ -16,14 +17,13 @@ namespace SellTables.Models
         public string Text { get; set; }
         public bool IsReading { get; set; }
 
-        public int? CreativeId { get; set; }
-       public virtual Creative Creative { get; set; }
+        public int CreativeId { get; set; }
 
 
         public ICollection<Tag> Tags { get; set; }
-        public Chapter() {
+        public ChapterViewModel()
+        {
             Tags = new List<Tag>();
         }
-
     }
 }
