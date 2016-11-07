@@ -203,22 +203,6 @@
     <Compile Include="Interfaces\IUserRepository.cs" />
     <Compile Include="Lucene\CreativeSearch.cs" />
     <Compile Include="Lucene\ChapterSearch.cs" />
-    <Compile Include="Migrations\201611050854382_DataBaseModelsAdd.cs" />
-    <Compile Include="Migrations\201611050854382_DataBaseModelsAdd.Designer.cs">
-      <DependentUpon>201611050854382_DataBaseModelsAdd.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611051053064_addDateOfCreation.cs" />
-    <Compile Include="Migrations\201611051053064_addDateOfCreation.Designer.cs">
-      <DependentUpon>201611051053064_addDateOfCreation.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611051205527_AddColumnOfDate.cs" />
-    <Compile Include="Migrations\201611051205527_AddColumnOfDate.Designer.cs">
-      <DependentUpon>201611051205527_AddColumnOfDate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611061326011_ChangeModels.cs" />
-    <Compile Include="Migrations\201611061326011_ChangeModels.Designer.cs">
-      <DependentUpon>201611061326011_ChangeModels.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Chapter.cs" />
@@ -1137,18 +1121,6 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201611050854382_DataBaseModelsAdd.resx">
-      <DependentUpon>201611050854382_DataBaseModelsAdd.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611051053064_addDateOfCreation.resx">
-      <DependentUpon>201611051053064_addDateOfCreation.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611051205527_AddColumnOfDate.resx">
-      <DependentUpon>201611051205527_AddColumnOfDate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611061326011_ChangeModels.resx">
-      <DependentUpon>201611061326011_ChangeModels.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Resource.en.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.en.Designer.cs</LastGenOutput>
