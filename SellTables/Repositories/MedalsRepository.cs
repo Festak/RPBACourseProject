@@ -18,7 +18,7 @@ namespace SellTables.Repositories
             db = new ApplicationDbContext();
         }
 
-        void IRepository<Medal>.Add(Medal item)
+        void IRepository<Medal>.Add(Medal item, ApplicationDbContext db)
         {
             db.Medals.Add(item);
         }

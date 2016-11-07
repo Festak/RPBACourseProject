@@ -18,7 +18,7 @@ namespace SellTables.Repositories
             db = new ApplicationDbContext();
         }
 
-        void IRepository<Tag>.Add(Tag item)
+        void IRepository<Tag>.Add(Tag item, ApplicationDbContext db)
         {
             db.Tags.Add(item);
         }

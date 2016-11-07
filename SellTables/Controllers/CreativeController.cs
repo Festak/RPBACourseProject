@@ -12,10 +12,11 @@ namespace SellTables.Controllers
 {
     public class CreativeController : Controller
     {
-        ApplicationDbContext db = new ApplicationDbContext();
+       ApplicationDbContext db = new ApplicationDbContext();
+
         CreativeService CreativeService;
         public CreativeController() {
-       CreativeService = DependencyResolver.Current.GetService<CreativeService>();
+       CreativeService = new CreativeService();
         }
 
         // GET: Creative
@@ -38,8 +39,9 @@ namespace SellTables.Controllers
                 if (ModelState.IsValid)
                 {
                     creative.User = FindUser();
-                    db.Creatives.Add(creative);
-                     db.SaveChanges();
+              CreativeService.AddCreative(creative, db);
+                //    db.Creatives.Add(creative);
+                //     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
 
@@ -50,11 +52,12 @@ namespace SellTables.Controllers
      
         private ApplicationUser FindUser()
         {
-           
+         
                 if (!System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
                     return null;
                 return db.Users.Find(System.Web.HttpContext.Current.User.Identity.GetUserId());
             }
+            
         
 
     }

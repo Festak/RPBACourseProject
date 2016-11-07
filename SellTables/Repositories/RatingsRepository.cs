@@ -17,7 +17,7 @@ namespace SellTables.Repositories
             db = new ApplicationDbContext();
         }
 
-        void IRepository<Rating>.Add(Rating item)
+        void IRepository<Rating>.Add(Rating item, ApplicationDbContext db)
         {
             db.Rating.Add(item);
         }

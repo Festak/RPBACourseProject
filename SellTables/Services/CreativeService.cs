@@ -22,8 +22,12 @@ namespace SellTables.Services
         internal List<CreativeViewModel> GetAllCreatives()
         {
             var listOfСreatives = InitCreatives(Repository.GetAll());
-
             return listOfСreatives.ToList();
+        }
+
+
+        internal void AddCreative(Creative creative, ApplicationDbContext db) {
+            Repository.Add(creative, db);
         }
 
 

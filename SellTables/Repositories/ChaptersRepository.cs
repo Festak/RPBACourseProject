@@ -17,7 +17,7 @@ namespace SellTables.Repositories
             db = new ApplicationDbContext();
         }
 
-        void IRepository<Chapter>.Add(Chapter item)
+        void IRepository<Chapter>.Add(Chapter item, ApplicationDbContext db)
         {
             db.Chapters.Add(item);
         }
