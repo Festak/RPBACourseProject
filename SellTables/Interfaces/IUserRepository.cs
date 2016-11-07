@@ -16,5 +16,6 @@ namespace SellTables.Interfaces
         Task<IdentityResult> UpdateUser(ApplicationUser user);
         Task<IdentityResult> DeleteUser(ApplicationUser user);
         Task<bool> CheckUserRole(string userId);
+        ApplicationUser GetCurrentUser(string id);
     }
 }

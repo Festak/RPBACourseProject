@@ -18,9 +18,10 @@ namespace SellTables.Repositories
             db = new ApplicationDbContext();
         }
 
-        void IRepository<Creative>.Add(Creative item)
+      void IRepository<Creative>.Add(Creative item)
         {
-            db.Creatives.Add(item);
+           db.Creatives.Add(item);
+           db.SaveChanges();
         }
 
         ICollection<Creative> IRepository<Creative>.Find(Func<Creative, bool> predicate)

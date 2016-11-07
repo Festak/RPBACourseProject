@@ -25,6 +25,10 @@ namespace SellTables.Services
             return listOfСreatives.ToList();
         }
 
+    public void AddCreative(Creative creative) {  
+            Repository.Add(creative);
+        }
+
 
         private ICollection<CreativeViewModel> InitCreatives(ICollection<Creative> list)
         {
@@ -51,6 +55,8 @@ namespace SellTables.Services
             return Chapters;
         }
 
+
+
         private CreativeViewModel InitCreative(Creative creative)
         {
             return null;
@@ -60,5 +66,7 @@ namespace SellTables.Services
         {
             return null;
         }
+
+
     }
 }

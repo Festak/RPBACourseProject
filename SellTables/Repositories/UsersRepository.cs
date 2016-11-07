@@ -20,7 +20,6 @@ namespace SellTables.Repositories
             userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
         }
 
-
         async Task<bool> IUserRepository.CheckUserRole(string userId)
         {
             return await userManager.IsInRoleAsync(userId, "admin");
@@ -46,7 +45,12 @@ namespace SellTables.Repositories
             return userManager.Users.ToList();
         }
 
-       async Task<IdentityResult> IUserRepository.UpdateUser(ApplicationUser user)
+     ApplicationUser IUserRepository.GetCurrentUser(string id)
+        {
+            return userManager.FindByName(id);
+        }
+
+        async Task<IdentityResult> IUserRepository.UpdateUser(ApplicationUser user)
         {
             return await userManager.UpdateAsync(user);
         }
