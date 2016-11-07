@@ -11,19 +11,18 @@ namespace SellTables.Models
         [Key]
         public int Id { get; set; }
         public string Name { get; set; }
-        public virtual ICollection<Chapter> Chapters { get; set; }
-        public virtual ICollection<Rating> Ratings { get; set; }
+        public ICollection<Chapter> Chapters { get; set; }
+        public ICollection<Rating> Ratings { get; set; }
         public double Rating { get; set; }
         public DateTime CreationDate { get; set; }
        
-        public virtual string UserId { get; set; }
-        public virtual ApplicationUser User { get; set; }
+        public string UserId { get; set; }
+        public ApplicationUser User { get; set; }
 
 
 
         public Creative() {
             CreationDate = DateTime.Now;
-            
             Chapters = new List<Chapter>();
             Ratings = new List<Rating>();
         }

@@ -35,7 +35,7 @@ namespace SellTables.Repositories
 
         ICollection<Creative> IRepository<Creative>.GetAll()
         {
-            return db.Creatives.ToList();
+            return db.Creatives.Include(c=>c.Chapters).ToList();
         }
 
         async Task<bool> IRepository<Creative>.Remove(int id)

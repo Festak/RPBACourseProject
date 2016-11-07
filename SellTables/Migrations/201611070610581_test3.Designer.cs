@@ -7,13 +7,13 @@ namespace SellTables.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class addDateOfCreation : IMigrationMetadata
+    public sealed partial class test3 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(addDateOfCreation));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(test3));
         
         string IMigrationMetadata.Id
         {
-            get { return "201611051053064_addDateOfCreation"; }
+            get { return "201611070610581_test3"; }
         }
         
         string IMigrationMetadata.Source

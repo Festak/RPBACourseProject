@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using SellTables.Models;
+using Microsoft.AspNet.Identity;
 
 namespace SellTables.Controllers
 {
@@ -40,7 +41,7 @@ namespace SellTables.Controllers
         // GET: Creatives/Create
         public ActionResult Create()
         {
-            ViewBag.UserId = new SelectList(db.Users, "Id", "AvararUri");
+            ViewBag.UserId = new SelectList(db.Users, "Id", "UserName");
             return View();
         }
 
@@ -53,13 +54,21 @@ namespace SellTables.Controllers
         {
             if (ModelState.IsValid)
             {
+                creative.User = getCurrentUser();
                 db.Creatives.Add(creative);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.UserId = new SelectList(db.Users, "Id", "AvararUri", creative.UserId);
+            ViewBag.UserId = new SelectList(db.Users, "Id", "UserName", creative.UserId);
             return View(creative);
+        }
+
+        public ApplicationUser getCurrentUser()
+        {
+            if (!System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
+                return null;
+            return db.Users.Find(System.Web.HttpContext.Current.User.Identity.GetUserId());
         }
 
         // GET: Creatives/Edit/5
@@ -74,7 +83,7 @@ namespace SellTables.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.UserId = new SelectList(db.Users, "Id", "AvararUri", creative.UserId);
+            ViewBag.UserId = new SelectList(db.Users, "Id", "UserName", creative.UserId);
             return View(creative);
         }
 
@@ -91,7 +100,7 @@ namespace SellTables.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.UserId = new SelectList(db.Users, "Id", "AvararUri", creative.UserId);
+            ViewBag.UserId = new SelectList(db.Users, "Id", "UserName", creative.UserId);
             return View(creative);
         }
 

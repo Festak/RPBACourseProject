@@ -1,10 +1,12 @@
 ﻿using MultilingualSite.Filters;
+using Newtonsoft.Json;
 using SellTables.Repositories;
 using SellTables.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Http;
 using System.Web.Mvc;
 
 namespace SellTables.Controllers
@@ -52,9 +54,15 @@ namespace SellTables.Controllers
         public JsonResult GetCreatives()
         {
             var allCreatives = CreativeService.GetAllCreatives();
+         //   string jsonResult = JsonConvert.SerializeObject(allCreatives);
             return Json(allCreatives, JsonRequestBehavior.AllowGet);
         }
+      
 
+       // public IHttpActionResult GetAllCreatives()
+       // {
+      //      return Oz(CreativeService.GetAllCreatives());
+      //  }
 
         public ActionResult Index()
         {

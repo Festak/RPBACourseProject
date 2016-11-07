@@ -17,45 +17,30 @@
         @Resources.Resource.ChooseLanguage
        @Resources.Resource.Name
 
-        <div style="width: 500px; height:500px; background-color: aqua" ng-controller="UserController" ng-init="getUsers()">
-            <div ng-repeat="user in users">
-               
-                <span>{{user.UserName}}</span>
-            </div>
-        </div>
+    
 
-        <div style="width: 500px; height:200px; background-color: aqua" ng-controller="CreativeController" ng-init="getCreatives()">
-            <div ng-repeat="creative in creatives">
-                <span>{{creative.Name}}</span>
-            </div>
-        </div>
-
-        <div data-ng-controller='testController'>
-            <div class='scr' when-scrolled='more()'>
-                <div data-ng-repeat='item in items' class="well well-sm">
+        <div data-ng-controller='CreativeController'>
+            <div class='scr' ng-init='getCreatives()'>
+                <div data-ng-repeat='creative in creatives' class="well well-sm">
                     <div class="well well-sm">
-                        <div class="col-md-8"><span>{{item.Name}}</span></div>
-                        <div class="col-md-4"><span>Author</span></div>
-                    </div>
+                        <div class="col-md-8"><span>{{creative.Name}}</span></div>
+                        <div class="col-md-4"><span>{{creative.User.UserName}}</span></div>
+                                       </div>
                     <div class="well well-sm">medalkis</div>
+                    
                     <div class="well">
-                        Panel contentadasdas
-                        <br /> dasd
-                        <br /> as
-                        <br /> divas
-                        <br />d asd
-                        <br /> asda
-                        <br /> ds asdas
+                        <div ng-repeat="chapter in creative.Chapters">
+                        <span>{{chapter.Name}}</span>
+                            </div>
                     </div>
                     <div class="well well-sm">
-                        <div class="col-md-4">zvezd</div>
-                        <div class="col-md-2">raiting</div>
-                        <div class="col-md-6">date</div>
-                    </div>
-                </div>
+                        <div class="col-md-4">zvezdi</div>
+                        <div class="col-md-2">{{creative.Rating}}</div>
+                        <div class="col-md-6">{{creative.CreationDate}}</div> 
+                    </div>      
             </div>
-            <div data-ng-show='loading'>Loading</div>
         </div>
+            </div>
     </div>
     <div class="col-md-3">
         <div id="div1">

@@ -20,8 +20,8 @@ namespace SellTables.Services
 
         internal static List<Creative> GetAllCreatives()
         {
-            var listOfCreatives = Repository.GetAll();
-            return listOfCreatives.ToList();
+            var listOfUsers = Repository.GetAll();
+            return listOfUsers.ToList();
         }
 
     }

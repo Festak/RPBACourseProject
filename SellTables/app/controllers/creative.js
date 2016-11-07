@@ -12,9 +12,6 @@ angular.module('creative', [])
               console.log(data);
           });
       }
-
-
-
       $scope.save = function (noteText) {
           console.log(noteText);
       }
