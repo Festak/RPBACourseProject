@@ -38,11 +38,10 @@ namespace SellTables.Repositories
         {
             return db.Creatives.Include(c => c.Chapters).ToList();
         }
-
-        public ICollection<Creative> GetRange(int start, int count, int sortType)
+        // TODO: replace ifs
+        public ICollection<Creative> GetRange(int start, int count, int sortType, ApplicationDbContext dbc)
         {
-            using (var dbc = new ApplicationDbContext())
-            {
+           
                 IEnumerable<Creative> result = null;
                 if (sortType == 1) {
                     result = GetDateSortedCreatives(dbc);
@@ -60,7 +59,7 @@ namespace SellTables.Repositories
                 
                 return result.Skip(start - 1).Take(count).ToList();
             }
-        }
+        
 
         private IEnumerable<Creative> GetDateSortedCreatives(ApplicationDbContext dbc) {
             return dbc.Creatives.Include(c => c.Chapters).OrderByDescending(c => c.CreationDate);
@@ -75,18 +74,7 @@ namespace SellTables.Repositories
         {
             return dbc.Creatives.Include(c => c.Chapters).OrderBy(c => c.Name);
         }
-        public ICollection<Creative> GetRange(int start, int count, ApplicationDbContext dbc)
-        {
-          
-                if (!(dbc.Creatives.Include(c => c.Chapters).Where(c => c.Id >= start && c.Id < start + count) == null))
-                {
-                    return dbc.Creatives.Include(c => c.Chapters).Where(c => c.Id >= start && c.Id < start + count).ToList();
-                }
-                else
-                {
-                    return null;
-                }
-        }
+     
 
         public ICollection<Creative> GetPopular()
         {

@@ -14,9 +14,7 @@ angular.module('creative', [])
       $scope.getCreatives = function () {
           $scope.load();
       }
-      $scope.save = function (noteText) {
-          console.log(noteText);
-      }
+
       $scope.load = function () {
           if (haveMore && !isBusy) {
               isBusy = true;
@@ -40,7 +38,7 @@ angular.module('creative', [])
                   console.log(data);
               });
 
-
+              $scope.loading = false;
               current += count;
 
 
@@ -82,6 +80,7 @@ angular.module('creative', [])
               element.removeClass('glyphicon-star-empty');
               element.addClass('glyphicon-star');
           }
+      }
 
       $scope.getPopular = function () {
           $http.get('/Home/GetPopular').success(function (result) {
@@ -92,15 +91,8 @@ angular.module('creative', [])
            console.log(data);
        });
       }
-
-      $scope.load = function () {
-
-          $scope.getCreatives();
-
-      }
       
-  }])
-    .directive("whenScrolled", function () {
+  }]).directive("whenScrolled", function () {
         return {
             restrict: 'A',
             link: function (scope, elem, attrs) {
