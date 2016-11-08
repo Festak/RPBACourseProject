@@ -13,12 +13,13 @@ namespace SellTables.Controllers
 {
     public class CreativeController : Controller
     {
-       ApplicationDbContext db = new ApplicationDbContext();
+        ApplicationDbContext db = new ApplicationDbContext();
 
         CreativeService CreativeService;
 
-        public CreativeController() {
-       CreativeService = new CreativeService();
+        public CreativeController()
+        {
+            CreativeService = DependencyResolver.Current.GetService<CreativeService>();
         }
 
         // GET: Creative
@@ -27,34 +28,34 @@ namespace SellTables.Controllers
             return RedirectToAction("Index", "Home", new { area = "" });
         }
         public ActionResult Create()
-        {   
-               return View();
+        {
+            return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(RegisterCreativeModel creativemodel)
         {
-                if (ModelState.IsValid)
-                {
-            creativemodel.Creative.User = FindUser();
-              CreativeService.AddCreative(creativemodel, db);
-                    return RedirectToAction("Index");
-                }
+            if (ModelState.IsValid)
+            {
+                creativemodel.Creative.User = FindUser();
+                CreativeService.AddCreative(creativemodel, db);
+                return RedirectToAction("Index");
+            }
 
-                return View(creativemodel);
-            
+            return View(creativemodel);
+
         }
 
-     
+
         private ApplicationUser FindUser()
         {
-                if (!System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
-                    return null;
-                return db.Users.Find(System.Web.HttpContext.Current.User.Identity.GetUserId());
-            }
-            
-        
+            if (!System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
+                return null;
+            return db.Users.Find(System.Web.HttpContext.Current.User.Identity.GetUserId());
+        }
+
+
 
     }
 }

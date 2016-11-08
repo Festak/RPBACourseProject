@@ -40,9 +40,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-3 col-sd-4" ng-controller="TagController" ng-init="getTags()">
-        <div id="div1">
-            <a href="http://codepen.io/fatihbs" class="red" ng-repeat="tag in tags">{{tag.Description}}</a>
-        </div>
+    <div class="col-md-3 col-sd-4">
+       @Html.Partial("_TagCloud")
     </div>
 </div>

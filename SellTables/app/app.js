@@ -13,7 +13,6 @@
           $http.get('/Home/GetCreatives').success(function (result) {
 
               $scope.items.push(result);
-              console.log(result);
               $scope.loading = false;
           })
           .error(function (data) {

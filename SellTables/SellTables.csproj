@@ -1132,7 +1132,7 @@
     <Content Include="Views\Chapters\Edit.cshtml" />
     <Content Include="Views\Chapters\Index.cshtml" />
     <Content Include="Views\Creative\Create.cshtml" />
-    <Content Include="Views\Creative\Create - Copy.cshtml" />
+    <Content Include="Views\Home\_TagCloud.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -29,12 +29,13 @@ namespace SellTables.Services
         }
 
 
-        internal void AddCreative(RegisterCreativeModel creativemodel, ApplicationDbContext db) {
+        internal void AddCreative(RegisterCreativeModel creativemodel, ApplicationDbContext db)
+        {
             Creative creative = creativemodel.Creative;
             Chapter chapter = creativemodel.Chapter;
             chapter.Creative = creative;
             creative.Chapters.Add(chapter);
-           Repository.Add(creative, db);
+            Repository.Add(creative, db);
             ChapterRepository.Add(chapter, db);
 
         }
@@ -77,7 +78,8 @@ namespace SellTables.Services
         internal List<CreativeViewModel> GetCreativesRange(int start, int count, ApplicationDbContext db)
         {
             var listOfUsers = InitCreatives(((CreativesRepository)Repository).GetRange(start, count, db));
-            if (listOfUsers == null) {
+            if (listOfUsers == null)
+            {
                 return null;
             }
             return listOfUsers.ToList();
