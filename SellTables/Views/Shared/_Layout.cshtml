@@ -7,20 +7,20 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/angular")
-@Scripts.Render("~/bundles/app")
- 
+    @Scripts.Render("~/bundles/app")
+
     @*@if (Request.Cookies["style"] == null)
-    {
-        <link href="~/Content/bootstrapCerulean.min.css" rel="stylesheet" />
-    }
-    else if (Request.Cookies["style"].Value == "1")
-    {
-        <link href="~/Content/bootstrapGrey.css" rel="stylesheet" />
-    }
-    else if (Request.Cookies["style"].Value == "2")
-    {
-        <link href="~/Content/bootstrapCerulean.min.css" rel="stylesheet" />
-    }*@
+        {
+            <link href="~/Content/bootstrapCerulean.min.css" rel="stylesheet" />
+        }
+        else if (Request.Cookies["style"].Value == "1")
+        {
+            <link href="~/Content/bootstrapGrey.css" rel="stylesheet" />
+        }
+        else if (Request.Cookies["style"].Value == "2")
+        {
+            <link href="~/Content/bootstrapCerulean.min.css" rel="stylesheet" />
+        }*@
 
 </head>
 <body ng-app="app">
@@ -36,9 +36,9 @@
             </div>
             <div class="navbar-collapse collapse">
                 @Html.Partial("_LoginPartial")
-        
+
             </div>
-            
+
 
         </div>
     </div>

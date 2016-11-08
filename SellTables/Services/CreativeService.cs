@@ -69,12 +69,10 @@ namespace SellTables.Services
             return Chapters;
         }
 
-
-        internal List<CreativeViewModel> GetCreativesRange(int start, int count, ApplicationDbContext db)
+        internal List<CreativeViewModel> GetCreativesRange(int start, int count, int sortType, ApplicationDbContext db)
         {
-            var listOfUsers = InitCreatives(((CreativesRepository)CreativeRepository).GetRange(start, count, db));
-            if (listOfUsers == null)
-            {
+            var listOfUsers = InitCreatives(((CreativesRepository)CreativeRepository).GetRange(start, count, sortType, db));
+            if (listOfUsers == null) {
                 return null;
             }
             return listOfUsers.ToList();

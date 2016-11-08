@@ -38,19 +38,43 @@ namespace SellTables.Repositories
         {
             return db.Creatives.Include(c => c.Chapters).ToList();
         }
-
-        public ICollection<Creative> GetRange(int start, int count, ApplicationDbContext dbc)
+        // TODO: replace ifs
+        public ICollection<Creative> GetRange(int start, int count, int sortType, ApplicationDbContext dbc)
         {
-          
-                if (!(dbc.Creatives.Include(c => c.Chapters).Where(c => c.Id >= start && c.Id < start + count) == null))
-                {
-                    return dbc.Creatives.Include(c => c.Chapters).Where(c => c.Id >= start && c.Id < start + count).ToList();
+           
+                IEnumerable<Creative> result = null;
+                if (sortType == 1) {
+                    result = GetDateSortedCreatives(dbc);
                 }
-                else
-                {
-                    return null;
+                if (sortType == 2) {
+                    result = GetEditDateSortedCreatives(dbc);
                 }
+                if (sortType == 3) {
+                    result = GetNameSortedCreatives(dbc);
+                }
+                else {
+                    result = GetDateSortedCreatives(dbc);
+                }
+                
+                
+                return result.Skip(start - 1).Take(count).ToList();
+            }
+        
+
+        private IEnumerable<Creative> GetDateSortedCreatives(ApplicationDbContext dbc) {
+            return dbc.Creatives.Include(c => c.Chapters).OrderByDescending(c => c.CreationDate);
         }
+
+        private IEnumerable<Creative> GetEditDateSortedCreatives(ApplicationDbContext dbc)
+        {
+            return dbc.Creatives.Include(c => c.Chapters).OrderBy(c => c.Id);
+        }
+
+        private IEnumerable<Creative> GetNameSortedCreatives(ApplicationDbContext dbc)
+        {
+            return dbc.Creatives.Include(c => c.Chapters).OrderBy(c => c.Name);
+        }
+     
 
         public ICollection<Creative> GetPopular()
         {
