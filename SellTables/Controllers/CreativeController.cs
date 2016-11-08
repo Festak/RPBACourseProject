@@ -37,10 +37,8 @@ namespace SellTables.Controllers
         {
                 if (ModelState.IsValid)
                 {
-                   creativemodel.Creative.User = FindUser();
+            creativemodel.Creative.User = FindUser();
               CreativeService.AddCreative(creativemodel, db);
-                //    db.Creatives.Add(creative);
-                //     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
 
@@ -51,7 +49,6 @@ namespace SellTables.Controllers
      
         private ApplicationUser FindUser()
         {
-         
                 if (!System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
                     return null;
                 return db.Users.Find(System.Web.HttpContext.Current.User.Identity.GetUserId());
