@@ -6,7 +6,6 @@ angular.module('tag', [])
       $scope.getTags = function () {
           $http.get('/Home/GetTags').success(function (result) {
               $scope.tags = result;
-              console.log(result);
           })
               .error(function (data) {
                   console.log(data);
