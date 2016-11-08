@@ -228,6 +228,10 @@
     <Compile Include="Migrations\201611081450017_ChangesUser.Designer.cs">
       <DependentUpon>201611081450017_ChangesUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611081617017_AddData.cs" />
+    <Compile Include="Migrations\201611081617017_AddData.Designer.cs">
+      <DependentUpon>201611081617017_AddData.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Chapter.cs" />
@@ -1157,6 +1161,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611081450017_ChangesUser.resx">
       <DependentUpon>201611081450017_ChangesUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611081617017_AddData.resx">
+      <DependentUpon>201611081617017_AddData.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Resource.en.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

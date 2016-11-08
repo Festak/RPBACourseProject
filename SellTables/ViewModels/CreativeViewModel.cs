@@ -13,6 +13,7 @@ namespace SellTables.Models
         public string Name { get; set; }
         public double Rating { get; set; }
         public string CreationDate { get; set; }
+        public string EditDate { get; set; }
         public string UserName { get; set; }
         public ICollection<ChapterViewModel> Chapters { get; set; }
 

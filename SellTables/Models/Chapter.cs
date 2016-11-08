@@ -16,11 +16,12 @@ namespace SellTables.Models
         public string Text { get; set; }
 
         public int? CreativeId { get; set; }
-       public virtual Creative Creative { get; set; }
+        public virtual Creative Creative { get; set; }
 
 
         public ICollection<Tag> Tags { get; set; }
-        public Chapter() {
+        public Chapter()
+        {
             Tags = new List<Tag>();
         }
 
