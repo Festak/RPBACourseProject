@@ -69,7 +69,7 @@ namespace SellTables.Services
             return Chapters;
         }
 
-    
+
         internal List<CreativeViewModel> GetCreativesRange(int start, int count, ApplicationDbContext db)
         {
             var listOfUsers = InitCreatives(((CreativesRepository)CreativeRepository).GetRange(start, count, db));
@@ -80,7 +80,8 @@ namespace SellTables.Services
             return listOfUsers.ToList();
         }
 
-        internal void SetRatingToCreative(int rating, Creative creative, ApplicationDbContext db, ApplicationUser user) {
+        internal void SetRatingToCreative(int rating, Creative creative, ApplicationDbContext db, ApplicationUser user)
+        {
             Rating ratingObj = new Rating();
             int count = db.Rating.Where(u => u.User == user).Where(c => c.Creative == creative).Count();
             if (count == 0)
@@ -90,19 +91,29 @@ namespace SellTables.Services
                 ratingObj.CreativeId = creative.Id;
                 ratingObj.Value = rating;
                 creative.Ratings.Add(ratingObj);
-                double a = 0;
-                foreach (var r in creative.Ratings)
-                {
-                    a += r.Value;
-                }
-                a /= creative.Ratings.Count;
-
-                RatingsRepository.Add(ratingObj, db);
-                CreativeRepository.Update(creative, db);
-                // change creative in DB
-                // add rating to DB
+                CalculateRating(ratingObj, creative, db);
             }
         }
+
+        private void CalculateRating(Rating rating, Creative creative, ApplicationDbContext db)
+        {
+            double a = 0;
+            foreach (var r in creative.Ratings)
+            {
+                a += r.Value;
+            }
+            a /= creative.Ratings.Count;
+            creative.Rating = a;
+            RatingsRepository.Add(rating, db);
+            CreativeRepository.Update(creative, db);
+        }
+
+        internal List<CreativeViewModel> GetPopularCreatives() {
+            var listOfСreatives = InitCreatives(((CreativesRepository)CreativeRepository).GetPopular());
+            return listOfСreatives.ToList();
+        }
+
+
 
     }
 }

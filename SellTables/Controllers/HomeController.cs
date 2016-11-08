@@ -71,6 +71,12 @@ namespace SellTables.Controllers
             return Json(allTags, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult GetPopular() {
+            var popularCreatives = CreativeService.GetPopularCreatives();
+            return Json(popularCreatives, JsonRequestBehavior.AllowGet);
+
+        }
+
    
         public ActionResult Index()
         {
