@@ -50,7 +50,7 @@ namespace SellTables.Repositories
             return false;
         }
 
-        void IRepository<Chapter>.Update(Chapter item)
+        void IRepository<Chapter>.Update(Chapter item, ApplicationDbContext db)
         {
             db.Entry(item).State = EntityState.Modified;
         }

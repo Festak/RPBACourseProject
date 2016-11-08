@@ -7,12 +7,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.Http;
 using System.Web.Mvc;
 
 namespace SellTables.Controllers
 {
     [Culture]
+    
     public class HomeController : Controller
     {
         CreativeService CreativeService;
@@ -24,7 +24,7 @@ namespace SellTables.Controllers
 
           UserService =  DependencyResolver.Current.GetService<UserService>();
           CreativeService =  DependencyResolver.Current.GetService<CreativeService>();
-            TagService = DependencyResolver.Current.GetService<TagService>();
+          TagService = DependencyResolver.Current.GetService<TagService>();
         }
 
         public ActionResult ChangeCulture(string lang)
@@ -71,9 +71,13 @@ namespace SellTables.Controllers
             return Json(allTags, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult GetPopular() {
+            var popularCreatives = CreativeService.GetPopularCreatives();
+            return Json(popularCreatives, JsonRequestBehavior.AllowGet);
 
-      
+        }
 
+   
         public ActionResult Index()
         {
             return View();

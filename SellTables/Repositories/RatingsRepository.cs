@@ -50,7 +50,7 @@ namespace SellTables.Repositories
             return false;
         }
 
-        void IRepository<Rating>.Update(Rating item)
+        void IRepository<Rating>.Update(Rating item, ApplicationDbContext db)
         {
             db.Entry(item).State = EntityState.Modified;
         }

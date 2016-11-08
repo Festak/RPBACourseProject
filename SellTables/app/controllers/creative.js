@@ -2,6 +2,7 @@
 angular.module('creative', [])
   .controller('CreativeController', ['$scope', '$http', function ($scope, $http) {
       $scope.creatives = [];
+      $scope.popular = [];
       $scope.shownCreatives = [];
       $scope.loading = true;
       var current = 1;
@@ -20,9 +21,14 @@ angular.module('creative', [])
       }
 
 
-
-      $scope.save = function (noteText) {
-          console.log(noteText);
+      $scope.getPopular = function () {
+          $http.get('/Home/GetPopular').success(function (result) {
+              console.log(result);
+              $scope.popular = result;
+          })
+       .error(function (data) {
+           console.log(data);
+       });
       }
 
       $scope.load = function () {

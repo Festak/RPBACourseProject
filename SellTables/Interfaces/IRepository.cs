@@ -18,6 +18,6 @@ namespace SellTables.Interfaces
         bool Remove(int id);
 
         void Add(T item, ApplicationDbContext db);
-        void Update(T item);
+        void Update(T item, ApplicationDbContext db);
     }
 }

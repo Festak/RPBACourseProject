@@ -51,7 +51,7 @@ namespace SellTables.Repositories
             return false;
         }
 
-        void IRepository<Medal>.Update(Medal item)
+        void IRepository<Medal>.Update(Medal item, ApplicationDbContext db)
         {
             db.Entry(item).State = EntityState.Modified;
         }

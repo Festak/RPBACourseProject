@@ -50,7 +50,18 @@ namespace SellTables.Repositories
                 {
                     return null;
                 }
-            
+        }
+
+        public ICollection<Creative> GetPopular()
+        {
+            int count = db.Creatives.Where(p => p.Rating >= 4).Count();
+            if (count > 10)
+            {
+                return db.Creatives.Include(c => c.Chapters).Include(u => u.User).Where(p => p.Rating >= 4).Take(10).OrderBy(p => p.Rating).ToList();
+            }
+            else {
+                return db.Creatives.Include(c => c.Chapters).Include(u => u.User).Where(p => p.Rating >= 4).Take(count).OrderBy(p => p.Rating).ToList();
+            }
         }
 
         bool IRepository<Creative>.Remove(int id)
@@ -66,7 +77,7 @@ namespace SellTables.Repositories
             return false;
         }
 
-        void IRepository<Creative>.Update(Creative item)
+        void IRepository<Creative>.Update(Creative item, ApplicationDbContext db)
         {
             db.Entry(item).State = EntityState.Modified;
         }

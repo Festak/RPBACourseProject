@@ -12,22 +12,34 @@ namespace SellTables.Services
 {
     public class CreativeService
     {
-        private IRepository<Creative> Repository;
+        private IRepository<Creative> CreativeRepository;
+        private IRepository<Chapter> ChapterRepository;
+        private IRepository<Rating> RatingsRepository;
+
 
         public CreativeService()
         {
-            Repository = new CreativesRepository();
+            CreativeRepository = new CreativesRepository();
+            ChapterRepository = new ChaptersRepository();
+            RatingsRepository = new RatingsRepository();
         }
 
         internal List<CreativeViewModel> GetAllCreatives()
         {
-            var listOfСreatives = InitCreatives(Repository.GetAll());
+            var listOfСreatives = InitCreatives(CreativeRepository.GetAll());
             return listOfСreatives.ToList();
         }
 
 
-        internal void AddCreative(Creative creative, ApplicationDbContext db) {
-            Repository.Add(creative, db);
+        internal void AddCreative(RegisterCreativeModel creativemodel, ApplicationDbContext db)
+        {
+            Creative creative = creativemodel.Creative;
+            Chapter chapter = creativemodel.Chapter;
+            chapter.Creative = creative;
+            creative.Chapters.Add(chapter);
+            CreativeRepository.Add(creative, db);
+            ChapterRepository.Add(chapter, db);
+
         }
 
 
@@ -48,6 +60,7 @@ namespace SellTables.Services
         {
             var Chapters = list.Select(c => new ChapterViewModel
             {
+                Id = c.Id,
                 Name = c.Name,
                 Text = c.Text,
                 Number = c.Number,
@@ -56,23 +69,50 @@ namespace SellTables.Services
             return Chapters;
         }
 
-        private CreativeViewModel InitCreative(Creative creative)
-        {
-            return null;
-        }
 
-        private ChapterViewModel InitChapter(Chapter chapter)
-        {
-            return null;
-        }
         internal List<CreativeViewModel> GetCreativesRange(int start, int count, ApplicationDbContext db)
         {
-            var listOfUsers = InitCreatives(((CreativesRepository)Repository).GetRange(start, count, db));
-            if (listOfUsers == null) {
+            var listOfUsers = InitCreatives(((CreativesRepository)CreativeRepository).GetRange(start, count, db));
+            if (listOfUsers == null)
+            {
                 return null;
             }
             return listOfUsers.ToList();
         }
+
+        internal void SetRatingToCreative(int rating, Creative creative, ApplicationDbContext db, ApplicationUser user)
+        {
+            Rating ratingObj = new Rating();
+            int count = db.Rating.Where(u => u.User == user).Where(c => c.Creative == creative).Count();
+            if (count == 0)
+            {
+                ratingObj.User = user;
+                ratingObj.Creative = creative;
+                ratingObj.CreativeId = creative.Id;
+                ratingObj.Value = rating;
+                creative.Ratings.Add(ratingObj);
+                CalculateRating(ratingObj, creative, db);
+            }
+        }
+
+        private void CalculateRating(Rating rating, Creative creative, ApplicationDbContext db)
+        {
+            double a = 0;
+            foreach (var r in creative.Ratings)
+            {
+                a += r.Value;
+            }
+            a /= creative.Ratings.Count;
+            creative.Rating = a;
+            RatingsRepository.Add(rating, db);
+            CreativeRepository.Update(creative, db);
+        }
+
+        internal List<CreativeViewModel> GetPopularCreatives() {
+            var listOfСreatives = InitCreatives(((CreativesRepository)CreativeRepository).GetPopular());
+            return listOfСreatives.ToList();
+        }
+
 
     }
 }

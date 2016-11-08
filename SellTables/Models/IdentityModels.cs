@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Collections.Generic;
+using System;
 
 namespace SellTables.Models
 {
@@ -12,7 +13,17 @@ namespace SellTables.Models
     {
         public ICollection<Creative> Creatives { get; set; }
         public ICollection<Medal> Medals { get; set; }
-        public string AvararUri { get; set; }
+        public string AvatarUri { get; set; }
+        public string Language { get; set; }
+        public string Theme { get; set; }
+        public DateTime RegistrationDate { get; set; }
+
+        public ApplicationUser() {
+            Language = "en";
+            Theme = "black";
+            RegistrationDate = DateTime.Now;
+            AvatarUri = "http://res.cloudinary.com/dum4mjc9q/image/upload/v1462886192/UserAvatars/defaultUser.png";
+        }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {

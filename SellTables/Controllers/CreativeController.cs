@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNet.Identity;
 using SellTables.Models;
 using SellTables.Services;
+using SellTables.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -12,11 +14,13 @@ namespace SellTables.Controllers
 {
     public class CreativeController : Controller
     {
-       ApplicationDbContext db = new ApplicationDbContext();
+        ApplicationDbContext db = new ApplicationDbContext();
 
         CreativeService CreativeService;
-        public CreativeController() {
-       CreativeService = new CreativeService();
+
+        public CreativeController()
+        {
+            CreativeService = DependencyResolver.Current.GetService<CreativeService>();
         }
 
         // GET: Creative
@@ -25,41 +29,37 @@ namespace SellTables.Controllers
             return RedirectToAction("Index", "Home", new { area = "" });
         }
         public ActionResult Create()
-        {   
-               return View();
+        {
+            return View();
         }
 
-
-
-
-   
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Rating,CreationDate,UserId")] Creative creative)
+        public ActionResult Create(RegisterCreativeModel creativemodel)
         {
-                if (ModelState.IsValid)
-                {
-                    creative.User = FindUser();
-              CreativeService.AddCreative(creative, db);
-                //    db.Creatives.Add(creative);
-                //     db.SaveChanges();
-                    return RedirectToAction("Index");
-                }
+            if (ModelState.IsValid)
+            {
+                creativemodel.Creative.User = FindUser();
+                CreativeService.AddCreative(creativemodel, db);
+                return RedirectToAction("Index");
+            }
 
-                return View(creative);
-            
+            return View(creativemodel);
         }
 
-     
+        public void GetRatingFromView(int rating, Creative creative) {
+            CreativeService.SetRatingToCreative(rating, creative, db, FindUser());
+        }
+
+
         private ApplicationUser FindUser()
         {
-         
-                if (!System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
-                    return null;
-                return db.Users.Find(System.Web.HttpContext.Current.User.Identity.GetUserId());
-            }
-            
-        
+            if (!System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
+                return null;
+            return db.Users.Find(System.Web.HttpContext.Current.User.Identity.GetUserId());
+        }
+
+
 
     }
 }

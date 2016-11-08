@@ -51,7 +51,7 @@ namespace SellTables.Repositories
             return false;
         }
 
-        void IRepository<Tag>.Update(Tag item)
+        void IRepository<Tag>.Update(Tag item, ApplicationDbContext db)
         {
             db.Entry(item).State = EntityState.Modified;
         }
