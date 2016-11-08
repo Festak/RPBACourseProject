@@ -39,6 +39,42 @@ namespace SellTables.Repositories
             return db.Creatives.Include(c => c.Chapters).ToList();
         }
 
+        public ICollection<Creative> GetRange(int start, int count, int sortType)
+        {
+            using (var dbc = new ApplicationDbContext())
+            {
+                IEnumerable<Creative> result = null;
+                if (sortType == 1) {
+                    result = GetDateSortedCreatives(dbc);
+                }
+                if (sortType == 2) {
+                    result = GetEditDateSortedCreatives(dbc);
+                }
+                if (sortType == 3) {
+                    result = GetNameSortedCreatives(dbc);
+                }
+                else {
+                    result = GetDateSortedCreatives(dbc);
+                }
+                
+                
+                return result.Skip(start - 1).Take(count).ToList();
+            }
+        }
+
+        private IEnumerable<Creative> GetDateSortedCreatives(ApplicationDbContext dbc) {
+            return dbc.Creatives.Include(c => c.Chapters).OrderByDescending(c => c.CreationDate);
+        }
+
+        private IEnumerable<Creative> GetEditDateSortedCreatives(ApplicationDbContext dbc)
+        {
+            return dbc.Creatives.Include(c => c.Chapters).OrderBy(c => c.Id);
+        }
+
+        private IEnumerable<Creative> GetNameSortedCreatives(ApplicationDbContext dbc)
+        {
+            return dbc.Creatives.Include(c => c.Chapters).OrderBy(c => c.Name);
+        }
         public ICollection<Creative> GetRange(int start, int count, ApplicationDbContext dbc)
         {
           
