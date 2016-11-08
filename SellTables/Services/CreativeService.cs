@@ -13,10 +13,13 @@ namespace SellTables.Services
     public class CreativeService
     {
         private IRepository<Creative> Repository;
+        private IRepository<Chapter> ChapterRepository;
+
 
         public CreativeService()
         {
             Repository = new CreativesRepository();
+            ChapterRepository = new ChaptersRepository();
         }
 
         internal List<CreativeViewModel> GetAllCreatives()
@@ -26,8 +29,14 @@ namespace SellTables.Services
         }
 
 
-        internal void AddCreative(Creative creative, ApplicationDbContext db) {
-            Repository.Add(creative, db);
+        internal void AddCreative(RegisterCreativeModel creativemodel, ApplicationDbContext db) {
+            Creative creative = creativemodel.Creative;
+            Chapter chapter = creativemodel.Chapter;
+            chapter.Creative = creative;
+            creative.Chapters.Add(chapter);
+           Repository.Add(creative, db);
+            ChapterRepository.Add(chapter, db);
+
         }
 
 

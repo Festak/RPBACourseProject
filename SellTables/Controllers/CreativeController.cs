@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNet.Identity;
 using SellTables.Models;
 using SellTables.Services;
+using SellTables.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace SellTables.Controllers
        ApplicationDbContext db = new ApplicationDbContext();
 
         CreativeService CreativeService;
+
         public CreativeController() {
        CreativeService = new CreativeService();
         }
@@ -29,24 +31,20 @@ namespace SellTables.Controllers
                return View();
         }
 
-
-
-
-   
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Rating,CreationDate,UserId")] Creative creative)
+        public ActionResult Create(RegisterCreativeModel creativemodel)
         {
                 if (ModelState.IsValid)
                 {
-                    creative.User = FindUser();
-              CreativeService.AddCreative(creative, db);
+                   creativemodel.Creative.User = FindUser();
+              CreativeService.AddCreative(creativemodel, db);
                 //    db.Creatives.Add(creative);
                 //     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
 
-                return View(creative);
+                return View(creativemodel);
             
         }
 
