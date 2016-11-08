@@ -24,7 +24,7 @@ namespace SellTables.Controllers
 
           UserService =  DependencyResolver.Current.GetService<UserService>();
           CreativeService =  DependencyResolver.Current.GetService<CreativeService>();
-            TagService = DependencyResolver.Current.GetService<TagService>();
+          TagService = DependencyResolver.Current.GetService<TagService>();
         }
 
         public ActionResult ChangeCulture(string lang)

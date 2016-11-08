@@ -47,21 +47,9 @@ namespace SellTables.Controllers
             return View(creativemodel);
         }
 
-        //// DLYA CHAPTEROV
-        //[HttpGet]
-        //public ActionResult Details(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        // //   Chapter chapter = CreativeService.GetChapter(id ?? 0);
-        //    if (chapter == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(chapter);
-        //}
+        public void GetRatingFromView(int rating, Creative creative) {
+            CreativeService.SetRatingToCreative(rating, creative, db, FindUser());
+        }
 
 
         private ApplicationUser FindUser()

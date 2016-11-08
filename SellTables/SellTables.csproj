@@ -211,7 +211,6 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MedalsController.cs" />
-    <Compile Include="Controllers\RatingsController.cs" />
     <Compile Include="Controllers\TagsController.cs" />
     <Compile Include="Filter\CultureAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -221,6 +220,14 @@
     <Compile Include="Interfaces\IUserRepository.cs" />
     <Compile Include="Lucene\CreativeSearch.cs" />
     <Compile Include="Lucene\ChapterSearch.cs" />
+    <Compile Include="Migrations\201611081418070_changedRating.cs" />
+    <Compile Include="Migrations\201611081418070_changedRating.Designer.cs">
+      <DependentUpon>201611081418070_changedRating.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611081450017_ChangesUser.cs" />
+    <Compile Include="Migrations\201611081450017_ChangesUser.Designer.cs">
+      <DependentUpon>201611081450017_ChangesUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Chapter.cs" />
@@ -258,7 +265,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.js" />
-    <Content Include="app\controllers\Index.js" />
     <Content Include="app\controllers\creative.js" />
     <Content Include="app\controllers\chapter.js" />
     <Content Include="app\controllers\tag.js" />
@@ -1119,11 +1125,6 @@
     <Content Include="Views\Medals\Details.cshtml" />
     <Content Include="Views\Medals\Edit.cshtml" />
     <Content Include="Views\Medals\Index.cshtml" />
-    <Content Include="Views\Ratings\Create.cshtml" />
-    <Content Include="Views\Ratings\Delete.cshtml" />
-    <Content Include="Views\Ratings\Details.cshtml" />
-    <Content Include="Views\Ratings\Edit.cshtml" />
-    <Content Include="Views\Ratings\Index.cshtml" />
     <Content Include="Views\Creatives\Create.cshtml" />
     <Content Include="Views\Creatives\Delete.cshtml" />
     <Content Include="Views\Creatives\Details.cshtml" />
@@ -1136,11 +1137,11 @@
     <Content Include="Views\Chapters\Index.cshtml" />
     <Content Include="Views\Creative\Create.cshtml" />
     <Content Include="Views\Home\_TagCloud.cshtml" />
-    <Content Include="Views\Home\ReadChapter.cshtml" />
     <Content Include="Views\Chapter\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Rating\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -1151,6 +1152,12 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Migrations\201611081418070_changedRating.resx">
+      <DependentUpon>201611081418070_changedRating.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611081450017_ChangesUser.resx">
+      <DependentUpon>201611081450017_ChangesUser.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Resource.en.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.en.Designer.cs</LastGenOutput>

@@ -16,7 +16,6 @@ namespace SellTables.Controllers
             ChapterService = DependencyResolver.Current.GetService<ChapterService>();
         }
 
-        // DLYA CHAPTEROV
         [HttpGet]
         public ActionResult Details(int? id)
         {
@@ -31,8 +30,6 @@ namespace SellTables.Controllers
             }
             return View(chapter);
         }
-
-
 
         public ActionResult Index()
         {

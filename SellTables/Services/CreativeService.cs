@@ -12,19 +12,21 @@ namespace SellTables.Services
 {
     public class CreativeService
     {
-        private IRepository<Creative> Repository;
+        private IRepository<Creative> CreativeRepository;
         private IRepository<Chapter> ChapterRepository;
+        private IRepository<Rating> RatingsRepository;
 
 
         public CreativeService()
         {
-            Repository = new CreativesRepository();
+            CreativeRepository = new CreativesRepository();
             ChapterRepository = new ChaptersRepository();
+            RatingsRepository = new RatingsRepository();
         }
 
         internal List<CreativeViewModel> GetAllCreatives()
         {
-            var listOfСreatives = InitCreatives(Repository.GetAll());
+            var listOfСreatives = InitCreatives(CreativeRepository.GetAll());
             return listOfСreatives.ToList();
         }
 
@@ -35,7 +37,7 @@ namespace SellTables.Services
             Chapter chapter = creativemodel.Chapter;
             chapter.Creative = creative;
             creative.Chapters.Add(chapter);
-            Repository.Add(creative, db);
+            CreativeRepository.Add(creative, db);
             ChapterRepository.Add(chapter, db);
 
         }
@@ -70,12 +72,36 @@ namespace SellTables.Services
     
         internal List<CreativeViewModel> GetCreativesRange(int start, int count, ApplicationDbContext db)
         {
-            var listOfUsers = InitCreatives(((CreativesRepository)Repository).GetRange(start, count, db));
+            var listOfUsers = InitCreatives(((CreativesRepository)CreativeRepository).GetRange(start, count, db));
             if (listOfUsers == null)
             {
                 return null;
             }
             return listOfUsers.ToList();
+        }
+
+        internal void SetRatingToCreative(int rating, Creative creative, ApplicationDbContext db, ApplicationUser user) {
+            Rating ratingObj = new Rating();
+            int count = db.Rating.Where(u => u.User == user).Where(c => c.Creative == creative).Count();
+            if (count == 0)
+            {
+                ratingObj.User = user;
+                ratingObj.Creative = creative;
+                ratingObj.CreativeId = creative.Id;
+                ratingObj.Value = rating;
+                creative.Ratings.Add(ratingObj);
+                double a = 0;
+                foreach (var r in creative.Ratings)
+                {
+                    a += r.Value;
+                }
+                a /= creative.Ratings.Count;
+
+                RatingsRepository.Add(ratingObj, db);
+                CreativeRepository.Update(creative, db);
+                // change creative in DB
+                // add rating to DB
+            }
         }
 
     }

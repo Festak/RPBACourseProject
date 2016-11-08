@@ -65,7 +65,7 @@ namespace SellTables.Repositories
             return false;
         }
 
-        void IRepository<Creative>.Update(Creative item)
+        void IRepository<Creative>.Update(Creative item, ApplicationDbContext db)
         {
             db.Entry(item).State = EntityState.Modified;
         }

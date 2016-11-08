@@ -19,8 +19,6 @@ namespace SellTables.Models
         public string UserId { get; set; }
         public virtual ApplicationUser User { get; set; }
 
-
-
         public Creative() {
             CreationDate = DateTime.Now;
             Chapters = new List<Chapter>();

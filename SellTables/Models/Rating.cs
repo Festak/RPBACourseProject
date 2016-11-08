@@ -13,7 +13,9 @@ namespace SellTables.Models
         [Range(0,5)]
         public int Value { get; set; }
 
-        public int? ChapterId { get; set; }
-        public virtual Chapter Chapter{ get; set; }
+        public int? UserId { get; set; }
+        public virtual ApplicationUser User { get; set; }
+        public int? CreativeId { get; set; }
+        public virtual Creative Creative{ get; set; }
     }
 }
