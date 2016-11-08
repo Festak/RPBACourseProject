@@ -5,6 +5,7 @@ using SellTables.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -44,8 +45,23 @@ namespace SellTables.Controllers
             }
 
             return View(creativemodel);
-
         }
+
+        //// DLYA CHAPTEROV
+        //[HttpGet]
+        //public ActionResult Details(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        // //   Chapter chapter = CreativeService.GetChapter(id ?? 0);
+        //    if (chapter == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(chapter);
+        //}
 
 
         private ApplicationUser FindUser()

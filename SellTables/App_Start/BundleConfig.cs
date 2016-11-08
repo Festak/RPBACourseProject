@@ -32,6 +32,7 @@ namespace SellTables
                 "~/app/controllers/user.js",
                 "~/app/controllers/Index.js",
                 "~/app/controllers/tag.js",
+                 "~/app/controllers/chapter.js",
                 "~/Scripts/scripts/tagcloud.js"
                 ));
                     

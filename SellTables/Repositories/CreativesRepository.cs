@@ -50,7 +50,6 @@ namespace SellTables.Repositories
                 {
                     return null;
                 }
-            
         }
 
         bool IRepository<Creative>.Remove(int id)

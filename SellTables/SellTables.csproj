@@ -204,6 +204,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ChapterController.cs" />
     <Compile Include="Controllers\ChaptersController.cs" />
     <Compile Include="Controllers\CreativeController.cs" />
     <Compile Include="Controllers\CreativesController.cs" />
@@ -246,6 +247,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource.resx</DependentUpon>
     </Compile>
+    <Compile Include="Services\ChapterService.cs" />
     <Compile Include="Services\TagService.cs" />
     <Compile Include="Services\CreativeService.cs" />
     <Compile Include="Services\UserService.cs" />
@@ -258,6 +260,7 @@
     <Content Include="app\app.js" />
     <Content Include="app\controllers\Index.js" />
     <Content Include="app\controllers\creative.js" />
+    <Content Include="app\controllers\chapter.js" />
     <Content Include="app\controllers\tag.js" />
     <Content Include="app\controllers\user.js" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -1133,6 +1136,8 @@
     <Content Include="Views\Chapters\Index.cshtml" />
     <Content Include="Views\Creative\Create.cshtml" />
     <Content Include="Views\Home\_TagCloud.cshtml" />
+    <Content Include="Views\Home\ReadChapter.cshtml" />
+    <Content Include="Views\Chapter\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

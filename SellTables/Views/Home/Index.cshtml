@@ -26,8 +26,9 @@
                     <div class="well well-sm">medalkis</div>
 
                     <div class="well">
-                        <div ng-repeat="chapter in creative.Chapters">
-                            <span>{{chapter.Name}}</span>
+                        <div ng-repeat="chapter in creative.Chapters" ng-controller="MainController">
+                     
+                            <a ng-click="redirect(chapter.Id)">{{chapter.Name}}</a>
                         </div>
                     </div>
                     <div class="well well-sm">

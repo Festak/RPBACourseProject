@@ -24,9 +24,5 @@ namespace SellTables.Services
             var listOfTags = (Repository.GetAll());
             return listOfTags.ToList();
         }
-
-
-     
-
     }
 }

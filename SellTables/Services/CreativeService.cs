@@ -58,6 +58,7 @@ namespace SellTables.Services
         {
             var Chapters = list.Select(c => new ChapterViewModel
             {
+                Id = c.Id,
                 Name = c.Name,
                 Text = c.Text,
                 Number = c.Number,
@@ -66,15 +67,7 @@ namespace SellTables.Services
             return Chapters;
         }
 
-        private CreativeViewModel InitCreative(Creative creative)
-        {
-            return null;
-        }
-
-        private ChapterViewModel InitChapter(Chapter chapter)
-        {
-            return null;
-        }
+    
         internal List<CreativeViewModel> GetCreativesRange(int start, int count, ApplicationDbContext db)
         {
             var listOfUsers = InitCreatives(((CreativesRepository)Repository).GetRange(start, count, db));
