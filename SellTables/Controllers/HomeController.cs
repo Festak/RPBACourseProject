@@ -58,8 +58,8 @@ namespace SellTables.Controllers
             return Json(allCreatives, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult GetCreativesRange(int start, int count) {
-            var rangeCreatives = CreativeService.GetCreativesRange(start, count);
+        public JsonResult GetCreativesRange(int start, int count, int sortType) {
+            var rangeCreatives = CreativeService.GetCreativesRange(start, count, sortType);
             //   string jsonResult = JsonConvert.SerializeObject(allCreatives);
             return Json(rangeCreatives, JsonRequestBehavior.AllowGet);
         }

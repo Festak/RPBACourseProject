@@ -12,35 +12,51 @@
         </p>
         <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
     </div>
-    <div class="col-md-6">
-        Testing language locale:
-        @Resources.Resource.ChooseLanguage
-       @Resources.Resource.Name
+    <div class="col-md-6" data-ng-controller='CreativeController'>
+        <div>
+            Testing language locale:
+            @Resources.Resource.ChooseLanguage
+            @Resources.Resource.Name
+        </div>
+        <div class="btn-group">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Сортировка <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="btn" ng-click="changeSortType(1)">По дате создания(сначала новые)</a></li>
+                <li><a class="btn" ng-click="changeSortType(2)">По дате редактирования(не работает)</a></li>
+                <li><a class="btn" ng-click="changeSortType(3)">По имени</a></li>
+            </ul>
+        </div>
 
-    
-
-        <div data-ng-controller='CreativeController'>
+        <div>
             <div class='scr' ng-init='getCreatives()' when-scrolled="load()">
-                <div data-ng-repeat='creative in creatives' class="well well-sm">
+                <div data-ng-repeat='creative in creatives' class="well well-sm" >
                     <div class="well well-sm">
                         <div class="col-md-8"><span>{{creative.Name}}</span></div>
                         <div class="col-md-4"><span>{{creative.User.UserName}}</span></div>
-                                       </div>
+                    </div>
                     <div class="well well-sm">medalkis</div>
-                    
+
                     <div class="well">
                         <div ng-repeat="chapter in creative.Chapters">
-                        <span>{{chapter.Name}}</span>
-                            </div>
+                            <span>{{chapter.Name}}</span>
+                        </div>
                     </div>
                     <div class="well well-sm">
-                        <div class="col-md-4">zvezdi</div>
+                        <div class="col-md-4" >
+                            <span id="{{$index}}1" class="glyphicon glyphicon-star-empty creative.Id+'1'" ng-mouseover="show($index,1)" ng-mouseleave="hide($index)" aria-hidden="true"></span>
+                            <span id="{{$index}}2" class="glyphicon glyphicon-star-empty creative.Id+'1'" ng-mouseover="show($index,2)" ng-mouseleave="hide($index)" aria-hidden="true"></span>
+                            <span id="{{$index}}3" class="glyphicon glyphicon-star-empty creative.Id+'1'" ng-mouseover="show($index,3)" ng-mouseleave="hide($index)" aria-hidden="true"></span>
+                            <span id="{{$index}}4" class="glyphicon glyphicon-star-empty creative.Id+'1'" ng-mouseover="show($index,4)" ng-mouseleave="hide($index)" aria-hidden="true"></span>
+                            <span id="{{$index}}5" class="glyphicon glyphicon-star-empty creative.Id+'1'" ng-mouseover="show($index,5)" ng-mouseleave="hide($index)" aria-hidden="true"></span>
+                        </div>
                         <div class="col-md-2">{{creative.Rating}}</div>
-                        <div class="col-md-6">{{creative.CreationDate}}</div> 
-                    </div>      
+                        <div class="col-md-6">{{creative.CreationDate}}</div>
+                    </div>
+                </div>
             </div>
         </div>
-            </div>
     </div>
     <div class="col-md-3">
         <div id="div1">

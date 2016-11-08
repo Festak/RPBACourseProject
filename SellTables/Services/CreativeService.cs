@@ -24,14 +24,14 @@ namespace SellTables.Services
             return listOfUsers.ToList();
         }
 
-        internal static List<Creative> GetCreativesRange(int start, int count)
+        internal static List<Creative> GetCreativesRange(int start, int count, int sortType)
         {
-            var listOfUsers = ((CreativesRepository)Repository).GetRange(start, count);
+            var listOfUsers = ((CreativesRepository)Repository).GetRange(start, count, sortType);
             if (listOfUsers == null) {
                 return null;
             }
             return listOfUsers.ToList();
         }
-
+        
     }
 }
