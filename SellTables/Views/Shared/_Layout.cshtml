@@ -8,7 +8,7 @@
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/angular")
     @Scripts.Render("~/bundles/app")
-
+   
     @*@if (Request.Cookies["style"] == null)
         {
             <link href="~/Content/bootstrapCerulean.min.css" rel="stylesheet" />
@@ -49,7 +49,6 @@
     </div>
         </div>
 
-    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
