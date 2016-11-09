@@ -45,11 +45,34 @@ namespace SellTables.Lucene
             doc.Add(new Field("Id", creative.Id.ToString(), Field.Store.YES, Field.Index.NOT_ANALYZED));
             doc.Add(new Field("Name", creative.Name, Field.Store.YES, Field.Index.ANALYZED));
             doc.Add(new Field("User", creative.User.UserName, Field.Store.YES, Field.Index.ANALYZED));
+            doc.Add(new Field("Rating", creative.Rating.ToString(), Field.Store.YES, Field.Index.ANALYZED));
+            doc.Add(new Field("Date", creative.CreationDate.ToShortDateString() + " " + creative.CreationDate.ToShortTimeString(), Field.Store.YES, Field.Index.ANALYZED));
+
+            //string tags = "";
+            //if (chapter.Tags != null)
+            //    foreach (var tag in chapter.Tags)
+            //    {
+            //        tags += tag.Description + " ";
+            //    }
+            //doc.Add(new Field("Tags", tags, Field.Store.YES, Field.Index.ANALYZED));
+
             // add to index
             writer.AddDocument(doc);
         }
 
-        public static void AddUpdateLuceneIndex(IEnumerable<Creative> creative)
+        private static ICollection<Tag> GetTags(String tagList)
+        {
+            var stringList = tagList.Split(' ');
+            var tags = new List<Tag>();
+            if (stringList != null)
+            {
+                foreach (String text in stringList)
+                    tags.Add(new Tag() { Description = text });
+            }
+            return tags;
+        }
+
+        public static void AddUpdateLuceneIndex(ICollection<Creative> creative)
         {
             // init lucene
             var analyzer = new StandardAnalyzer(Version.LUCENE_30);
@@ -114,28 +137,33 @@ namespace SellTables.Lucene
             }
         }
 
-        private static Creative MapLuceneDocumentToData(Document doc)
+        private static CreativeViewModel MapLuceneDocumentToData(Document doc)
         {
-            return new Creative
+            return new CreativeViewModel
             {
                 Id = Convert.ToInt32(doc.Get("Id")),
                 Name = doc.Get("Name"),
-                User = new ApplicationUser() { UserName = doc.Get("User") }
+                UserName = doc.Get("User"),
+                Rating = Convert.ToDouble(doc.Get("Rating")),
+                CreationDate = doc.Get("Date")
+
             };
         }
 
      
 
-        private static IEnumerable<Creative> MapLuceneToDataList(IEnumerable<Document> hits)
+        private static ICollection<CreativeViewModel> MapLuceneToDataList(ICollection<Document> hits)
         {
             return hits.Select(MapLuceneDocumentToData).ToList();
         }
 
-        private static IEnumerable<Creative> MapLuceneToDataList(IEnumerable<ScoreDoc> hits,
+
+        private static ICollection<CreativeViewModel> MapLuceneToDataList(ICollection<ScoreDoc> hits,
             IndexSearcher searcher)
         {
             return hits.Select(hit => MapLuceneDocumentToData(searcher.Doc(hit.Doc))).ToList();
         }
+
 
         private static Query parseQuery(string searchQuery, QueryParser parser)
         {
@@ -151,10 +179,11 @@ namespace SellTables.Lucene
             return query;
         }
 
-        private static IEnumerable<Creative> _search(string searchQuery, string searchField = "")
+
+        private static ICollection<CreativeViewModel> _search(string searchQuery, string searchField = "")
         {
             // validation
-            if (string.IsNullOrEmpty(searchQuery.Replace("*", "").Replace("?", ""))) return new List<Creative>();
+            if (string.IsNullOrEmpty(searchQuery.Replace("*", "").Replace("?", ""))) return new List<CreativeViewModel>();
 
             // set up lucene searcher
             using (var searcher = new IndexSearcher(_directory, false))
@@ -177,7 +206,7 @@ namespace SellTables.Lucene
                 else
                 {
                     var parser = new MultiFieldQueryParser
-                        (Version.LUCENE_30, new[] { "Id", "Name", "User"}, analyzer);
+                        (Version.LUCENE_30, new[] { "Id", "Name", "User, Rating", "Date"}, analyzer);
                     var query = parseQuery(searchQuery, parser);
                     var hits = searcher.Search
                     (query, null, hits_limit, Sort.RELEVANCE).ScoreDocs;
@@ -189,15 +218,31 @@ namespace SellTables.Lucene
             }
         }
 
-        public static IEnumerable<Creative> Search(string input, string fieldName = "")
+        public static ICollection<CreativeViewModel> Search(string input, string fieldName = "")
         {
-            if (string.IsNullOrEmpty(input)) return new List<Creative>();
+            if (string.IsNullOrEmpty(input)) return new List<CreativeViewModel>();
 
             var terms = input.Trim().Replace("-", " ").Split(' ')
                 .Where(x => !string.IsNullOrEmpty(x)).Select(x => x.Trim() + "*");
             input = string.Join(" ", terms);
 
             return _search(input, fieldName);
+        }
+
+        public static ICollection<CreativeViewModel> GetAllIndexRecords()
+        {
+            // validate search index
+            if (!System.IO.Directory.EnumerateFiles(_luceneDir).Any()) return new List<CreativeViewModel>();
+
+            // set up lucene searcher
+            var searcher = new IndexSearcher(_directory, false);
+            var reader = IndexReader.Open(_directory, false);
+            var docs = new List<Document>();
+            var term = reader.TermDocs();
+            while (term.Next()) docs.Add(searcher.Doc(term.Doc));
+            reader.Dispose();
+            searcher.Dispose();
+            return MapLuceneToDataList(docs);
         }
     }
 }

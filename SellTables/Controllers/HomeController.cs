@@ -1,5 +1,6 @@
 ﻿using MultilingualSite.Filters;
 using Newtonsoft.Json;
+using SellTables.Lucene;
 using SellTables.Models;
 using SellTables.Repositories;
 using SellTables.Services;
@@ -21,10 +22,11 @@ namespace SellTables.Controllers
         ApplicationDbContext db = new ApplicationDbContext();
 
         public HomeController() {
-
-          UserService =  DependencyResolver.Current.GetService<UserService>();
+           
+            UserService =  DependencyResolver.Current.GetService<UserService>();
           CreativeService =  DependencyResolver.Current.GetService<CreativeService>();
           TagService = DependencyResolver.Current.GetService<TagService>();
+         //   CreativeSearch.AddUpdateLuceneIndex(CreativeService.GetAllCreativesForLucene());
         }
 
         public ActionResult ChangeCulture(string lang)

@@ -45,6 +45,8 @@ namespace SellTables.Lucene
             doc.Add(new Field("Id", chapter.Id.ToString(), Field.Store.YES, Field.Index.NOT_ANALYZED));
             doc.Add(new Field("Name", chapter.Name, Field.Store.YES, Field.Index.ANALYZED));
             doc.Add(new Field("Text", chapter.Text, Field.Store.YES, Field.Index.ANALYZED));
+         
+
             string tags = "";
             if (chapter.Tags != null)
                 foreach (var tag in chapter.Tags)

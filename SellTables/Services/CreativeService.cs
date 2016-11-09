@@ -1,4 +1,5 @@
 ﻿using SellTables.Interfaces;
+using SellTables.Lucene;
 using SellTables.Models;
 using SellTables.Repositories;
 using SellTables.ViewModels;
@@ -30,6 +31,12 @@ namespace SellTables.Services
             return listOfСreatives.ToList();
         }
 
+        internal List<Creative> GetAllCreativesForLucene()
+        {
+            var listOfСreatives = CreativeRepository.GetAll();
+            return listOfСreatives.ToList();
+        }
+
 
         internal void AddCreative(RegisterCreativeModel creativemodel, ApplicationDbContext db)
         {
@@ -37,6 +44,7 @@ namespace SellTables.Services
             Chapter chapter = creativemodel.Chapter;
             chapter.Creative = creative;
             creative.Chapters.Add(chapter);
+            CreativeSearch.AddUpdateLuceneIndex(creative);
             CreativeRepository.Add(creative, db);
             ChapterRepository.Add(chapter, db);
 

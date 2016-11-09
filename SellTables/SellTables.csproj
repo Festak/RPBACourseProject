@@ -1154,9 +1154,11 @@
     <Content Include="Views\Creative\Create.cshtml" />
     <Content Include="Views\Home\_TagCloud.cshtml" />
     <Content Include="Views\Chapter\Details.cshtml" />
+    <Content Include="Views\Creative\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="LuceneIndexOfCreative\" />
     <Folder Include="Views\Rating\" />
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
+using SellTables.Lucene;
 using SellTables.Models;
 using SellTables.Services;
 using SellTables.ViewModels;
@@ -27,6 +28,7 @@ namespace SellTables.Controllers
         {
             return RedirectToAction("Index", "Home", new { area = "" });
         }
+
         public ActionResult Create()
         {
             return View();
@@ -50,7 +52,14 @@ namespace SellTables.Controllers
            CreativeService.SetRatingToCreative(rating, creative, db, FindUser());
         }
 
-        public void Search() {
+
+        public ActionResult Search(string query) {
+            if (query == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            var test = CreativeSearch.Search(query,null).ToList();
+                return View();
 
         }
 
