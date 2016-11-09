@@ -55,7 +55,7 @@ angular.module('creative', [])
         .error(function (data) {
             console.log(data);
         });
-             
+              //$window.location.href = ''; test variant to reload the page 
 
 
           }

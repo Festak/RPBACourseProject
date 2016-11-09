@@ -23,7 +23,6 @@ namespace SellTables.Controllers
             CreativeService = DependencyResolver.Current.GetService<CreativeService>();
         }
 
-        // GET: Creative
         public ActionResult Index()
         {
             return RedirectToAction("Index", "Home", new { area = "" });
@@ -47,9 +46,12 @@ namespace SellTables.Controllers
             return View(creativemodel);
         }
 
-
         public void GetRatingFromView(int rating, CreativeViewModel creative) {
            CreativeService.SetRatingToCreative(rating, creative, db, FindUser());
+        }
+
+        public void Search() {
+
         }
 
 
