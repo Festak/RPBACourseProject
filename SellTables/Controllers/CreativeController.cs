@@ -61,6 +61,13 @@ namespace SellTables.Controllers
             return db.Users.Find(System.Web.HttpContext.Current.User.Identity.GetUserId());
         }
 
+        private ApplicationUser FindUser(string UserName)
+        {
+            if (!System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
+                return null;
+            return db.Users.Find(UserName);
+        }
+
 
 
     }

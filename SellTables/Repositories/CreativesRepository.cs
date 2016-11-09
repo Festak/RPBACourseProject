@@ -94,6 +94,7 @@ namespace SellTables.Repositories
 
             if (Creative != null)
             {
+                
                 db.Creatives.Remove(Creative);
                 return true;
             }
@@ -105,11 +106,10 @@ namespace SellTables.Repositories
         {
             if (item != null)
             {
-                var _Item = db.Entry(item);
-                Creative itemObj = db.Creatives.Where(x => x.Id == item.Id).FirstOrDefault();
-                itemObj = item;
+                Creative itemObj = db.Creatives.FirstOrDefault(x=>x.Id == item.Id);
                 itemObj.Rating = item.Rating;
-              //  db.Entry(item).State = EntityState.Modified;
+             //   itemObj.Rating = 3;
+                db.Entry(itemObj).State = EntityState.Modified;
                 db.SaveChanges();
             }
         }
