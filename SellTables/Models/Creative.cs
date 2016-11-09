@@ -15,7 +15,7 @@ namespace SellTables.Models
         public virtual ICollection<Rating> Ratings { get; set; }
         public double Rating { get; set; }
         public DateTime CreationDate { get; set; }
-        public DateTime EditDate { get; set; }
+        public DateTime? EditDate { get; set; }
         public string UserId { get; set; }
         public virtual ApplicationUser User { get; set; }
 

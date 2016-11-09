@@ -36,7 +36,7 @@ namespace SellTables.Repositories
 
         ICollection<Creative> IRepository<Creative>.GetAll()
         {
-            return db.Creatives.Include(c => c.Chapters).ToList();
+            return db.Creatives.Include(c => c.Chapters).Include(u => u.User).ToList();
         }
         // TODO: replace ifs
         public ICollection<Creative> GetRange(int start, int count, int sortType, ApplicationDbContext dbc)
@@ -62,17 +62,17 @@ namespace SellTables.Repositories
         
 
         private IEnumerable<Creative> GetDateSortedCreatives(ApplicationDbContext dbc) {
-            return dbc.Creatives.Include(c => c.Chapters).OrderByDescending(c => c.CreationDate);
+            return dbc.Creatives.Include(c => c.Chapters).Include(u => u.User).OrderByDescending(c => c.CreationDate);
         }
 
         private IEnumerable<Creative> GetEditDateSortedCreatives(ApplicationDbContext dbc)
         {
-            return dbc.Creatives.Include(c => c.Chapters).OrderBy(c => c.Id);
+            return dbc.Creatives.Include(c => c.Chapters).Include(u => u.User).OrderBy(c => c.Id);
         }
 
         private IEnumerable<Creative> GetNameSortedCreatives(ApplicationDbContext dbc)
         {
-            return dbc.Creatives.Include(c => c.Chapters).OrderBy(c => c.Name);
+            return dbc.Creatives.Include(c => c.Chapters).Include(u => u.User).OrderBy(c => c.Name);
         }
      
 
@@ -103,7 +103,15 @@ namespace SellTables.Repositories
 
         void IRepository<Creative>.Update(Creative item, ApplicationDbContext db)
         {
-            db.Entry(item).State = EntityState.Modified;
+            if (item != null)
+            {
+                var _Item = db.Entry(item);
+                Creative itemObj = db.Creatives.Where(x => x.Id == item.Id).FirstOrDefault();
+                itemObj = item;
+                itemObj.Rating = item.Rating;
+              //  db.Entry(item).State = EntityState.Modified;
+                db.SaveChanges();
+            }
         }
     }
 }

@@ -232,6 +232,18 @@
     <Compile Include="Migrations\201611081617017_AddData.Designer.cs">
       <DependentUpon>201611081617017_AddData.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611090853127_updateRating.cs" />
+    <Compile Include="Migrations\201611090853127_updateRating.Designer.cs">
+      <DependentUpon>201611090853127_updateRating.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611091045292_wtf.cs" />
+    <Compile Include="Migrations\201611091045292_wtf.Designer.cs">
+      <DependentUpon>201611091045292_wtf.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611091057148_ChangedDate.cs" />
+    <Compile Include="Migrations\201611091057148_ChangedDate.Designer.cs">
+      <DependentUpon>201611091057148_ChangedDate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Chapter.cs" />
@@ -1164,6 +1176,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611081617017_AddData.resx">
       <DependentUpon>201611081617017_AddData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611090853127_updateRating.resx">
+      <DependentUpon>201611090853127_updateRating.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611091045292_wtf.resx">
+      <DependentUpon>201611091045292_wtf.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611091057148_ChangedDate.resx">
+      <DependentUpon>201611091057148_ChangedDate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Resource.en.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

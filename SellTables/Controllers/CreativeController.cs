@@ -47,9 +47,11 @@ namespace SellTables.Controllers
             return View(creativemodel);
         }
 
-        public void GetRatingFromView(int rating, Creative creative) {
-            CreativeService.SetRatingToCreative(rating, creative, db, FindUser());
+
+        public void GetRatingFromView(int rating, CreativeViewModel creative) {
+           CreativeService.SetRatingToCreative(rating, creative, db, FindUser());
         }
+
 
 
         private ApplicationUser FindUser()

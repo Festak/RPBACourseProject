@@ -20,6 +20,7 @@ namespace SellTables.Repositories
         void IRepository<Rating>.Add(Rating item, ApplicationDbContext db)
         {
             db.Rating.Add(item);
+            db.SaveChanges();
         }
 
         ICollection<Rating> IRepository<Rating>.Find(Func<Rating, bool> predicate)

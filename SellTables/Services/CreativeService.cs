@@ -69,6 +69,33 @@ namespace SellTables.Services
             return Chapters;
         }
 
+        //private Creative InitCreative(CreativeViewModel creativemodel) {
+        //    Creative creative = new Creative() {
+        //        Id = creativemodel.Id,
+        //        Chapters = InitChapters(creativemodel.Chapters),
+        //        CreationDate = DateTime.Now, // CHANGE!!!!
+        //        Name = creativemodel.Name,
+        //        User = creativemodel.UserName, // FIND USER
+        //        Rating = creativemodel.Rating,
+        //    };
+        //    return creative;
+        //}
+
+        private ICollection<Chapter> InitChapters(ICollection<ChapterViewModel> list)
+        {
+            var Chapters = list.Select(c => new Chapter
+            {
+                Id = c.Id,
+                CreativeId = c.CreativeId,
+                Name = c.Name,
+                Text = c.Text,
+                Number = c.Number,
+                Tags = c.Tags
+            }).ToList();
+            return Chapters;
+        }
+
+
         internal List<CreativeViewModel> GetCreativesRange(int start, int count, int sortType, ApplicationDbContext db)
         {
             var listOfUsers = InitCreatives(((CreativesRepository)CreativeRepository).GetRange(start, count, sortType, db));
@@ -78,19 +105,22 @@ namespace SellTables.Services
             return listOfUsers.ToList();
         }
 
-        internal void SetRatingToCreative(int rating, Creative creative, ApplicationDbContext db, ApplicationUser user)
+        internal void SetRatingToCreative(int rating, CreativeViewModel creative, ApplicationDbContext db, ApplicationUser user)
         {
             Rating ratingObj = new Rating();
-            int count = db.Rating.Where(u => u.User == user).Where(c => c.Creative == creative).Count();
-            if (count == 0)
-            {
-                ratingObj.User = user;
-                ratingObj.Creative = creative;
-                ratingObj.CreativeId = creative.Id;
-                ratingObj.Value = rating;
-                creative.Ratings.Add(ratingObj);
-                CalculateRating(ratingObj, creative, db);
-            }
+         //  int count = db.Rating.Where(u => u.User == user).Where(c => c.Creative == creative).Count();
+          //  if (count == 0)
+       //     {
+
+         //       ratingObj.User = user;
+         // //  ratingObj.UserId = user.Id;
+         //       ratingObj.Creative = creative;
+         //       ratingObj.CreativeId = creative.Id;
+         //       ratingObj.Value = rating;
+         ////   creative.User = user;
+         // //      creative.Ratings.Add(ratingObj);
+         //  //     CalculateRating(ratingObj, creative, db);
+        //    }
         }
 
         private void CalculateRating(Rating rating, Creative creative, ApplicationDbContext db)
@@ -102,7 +132,10 @@ namespace SellTables.Services
             }
             a /= creative.Ratings.Count;
             creative.Rating = a;
-            RatingsRepository.Add(rating, db);
+
+            //  RatingsRepository.Add(rating, db);
+           // db.Rating.Add(rating);
+           // db.SaveChanges();
             CreativeRepository.Update(creative, db);
         }
 

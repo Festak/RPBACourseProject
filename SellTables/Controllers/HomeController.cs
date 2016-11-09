@@ -60,7 +60,7 @@ namespace SellTables.Controllers
             var allCreatives = CreativeService.GetAllCreatives();
             return Json(allCreatives, JsonRequestBehavior.AllowGet);
         }
-        // TUT TUT UTUT
+       
         public JsonResult GetCreativesRange(int start, int count, int sortType) {
             var rangeCreatives = CreativeService.GetCreativesRange(start, count, sortType, db);
             return Json(rangeCreatives, JsonRequestBehavior.AllowGet);
