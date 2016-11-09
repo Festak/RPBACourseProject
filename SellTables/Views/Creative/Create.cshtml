@@ -3,12 +3,18 @@
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
+
+
+
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Creative</h4>
+        <h4 class="text-center">Creative</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -27,22 +33,26 @@
         </div>
         <div class="form-group">
             @Html.LabelFor(model => model.Chapter.Text, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Chapter.Text, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Chapter.Text, "", new { @class = "text-danger" })
+            <div class="col-md-8">
+                @Html.HiddenFor(model => model.Chapter.Text, new { htmlAttributes = new { @class = "form-control"} })
+                <div class="col-md-offset-2" id="summernote"><p>Hello</p></div>
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input id="submit" type="submit" value="Create" class="btn btn-success col-md-offset-5 col-md-6" />
             </div>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
-
+<script>
+    $(document).ready(function () {
+        $('#summernote').summernote();
+    });
+    document.getElementById("submit").onclick = function () {
+        document.getElementById("Chapter_Text").value = $('#summernote').summernote('code');
+    };
+</script>

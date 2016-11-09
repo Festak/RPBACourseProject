@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNet.Identity;
-using SellTables.Lucene;
 using SellTables.Models;
 using SellTables.Services;
 using SellTables.ViewModels;
@@ -15,7 +14,7 @@ namespace SellTables.Controllers
 {
     public class CreativeController : Controller
     {
-        ApplicationDbContext db = new ApplicationDbContext();
+       // ApplicationDbContext db = new ApplicationDbContext();
 
         CreativeService CreativeService;
 
@@ -24,11 +23,11 @@ namespace SellTables.Controllers
             CreativeService = DependencyResolver.Current.GetService<CreativeService>();
         }
 
+        // GET: Creative
         public ActionResult Index()
         {
             return RedirectToAction("Index", "Home", new { area = "" });
         }
-
         public ActionResult Create()
         {
             return View();
@@ -40,27 +39,17 @@ namespace SellTables.Controllers
         {
             if (ModelState.IsValid)
             {
-                creativemodel.Creative.User = FindUser();
-                CreativeService.AddCreative(creativemodel, db);
+              //  creativemodel.Creative.User = FindUser();
+                CreativeService.AddCreative(creativemodel, User.Identity.GetUserId());
                 return RedirectToAction("Index");
             }
 
             return View(creativemodel);
         }
 
+
         public void GetRatingFromView(int rating, CreativeViewModel creative) {
            CreativeService.SetRatingToCreative(rating, creative, db, FindUser());
-        }
-
-
-        public ActionResult Search(string query) {
-            if (query == null)
-            {
-                return RedirectToAction("Index", "Home");
-            }
-            var test = CreativeSearch.Search(query,null).ToList();
-                return View();
-
         }
 
 
@@ -70,13 +59,6 @@ namespace SellTables.Controllers
             if (!System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
                 return null;
             return db.Users.Find(System.Web.HttpContext.Current.User.Identity.GetUserId());
-        }
-
-        private ApplicationUser FindUser(string UserName)
-        {
-            if (!System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
-                return null;
-            return db.Users.Find(UserName);
         }
 
 

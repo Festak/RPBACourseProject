@@ -18,7 +18,7 @@ namespace SellTables.Repositories
             db = new ApplicationDbContext();
         }
 
-        void IRepository<Creative>.Add(Creative item, ApplicationDbContext db)
+        void IRepository<Creative>.Add(Creative item)
         {
             db.Creatives.Add(item);
             db.SaveChanges();
@@ -39,21 +39,21 @@ namespace SellTables.Repositories
             return db.Creatives.Include(c => c.Chapters).Include(u => u.User).ToList();
         }
         // TODO: replace ifs
-        public ICollection<Creative> GetRange(int start, int count, int sortType, ApplicationDbContext dbc)
+        public ICollection<Creative> GetRange(int start, int count, int sortType)
         {
            
                 IEnumerable<Creative> result = null;
                 if (sortType == 1) {
-                    result = GetDateSortedCreatives(dbc);
+                    result = GetDateSortedCreatives();
                 }
                 if (sortType == 2) {
-                    result = GetEditDateSortedCreatives(dbc);
+                    result = GetEditDateSortedCreatives();
                 }
                 if (sortType == 3) {
-                    result = GetNameSortedCreatives(dbc);
+                    result = GetNameSortedCreatives();
                 }
                 else {
-                    result = GetDateSortedCreatives(dbc);
+                    result = GetDateSortedCreatives();
                 }
                 
                 
@@ -65,12 +65,12 @@ namespace SellTables.Repositories
             return dbc.Creatives.Include(c => c.Chapters).Include(u => u.User).OrderByDescending(c => c.CreationDate);
         }
 
-        private IEnumerable<Creative> GetEditDateSortedCreatives(ApplicationDbContext dbc)
+        private IEnumerable<Creative> GetEditDateSortedCreatives()
         {
             return dbc.Creatives.Include(c => c.Chapters).Include(u => u.User).OrderBy(c => c.Id);
         }
 
-        private IEnumerable<Creative> GetNameSortedCreatives(ApplicationDbContext dbc)
+        private IEnumerable<Creative> GetNameSortedCreatives()
         {
             return dbc.Creatives.Include(c => c.Chapters).Include(u => u.User).OrderBy(c => c.Name);
         }
@@ -94,7 +94,6 @@ namespace SellTables.Repositories
 
             if (Creative != null)
             {
-                
                 db.Creatives.Remove(Creative);
                 return true;
             }
@@ -106,10 +105,11 @@ namespace SellTables.Repositories
         {
             if (item != null)
             {
-                Creative itemObj = db.Creatives.FirstOrDefault(x=>x.Id == item.Id);
+                var _Item = db.Entry(item);
+                Creative itemObj = db.Creatives.Where(x => x.Id == item.Id).FirstOrDefault();
+                itemObj = item;
                 itemObj.Rating = item.Rating;
-             //   itemObj.Rating = 3;
-                db.Entry(itemObj).State = EntityState.Modified;
+              //  db.Entry(item).State = EntityState.Modified;
                 db.SaveChanges();
             }
         }
