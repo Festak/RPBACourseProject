@@ -4,13 +4,7 @@
 
 <div class="row" ng-controller='CreativeController'>
     <div class="col-md-2 col-sd-2" ng-init="getPopular()">
-        Most popular
-        <p  ng-repeat="popularCreative in popular">
-            
-            {{popularCreative.Name}}
-            {{popularCreative.Rating}}
-            <br />
-        </p>
+      @Html.Partial("_PopularCreatives")
     </div>
     <div class="col-md-7" data-ng-controller='CreativeController'>
         <div>
@@ -18,51 +12,12 @@
             @Resources.Resource.ChooseLanguage
             @Resources.Resource.Name
         </div>
-        <div class="btn-group">
-            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Сортировка <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu">
-                <li><a class="btn" ng-click="changeSortType(1)">По дате создания(сначала новые)</a></li>
-                <li><a class="btn" ng-click="changeSortType(2)">По дате редактирования(не работает)</a></li>
-                <li><a class="btn" ng-click="changeSortType(3)">По имени</a></li>
-            </ul>
-        </div>
+      @Html.Partial("_SortPanel")
 
         @Html.ActionLink("Add creative", "Create", "Creative")
 
-        <div>
-            <div class='scr' ng-init='getCreatives()' when-scrolled="load()">
-                <div data-ng-repeat='creative in creatives' class="well well-sm" >
-                    <div class="well well-sm">
-                        <div class="col-md-8"><span>{{creative.Name}}</span></div>
-                        <div class="col-md-4"><span>{{creative.UserName}}</span></div>
-                    </div>
-                    <div class="well well-sm">medalkis</div>
-
-                    <div class="well">
-                        <div ng-repeat="chapter in creative.Chapters" ng-controller="MainController">
-                     
-                            <a ng-click="redirect(chapter.Id)">{{chapter.Name}}</a>
-                        </div>
-                    </div>
-                    <div class="well well-sm">
-                        <div class="col-md-4" >
-
-                            <span id="{{$index}}1" ng-click="vote(1, creative)" class="glyphicon glyphicon-star-empty creative.Id+'1'" ng-mouseover="show($index,1)" ng-mouseleave="hide($index)" aria-hidden="true"></span>
-                            <span id="{{$index}}2" ng-click="vote(2, creative)" class="glyphicon glyphicon-star-empty creative.Id+'1'" ng-mouseover="show($index,2)" ng-mouseleave="hide($index)" aria-hidden="true"></span>
-                            <span id="{{$index}}3" ng-click="vote(3, creative)" class="glyphicon glyphicon-star-empty creative.Id+'1'" ng-mouseover="show($index,3)" ng-mouseleave="hide($index)" aria-hidden="true"></span>
-                            <span id="{{$index}}4" ng-click="vote(4, creative)" class="glyphicon glyphicon-star-empty creative.Id+'1'" ng-mouseover="show($index,4)" ng-mouseleave="hide($index)" aria-hidden="true"></span>
-                            <span id="{{$index}}5" ng-click="vote(5, creative)" class="glyphicon glyphicon-star-empty creative.Id+'1'" ng-mouseover="show($index,5)" ng-mouseleave="hide($index)" aria-hidden="true"></span>
-                 
-                            </div>
-                        <div class="col-md-2">{{creative.Rating}}</div>
-                        <div class="col-md-6">{{creative.CreationDate}}</div>
-                    </div>
-                </div>
-                <div data-ng-show='loading'>Loading</div>
-            </div>
-        </div>
+        @Html.Partial("_CreativesList")
+       
     </div>
     <div class="col-md-3 col-sd-4">
        @Html.Partial("_TagCloud")

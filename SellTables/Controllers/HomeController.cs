@@ -68,8 +68,8 @@ namespace SellTables.Controllers
         }
 
         public JsonResult GetTags() {
-            //    var allTags = TagService.GetAllModelTags();
-            var allTags = TagService.GetMostPopularTags();
+           var allTags = TagService.GetAllModelTags();
+          //  var allTags = TagService.GetMostPopularTags(); popular tags
             return Json(allTags, JsonRequestBehavior.AllowGet);
         }
 

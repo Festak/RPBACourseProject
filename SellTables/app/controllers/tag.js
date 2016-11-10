@@ -6,12 +6,14 @@ angular.module('tag', [])
       $scope.color = "red";
 
       $scope.getTags = function () {
-          $http.get('/Home/GetTags').success(function (result) {
-              $scope.tags = result;
-          })
-              .error(function (data) {
-                  console.log(data);
-              });
+ 
+              $http.get('/Home/GetTags').success(function (result) {
+                  $scope.tags = result;
+              })
+                  .error(function (data) {
+                      console.log(data);
+                  });
+         
       }
 
       $scope.getRandomColor = function () {

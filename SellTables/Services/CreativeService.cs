@@ -61,7 +61,6 @@ namespace SellTables.Services
                 creatives.Add(creative);
             }
             return InitCreativesBySearch(creatives);
-          
         }
 
         private void AddTagsToDB(Chapter chapter) {

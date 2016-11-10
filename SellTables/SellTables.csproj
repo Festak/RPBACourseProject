@@ -301,6 +301,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\ChapterViewModel.cs" />
     <Compile Include="ViewModels\CreativeViewModel.cs" />
+    <Compile Include="ViewModels\MedalViewModel.cs" />
     <Compile Include="ViewModels\RegisterCreativeModel.cs" />
     <Compile Include="ViewModels\TagViewModel.cs" />
   </ItemGroup>
@@ -1194,6 +1195,9 @@
     <Content Include="Views\Chapter\Details.cshtml" />
     <Content Include="Views\Creative\Search.cshtml" />
     <Content Include="Views\Creative\_ChapterCreate.cshtml" />
+    <Content Include="Views\Home\_CreativesList.cshtml" />
+    <Content Include="Views\Home\_SortPanel.cshtml" />
+    <Content Include="Views\Home\_PopularCreatives.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
