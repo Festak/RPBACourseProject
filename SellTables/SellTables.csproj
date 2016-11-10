@@ -212,6 +212,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MedalsController.cs" />
     <Compile Include="Controllers\TagsController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Filter\CultureAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1198,6 +1199,7 @@
     <Content Include="Views\Home\_CreativesList.cshtml" />
     <Content Include="Views\Home\_SortPanel.cshtml" />
     <Content Include="Views\Home\_PopularCreatives.cshtml" />
+    <Content Include="Views\User\UserPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
