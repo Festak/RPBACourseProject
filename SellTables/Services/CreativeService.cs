@@ -18,6 +18,7 @@ namespace SellTables.Services
         private IRepository<Chapter> ChapterRepository;
         private IRepository<Rating> RatingsRepository;
         private IRepository<Tag> TagsRepository;
+        private IUserRepository UsersRepository;
 
 
         public CreativeService(ApplicationDbContext db)
@@ -27,6 +28,7 @@ namespace SellTables.Services
             ChapterRepository = new ChaptersRepository(db);
             RatingsRepository = new RatingsRepository(db);
             TagsRepository = new TagsRepository(db);
+            UsersRepository = new UsersRepository(db);
         }
 
         internal List<CreativeViewModel> GetAllCreatives()
@@ -227,6 +229,13 @@ namespace SellTables.Services
             return listOfСreatives.ToList();
         }
 
+        internal List<CreativeViewModel> GetCreativesByUser(string userName) {
+            var user = UsersRepository.FindUser(userName);
+            var listOfCreatives = InitCreatives(CreativeRepository.GetAll().Where(u => u.User == user).ToList());
+            return listOfCreatives.ToList();
+        }
+
+      
 
     }
 }

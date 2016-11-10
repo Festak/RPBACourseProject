@@ -25,5 +25,8 @@ namespace SellTables.Services
             return listOfUsers.ToList();
         }
 
+        internal ApplicationUser GetCurrentUser(string name) {
+            return Repository.GetCurrentUser(name);
+        }
     }
 }

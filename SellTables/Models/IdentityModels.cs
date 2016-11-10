@@ -19,6 +19,8 @@ namespace SellTables.Models
         public DateTime RegistrationDate { get; set; }
 
         public ApplicationUser() {
+            Creatives = new List<Creative>();
+            Medals = new List<Medal>();
             Language = "en";
             Theme = "black";
             RegistrationDate = DateTime.Now;

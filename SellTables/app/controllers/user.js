@@ -1,7 +1,8 @@
 ﻿
 angular.module('user', [])
   .controller('UserController', ['$scope', '$http', function ($scope, $http) {
-      $scope.users = {};
+      $scope.users = [];
+      $scope.user = {};
 
       $scope.getUsers = function () {
           $http.get('/Home/GetUsers').success(function (result) {
@@ -11,8 +12,15 @@ angular.module('user', [])
                   console.log(data);
               });
       }
-      $scope.save = function (noteText) {
-          console.log(noteText);
+
+
+      $scope.getCurrentUser = function (noteText) {
+          $http.get('/User/GetCurrentUser').success(function (result) {
+              $scope.user = result;
+          })
+             .error(function (data) {
+                 console.log(data);
+             });
       }
 
   }]);

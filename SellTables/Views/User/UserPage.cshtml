@@ -1,0 +1,71 @@
+﻿@model SellTables.Models.ApplicationUser
+@{
+    ViewBag.Title = "UserPage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>UserPage</h2>
+
+<div class="col-sm-8">
+    <div ng-controller="CreativeController">
+        <div ng-init="getCreativesByUser('@User.Identity.Name')">
+
+        </div>
+        <div id="text-carousel" class="carousel slide" data-ride="carousel">
+            <!-- Wrapper for slides -->
+            <div class="row" ng-init="getCreativesByUser('@User.Identity.Name')">
+                <div class="col-xs-offset-3 col-xs-6">
+                 
+            </div>
+        </div>
+        </div>
+    </div>
+        <div class="col-sm-4">
+            <div class="well">
+                <p>Username: @Model.UserName</p>
+            </div>
+            <div class="well">
+                <p>Upcoming Events..</p>
+            </div>
+            <div class="well">
+                <p>Visit Our Blog</p>
+            </div>
+            <div class="well">
+                @Html.ActionLink("Settings", "Settings", "User", new { area = "" }, new { @class = "" })
+            </div>
+        </div>
+        <hr>
+
+
+
+        <div class="container text-center">
+            <h3>Our Partners</h3>
+            <br>
+            <div class="row">
+                <div class="col-sm-2">
+                    <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+                    <p>Partner 1</p>
+                </div>
+                <div class="col-sm-2">
+                    <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+                    <p>Partner 2</p>
+                </div>
+                <div class="col-sm-2">
+                    <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+                    <p>Partner 3</p>
+                </div>
+                <div class="col-sm-2">
+                    <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+                    <p>Partner 4</p>
+                </div>
+                <div class="col-sm-2">
+                    <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+                    <p>Partner 5</p>
+                </div>
+                <div class="col-sm-2">
+                    <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+                    <p>Partner 6</p>
+                </div>
+            </div>
+
+        </div><br>

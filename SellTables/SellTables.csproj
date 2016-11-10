@@ -212,6 +212,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MedalsController.cs" />
     <Compile Include="Controllers\TagsController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Filter\CultureAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -307,10 +308,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.js" />
+    <Content Include="app\controllers\carousel.js" />
     <Content Include="app\controllers\creative.js" />
     <Content Include="app\controllers\chapter.js" />
     <Content Include="app\controllers\tag.js" />
     <Content Include="app\controllers\user.js" />
+    <Content Include="app\services\tagService.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -1198,6 +1201,8 @@
     <Content Include="Views\Home\_CreativesList.cshtml" />
     <Content Include="Views\Home\_SortPanel.cshtml" />
     <Content Include="Views\Home\_PopularCreatives.cshtml" />
+    <Content Include="Views\User\UserPage.cshtml" />
+    <Content Include="Views\User\Settings.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

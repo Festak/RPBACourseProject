@@ -45,9 +45,9 @@ namespace SellTables.Repositories
             return userManager.Users.ToList();
         }
 
-     ApplicationUser IUserRepository.GetCurrentUser(string id)
+     ApplicationUser IUserRepository.GetCurrentUser(string name)
         {
-            return userManager.FindByName(id);
+            return userManager.FindByName(name);
         }
 
         IdentityResult IUserRepository.UpdateUser(ApplicationUser user)

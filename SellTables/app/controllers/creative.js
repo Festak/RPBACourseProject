@@ -55,9 +55,7 @@ angular.module('creative', [])
         .error(function (data) {
             console.log(data);
         });
-              //$window.location.href = ''; test variant to reload the page 
-
-
+              $window.location.href = ''; //test variant to reload the page 
           }
 
           $scope.changeSortType = function (i) {
@@ -98,13 +96,22 @@ angular.module('creative', [])
 
           $scope.getPopular = function () {
               $http.get('/Home/GetPopular').success(function (result) {
-                  console.log(result);
                   $scope.popular = result;
               })
            .error(function (data) {
                console.log(data);
            });
           }
+
+          $scope.getCreativesByUser = function (name) {
+              $http.post('/Creative/GetCreativesByUser', {userName: name}).success(function (result) {
+                  $scope.creatives = result;
+              })
+          .error(function (data) {
+              console.log(data);
+          });
+          }
+
 
       }]).directive("whenScrolled", function () {
           return {
