@@ -16,6 +16,7 @@ namespace SellTables.Services
         private IRepository<Creative> CreativeRepository;
         private IRepository<Chapter> ChapterRepository;
         private IRepository<Rating> RatingsRepository;
+        private IRepository<Tag> TagsRepository;
 
 
         public CreativeService()
@@ -23,6 +24,7 @@ namespace SellTables.Services
             CreativeRepository = new CreativesRepository();
             ChapterRepository = new ChaptersRepository();
             RatingsRepository = new RatingsRepository();
+            TagsRepository = new TagsRepository();
         }
 
         internal List<CreativeViewModel> GetAllCreatives()
@@ -43,11 +45,41 @@ namespace SellTables.Services
             Creative creative = creativemodel.Creative;
             Chapter chapter = creativemodel.Chapter;
             chapter.Creative = creative;
+            chapter.Tags = GetTags(chapter.TagsString,chapter);
+
+       //     AddTagsToDB(chapter, db);
+
             creative.Chapters.Add(chapter);
-            CreativeSearch.AddUpdateLuceneIndex(creative);
+         //  CreativeSearch.AddUpdateLuceneIndex(creative); //ADD LUCENE INDEX
             CreativeRepository.Add(creative, db);
             ChapterRepository.Add(chapter, db);
 
+        }
+
+
+        private void AddTagsToDB(Chapter chapter, ApplicationDbContext db) {
+            foreach (var tag in chapter.Tags) {
+                TagsRepository.Add(tag, db);
+            }
+          
+        }
+
+        private ICollection<Tag> GetTags(String tagList, Chapter chapter)
+        {
+            var stringList = tagList.Split(' ');
+            var tags = new List<Tag>();
+           
+            if (stringList != null)
+            {
+                foreach (String text in stringList)
+                {
+                    Tag tag = new Tag();
+                    tag.Chapters.Add(chapter);
+                    tag.Description = text;
+                    tags.Add(tag);
+                }
+            }
+            return tags;
         }
 
 

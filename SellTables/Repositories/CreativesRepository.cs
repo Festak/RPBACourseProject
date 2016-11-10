@@ -18,10 +18,12 @@ namespace SellTables.Repositories
             db = new ApplicationDbContext();
         }
 
-        void IRepository<Creative>.Add(Creative item)
+        void IRepository<Creative>.Add(Creative item, ApplicationDbContext db)
         {
-            db.Creatives.Add(item);
-            db.SaveChanges();
+           
+                db.Creatives.Add(item);
+                db.SaveChanges();
+            
         }
 
         ICollection<Creative> IRepository<Creative>.Find(Func<Creative, bool> predicate)
@@ -39,21 +41,21 @@ namespace SellTables.Repositories
             return db.Creatives.Include(c => c.Chapters).Include(u => u.User).ToList();
         }
         // TODO: replace ifs
-        public ICollection<Creative> GetRange(int start, int count, int sortType)
+        public ICollection<Creative> GetRange(int start, int count, int sortType, ApplicationDbContext db)
         {
            
                 IEnumerable<Creative> result = null;
                 if (sortType == 1) {
-                    result = GetDateSortedCreatives();
+                    result = GetDateSortedCreatives(db);
                 }
                 if (sortType == 2) {
-                    result = GetEditDateSortedCreatives();
+                    result = GetEditDateSortedCreatives(db);
                 }
                 if (sortType == 3) {
-                    result = GetNameSortedCreatives();
+                    result = GetNameSortedCreatives(db);
                 }
                 else {
-                    result = GetDateSortedCreatives();
+                    result = GetDateSortedCreatives(db);
                 }
                 
                 
@@ -65,12 +67,12 @@ namespace SellTables.Repositories
             return dbc.Creatives.Include(c => c.Chapters).Include(u => u.User).OrderByDescending(c => c.CreationDate);
         }
 
-        private IEnumerable<Creative> GetEditDateSortedCreatives()
+        private IEnumerable<Creative> GetEditDateSortedCreatives(ApplicationDbContext dbc)
         {
             return dbc.Creatives.Include(c => c.Chapters).Include(u => u.User).OrderBy(c => c.Id);
         }
 
-        private IEnumerable<Creative> GetNameSortedCreatives()
+        private IEnumerable<Creative> GetNameSortedCreatives(ApplicationDbContext dbc)
         {
             return dbc.Creatives.Include(c => c.Chapters).Include(u => u.User).OrderBy(c => c.Name);
         }

@@ -24,5 +24,22 @@ namespace SellTables.Services
             var listOfTags = (Repository.GetAll());
             return listOfTags.ToList();
         }
+
+        internal List<TagViewModel> GetAllModelTags()
+        {
+            var listOfTags = InitCreatives(Repository.GetAll());
+            return listOfTags.ToList();
+        }
+
+        private ICollection<TagViewModel> InitCreatives(ICollection<Tag> list)
+        {
+            return list.Select(tag => new TagViewModel
+            {
+                Id = tag.Id,
+                Description = tag.Description
+              
+            }).ToList();
+        }
+
     }
 }

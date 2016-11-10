@@ -47,7 +47,17 @@ namespace SellTables.Lucene
             doc.Add(new Field("User", creative.User.UserName, Field.Store.YES, Field.Index.ANALYZED));
             doc.Add(new Field("Rating", creative.Rating.ToString(), Field.Store.YES, Field.Index.ANALYZED));
             doc.Add(new Field("Date", creative.CreationDate.ToShortDateString() + " " + creative.CreationDate.ToShortTimeString(), Field.Store.YES, Field.Index.ANALYZED));
-
+            string tags = "";
+            foreach (var chapter in creative.Chapters)
+            {
+                if (chapter.TagsString != null)
+                {
+                  //  foreach (var tag in chapter.Tags)
+                //    {
+                        tags += chapter.TagsString + " ";
+                 //   }
+                }
+            }
             //string tags = "";
             //if (chapter.Tags != null)
             //    foreach (var tag in chapter.Tags)
@@ -55,7 +65,7 @@ namespace SellTables.Lucene
             //        tags += tag.Description + " ";
             //    }
             //doc.Add(new Field("Tags", tags, Field.Store.YES, Field.Index.ANALYZED));
-
+            doc.Add(new Field("Tags", tags, Field.Store.YES, Field.Index.ANALYZED));
             // add to index
             writer.AddDocument(doc);
         }
@@ -139,14 +149,21 @@ namespace SellTables.Lucene
 
         private static CreativeViewModel MapLuceneDocumentToData(Document doc)
         {
+            //return new CreativeViewModel
+            //{
+            //    Id = Convert.ToInt32(doc.Get("Id")),
+            //    Name = doc.Get("Name"),
+            //    UserName = doc.Get("User"),
+            //    Rating = Convert.ToDouble(doc.Get("Rating")),
+            //    CreationDate = doc.Get("Date")
+
+            //};
             return new CreativeViewModel
             {
                 Id = Convert.ToInt32(doc.Get("Id")),
                 Name = doc.Get("Name"),
-                UserName = doc.Get("User"),
-                Rating = Convert.ToDouble(doc.Get("Rating")),
-                CreationDate = doc.Get("Date")
-
+                Tags = doc.Get("Tags")
+                
             };
         }
 
@@ -206,7 +223,7 @@ namespace SellTables.Lucene
                 else
                 {
                     var parser = new MultiFieldQueryParser
-                        (Version.LUCENE_30, new[] { "Id", "Name", "User, Rating", "Date"}, analyzer);
+                        (Version.LUCENE_30, new[] { "Id", "Name", "User, Rating", "Date", "Tags"}, analyzer);
                     var query = parseQuery(searchQuery, parser);
                     var hits = searcher.Search
                     (query, null, hits_limit, Sort.RELEVANCE).ScoreDocs;

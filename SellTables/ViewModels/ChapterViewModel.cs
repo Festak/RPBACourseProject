@@ -18,7 +18,7 @@ namespace SellTables.ViewModels
         [AllowHtml]
         public string Text { get; set; }
         public int CreativeId { get; set; }
-
+        public string TagString { get; set; }
 
         public ICollection<Tag> Tags { get; set; }
         public ChapterViewModel()

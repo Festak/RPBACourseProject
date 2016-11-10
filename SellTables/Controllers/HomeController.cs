@@ -13,7 +13,7 @@ using System.Web.Mvc;
 namespace SellTables.Controllers
 {
     [Culture]
-    
+    [Authorize]
     public class HomeController : Controller
     {
         CreativeService CreativeService;
@@ -23,10 +23,10 @@ namespace SellTables.Controllers
 
         public HomeController() {
            
-            UserService =  DependencyResolver.Current.GetService<UserService>();
+          UserService =  DependencyResolver.Current.GetService<UserService>();
           CreativeService =  DependencyResolver.Current.GetService<CreativeService>();
           TagService = DependencyResolver.Current.GetService<TagService>();
-         //   CreativeSearch.AddUpdateLuceneIndex(CreativeService.GetAllCreativesForLucene());
+    // CreativeSearch.AddUpdateLuceneIndex(CreativeService.GetAllCreativesForLucene());
         }
 
         public ActionResult ChangeCulture(string lang)
@@ -69,7 +69,7 @@ namespace SellTables.Controllers
         }
 
         public JsonResult GetTags() {
-            var allTags = TagService.GetAllTags();
+            var allTags = TagService.GetAllModelTags();
             return Json(allTags, JsonRequestBehavior.AllowGet);
         }
 

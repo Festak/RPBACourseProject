@@ -244,6 +244,18 @@
     <Compile Include="Migrations\201611091057148_ChangedDate.Designer.cs">
       <DependentUpon>201611091057148_ChangedDate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611100721075_tags.cs" />
+    <Compile Include="Migrations\201611100721075_tags.Designer.cs">
+      <DependentUpon>201611100721075_tags.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611100740038_tagsString.cs" />
+    <Compile Include="Migrations\201611100740038_tagsString.Designer.cs">
+      <DependentUpon>201611100740038_tagsString.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611100810130_changeTags.cs" />
+    <Compile Include="Migrations\201611100810130_changeTags.Designer.cs">
+      <DependentUpon>201611100810130_changeTags.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Chapter.cs" />
@@ -278,6 +290,7 @@
     <Compile Include="ViewModels\ChapterViewModel.cs" />
     <Compile Include="ViewModels\CreativeViewModel.cs" />
     <Compile Include="ViewModels\RegisterCreativeModel.cs" />
+    <Compile Include="ViewModels\TagViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.js" />
@@ -296,6 +309,7 @@
     <Content Include="Content\bootstrapWhite.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\summernote.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -1167,6 +1181,7 @@
     <Content Include="Views\Home\_TagCloud.cshtml" />
     <Content Include="Views\Chapter\Details.cshtml" />
     <Content Include="Views\Creative\Search.cshtml" />
+    <Content Include="Views\Creative\_ChapterCreate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1198,6 +1213,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611091057148_ChangedDate.resx">
       <DependentUpon>201611091057148_ChangedDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611100721075_tags.resx">
+      <DependentUpon>201611100721075_tags.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611100740038_tagsString.resx">
+      <DependentUpon>201611100740038_tagsString.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611100810130_changeTags.resx">
+      <DependentUpon>201611100810130_changeTags.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Resource.en.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

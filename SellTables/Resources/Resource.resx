@@ -132,6 +132,9 @@
   <data name="Email" xml:space="preserve">
     <value>Электронная почта</value>
   </data>
+  <data name="English" xml:space="preserve">
+    <value>Английский</value>
+  </data>
   <data name="Name" xml:space="preserve">
     <value>Имя</value>
   </data>
@@ -140,6 +143,9 @@
   </data>
   <data name="PasswordEquals" xml:space="preserve">
     <value>Пароли должны быть одинаковы!</value>
+  </data>
+  <data name="Russian" xml:space="preserve">
+    <value>Русский</value>
   </data>
   <data name="Styles" xml:space="preserve">
     <value>Стили</value>

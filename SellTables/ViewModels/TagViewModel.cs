@@ -4,18 +4,12 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace SellTables.Models
+namespace SellTables.ViewModels
 {
-    public class Tag
+    public class TagViewModel
     {
-        [Key]
         public int Id { get; set; }
         [MaxLength(13)]
         public string Description { get; set; }
-        public virtual ICollection<Chapter> Chapters { get; set; }
-        public Tag() {
-            Chapters = new List<Chapter>();
-        }
-
     }
 }

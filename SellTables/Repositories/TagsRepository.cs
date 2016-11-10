@@ -20,7 +20,10 @@ namespace SellTables.Repositories
 
         void IRepository<Tag>.Add(Tag item, ApplicationDbContext db)
         {
-            db.Tags.Add(item);
+          
+                db.Tags.Add(item);
+                db.SaveChanges();
+            
         }
 
         ICollection<Tag> IRepository<Tag>.Find(Func<Tag, bool> predicate)

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
+using MultilingualSite.Filters;
 using SellTables.Models;
 using SellTables.Services;
 using SellTables.ViewModels;
@@ -12,9 +13,11 @@ using System.Web.Mvc;
 
 namespace SellTables.Controllers
 {
+    [Culture]
+    [Authorize]
     public class CreativeController : Controller
     {
-       // ApplicationDbContext db = new ApplicationDbContext();
+       ApplicationDbContext db = new ApplicationDbContext();
 
         CreativeService CreativeService;
 
@@ -39,8 +42,8 @@ namespace SellTables.Controllers
         {
             if (ModelState.IsValid)
             {
-              //  creativemodel.Creative.User = FindUser();
-                CreativeService.AddCreative(creativemodel, User.Identity.GetUserId());
+              creativemodel.Creative.User = FindUser();
+                CreativeService.AddCreative(creativemodel, db);
                 return RedirectToAction("Index");
             }
 
@@ -61,6 +64,26 @@ namespace SellTables.Controllers
             return db.Users.Find(System.Web.HttpContext.Current.User.Identity.GetUserId());
         }
 
+        public ActionResult Search(string query) {
+            if (query == null) {
+                return RedirectToAction("Index", "Home");
+            }
+            var list = Lucene.CreativeSearch.Search(query);
+            return View();
+        }
+
+        //private ICollection<CreativeViewModel> InitCreatives(ICollection<Creative> list)
+        //{
+        //    return list.Select(creative => new CreativeViewModel
+        //    {
+        //        Id = creative.Id,
+        //        Chapters = InitChapters(creative.Chapters),
+        //        UserName = creative.User.UserName,
+        //        Name = creative.Name,
+        //        Rating = creative.Rating,
+        //        CreationDate = creative.CreationDate.ToShortDateString() + " " + creative.CreationDate.ToShortTimeString()
+        //    }).ToList();
+        //}
 
 
     }
