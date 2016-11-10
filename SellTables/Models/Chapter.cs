@@ -19,8 +19,10 @@ namespace SellTables.Models
 
         public int? CreativeId { get; set; }
         public virtual Creative Creative { get; set; }
+        
 
         public string TagsString { get; set; }
+
         public ICollection<Tag> Tags { get; set; }
         public Chapter()
         {

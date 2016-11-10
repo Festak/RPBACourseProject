@@ -256,6 +256,10 @@
     <Compile Include="Migrations\201611100810130_changeTags.Designer.cs">
       <DependentUpon>201611100810130_changeTags.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611101036409_changeTags1.cs" />
+    <Compile Include="Migrations\201611101036409_changeTags1.Designer.cs">
+      <DependentUpon>201611101036409_changeTags1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Chapter.cs" />
@@ -1222,6 +1226,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611100810130_changeTags.resx">
       <DependentUpon>201611100810130_changeTags.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611101036409_changeTags1.resx">
+      <DependentUpon>201611101036409_changeTags1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Resource.en.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

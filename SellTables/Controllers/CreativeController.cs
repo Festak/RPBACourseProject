@@ -50,12 +50,9 @@ namespace SellTables.Controllers
             return View(creativemodel);
         }
 
-
         public void GetRatingFromView(int rating, CreativeViewModel creative) {
            CreativeService.SetRatingToCreative(rating, creative, db, FindUser());
         }
-
-
 
         private ApplicationUser FindUser()
         {
@@ -69,22 +66,9 @@ namespace SellTables.Controllers
                 return RedirectToAction("Index", "Home");
             }
             var list = Lucene.CreativeSearch.Search(query);
+            var got = CreativeService.GetCreativesBySearch(list, new ApplicationDbContext());
             return View();
         }
-
-        //private ICollection<CreativeViewModel> InitCreatives(ICollection<Creative> list)
-        //{
-        //    return list.Select(creative => new CreativeViewModel
-        //    {
-        //        Id = creative.Id,
-        //        Chapters = InitChapters(creative.Chapters),
-        //        UserName = creative.User.UserName,
-        //        Name = creative.Name,
-        //        Rating = creative.Rating,
-        //        CreationDate = creative.CreationDate.ToShortDateString() + " " + creative.CreationDate.ToShortTimeString()
-        //    }).ToList();
-        //}
-
 
     }
 }

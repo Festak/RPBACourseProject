@@ -46,16 +46,21 @@ namespace SellTables.Services
             Chapter chapter = creativemodel.Chapter;
             chapter.Creative = creative;
             chapter.Tags = GetTags(chapter.TagsString,chapter);
-
-       //     AddTagsToDB(chapter, db);
-
             creative.Chapters.Add(chapter);
-         //  CreativeSearch.AddUpdateLuceneIndex(creative); //ADD LUCENE INDEX
+         CreativeSearch.AddUpdateLuceneIndex(creative); //ADD LUCENE INDEX
             CreativeRepository.Add(creative, db);
             ChapterRepository.Add(chapter, db);
-
         }
-
+ 
+        public ICollection<CreativeViewModel> GetCreativesBySearch(ICollection<CreativeViewModel> list, ApplicationDbContext db) {
+            List<Creative> creatives = new List<Creative>();
+            foreach (var cr in list) {
+                var creative = db.Creatives.FirstOrDefault(c => c.Name.Equals(cr.Name));
+                creatives.Add(creative);
+            }
+            return InitCreativesBySearch(creatives);
+          
+        }
 
         private void AddTagsToDB(Chapter chapter, ApplicationDbContext db) {
             foreach (var tag in chapter.Tags) {
@@ -92,9 +97,26 @@ namespace SellTables.Services
                 UserName = creative.User.UserName,
                 Name = creative.Name,
                 Rating = creative.Rating,
+               
                 CreationDate = creative.CreationDate.ToShortDateString() + " " + creative.CreationDate.ToShortTimeString()
             }).ToList();
         }
+
+
+        private ICollection<CreativeViewModel> InitCreativesBySearch(ICollection<Creative> list)
+        {
+            return list.Select(creative => new CreativeViewModel
+            {
+                Id = creative.Id,
+                Chapters = InitChaptersBySearch(creative.Chapters),
+                UserName = creative.User.UserName,
+                Name = creative.Name,
+                Rating = creative.Rating,
+
+                CreationDate = creative.CreationDate.ToShortDateString() + " " + creative.CreationDate.ToShortTimeString()
+            }).ToList();
+        }
+
 
         private ICollection<ChapterViewModel> InitChapters(ICollection<Chapter> list)
         {
@@ -104,9 +126,36 @@ namespace SellTables.Services
                 Name = c.Name,
                 Text = c.Text,
                 Number = c.Number,
-                Tags = c.Tags
+                Tags = c.Tags,
             }).ToList();
             return Chapters;
+        }
+        private ICollection<ChapterViewModel> InitChaptersBySearch(ICollection<Chapter> list)
+        {
+            var Chapters = list.Select(c => new ChapterViewModel
+            {
+                Id = c.Id,
+                Name = c.Name,
+                Text = c.Text,
+                Number = c.Number,
+                Tags = GetTags(c.TagsString),
+                TagString = c.TagsString
+            }).ToList();
+            return Chapters;
+        }
+
+
+
+        private static ICollection<Tag> GetTags(String tagList)
+        {
+            var stringList = tagList.Split(' ');
+            var tags = new List<Tag>();
+            if (stringList != null)
+            {
+                foreach (String text in stringList)
+                    tags.Add(new Tag() { Description = text });
+            }
+            return tags;
         }
 
         private Creative InitCreative(CreativeViewModel creativemodel, ApplicationUser user, ApplicationDbContext db) {

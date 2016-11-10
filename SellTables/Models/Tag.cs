@@ -10,7 +10,6 @@ namespace SellTables.Models
     {
         [Key]
         public int Id { get; set; }
-        [MaxLength(13)]
         public string Description { get; set; }
         public virtual ICollection<Chapter> Chapters { get; set; }
         public Tag() {
