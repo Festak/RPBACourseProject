@@ -12,10 +12,11 @@ namespace SellTables.Services
     public class UserService
     {
         private IUserRepository Repository;
-
-        public UserService()
+        private ApplicationDbContext db;
+        public UserService(ApplicationDbContext db)
         {
-            Repository = new UsersRepository();
+            this.db = db;
+            Repository = new UsersRepository(db);
         }
 
         internal List<ApplicationUser> GetAllUsers()

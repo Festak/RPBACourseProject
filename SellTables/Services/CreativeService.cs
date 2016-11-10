@@ -13,18 +13,20 @@ namespace SellTables.Services
 {
     public class CreativeService
     {
+        private ApplicationDbContext db;
         private IRepository<Creative> CreativeRepository;
         private IRepository<Chapter> ChapterRepository;
         private IRepository<Rating> RatingsRepository;
         private IRepository<Tag> TagsRepository;
 
 
-        public CreativeService()
+        public CreativeService(ApplicationDbContext db)
         {
-            CreativeRepository = new CreativesRepository();
-            ChapterRepository = new ChaptersRepository();
-            RatingsRepository = new RatingsRepository();
-            TagsRepository = new TagsRepository();
+            this.db = db;
+            CreativeRepository = new CreativesRepository(db);
+            ChapterRepository = new ChaptersRepository(db);
+            RatingsRepository = new RatingsRepository(db);
+            TagsRepository = new TagsRepository(db);
         }
 
         internal List<CreativeViewModel> GetAllCreatives()
@@ -40,7 +42,7 @@ namespace SellTables.Services
         }
 
 
-        internal void AddCreative(RegisterCreativeModel creativemodel, ApplicationDbContext db)
+        internal void AddCreative(RegisterCreativeModel creativemodel)
         {
             Creative creative = creativemodel.Creative;
             Chapter chapter = creativemodel.Chapter;
@@ -48,11 +50,11 @@ namespace SellTables.Services
             chapter.Tags = GetTags(chapter.TagsString,chapter);
             creative.Chapters.Add(chapter);
          CreativeSearch.AddUpdateLuceneIndex(creative); //ADD LUCENE INDEX
-            CreativeRepository.Add(creative, db);
-            ChapterRepository.Add(chapter, db);
+            CreativeRepository.Add(creative);
+            ChapterRepository.Add(chapter);
         }
  
-        public ICollection<CreativeViewModel> GetCreativesBySearch(ICollection<CreativeViewModel> list, ApplicationDbContext db) {
+        public ICollection<CreativeViewModel> GetCreativesBySearch(ICollection<CreativeViewModel> list) {
             List<Creative> creatives = new List<Creative>();
             foreach (var cr in list) {
                 var creative = db.Creatives.FirstOrDefault(c => c.Name.Equals(cr.Name));
@@ -62,9 +64,9 @@ namespace SellTables.Services
           
         }
 
-        private void AddTagsToDB(Chapter chapter, ApplicationDbContext db) {
+        private void AddTagsToDB(Chapter chapter) {
             foreach (var tag in chapter.Tags) {
-                TagsRepository.Add(tag, db);
+                TagsRepository.Add(tag);
             }
           
         }
@@ -158,7 +160,7 @@ namespace SellTables.Services
             return tags;
         }
 
-        private Creative InitCreative(CreativeViewModel creativemodel, ApplicationUser user, ApplicationDbContext db) {
+        private Creative InitCreative(CreativeViewModel creativemodel, ApplicationUser user) {
             Creative creative = db.Creatives.Find(creativemodel.Id);
            return creative;
         }
@@ -178,7 +180,7 @@ namespace SellTables.Services
         }
 
 
-        internal List<CreativeViewModel> GetCreativesRange(int start, int count, int sortType, ApplicationDbContext db)
+        internal List<CreativeViewModel> GetCreativesRange(int start, int count, int sortType)
         {
             var listOfUsers = InitCreatives(((CreativesRepository)CreativeRepository).GetRange(start, count, sortType, db));
             if (listOfUsers == null) {
@@ -187,7 +189,7 @@ namespace SellTables.Services
             return listOfUsers.ToList();
         }
 
-        internal void SetRatingToCreative(int rating, CreativeViewModel creativemodel, ApplicationDbContext db, ApplicationUser user)
+        internal void SetRatingToCreative(int rating, CreativeViewModel creativemodel, ApplicationUser user)
         {
             Rating ratingObj = new Rating();
             Creative creative = db.Creatives.Find(creativemodel.Id);
@@ -195,10 +197,10 @@ namespace SellTables.Services
             ratingObj.Value = rating;
             ratingObj.User = user;
             ratingObj.UserId = user.Id;
-            CalculateRating(ratingObj, creative, db);
+            CalculateRating(ratingObj, creative);
         }
 
-        private void CalculateRating(Rating rating, Creative creative, ApplicationDbContext db)
+        private void CalculateRating(Rating rating, Creative creative)
         {
             double a = 0;
             creative.Ratings.Add(rating);
@@ -215,8 +217,8 @@ namespace SellTables.Services
             //}
             creative.Rating = Math.Round(a,2);
             
-            CreativeRepository.Update(creative, db);
-            RatingsRepository.Add(rating, db);
+            CreativeRepository.Update(creative);
+            RatingsRepository.Add(rating);
   
             
         }

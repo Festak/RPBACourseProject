@@ -12,12 +12,12 @@ namespace SellTables.Repositories
     {
         private readonly ApplicationDbContext db;
 
-        public RatingsRepository()
+        public RatingsRepository(ApplicationDbContext db)
         {
-            db = new ApplicationDbContext();
+            this.db = db;
         }
 
-        void IRepository<Rating>.Add(Rating item, ApplicationDbContext db)
+        void IRepository<Rating>.Add(Rating item)
         {
             db.Rating.Add(item);
             db.SaveChanges();
@@ -51,7 +51,7 @@ namespace SellTables.Repositories
             return false;
         }
 
-        void IRepository<Rating>.Update(Rating item, ApplicationDbContext db)
+        void IRepository<Rating>.Update(Rating item)
         {
             db.Entry(item).State = EntityState.Modified;
         }

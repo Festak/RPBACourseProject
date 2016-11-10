@@ -13,12 +13,12 @@ namespace SellTables.Repositories
     {
         private readonly ApplicationDbContext db;
 
-        public CreativesRepository()
+        public CreativesRepository(ApplicationDbContext db)
         {
-            db = new ApplicationDbContext();
+            this.db = db;
         }
 
-        void IRepository<Creative>.Add(Creative item, ApplicationDbContext db)
+        void IRepository<Creative>.Add(Creative item)
         {
            
                 db.Creatives.Add(item);
@@ -103,7 +103,7 @@ namespace SellTables.Repositories
             return false;
         }
 
-        void IRepository<Creative>.Update(Creative item, ApplicationDbContext db)
+        void IRepository<Creative>.Update(Creative item)
         {
             if (item != null)
             {

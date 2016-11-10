@@ -12,8 +12,9 @@ namespace SellTables.Controllers
     public class ChapterController : Controller
     {
         ChapterService ChapterService;
+        ApplicationDbContext db = new ApplicationDbContext();
         public ChapterController() {
-            ChapterService = DependencyResolver.Current.GetService<ChapterService>();
+            ChapterService = new ChapterService(db);
         }
 
         [HttpGet]

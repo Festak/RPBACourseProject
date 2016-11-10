@@ -23,7 +23,7 @@ namespace SellTables.Controllers
 
         public CreativeController()
         {
-            CreativeService = DependencyResolver.Current.GetService<CreativeService>();
+            CreativeService = new CreativeService(db);
         }
 
         // GET: Creative
@@ -43,7 +43,7 @@ namespace SellTables.Controllers
             if (ModelState.IsValid)
             {
               creativemodel.Creative.User = FindUser();
-                CreativeService.AddCreative(creativemodel, db);
+                CreativeService.AddCreative(creativemodel);
                 return RedirectToAction("Index");
             }
 
@@ -51,7 +51,7 @@ namespace SellTables.Controllers
         }
 
         public void GetRatingFromView(int rating, CreativeViewModel creative) {
-           CreativeService.SetRatingToCreative(rating, creative, db, FindUser());
+           CreativeService.SetRatingToCreative(rating, creative, FindUser());
         }
 
         private ApplicationUser FindUser()
@@ -66,7 +66,7 @@ namespace SellTables.Controllers
                 return RedirectToAction("Index", "Home");
             }
             var list = Lucene.CreativeSearch.Search(query);
-            var got = CreativeService.GetCreativesBySearch(list, new ApplicationDbContext());
+            var got = CreativeService.GetCreativesBySearch(list);
             return View();
         }
 

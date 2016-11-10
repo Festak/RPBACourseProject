@@ -22,11 +22,10 @@ namespace SellTables.Controllers
         ApplicationDbContext db = new ApplicationDbContext();
 
         public HomeController() {
-           
-          UserService =  DependencyResolver.Current.GetService<UserService>();
-          CreativeService =  DependencyResolver.Current.GetService<CreativeService>();
-          TagService = DependencyResolver.Current.GetService<TagService>();
-    // CreativeSearch.AddUpdateLuceneIndex(CreativeService.GetAllCreativesForLucene());
+            UserService = new UserService(db);
+            CreativeService = new CreativeService(db);
+            TagService = new TagService(db);
+         //CreativeSearch.AddUpdateLuceneIndex(CreativeService.GetAllCreativesForLucene());
         }
 
         public ActionResult ChangeCulture(string lang)
@@ -64,12 +63,13 @@ namespace SellTables.Controllers
         }
        
         public JsonResult GetCreativesRange(int start, int count, int sortType) {
-            var rangeCreatives = CreativeService.GetCreativesRange(start, count, sortType, db);
+            var rangeCreatives = CreativeService.GetCreativesRange(start, count, sortType);
             return Json(rangeCreatives, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult GetTags() {
-            var allTags = TagService.GetAllModelTags();
+            //    var allTags = TagService.GetAllModelTags();
+            var allTags = TagService.GetMostPopularTags();
             return Json(allTags, JsonRequestBehavior.AllowGet);
         }
 

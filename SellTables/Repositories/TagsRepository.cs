@@ -14,11 +14,11 @@ namespace SellTables.Repositories
 
         private readonly ApplicationDbContext db;
 
-        public TagsRepository() {
-            db = new ApplicationDbContext();
+        public TagsRepository(ApplicationDbContext db) {
+            this.db = db;
         }
 
-        void IRepository<Tag>.Add(Tag item, ApplicationDbContext db)
+        void IRepository<Tag>.Add(Tag item)
         {
           
                 db.Tags.Add(item);
@@ -54,7 +54,7 @@ namespace SellTables.Repositories
             return false;
         }
 
-        void IRepository<Tag>.Update(Tag item, ApplicationDbContext db)
+        void IRepository<Tag>.Update(Tag item)
         {
             db.Entry(item).State = EntityState.Modified;
         }

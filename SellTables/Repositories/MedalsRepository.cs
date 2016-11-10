@@ -13,12 +13,12 @@ namespace SellTables.Repositories
     {
         private readonly ApplicationDbContext db;
 
-        public MedalsRepository()
+        public MedalsRepository(ApplicationDbContext db)
         {
-            db = new ApplicationDbContext();
+            this.db = db;
         }
 
-        void IRepository<Medal>.Add(Medal item, ApplicationDbContext db)
+        void IRepository<Medal>.Add(Medal item)
         {
             db.Medals.Add(item);
         }
@@ -51,7 +51,7 @@ namespace SellTables.Repositories
             return false;
         }
 
-        void IRepository<Medal>.Update(Medal item, ApplicationDbContext db)
+        void IRepository<Medal>.Update(Medal item)
         {
             db.Entry(item).State = EntityState.Modified;
         }

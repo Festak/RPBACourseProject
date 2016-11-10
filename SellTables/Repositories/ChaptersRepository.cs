@@ -12,12 +12,12 @@ namespace SellTables.Repositories
     {
         private readonly ApplicationDbContext db;
 
-        public ChaptersRepository()
+        public ChaptersRepository(ApplicationDbContext db)
         {
-            db = new ApplicationDbContext();
+            this.db = db;  
         }
 
-        void IRepository<Chapter>.Add(Chapter item, ApplicationDbContext db)
+        void IRepository<Chapter>.Add(Chapter item)
         {
             db.Chapters.Add(item);
         }
@@ -50,7 +50,7 @@ namespace SellTables.Repositories
             return false;
         }
 
-        void IRepository<Chapter>.Update(Chapter item, ApplicationDbContext db)
+        void IRepository<Chapter>.Update(Chapter item)
         {
             db.Entry(item).State = EntityState.Modified;
         }
