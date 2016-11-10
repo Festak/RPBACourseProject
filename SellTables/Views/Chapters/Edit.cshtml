@@ -42,15 +42,7 @@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.IsReading, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.IsReading)
-                    @Html.ValidationMessageFor(model => model.IsReading, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
+   
 
         <div class="form-group">
             @Html.LabelFor(model => model.CreativeId, "CreativeId", htmlAttributes: new { @class = "control-label col-md-2" })
