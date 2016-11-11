@@ -41,7 +41,9 @@ namespace SellTables
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js",
                       "~/Scripts/summernote/jquery-2.1.4.js",
-                      "~/Scripts/summernote/summernote.js"
+                      "~/Scripts/summernote/summernote.js",
+                      "~/Scripts/angular-ui/ui-bootstrap-tpls.js"
+
                       ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(

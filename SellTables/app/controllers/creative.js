@@ -1,5 +1,5 @@
 ﻿
-angular.module('creative', [])
+angular.module('creative', ['ngRoute'])
   .controller('CreativeController',
   ['$scope',
       '$http',
@@ -105,7 +105,7 @@ angular.module('creative', [])
 
           $scope.getCreativesByUser = function (name) {
               alert(name);
-              $http.post('/Creative/GetCreativesByUser', {userName: name}).success(function (result) {
+              $http.post('/Creative/GetCreativesByUser', { userName: name }).success(function (result) {
                   $scope.creatives = result;
               })
           .error(function (data) {
@@ -129,6 +129,29 @@ angular.module('creative', [])
                           scope.$apply(attrs.whenScrolled);
                       }
                   });
+              }
+          }
+      }).directive('testDirective', function($compile) {
+          return {
+              restrict: 'EAC',
+              template: "<a id='pop-over-link' style='position: fixed; top: 100px; left: 100px;'>Show pop-over</a>" +
+                        "<div id='pop-over-content' style='display:none'><button class='btn btn-primary' ng-click='testFunction()'>Ok</button></div>",
+              link: function(scope, elements, attrs) {
+                  $("#pop-over-link").popover({
+                      'placement': 'top',
+                      'trigger': 'click',
+                      'html': true,
+                      'container': 'body',
+                      'content': function() {
+                          return $compile($("#pop-over-content").html())(scope);
+                      }
+                  });
+  
+                  scope.testFunction = function() {
+                      alert("it works");
+                      console.log("maybe");
+                  }
+
               }
           }
       });

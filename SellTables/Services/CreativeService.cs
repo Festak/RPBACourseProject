@@ -46,37 +46,43 @@ namespace SellTables.Services
 
         internal void AddCreative(RegisterCreativeModel creativemodel)
         {
+
             Creative creative = creativemodel.Creative;
+            (new UserService(db)).AddCreativeToCounter(creative.User.Id);
             Chapter chapter = creativemodel.Chapter;
             chapter.Creative = creative;
-            chapter.Tags = GetTags(chapter.TagsString,chapter);
+            chapter.Tags = GetTags(chapter.TagsString, chapter);
             creative.Chapters.Add(chapter);
-         CreativeSearch.AddUpdateLuceneIndex(creative); //ADD LUCENE INDEX
+            CreativeSearch.AddUpdateLuceneIndex(creative); //ADD LUCENE INDEX
             CreativeRepository.Add(creative);
             ChapterRepository.Add(chapter);
         }
- 
-        public ICollection<CreativeViewModel> GetCreativesBySearch(ICollection<CreativeViewModel> list) {
+
+        public ICollection<CreativeViewModel> GetCreativesBySearch(ICollection<CreativeViewModel> list)
+        {
             List<Creative> creatives = new List<Creative>();
-            foreach (var cr in list) {
+            foreach (var cr in list)
+            {
                 var creative = db.Creatives.FirstOrDefault(c => c.Name.Equals(cr.Name));
                 creatives.Add(creative);
             }
             return InitCreativesBySearch(creatives);
         }
 
-        private void AddTagsToDB(Chapter chapter) {
-            foreach (var tag in chapter.Tags) {
+        private void AddTagsToDB(Chapter chapter)
+        {
+            foreach (var tag in chapter.Tags)
+            {
                 TagsRepository.Add(tag);
             }
-          
+
         }
 
         private ICollection<Tag> GetTags(String tagList, Chapter chapter)
         {
             var stringList = tagList.Split(' ');
             var tags = new List<Tag>();
-           
+
             if (stringList != null)
             {
                 foreach (String text in stringList)
@@ -100,7 +106,7 @@ namespace SellTables.Services
                 UserName = creative.User.UserName,
                 Name = creative.Name,
                 Rating = creative.Rating,
-               
+                Medals = creative.User.Medals,
                 CreationDate = creative.CreationDate.ToShortDateString() + " " + creative.CreationDate.ToShortTimeString()
             }).ToList();
         }
@@ -161,9 +167,10 @@ namespace SellTables.Services
             return tags;
         }
 
-        private Creative InitCreative(CreativeViewModel creativemodel, ApplicationUser user) {
+        private Creative InitCreative(CreativeViewModel creativemodel, ApplicationUser user)
+        {
             Creative creative = db.Creatives.Find(creativemodel.Id);
-           return creative;
+            return creative;
         }
 
         private ICollection<Chapter> InitChapters(ICollection<ChapterViewModel> list)
@@ -183,8 +190,9 @@ namespace SellTables.Services
 
         internal List<CreativeViewModel> GetCreativesRange(int start, int count, int sortType)
         {
-            var listOfUsers = InitCreatives(((CreativesRepository)CreativeRepository).GetRange(start, count, sortType, db));
-            if (listOfUsers == null) {
+            var listOfUsers = InitCreatives(((CreativesRepository)CreativeRepository).GetRange(start, count, sortType));
+            if (listOfUsers == null)
+            {
                 return null;
             }
             return listOfUsers.ToList();
@@ -211,31 +219,33 @@ namespace SellTables.Services
             }
             //if (creative.Ratings.Count != 0)
             //{
-                a /= creative.Ratings.Count;
+            a /= creative.Ratings.Count;
             //}
             //else {
             //    a = ra / 1;
             //}
-            creative.Rating = Math.Round(a,2);
-            
+            creative.Rating = Math.Round(a, 2);
+
             CreativeRepository.Update(creative);
             RatingsRepository.Add(rating);
-  
-            
+
+
         }
 
-        internal List<CreativeViewModel> GetPopularCreatives() {
+        internal List<CreativeViewModel> GetPopularCreatives()
+        {
             var listOfСreatives = InitCreatives(((CreativesRepository)CreativeRepository).GetPopular());
             return listOfСreatives.ToList();
         }
 
-        internal List<CreativeViewModel> GetCreativesByUser(string userName) {
+        internal List<CreativeViewModel> GetCreativesByUser(string userName)
+        {
             var user = UsersRepository.FindUser(userName);
             var listOfCreatives = InitCreatives(db.Creatives.ToList());
             return listOfCreatives.ToList();
         }
 
-      
+
 
     }
 }

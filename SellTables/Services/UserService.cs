@@ -25,5 +25,16 @@ namespace SellTables.Services
             return listOfUsers.ToList();
         }
 
+        public void AddCreativeToCounter(string userId) {
+            ApplicationUser user = Repository.FindUserById(userId);
+            user.ChaptersCreateCounter += 1;
+            if (user.ChaptersCreateCounter == 5) // TODO: make verification for medal exist
+            {
+                    user.Medals.Add(db.Medals.FirstOrDefault(m => m.Id == 2));                
+            }
+            Repository.UpdateUser(user);
+            db.SaveChanges();          
+        }
+
     }
 }

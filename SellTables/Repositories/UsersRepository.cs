@@ -53,6 +53,7 @@ namespace SellTables.Repositories
         IdentityResult IUserRepository.UpdateUser(ApplicationUser user)
         {
             return userManager.Update(user);
+            
         }
     }
 }
