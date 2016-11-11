@@ -13,6 +13,7 @@ namespace SellTables.Models
     {
         public ICollection<Creative> Creatives { get; set; }
         public ICollection<Medal> Medals { get; set; }
+        public int ChaptersCreateCounter { get; set; }
         public string AvatarUri { get; set; }
         public string Language { get; set; }
         public string Theme { get; set; }

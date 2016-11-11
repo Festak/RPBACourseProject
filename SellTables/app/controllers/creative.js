@@ -1,5 +1,5 @@
 ﻿
-angular.module('creative', [])
+angular.module('creative', ['ngRoute'])
   .controller('CreativeController',
   ['$scope',
       '$http',

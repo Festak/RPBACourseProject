@@ -1,4 +1,6 @@
-﻿<div>
+﻿<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+
+<div>
     <div class='scr' ng-init='getCreatives()' when-scrolled="load()">
         <div data-ng-repeat='creative in creatives' class="well well-sm">
             <div class="well well-sm">
@@ -9,7 +11,13 @@
                 <div class="col-md-8"><span>{{creative.Name}}</span></div>
                 <div class="col-md-4"><span>{{creative.UserName}}</span></div>
             </div>
-            <div class="well well-sm">medalkis</div>
+            <div class="well well-sm">
+                @*<img class="col-md-1" src="https://thetomatos.com/wp-content/uploads/2016/10/gold-medal-clipart.gif" />*@
+                <div ng-repeat="medal in creative.Medals">
+                    <img src="{{medal.ImageUri}}" title="{{medal.Description}}" class="col-md-1 col-sm-1 col-xs-1" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?" />
+                    <test-directive></test-directive>
+                </div>
+            </div>
 
             <div class="well">
                 <div ng-repeat="chapter in creative.Chapters" ng-controller="MainController">

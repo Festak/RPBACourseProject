@@ -270,6 +270,22 @@
     <Compile Include="Migrations\201611101307230_willItWork.Designer.cs">
       <DependentUpon>201611101307230_willItWork.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611101454451_asd.cs" />
+    <Compile Include="Migrations\201611101454451_asd.Designer.cs">
+      <DependentUpon>201611101454451_asd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611101558181_asd1.cs" />
+    <Compile Include="Migrations\201611101558181_asd1.Designer.cs">
+      <DependentUpon>201611101558181_asd1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611101607062_asd2.cs" />
+    <Compile Include="Migrations\201611101607062_asd2.Designer.cs">
+      <DependentUpon>201611101607062_asd2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611101625590_asd3.cs" />
+    <Compile Include="Migrations\201611101625590_asd3.Designer.cs">
+      <DependentUpon>201611101625590_asd3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Chapter.cs" />
@@ -326,6 +342,7 @@
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\summernote.css" />
+    <Content Include="Content\ui-bootstrap-csp.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -356,6 +373,10 @@
     <Content Include="Scripts\angular-scenario.js" />
     <Content Include="Scripts\angular-touch.js" />
     <Content Include="Scripts\angular-touch.min.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.min.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap.min.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -1254,6 +1275,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611101307230_willItWork.resx">
       <DependentUpon>201611101307230_willItWork.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611101454451_asd.resx">
+      <DependentUpon>201611101454451_asd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611101558181_asd1.resx">
+      <DependentUpon>201611101558181_asd1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611101607062_asd2.resx">
+      <DependentUpon>201611101607062_asd2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611101625590_asd3.resx">
+      <DependentUpon>201611101625590_asd3.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Resource.en.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
