@@ -11,5 +11,9 @@ namespace SellTables.ViewModels
         public Creative Creative { get; set; }
         public ICollection<Chapter> Chapters { get; set; }
         public Chapter Chapter { get; set; }
+
+        public RegisterCreativeModel() {
+            Chapters = new List<Chapter>();
+        }
     }
 }

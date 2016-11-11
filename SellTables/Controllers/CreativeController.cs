@@ -5,6 +5,7 @@ using SellTables.Services;
 using SellTables.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -64,6 +65,40 @@ namespace SellTables.Controllers
             }
             return View(creative);
         }
+
+        
+        public async Task<ActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Creative creative = await db.Creatives.FindAsync(id);
+            RegisterCreativeModel model = new RegisterCreativeModel();
+            model.Creative = creative;
+            model.Chapters = creative.Chapters;
+
+            if (creative == null)
+            {
+                return HttpNotFound();
+            }
+            return View(model);
+        }
+
+        // TODO
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<ActionResult> Edit(RegisterCreativeModel registerCreativeModel)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Entry(creative).State = EntityState.Modified;
+        //        await db.SaveChangesAsync();
+        //        return RedirectToAction("Index");
+        //    }
+        //    return View(creative);
+        //}
 
         public void GetRatingFromView(int rating, CreativeViewModel creative) {
            CreativeService.SetRatingToCreative(rating, creative, FindUser());

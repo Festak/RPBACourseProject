@@ -1207,6 +1207,7 @@
     <Content Include="Views\User\Settings.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Creative\Details.cshtml" />
+    <Content Include="Views\Creative\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -3,7 +3,8 @@
         <div data-ng-repeat='creative in creatives' class="well well-sm">
             <div class="well well-sm">
                 <div ng-controller="MainController">
-                <a><i ng-click="redirectToCreative(creative.Id)">Go</i></a>
+                <a><i ng-click="redirectToAddCreative(creative.Id)">Add</i></a>
+                   <a><i ng-click="redirectToEditCreative(creative.Id)">Edit</i></a>
                     </div>
                 <div class="col-md-8"><span>{{creative.Name}}</span></div>
                 <div class="col-md-4"><span>{{creative.UserName}}</span></div>

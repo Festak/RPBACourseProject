@@ -8,8 +8,12 @@
           $scope.redirect = function (Id) {
               $window.location.href = '/Chapter/Details/' + Id;
           }
-          $scope.redirectToCreative = function (Id) {
+          $scope.redirectToAddCreative = function (Id) {
               $window.location.href = '/Creative/Details/' + Id;
+          }
+
+          $scope.redirectToEditCreative = function (Id) {
+              $window.location.href = '/Creative/Edit/' + Id;
           }
 
       }]).config(function ($routeProvider) {
