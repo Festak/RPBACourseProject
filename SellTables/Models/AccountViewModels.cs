@@ -5,6 +5,11 @@ namespace SellTables.Models
 {
     public class ExternalLoginConfirmationViewModel
     {
+
+        [Required]
+        [Display(Name = "User Name")]
+        public string UserName { get; set; }
+
         [Required]
         [Display(Name = "Email", ResourceType = typeof(Resources.Resource))]
         public string Email { get; set; }
@@ -47,7 +52,8 @@ namespace SellTables.Models
     }
 
     public class LoginViewModel
-    {
+    { 
+
         [Required]
         [Display(Name = "Email", ResourceType = typeof(Resources.Resource))]
         [EmailAddress]
@@ -64,6 +70,10 @@ namespace SellTables.Models
 
     public class RegisterViewModel
     {
+        [Required]
+        [Display(Name = "User Name")]
+        public string UserName { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email", ResourceType = typeof(Resources.Resource))]

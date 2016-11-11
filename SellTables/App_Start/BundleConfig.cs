@@ -26,11 +26,10 @@ namespace SellTables
                           "~/Scripts/ng-inline-edit.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
-                "~/app/app.js",
+                "~/app/main.js",
                 "~/app/controllers/creative.js",
                 "~/app/controllers/user.js",
                 "~/app/controllers/tag.js",
-                "~/app/services/tagService.js",
                  "~/app/controllers/chapter.js",
                 "~/Scripts/scripts/tagcloud.js"
                 ));

@@ -8,14 +8,12 @@
 
 <div class="col-sm-8">
     <div ng-controller="CreativeController">
-        <div ng-init="getCreativesByUser('@User.Identity.Name')">
 
-        </div>
         <div id="text-carousel" class="carousel slide" data-ride="carousel">
             <!-- Wrapper for slides -->
             <div class="row" ng-init="getCreativesByUser('@User.Identity.Name')">
                 <div class="col-xs-offset-3 col-xs-6">
-                 
+                 <div ng-repeat="creative in creatives">{{creative.Name}}</div>
             </div>
         </div>
         </div>
@@ -67,5 +65,5 @@
                     <p>Partner 6</p>
                 </div>
             </div>
-
+    </div>
         </div><br>

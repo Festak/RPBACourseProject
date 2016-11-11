@@ -307,13 +307,12 @@
     <Compile Include="ViewModels\TagViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="app\app.js" />
     <Content Include="app\controllers\carousel.js" />
     <Content Include="app\controllers\creative.js" />
     <Content Include="app\controllers\chapter.js" />
     <Content Include="app\controllers\tag.js" />
     <Content Include="app\controllers\user.js" />
-    <Content Include="app\services\tagService.js" />
+    <Content Include="app\main.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -1147,7 +1146,9 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />

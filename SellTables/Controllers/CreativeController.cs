@@ -65,9 +65,11 @@ namespace SellTables.Controllers
             if (query == null) {
                 return RedirectToAction("Index", "Home");
             }
-            var list = Lucene.CreativeSearch.Search(query);
-            var got = CreativeService.GetCreativesBySearch(list);
-            return View();
+            var listOfLuceneObjects = Lucene.CreativeSearch.Search(query);
+
+            var listOfCreativeViewModelObjects = CreativeService.GetCreativesBySearch(listOfLuceneObjects);
+
+            return View(listOfCreativeViewModelObjects.ToList());
         }
 
         public JsonResult GetCreativesByUser(string userName) {

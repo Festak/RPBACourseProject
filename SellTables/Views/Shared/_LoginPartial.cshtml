@@ -7,30 +7,11 @@
 
     <ul class="nav navbar-nav navbar-right">
         <li>
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+            @Html.ActionLink(User.Identity.GetUserName(), "UserPage", "User", routeValues: null, htmlAttributes: new { title = "UserPage" })
         </li>
         <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
     </ul>
-    <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
 
-                <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-                <li>@Html.ActionLink("Русский", "ChangeCulture", "Home", new { lang = "ru" }, new { })</li>
-                <li>@Html.ActionLink("English", "ChangeCulture", "Home", new { lang = "en" }, new { })</li>
-            </ul>
-
-        </li>
-        <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">@Resources.Resource.Styles<b class="caret"></b></a>
-            <ul class="dropdown-menu">
-                <li onclick="setCookie('style', '1', '/')"><a>@Resources.Resource.Dark</a></li>
-                <li onclick="setCookie('style', '2', '/')"><a>@Resources.Resource.White</a></li>
-            </ul>
-        </li>
-    </ul>
     }
 }
 else
@@ -39,25 +20,7 @@ else
         <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
         <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
     </ul>
-    <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
 
-                <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-                <li>@Html.ActionLink("Русский", "ChangeCulture", "Home", new { lang = "ru" }, new { })</li>
-                <li>@Html.ActionLink("English", "ChangeCulture", "Home", new { lang = "en" }, new { })</li>
-            </ul>
-        </li>
-        <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">@Resources.Resource.Styles<b class="caret"></b></a>
-            <ul class="dropdown-menu">
-                <li onclick="setCookie('style', '1', '/')"><a>@Resources.Resource.Dark</a></li>
-                <li onclick="setCookie('style', '2', '/')"><a>@Resources.Resource.White</a></li>
-            </ul>
-        </li>
-    </ul>
 }
 
 <script type="text/javascript">
