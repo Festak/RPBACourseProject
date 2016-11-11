@@ -9,14 +9,13 @@
 <div class="col-sm-8">
     <div ng-controller="CreativeController">
 
-        <div id="text-carousel" class="carousel slide" data-ride="carousel">
             <!-- Wrapper for slides -->
             <div class="row" ng-init="getCreativesByUser('@User.Identity.Name')">
                 <div class="col-xs-offset-3 col-xs-6">
                  <div ng-repeat="creative in creatives">{{creative.Name}}</div>
             </div>
         </div>
-        </div>
+        
     </div>
         <div class="col-sm-4">
             <div class="well">
@@ -29,7 +28,7 @@
                 <p>Visit Our Blog</p>
             </div>
             <div class="well">
-                @Html.ActionLink("Settings", "Settings", "User", new { area = "" }, new { @class = "" })
+                @Html.ActionLink("Settings", "Index", "Manage", new { @class = "" })
             </div>
         </div>
         <hr>
@@ -67,3 +66,4 @@
             </div>
     </div>
         </div><br>
+

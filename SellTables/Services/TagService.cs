@@ -99,7 +99,6 @@ namespace SellTables.Services
             {
                 Id = tag.Id,
                 Description = tag.Description
-              
             }).ToList();
         }
 

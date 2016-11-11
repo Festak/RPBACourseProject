@@ -65,6 +65,11 @@ namespace SellTables.Services
             return InitCreativesBySearch(creatives);
         }
 
+        internal Creative GetCreative(int id)
+        {
+            return CreativeRepository.Get(id);
+        }
+
         private void AddTagsToDB(Chapter chapter) {
             foreach (var tag in chapter.Tags) {
                 TagsRepository.Add(tag);

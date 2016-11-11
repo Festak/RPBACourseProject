@@ -1,0 +1,37 @@
+﻿@model SellTables.Models.Creative
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Chapter</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+  @Model.Rating
+        </dl>
+        <table border="1">
+            @foreach (var c in Model.Chapters)
+            {
+                <tr>
+                    <td>Name</td>
+                    <td>Text</td>
+                </tr>
+                <tr>
+                    <td>@c.Name</td>
+                    <td>@Html.Raw(c.Text)</td>
+                </tr>
+
+            }
+        </table>
+</div>

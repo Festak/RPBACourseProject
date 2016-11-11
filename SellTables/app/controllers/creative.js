@@ -16,10 +16,14 @@ angular.module('creative', [])
           var count = 4;
           var haveMore = true;
           var isBusy = false;
+          $scope.orderByField = 'firstName';
+          $scope.reverseSort = false;
 
           $scope.getCreatives = function () {
               $scope.load();
           }
+
+      
 
           $scope.load = function () {
               if (haveMore && !isBusy) {

@@ -50,6 +50,21 @@ namespace SellTables.Controllers
             return View(creativemodel);
         }
 
+        [HttpGet]
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Creative creative = CreativeService.GetCreative(id ?? 0);
+            if (creative == null)
+            {
+                return HttpNotFound();
+            }
+            return View(creative);
+        }
+
         public void GetRatingFromView(int rating, CreativeViewModel creative) {
            CreativeService.SetRatingToCreative(rating, creative, FindUser());
         }
@@ -65,9 +80,11 @@ namespace SellTables.Controllers
             if (query == null) {
                 return RedirectToAction("Index", "Home");
             }
-            var listOfLuceneObjects = Lucene.CreativeSearch.Search(query);
+            var listOfLuceneObjectsByTags = Lucene.CreativeSearch.Search(query, "Tags");
+            var listOfLuceneObjectsByName = Lucene.CreativeSearch.Search(query, "Names");
 
-            var listOfCreativeViewModelObjects = CreativeService.GetCreativesBySearch(listOfLuceneObjects);
+            var listOfCreativeViewModelObjects = CreativeService.GetCreativesBySearch(listOfLuceneObjectsByTags);
+            ViewBag.listOfLuceneObjectsByName = listOfLuceneObjectsByName;
 
             return View(listOfCreativeViewModelObjects.ToList());
         }
