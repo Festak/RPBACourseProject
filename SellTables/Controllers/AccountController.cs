@@ -11,6 +11,7 @@ using Microsoft.Owin.Security;
 using SellTables.Models;
 using MultilingualSite.Filters;
 using System.Collections.Generic;
+using SellTables.ViewModels;
 
 namespace SellTables.Controllers
 {
@@ -23,6 +24,10 @@ namespace SellTables.Controllers
 
         public AccountController()
         {
+        }
+
+        public ActionResult SignIn() {
+            return View();
         }
 
 
@@ -70,16 +75,18 @@ namespace SellTables.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
+        public async Task<ActionResult> Login(LoginRegisterUserModel model, string returnUrl)
         {
+
+            LoginViewModel login = model.LoginViewModel;
             if (!ModelState.IsValid)
             {
-                return View(model);
+                return View(login);
             }
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await SignInManager.PasswordSignInAsync(login.Email, login.Password, login.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -87,7 +94,7 @@ namespace SellTables.Controllers
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = login.RememberMe });
                 case SignInStatus.Failure:
                 default:
                     ModelState.AddModelError("", "Invalid login attempt.");
@@ -151,8 +158,9 @@ namespace SellTables.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(LoginRegisterUserModel register)
         {
+            RegisterViewModel model = register.RegisterViewModel;
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.UserName, Email = model.Email };

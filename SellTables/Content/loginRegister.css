@@ -1,50 +1,5 @@
 ﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
 }
-
-/* Set padding to keep content from hitting the edges */
-.body-content {
-
-}
-
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
-.dl-horizontal dt {
-    white-space: normal;
-}
-
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
-}
-.scr {
-  height: 600px;
-  overflow: scroll;
-  border-radius: 5px;
-  margin: 0 auto;
-  padding: 0.5em;
-}
-.scr::-webkit-scrollbar {
-  width: 8px;
-  background-color: transparent;
-}
-.scr::-webkit-scrollbar-thumb {
-  background-color: #b0fccd;
-  border-radius: 10px;
-}
-
-
-#div1 {position:relative; width:400px; height:400px; margin: 20px auto 0; }
-#div1 a {position:absolute; top:0px; left:0px; font-family: Microsoft YaHei; color:orange; font-weight:bold; text-decoration:none; padding: 3px 6px; }
-#div1 a:hover {border: 1px solid #eee; background: transparent; }
-#div1 .blue {color:blue;}
-#div1 .red {color:red;}
-#div1 .yellow {color:yellow;}
-
 
   .panel-login {
     border-color: #ccc;

@@ -16,6 +16,11 @@
               $window.location.href = '/Creative/Edit/' + Id;
           }
 
+          //$scope.loadTags = function () {
+          //    alert("HERE");
+          //    return $http.get('/Home/GetTags');
+          //};
+
       }]).config(function ($routeProvider) {
           $routeProvider.
           when('/firstPage', {

@@ -319,6 +319,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\ChapterViewModel.cs" />
     <Compile Include="ViewModels\CreativeViewModel.cs" />
+    <Compile Include="ViewModels\LoginRegisterUserModel.cs" />
     <Compile Include="ViewModels\MedalViewModel.cs" />
     <Compile Include="ViewModels\RegisterCreativeModel.cs" />
     <Compile Include="ViewModels\TagViewModel.cs" />
@@ -339,8 +340,16 @@
     <Content Include="Content\bootstrapDarkly.min.css" />
     <Content Include="Content\bootstrapGrey.css" />
     <Content Include="Content\bootstrapWhite.css" />
+    <Content Include="Content\counter.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\images\Facebook.png" />
+    <Content Include="Content\images\Twitter.png" />
+    <Content Include="Content\images\Vkontakte.png" />
+    <Content Include="Content\jqmenu.css" />
+    <Content Include="Content\loginRegister.css" />
+    <Content Include="Content\ng-tags-input.bootstrap.min.css" />
+    <Content Include="Content\ng-tags-input.min.css" />
     <Content Include="Content\summernote.css" />
     <Content Include="Content\ui-bootstrap-csp.css" />
     <Content Include="favicon.ico" />
@@ -1156,6 +1165,11 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\scripts\counter.js" />
+    <Content Include="Scripts\scripts\ng-tags-input.min.js" />
+    <Content Include="Scripts\scripts\registerLoginMenu.js" />
+    <Content Include="Scripts\scripts\tagscloud.js" />
+    <Content Include="Scripts\scripts\jqmenu.js" />
     <Content Include="Scripts\scripts\tagcloud.js" />
     <Content Include="Scripts\summernote\jquery-2.1.4.js" />
     <Content Include="Scripts\summernote\summernote.css" />
@@ -1229,9 +1243,11 @@
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Creative\Details.cshtml" />
     <Content Include="Views\Creative\Edit.cshtml" />
+    <Content Include="Views\Home\_MenuOfSome.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="images\" />
     <Folder Include="LuceneIndexOfCreative\" />
     <Folder Include="Views\Rating\" />
   </ItemGroup>

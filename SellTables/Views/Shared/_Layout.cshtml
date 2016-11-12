@@ -4,11 +4,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/angular")
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    @Scripts.Render("~/bundles/angular")
+    @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/app")
-    @Scripts.Render("~/bundles/jquery")
 
     @*@if (Request.Cookies["style"] == null)
         {
@@ -68,12 +69,11 @@
             <hr />
         </div>
     </div>
-
-   
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+  
 </body>
+
 </html>
+@RenderSection("scripts", required: false)
 <script type="text/javascript">
     window.setCookie = setCookie = function(name, value, path) {
         document.cookie = name + "=" + escape(value) + (path ? "; path=" + path : "");

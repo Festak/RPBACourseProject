@@ -3,20 +3,22 @@
     ViewBag.Title = "UserPage";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel='stylesheet prefetch' href='http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css'>
 
 <h2>UserPage</h2>
 
 <div class="col-sm-8">
-    <div ng-controller="CreativeController">
+    <div ng-controller="CreativeController" ng-init="getCreativesByUser('@User.Identity.Name')">
 
             <!-- Wrapper for slides -->
-            <div class="row" ng-init="getCreativesByUser('@User.Identity.Name')">
+            <div class="row">
                 <div class="col-xs-offset-3 col-xs-6">
                  <div ng-repeat="creative in creatives">{{creative.Name}}</div>
             </div>
         </div>
         
-    </div>
+   </div>
         <div class="col-sm-4">
             <div class="well">
                 <p>Username: @Model.UserName</p>
@@ -36,34 +38,13 @@
 
 
         <div class="container text-center">
-            <h3>Our Partners</h3>
-            <br>
-            <div class="row">
-                <div class="col-sm-2">
-                    <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-                    <p>Partner 1</p>
-                </div>
-                <div class="col-sm-2">
-                    <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-                    <p>Partner 2</p>
-                </div>
-                <div class="col-sm-2">
-                    <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-                    <p>Partner 3</p>
-                </div>
-                <div class="col-sm-2">
-                    <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-                    <p>Partner 4</p>
-                </div>
-                <div class="col-sm-2">
-                    <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-                    <p>Partner 5</p>
-                </div>
-                <div class="col-sm-2">
-                    <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-                    <p>Partner 6</p>
+            <div class="wrapper">
+                <div class="counter col_fourth">
+                    <i class="fa fa-code fa-2x"></i>
+                    <h2 class="timer count-title" id="count-number" data-to="@Model.ChaptersCreateCounter" data-speed="7000"></h2>
+                    <p class="count-text ">Total count of chapters</p>
                 </div>
             </div>
-    </div>
+            </div>
         </div><br>
 

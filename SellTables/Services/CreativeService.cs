@@ -46,16 +46,22 @@ namespace SellTables.Services
 
         internal void AddCreative(RegisterCreativeModel creativemodel)
         {
-
             Creative creative = creativemodel.Creative;
             (new UserService(dataBaseContext)).AddCreativeToCounter(creative.User.Id);
             Chapter chapter = creativemodel.Chapter;
             chapter.Creative = creative;
             chapter.Tags = GetTags(chapter.TagsString, chapter);
             creative.Chapters.Add(chapter);
+            AddCreativeToUser(creative);
             CreativeSearch.AddUpdateLuceneIndex(creative); //ADD LUCENE INDEX
             CreativeRepository.Add(creative);
             ChapterRepository.Add(chapter);
+        }
+
+        private void AddCreativeToUser(Creative creative) {
+            ApplicationUser user = UsersRepository.FindUserById(creative.User.Id);
+            user.Creatives.Add(creative);
+            UsersRepository.UpdateUser(user);
         }
 
         public ICollection<CreativeViewModel> GetCreativesBySearch(ICollection<CreativeViewModel> list)

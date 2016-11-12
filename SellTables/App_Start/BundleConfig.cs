@@ -9,7 +9,13 @@ namespace SellTables
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-2.1.4.js"));
+                        "~/Scripts/jquery-2.1.4.js",
+                 "~/Scripts/scripts/tagcloud.js",
+                      "~/Scripts/scripts/counter.js",
+                 "~/Scripts/scripts/jqmenu.js",
+                  "~/Scripts/scripts/registerLoginMenu.js"
+
+                ));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -23,23 +29,22 @@ namespace SellTables
                           "~/Scripts/angular.js",
                           "~/Scripts/angular-route.js",
                           "~/Scripts/angular-cookies.js",
-                          "~/Scripts/ng-inline-edit.js"));
+                          "~/Scripts/ng-inline-edit.js"
+                          )); 
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
+                
                 "~/app/main.js",
+              "~/app/controllers/tag.js",
                 "~/app/controllers/creative.js",
                 "~/app/controllers/user.js",
-                "~/app/controllers/tag.js",
-                 "~/app/controllers/chapter.js",
-                "~/Scripts/scripts/tagcloud.js"
+                 "~/app/controllers/chapter.js"
                 ));
                     
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js",
-                      "~/Scripts/summernote/jquery-2.1.4.js",
-                      "~/Scripts/summernote/summernote.js",
                       "~/Scripts/angular-ui/ui-bootstrap-tpls.js"
 
                       ));
@@ -47,7 +52,10 @@ namespace SellTables
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/Site.css",
-                      "~/Content/summernote.css"
+                      "~/Content/loginRegister.css",
+                      "~/Content/counter.css",
+                      "~/Content/jqmenu.css",
+                      "~/Content/font-awesome.min.css"
                       ));
         }
     }
