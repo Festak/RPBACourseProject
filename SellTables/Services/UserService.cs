@@ -12,11 +12,11 @@ namespace SellTables.Services
     public class UserService
     {
         private IUserRepository Repository;
-        private ApplicationDbContext db;
-        public UserService(ApplicationDbContext db)
+        private ApplicationDbContext dataBaseContext;
+        public UserService(ApplicationDbContext dataBaseContext)
         {
-            this.db = db;
-            Repository = new UsersRepository(db);
+            this.dataBaseContext = dataBaseContext;
+            Repository = new UsersRepository(dataBaseContext);
         }
 
         internal List<ApplicationUser> GetAllUsers()
@@ -30,10 +30,10 @@ namespace SellTables.Services
             user.ChaptersCreateCounter += 1;
             if (user.ChaptersCreateCounter == 5) // TODO: make verification for medal exist
             {
-                    user.Medals.Add(db.Medals.FirstOrDefault(m => m.Id == 2));                
+                    user.Medals.Add(dataBaseContext.Medals.FirstOrDefault(m => m.Id == 2));                
             }
             Repository.UpdateUser(user);
-            db.SaveChanges();          
+            dataBaseContext.SaveChanges();          
         }
 
         internal ApplicationUser GetCurrentUser(string name) {

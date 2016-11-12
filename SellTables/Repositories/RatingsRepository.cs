@@ -10,41 +10,41 @@ namespace SellTables.Repositories
 {
     public class RatingsRepository : IRepository<Rating>
     {
-        private readonly ApplicationDbContext db;
+        private readonly ApplicationDbContext dataBaseContext;
 
-        public RatingsRepository(ApplicationDbContext db)
+        public RatingsRepository(ApplicationDbContext dataBaseContext)
         {
-            this.db = db;
+            this.dataBaseContext = dataBaseContext;
         }
 
         void IRepository<Rating>.Add(Rating item)
         {
-            db.Rating.Add(item);
-            db.SaveChanges();
+            dataBaseContext.Rating.Add(item);
+            dataBaseContext.SaveChanges();
         }
 
         ICollection<Rating> IRepository<Rating>.Find(Func<Rating, bool> predicate)
         {
-            return db.Rating.Where(predicate).ToList();
+            return dataBaseContext.Rating.Where(predicate).ToList();
         }
 
         Rating IRepository<Rating>.Get(int id)
         {
-            return db.Rating.Find(id);
+            return dataBaseContext.Rating.Find(id);
         }
 
         ICollection<Rating> IRepository<Rating>.GetAll()
         {
-            return db.Rating.ToList();
+            return dataBaseContext.Rating.ToList();
         }
 
         bool IRepository<Rating>.Remove(int id)
         {
-            var Rating = db.Rating.Find(id);
+            var Rating = dataBaseContext.Rating.Find(id);
 
             if (Rating != null)
             {
-                db.Rating.Remove(Rating);
+                dataBaseContext.Rating.Remove(Rating);
                 return true;
             }
 
@@ -53,7 +53,7 @@ namespace SellTables.Repositories
 
         void IRepository<Rating>.Update(Rating item)
         {
-            db.Entry(item).State = EntityState.Modified;
+            dataBaseContext.Entry(item).State = EntityState.Modified;
         }
     }
 }

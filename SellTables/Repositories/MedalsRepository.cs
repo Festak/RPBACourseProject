@@ -11,40 +11,40 @@ namespace SellTables.Repositories
 {
     public class MedalsRepository : IRepository<Medal>
     {
-        private readonly ApplicationDbContext db;
+        private readonly ApplicationDbContext dataBaseContext;
 
-        public MedalsRepository(ApplicationDbContext db)
+        public MedalsRepository(ApplicationDbContext dataBaseContext)
         {
-            this.db = db;
+            this.dataBaseContext = dataBaseContext;
         }
 
         void IRepository<Medal>.Add(Medal item)
         {
-            db.Medals.Add(item);
+            dataBaseContext.Medals.Add(item);
         }
 
         ICollection<Medal> IRepository<Medal>.Find(Func<Medal, bool> predicate)
         {
-            return db.Medals.Where(predicate).ToList();
+            return dataBaseContext.Medals.Where(predicate).ToList();
         }
 
         Medal IRepository<Medal>.Get(int id)
         {
-            return db.Medals.Find(id);
+            return dataBaseContext.Medals.Find(id);
         }
 
         ICollection<Medal> IRepository<Medal>.GetAll()
         {
-            return db.Medals.ToList();
+            return dataBaseContext.Medals.ToList();
         }
 
         bool IRepository<Medal>.Remove(int id)
         {
-            var Medal = db.Medals.Find(id);
+            var Medal = dataBaseContext.Medals.Find(id);
 
             if (Medal != null)
             {
-                db.Medals.Remove(Medal);
+                dataBaseContext.Medals.Remove(Medal);
                 return true;
             }
 
@@ -53,7 +53,7 @@ namespace SellTables.Repositories
 
         void IRepository<Medal>.Update(Medal item)
         {
-            db.Entry(item).State = EntityState.Modified;
+            dataBaseContext.Entry(item).State = EntityState.Modified;
         }
     }
 }

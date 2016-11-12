@@ -18,13 +18,13 @@ namespace SellTables.Controllers
     [Authorize]
     public class CreativeController : Controller
     {
-       ApplicationDbContext db = new ApplicationDbContext();
+       ApplicationDbContext dataBaseConnection = new ApplicationDbContext();
 
         CreativeService CreativeService;
 
         public CreativeController()
         {
-            CreativeService = new CreativeService(db);
+            CreativeService = new CreativeService(dataBaseConnection);
         }
 
         // GET: Creative
@@ -74,7 +74,7 @@ namespace SellTables.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Creative creative = await db.Creatives.FindAsync(id);
+            Creative creative = await dataBaseConnection.Creatives.FindAsync(id);
             RegisterCreativeModel model = new RegisterCreativeModel();
             model.Creative = creative;
             model.Chapters = creative.Chapters;
@@ -93,7 +93,7 @@ namespace SellTables.Controllers
         //{
         //    if (ModelState.IsValid)
         //    {
-        //        db.Entry(creative).State = EntityState.Modified;
+        //        dataBaseConnection.Entry(creative).State = EntityState.Modified;
         //        await db.SaveChangesAsync();
         //        return RedirectToAction("Index");
         //    }
@@ -108,7 +108,7 @@ namespace SellTables.Controllers
         {
             if (!System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
                 return null;
-            return db.Users.Find(System.Web.HttpContext.Current.User.Identity.GetUserId());
+            return dataBaseConnection.Users.Find(System.Web.HttpContext.Current.User.Identity.GetUserId());
         }
 
         public ActionResult Search(string query) {

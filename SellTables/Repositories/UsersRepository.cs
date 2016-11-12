@@ -15,9 +15,9 @@ namespace SellTables.Repositories
     {
         private readonly UserManager<ApplicationUser> userManager;
 
-        public UsersRepository(ApplicationDbContext db)
+        public UsersRepository(ApplicationDbContext dataBaseContext)
         {
-            userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+            userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(dataBaseContext));
         }
 
         bool IUserRepository.CheckUserRole(string userId)

@@ -11,20 +11,21 @@ namespace SellTables.Controllers
     public class AdminController : Controller
     {
 
-        ApplicationDbContext db = new ApplicationDbContext();
+        ApplicationDbContext dataBaseConnection = new ApplicationDbContext();
+
         CreativeService CreativeService;
         UserService UserService;
 
         public AdminController()
         {
-            CreativeService = new CreativeService(db);
-            UserService = new UserService(db);
+            CreativeService = new CreativeService(dataBaseConnection);
+            UserService = new UserService(dataBaseConnection);
         }
 
 
         public ActionResult Index()
         {
-            return View(db.Users.ToList());
+            return View(dataBaseConnection.Users.ToList());
         }
     }
 }

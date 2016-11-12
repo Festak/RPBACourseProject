@@ -1,3 +1,6 @@
 ﻿<div id="div1" ng-controller="TagController" ng-init="getTags()">
-    <a href="~/Creative/Search/?query={{tag.Description}}" class="red" ng-repeat="tag in tags">{{tag.Description}}</a>
+    <div ng-repeat="tag in tags">
+    <a href="~/Creative/Search/?query={{tag.Description}}" class="red" >{{tag.Description}}</a>
 </div>
+</div>
+

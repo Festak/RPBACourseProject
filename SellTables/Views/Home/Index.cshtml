@@ -5,6 +5,7 @@
 <div class="row" ng-controller='CreativeController'>
     <div class="col-md-2 col-sd-2" ng-init="getPopular()">
       @Html.Partial("_PopularCreatives")
+       
     </div>
     <div class="col-md-7" data-ng-controller='CreativeController'>
         <div>
@@ -19,7 +20,7 @@
         @Html.Partial("_CreativesList")
        
     </div>
-    <div class="col-md-3 col-sd-4">
-       @Html.Partial("_TagCloud")
+    <div class="col-md-3 col-sd-3">
+        @Html.Partial("_TagCloud")
     </div>
 </div>

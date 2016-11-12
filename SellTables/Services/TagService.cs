@@ -13,12 +13,12 @@ namespace SellTables.Services
     public class TagService
     {
         private IRepository<Tag> Repository;
-        private ApplicationDbContext db;
+        private ApplicationDbContext dataBaseContext;
 
-        public TagService(ApplicationDbContext db)
+        public TagService(ApplicationDbContext dataBaseContext)
         {
-            this.db = db;
-            Repository = new TagsRepository(db);
+            this.dataBaseContext = dataBaseContext;
+            Repository = new TagsRepository(dataBaseContext);
         }
 
         internal List<Tag> GetAllTags()
@@ -59,13 +59,13 @@ namespace SellTables.Services
         }
 
 
-        private static ICollection<Tag> GetTags(String tagList)
+        private static ICollection<Tag> GetTags(string tagList)
         {
             var stringList = tagList.Split(' ');
             var tags = new List<Tag>();
             if (stringList != null)
             {
-                foreach (String text in stringList)
+                foreach (string text in stringList)
                     tags.Add(new Tag() { Description = text });
             }
             return tags;
@@ -81,7 +81,7 @@ namespace SellTables.Services
 
         private Tag FindTag(String name)
         {
-            return db.Tags
+            return dataBaseContext.Tags
                     .Where(t => t.Description.Equals(name))
                     .FirstOrDefault();
         }

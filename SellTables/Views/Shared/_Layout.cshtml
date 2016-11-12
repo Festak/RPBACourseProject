@@ -8,7 +8,7 @@
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/angular")
     @Scripts.Render("~/bundles/app")
-
+    @Scripts.Render("~/bundles/jquery")
 
     @*@if (Request.Cookies["style"] == null)
         {
@@ -69,7 +69,7 @@
         </div>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
+   
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>

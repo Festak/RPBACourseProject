@@ -10,40 +10,40 @@ namespace SellTables.Repositories
 {
     public class ChaptersRepository : IRepository<Chapter>
     {
-        private readonly ApplicationDbContext db;
+        private readonly ApplicationDbContext dataBaseContext;
 
-        public ChaptersRepository(ApplicationDbContext db)
+        public ChaptersRepository(ApplicationDbContext dataBaseContext)
         {
-            this.db = db;  
+            this.dataBaseContext = dataBaseContext;  
         }
 
         void IRepository<Chapter>.Add(Chapter item)
         {
-            db.Chapters.Add(item);
+            dataBaseContext.Chapters.Add(item);
         }
 
         ICollection<Chapter> IRepository<Chapter>.Find(Func<Chapter, bool> predicate)
         {
-            return db.Chapters.Where(predicate).ToList();
+            return dataBaseContext.Chapters.Where(predicate).ToList();
         }
 
         Chapter IRepository<Chapter>.Get(int id)
         {
-            return db.Chapters.Find(id);
+            return dataBaseContext.Chapters.Find(id);
         }
 
         ICollection<Chapter> IRepository<Chapter>.GetAll()
         {
-            return db.Chapters.ToList();
+            return dataBaseContext.Chapters.ToList();
         }
 
         bool IRepository<Chapter>.Remove(int id)
         {
-            var Chapter = db.Chapters.Find(id);
+            var Chapter = dataBaseContext.Chapters.Find(id);
 
             if (Chapter != null)
             {
-                db.Chapters.Remove(Chapter);
+                dataBaseContext.Chapters.Remove(Chapter);
                 return true;
             }
 
@@ -52,7 +52,7 @@ namespace SellTables.Repositories
 
         void IRepository<Chapter>.Update(Chapter item)
         {
-            db.Entry(item).State = EntityState.Modified;
+            dataBaseContext.Entry(item).State = EntityState.Modified;
         }
     }
 }

@@ -13,7 +13,7 @@ namespace SellTables.Services
 {
     public class CreativeService
     {
-        private ApplicationDbContext db;
+        private ApplicationDbContext dataBaseContext;
         private IRepository<Creative> CreativeRepository;
         private IRepository<Chapter> ChapterRepository;
         private IRepository<Rating> RatingsRepository;
@@ -21,14 +21,14 @@ namespace SellTables.Services
         private IUserRepository UsersRepository;
 
 
-        public CreativeService(ApplicationDbContext db)
+        public CreativeService(ApplicationDbContext dataBaseContext)
         {
-            this.db = db;
-            CreativeRepository = new CreativesRepository(db);
-            ChapterRepository = new ChaptersRepository(db);
-            RatingsRepository = new RatingsRepository(db);
-            TagsRepository = new TagsRepository(db);
-            UsersRepository = new UsersRepository(db);
+            this.dataBaseContext = dataBaseContext;
+            CreativeRepository = new CreativesRepository(dataBaseContext);
+            ChapterRepository = new ChaptersRepository(dataBaseContext);
+            RatingsRepository = new RatingsRepository(dataBaseContext);
+            TagsRepository = new TagsRepository(dataBaseContext);
+            UsersRepository = new UsersRepository(dataBaseContext);
         }
 
         internal List<CreativeViewModel> GetAllCreatives()
@@ -48,7 +48,7 @@ namespace SellTables.Services
         {
 
             Creative creative = creativemodel.Creative;
-            (new UserService(db)).AddCreativeToCounter(creative.User.Id);
+            (new UserService(dataBaseContext)).AddCreativeToCounter(creative.User.Id);
             Chapter chapter = creativemodel.Chapter;
             chapter.Creative = creative;
             chapter.Tags = GetTags(chapter.TagsString, chapter);
@@ -63,7 +63,7 @@ namespace SellTables.Services
             List<Creative> creatives = new List<Creative>();
             foreach (var cr in list)
             {
-                var creative = db.Creatives.FirstOrDefault(c => c.Name.Equals(cr.Name));
+                var creative = dataBaseContext.Creatives.FirstOrDefault(c => c.Name.Equals(cr.Name));
                 creatives.Add(creative);
             }
             return InitCreativesBySearch(creatives);
@@ -74,7 +74,7 @@ namespace SellTables.Services
             return CreativeRepository.Get(id);
         }
 
-        private void AddTagsToDB(Chapter chapter) {
+        private void AddTagsTodataBaseContext(Chapter chapter) {
             foreach (var tag in chapter.Tags) {
                 TagsRepository.Add(tag);
             }
@@ -172,7 +172,7 @@ namespace SellTables.Services
 
         private Creative InitCreative(CreativeViewModel creativemodel, ApplicationUser user)
         {
-            Creative creative = db.Creatives.Find(creativemodel.Id);
+            Creative creative = dataBaseContext.Creatives.Find(creativemodel.Id);
             return creative;
         }
 
@@ -204,7 +204,7 @@ namespace SellTables.Services
         internal void SetRatingToCreative(int rating, CreativeViewModel creativemodel, ApplicationUser user)
         {
             Rating ratingObj = new Rating();
-            Creative creative = db.Creatives.Find(creativemodel.Id);
+            Creative creative = dataBaseContext.Creatives.Find(creativemodel.Id);
             ratingObj.Creative = creative;
             ratingObj.Value = rating;
             ratingObj.User = user;
@@ -220,13 +220,7 @@ namespace SellTables.Services
             {
                 a += r.Value;
             }
-            //if (creative.Ratings.Count != 0)
-            //{
             a /= creative.Ratings.Count;
-            //}
-            //else {
-            //    a = ra / 1;
-            //}
             creative.Rating = Math.Round(a, 2);
 
             CreativeRepository.Update(creative);

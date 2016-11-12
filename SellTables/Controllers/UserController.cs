@@ -10,13 +10,13 @@ namespace SellTables.Controllers
 {
     public class UserController : Controller
     {
-        ApplicationDbContext db = new ApplicationDbContext();
+        ApplicationDbContext dataBaseConnection = new ApplicationDbContext();
         CreativeService CreativeService;
         UserService UserService;
 
         public UserController() {
-            CreativeService = new CreativeService(db);
-            UserService = new UserService(db);
+            CreativeService = new CreativeService(dataBaseConnection);
+            UserService = new UserService(dataBaseConnection);
         }
 
         public ActionResult UserPage()

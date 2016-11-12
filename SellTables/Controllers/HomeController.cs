@@ -19,12 +19,12 @@ namespace SellTables.Controllers
         CreativeService CreativeService;
         UserService UserService;
         TagService TagService;
-        ApplicationDbContext db = new ApplicationDbContext();
+        ApplicationDbContext dataBaseConnection = new ApplicationDbContext();
 
         public HomeController() {
-            UserService = new UserService(db);
-            CreativeService = new CreativeService(db);
-            TagService = new TagService(db);
+            UserService = new UserService(dataBaseConnection);
+            CreativeService = new CreativeService(dataBaseConnection);
+            TagService = new TagService(dataBaseConnection);
          //CreativeSearch.AddUpdateLuceneIndex(CreativeService.GetAllCreativesForLucene());
         }
 
@@ -69,7 +69,7 @@ namespace SellTables.Controllers
 
         public JsonResult GetTags() {
            var allTags = TagService.GetAllModelTags();
-          //  var allTags = TagService.GetMostPopularTags(); popular tags
+           // var allTags = TagService.GetMostPopularTags(); //popular tags
             return Json(allTags, JsonRequestBehavior.AllowGet);
         }
 

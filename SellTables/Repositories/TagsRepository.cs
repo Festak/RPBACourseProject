@@ -12,42 +12,42 @@ namespace SellTables.Repositories
     public class TagsRepository : IRepository<Tag>
     {
 
-        private readonly ApplicationDbContext db;
+        private readonly ApplicationDbContext dataBaseContext;
 
-        public TagsRepository(ApplicationDbContext db) {
-            this.db = db;
+        public TagsRepository(ApplicationDbContext dataBaseContext) {
+            this.dataBaseContext = dataBaseContext;
         }
 
         void IRepository<Tag>.Add(Tag item)
         {
           
-                db.Tags.Add(item);
-                db.SaveChanges();
+                dataBaseContext.Tags.Add(item);
+                dataBaseContext.SaveChanges();
             
         }
 
         ICollection<Tag> IRepository<Tag>.Find(Func<Tag, bool> predicate)
         {
-            return db.Tags.Where(predicate).ToList();
+            return dataBaseContext.Tags.Where(predicate).ToList();
         }
 
         Tag IRepository<Tag>.Get(int id)
         {
-            return db.Tags.Find(id);
+            return dataBaseContext.Tags.Find(id);
         }
 
         ICollection<Tag> IRepository<Tag>.GetAll()
         {
-            return db.Tags.ToList();
+            return dataBaseContext.Tags.ToList();
         }
 
         bool IRepository<Tag>.Remove(int id)
         {
-            var Tag = db.Tags.Find(id);
+            var Tag = dataBaseContext.Tags.Find(id);
 
             if (Tag != null)
             {
-                db.Tags.Remove(Tag);
+                dataBaseContext.Tags.Remove(Tag);
                 return true;
             }
 
@@ -56,7 +56,7 @@ namespace SellTables.Repositories
 
         void IRepository<Tag>.Update(Tag item)
         {
-            db.Entry(item).State = EntityState.Modified;
+            dataBaseContext.Entry(item).State = EntityState.Modified;
         }
     }
 }
