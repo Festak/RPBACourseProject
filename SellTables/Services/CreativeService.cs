@@ -61,7 +61,6 @@ namespace SellTables.Services
             if(chapter.TagsString!=null)
             chapter.Tags = GetTags(chapter.TagsString, chapter);
             creative.Chapters.Add(chapter);
-          //  AddCreativeToUser(creative);
            
             CreativeSearch.AddUpdateLuceneIndex(creative); //ADD LUCENE INDEX
             CreativeRepository.Add(creative);

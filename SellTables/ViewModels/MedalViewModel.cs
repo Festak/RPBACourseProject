@@ -9,6 +9,6 @@ namespace SellTables.ViewModels
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string ImgUri { get; set; }
+        public string ImageUri { get; set; }
     }
 }

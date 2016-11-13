@@ -1,4 +1,5 @@
 ﻿using SellTables.Interfaces;
+using SellTables.Lucene;
 using SellTables.Models;
 using SellTables.Repositories;
 using System;
@@ -48,8 +49,6 @@ namespace SellTables.Services
         }
 
 
- 
-
         private void ReCalculateRating() {
             var creativesList = CreativeService.GetAllCreativesModels();
             
@@ -65,12 +64,15 @@ namespace SellTables.Services
                 else a /= 1;
 
                 creative.Rating = Math.Round(a, 2);
-             //   CreativesRepository.Update(creative);
+              CreativesRepository.Update(creative);
             }
         }
 
         private void DeleteUser(ApplicationUser user) {
-            UsersRepository.DeleteUser(user);   
+           
+     var u1 = UsersRepository.FindUser(user.UserName);
+            if(u1!=null)
+ UsersRepository.DeleteUser(u1);   
         }
 
 
@@ -79,27 +81,35 @@ namespace SellTables.Services
             var creatives = GetAllUserCreatives(user);
             DeleteAllChaptersFromCreatives(creatives);
             if (creatives != null)
+            {
                 DataBaseContext.Creatives.RemoveRange(creatives);
-            DataBaseContext.SaveChanges();
+                foreach (var c in creatives) {
+                    CreativeSearch.ClearLuceneIndexRecord(c.Id);
+                }
+            }
+            DataBaseContext.SaveChanges(); // External login can't be deleted :O
         }
 
         private void DeleteAllChaptersFromCreatives(ICollection<Creative> creatives) {
             foreach (var creative in creatives) {
-                foreach (var chapter in creative.Chapters) {
-                    foreach(var tag in chapter.Tags){
+                foreach (var chapter in creative.Chapters.ToList()) {
+                    foreach(var tag in chapter.Tags.ToList()){
                         var t = DataBaseContext.Tags.Find(tag.Id);
                         if(t!=null)
                         DataBaseContext.Tags.Remove(t);
-                    }
-                    DataBaseContext.SaveChanges();
+                        DataBaseContext.SaveChanges();
+                    }   
                     var c = DataBaseContext.Chapters.Find(chapter.Id);
                     if (c != null)
                     {
                         DataBaseContext.Chapters.Remove(c);
+                        DataBaseContext.SaveChanges();
                     }
                 }
             }
         }
+
+
 
        private void DeleteAllUsersRatings(ApplicationUser user)
         {

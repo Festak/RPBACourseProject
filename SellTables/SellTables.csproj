@@ -1261,9 +1261,9 @@
     <Content Include="Views\Creative\Details.cshtml" />
     <Content Include="Views\Creative\Edit.cshtml" />
     <Content Include="Views\Home\_MenuOfSome.cshtml" />
-    <Content Include="Scripts\summernote\fonts\summernote.eot" />
-    <Content Include="Scripts\summernote\fonts\summernote.ttf" />
-    <Content Include="Scripts\summernote\fonts\summernote.woff" />
+    <Content Include="Scripts\summernote\font\summernote.eot" />
+    <Content Include="Scripts\summernote\font\summernote.ttf" />
+    <Content Include="Scripts\summernote\font\summernote.woff" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

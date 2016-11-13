@@ -70,13 +70,13 @@ namespace SellTables.Lucene
             writer.AddDocument(doc);
         }
 
-        private static ICollection<Tag> GetTags(String tagList)
+        private static ICollection<Tag> GetTags(string tagList)
         {
             var stringList = tagList.Split(' ');
             var tags = new List<Tag>();
             if (stringList != null)
             {
-                foreach (String text in stringList)
+                foreach (string text in stringList)
                     tags.Add(new Tag() { Description = text });
             }
             return tags;
