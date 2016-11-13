@@ -1,4 +1,5 @@
-﻿using SellTables.Models;
+﻿using Microsoft.AspNet.Identity;
+using SellTables.Models;
 using SellTables.Services;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,7 @@ namespace SellTables.Controllers
 
         public ActionResult Index()
         {
+
             return View(GetUsers());
         }
 

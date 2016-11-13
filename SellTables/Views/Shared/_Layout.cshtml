@@ -4,12 +4,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Scripts.Render("~/bundles/jquery")
+  
     @Scripts.Render("~/bundles/angular")
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/app")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
 
     @*@if (Request.Cookies["style"] == null)
         {
@@ -42,7 +43,7 @@
                     <li><a href=@Url.Action("Create", "Creative")>Create</a></li>
                    
                         @if (User.IsInRole("admin")) {
-                            <li><a href=@Url.Action("Index", "Admin")>Create</a></li>
+                            <li><a href=@Url.Action("Index", "Admin")>AdminPanel</a></li>
                         }
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Choose lang<b class="caret"></b></a>

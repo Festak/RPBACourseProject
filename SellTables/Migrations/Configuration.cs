@@ -23,7 +23,13 @@ namespace SellTables.Migrations
             var userRole = new IdentityRole { Name = "user" };
             roleManager.Create(adminRole);
             roleManager.Create(userRole);
-            var admin = new ApplicationUser { Email = "admin@admin.com", UserName = "administrator" };
+          
+            var admin = new ApplicationUser { Email = "admin@admin.com", UserName = "admin@admin.com" };
+            if (context.Medals.FirstOrDefault(m => m.Id == 6) != null)
+            {
+                Medal medal = context.Medals.FirstOrDefault(m => m.Id == 6);
+                admin.Medals.Add(medal);
+            }
             string password = "!Q@w3e4";
             var result = userManager.Create(admin, password);
             if (result.Succeeded)

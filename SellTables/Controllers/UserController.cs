@@ -19,12 +19,12 @@ namespace SellTables.Controllers
             UserService = new UserService(dataBaseConnection);
         }
 
-        public ActionResult UserPage()
-        {
-            return View(UserService.GetCurrentUser(User.Identity.Name));
-        }
-
+    
         public ActionResult UserPage(string name) {
+            if (name == null) {
+                return View(UserService.GetCurrentUser(User.Identity.Name));
+            }
+            else
             return View(UserService.GetUserByName(name));
         }
 

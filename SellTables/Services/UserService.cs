@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.Entity;
 
 namespace SellTables.Services
 {
@@ -32,26 +33,29 @@ namespace SellTables.Services
             return listOfUsers.ToList();
         }
 
-        internal ApplicationUser GetUserByName(string name) {
+        internal ApplicationUser GetUserByName(string name)
+        {
             return UsersRepository.FindUser(name);
         }
 
-        internal ApplicationUser GetCurrentUser(string name) {
+        internal ApplicationUser GetCurrentUser(string name)
+        {
             return UsersRepository.GetCurrentUser(name);
         }
 
-        public void DeleteUser(string name) {
+        public void DeleteUser(string name)
+        {
             ApplicationUser user = GetUserByName(name);
-            DeleteAllUsersRatings(user);
-            DeleteAllUsersCreatives(user);
+            DeleteAllUserRatings(user);
+            DeleteAllUserCreatives(user);
             ReCalculateRating();
             DeleteUser(user);
         }
 
 
-        private void ReCalculateRating() {
+        private void ReCalculateRating()
+        {
             var creativesList = CreativeService.GetAllCreativesModels();
-            
             foreach (var creative in creativesList)
             {
                 double a = 0;
@@ -64,41 +68,40 @@ namespace SellTables.Services
                 else a /= 1;
 
                 creative.Rating = Math.Round(a, 2);
-              CreativesRepository.Update(creative);
+                CreativesRepository.Update(creative);
             }
         }
 
-        private void DeleteUser(ApplicationUser user) {
-           
-     var u1 = UsersRepository.FindUser(user.UserName);
-            if(u1!=null)
- UsersRepository.DeleteUser(u1);   
+        private void DeleteUser(ApplicationUser user)
+        {
+            var u1 = UsersRepository.FindUser(user.UserName);
+            if (u1 != null)
+                UsersRepository.DeleteUser(u1);
         }
 
 
-       private void DeleteAllUsersCreatives(ApplicationUser user)
+        private void DeleteAllUserCreatives(ApplicationUser user)
         {
             var creatives = GetAllUserCreatives(user);
             DeleteAllChaptersFromCreatives(creatives);
             if (creatives != null)
             {
                 DataBaseContext.Creatives.RemoveRange(creatives);
-                foreach (var c in creatives) {
+                foreach (var c in creatives)
+                {
                     CreativeSearch.ClearLuceneIndexRecord(c.Id);
                 }
             }
-            DataBaseContext.SaveChanges(); // External login can't be deleted :O
+            DataBaseContext.SaveChanges(); // TODO: External login can't be deleted :O
         }
 
-        private void DeleteAllChaptersFromCreatives(ICollection<Creative> creatives) {
-            foreach (var creative in creatives) {
-                foreach (var chapter in creative.Chapters.ToList()) {
-                    foreach(var tag in chapter.Tags.ToList()){
-                        var t = DataBaseContext.Tags.Find(tag.Id);
-                        if(t!=null)
-                        DataBaseContext.Tags.Remove(t);
-                        DataBaseContext.SaveChanges();
-                    }   
+        private void DeleteAllChaptersFromCreatives(ICollection<Creative> creatives)
+        {
+            foreach (var creative in creatives)
+            {
+                foreach (var chapter in creative.Chapters.ToList())
+                {
+                    DeleteTagFromChapter(chapter);
                     var c = DataBaseContext.Chapters.Find(chapter.Id);
                     if (c != null)
                     {
@@ -109,19 +112,52 @@ namespace SellTables.Services
             }
         }
 
+        private void DeleteTagFromChapter(Chapter chapter)
+        {
+            foreach (var tag in chapter.Tags.ToList())
+            {
+                var t = DataBaseContext.Tags.Find(tag.Id);
+                if (t != null)
+                    DataBaseContext.Tags.Remove(t);
+                DataBaseContext.SaveChanges();
+            }
+        }
 
 
-       private void DeleteAllUsersRatings(ApplicationUser user)
+
+        private void DeleteAllUserRatings(ApplicationUser user)
         {
             var ratings = GetAllUserRatings(user);
             if (ratings != null)
+            {
                 DataBaseContext.Rating.RemoveRange(ratings);
-            DataBaseContext.SaveChanges();
+                DataBaseContext.SaveChanges();
+            }
+        }
+
+        private void DeleteAllUserMedals(ApplicationUser user)
+        {
+            var medals = GetAllUserMedals(user);
+            if (medals != null)
+            {
+                DataBaseContext.Medals.RemoveRange(medals);
+                DataBaseContext.SaveChanges();
+            }
+
+        }
+
+
+        public ICollection<Medal> GetAllUserMedals(ApplicationUser user)
+        {
+            if (user == null)
+                return null;
+            return DataBaseContext.Medals.Include(u => u.Users.Where(m => m.Id == user.Id)).ToList();
+
         }
 
         public ICollection<Rating> GetAllUserRatings(ApplicationUser user)
         {
-            if (user==null)
+            if (user == null)
                 return null;
             return DataBaseContext.Rating
                         .Where(r => r.UserId == user.Id).ToList();

@@ -89,9 +89,17 @@ namespace SellTables.Services
         {
             ApplicationUser user = UsersRepository.FindUserById(userId);
             user.ChaptersCreateCounter += 1;
-            if (user.ChaptersCreateCounter == 5) // TODO: make verification for medal exist
+            if (user.ChaptersCreateCounter == 1) // TODO: make verification for medal exist
             {
-                user.Medals.Add(dataBaseContext.Medals.FirstOrDefault(m => m.Id == 2));
+                Medal medal = dataBaseContext.Medals.FirstOrDefault(m => m.Id == 3);
+                if(!user.Medals.Contains(medal))
+                user.Medals.Add(medal);
+
+            }
+            if (user.ChaptersCreateCounter==5) {
+                Medal medal = dataBaseContext.Medals.FirstOrDefault(m => m.Id == 4);
+                if (!user.Medals.Contains(medal))
+                    user.Medals.Add(medal);
             }
             UsersRepository.UpdateUser(user);
             dataBaseContext.SaveChanges();
@@ -137,7 +145,7 @@ namespace SellTables.Services
                 UserName = creative.User.UserName,
                 Name = creative.Name,
                 Rating = creative.Rating,
-                Medals = creative.User.Medals,
+                Medals = InitMedals(creative.User.Medals),
                 CreationDate = creative.CreationDate.ToShortDateString() + " " + creative.CreationDate.ToShortTimeString()
             }).ToList();
         }
@@ -151,7 +159,7 @@ namespace SellTables.Services
                 UserName = creative.User.UserName,
                 Name = creative.Name,
                 Rating = creative.Rating,
-
+                Medals = InitMedals(creative.User.Medals),
                 CreationDate = creative.CreationDate.ToShortDateString() + " " + creative.CreationDate.ToShortTimeString()
             }).ToList();
         }
@@ -182,6 +190,20 @@ namespace SellTables.Services
             }).ToList();
             return Chapters;
         }
+
+
+        private ICollection<MedalViewModel> InitMedals(ICollection<Medal> list)
+        {
+            var medals = list.Select(c => new MedalViewModel
+            {
+                Id = c.Id,
+                Name = c.Name,
+               Description = c.Description,
+               ImageUri = c.ImageUri
+            }).ToList();
+            return medals;
+        }
+
 
         private static ICollection<Tag> GetTags(string tagList)
         {

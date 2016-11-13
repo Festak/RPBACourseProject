@@ -294,6 +294,10 @@
     <Compile Include="Migrations\201611131006415_addRoles.Designer.cs">
       <DependentUpon>201611131006415_addRoles.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611131408443_changeMdal.cs" />
+    <Compile Include="Migrations\201611131408443_changeMdal.Designer.cs">
+      <DependentUpon>201611131408443_changeMdal.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Chapter.cs" />
@@ -1329,6 +1333,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611131006415_addRoles.resx">
       <DependentUpon>201611131006415_addRoles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611131408443_changeMdal.resx">
+      <DependentUpon>201611131408443_changeMdal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Resource.en.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

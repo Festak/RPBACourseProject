@@ -12,7 +12,7 @@ namespace SellTables.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public double Rating { get; set; }
-        public ICollection<Medal> Medals { get; set; }
+        public ICollection<MedalViewModel> Medals { get; set; }
         public string CreationDate { get; set; }
         public string EditDate { get; set; }
         public string UserName { get; set; }
