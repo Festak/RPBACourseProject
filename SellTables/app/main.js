@@ -1,4 +1,11 @@
-﻿angular.module('main', ['user', 'creative', 'tag', 'ngRoute', 'chapter'])
+﻿angular.module('main',
+    ['user',
+    'creative',
+    'tag',
+    'ngRoute',
+    'chapter',
+    'admin'
+    ])
   .controller('MainController', [
       '$scope',
       '$http',
@@ -16,10 +23,6 @@
               $window.location.href = '/Creative/Edit/' + Id;
           }
 
-          //$scope.loadTags = function () {
-          //    alert("HERE");
-          //    return $http.get('/Home/GetTags');
-          //};
 
       }]).config(function ($routeProvider) {
           $routeProvider.

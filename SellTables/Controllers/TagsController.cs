@@ -105,7 +105,6 @@ namespace SellTables.Controllers
             return View(tag);
         }
 
-        // POST: Tags/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)

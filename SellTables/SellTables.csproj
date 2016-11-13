@@ -286,6 +286,14 @@
     <Compile Include="Migrations\201611101625590_asd3.Designer.cs">
       <DependentUpon>201611101625590_asd3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611121754045_newone.cs" />
+    <Compile Include="Migrations\201611121754045_newone.Designer.cs">
+      <DependentUpon>201611121754045_newone.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611131006415_addRoles.cs" />
+    <Compile Include="Migrations\201611131006415_addRoles.Designer.cs">
+      <DependentUpon>201611131006415_addRoles.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Chapter.cs" />
@@ -325,6 +333,7 @@
     <Compile Include="ViewModels\TagViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\controllers\admin.js" />
     <Content Include="app\controllers\carousel.js" />
     <Content Include="app\controllers\creative.js" />
     <Content Include="app\controllers\chapter.js" />
@@ -341,6 +350,7 @@
     <Content Include="Content\bootstrapGrey.css" />
     <Content Include="Content\bootstrapWhite.css" />
     <Content Include="Content\counter.css" />
+    <Content Include="Content\font-awesome-animation.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\images\Facebook.png" />
@@ -350,10 +360,12 @@
     <Content Include="Content\loginRegister.css" />
     <Content Include="Content\ng-tags-input.bootstrap.min.css" />
     <Content Include="Content\ng-tags-input.min.css" />
+    <Content Include="Content\somestyles\UserPageStyles.css" />
     <Content Include="Content\summernote.css" />
     <Content Include="Content\ui-bootstrap-csp.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="fonts\fontawesome-webfontba72.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -408,6 +420,11 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfontba72.eot" />
+    <Content Include="fonts\fontawesome-webfontba72.ttf" />
+    <Content Include="fonts\fontawesome-webfontba72.woff" />
+    <Content Include="fonts\fontawesome-webfontd41d.eot" />
+    <Content Include="fonts\glyphicons-halflings-regulard41d.eot" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-dj.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-er.js" />
@@ -1244,6 +1261,9 @@
     <Content Include="Views\Creative\Details.cshtml" />
     <Content Include="Views\Creative\Edit.cshtml" />
     <Content Include="Views\Home\_MenuOfSome.cshtml" />
+    <Content Include="Scripts\summernote\fonts\summernote.eot" />
+    <Content Include="Scripts\summernote\fonts\summernote.ttf" />
+    <Content Include="Scripts\summernote\fonts\summernote.woff" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1303,6 +1323,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611101625590_asd3.resx">
       <DependentUpon>201611101625590_asd3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611121754045_newone.resx">
+      <DependentUpon>201611121754045_newone.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611131006415_addRoles.resx">
+      <DependentUpon>201611131006415_addRoles.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Resource.en.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

@@ -1,0 +1,119 @@
+﻿h1, h2, h3, h4, h5, h6 {
+    font-family:'Open Sans', sans-serif;
+}
+
+h1 {
+    line-height:50px;
+    font-weight:900;
+    font-size:40px;
+    padding:50px 20px 5px 20px;
+    text-transform:uppercase;
+    color:rgba(0, 121, 138, 1);
+}
+
+
+.pad-adjust {
+    padding-top: 5px; 
+    padding-bottom: 5px;
+}
+
+.text-center {
+    text-align:center;
+}
+
+h2 {
+    line-height:50px;
+}
+h3 {
+    line-height:30px;
+    padding:5px;
+}
+h4 {
+   padding-top: 5px;
+line-height: 30px;
+padding-bottom: 0px;
+font-size: 20px;
+font-weight: 900;
+}
+
+p {
+    font-weight:300;
+    line-height:30px;
+}
+
+.space-free {
+    height:100px;
+}
+
+.g-pad-bottom {
+    padding-bottom:40px;
+}
+
+section {
+    padding-top:40px;
+    margin-top:50px;
+}
+
+.c-sts {
+   background-color:#d9534f;
+   color:#fff;
+}
+.form-control {
+        background-color: rgba(255, 255, 255, 0);
+}
+
+.pad-top {
+ padding-top:20px;
+}
+.icon-round {
+margin-top: 30px;
+font-size: 60px;
+height: 128px;
+width: 128px;
+line-height: 130px;
+color: #fff;
+margin-right: 10px;
+text-align: center;
+display: inline-block;
+border-radius: 100%;
+margin-bottom: 10px;
+}
+.bk-color-red {
+    background-color:#ff0000;
+}
+
+.bk-color-green {
+    background-color:#07BB00;
+}
+
+.bk-color-light-blue {
+    background-color:#BB00BB;
+}
+
+.bk-color-blue {
+    background-color:#0052FF;
+}
+.bk-color-brown {
+    background-color:#EB8F2D;
+}
+.bk-color-black {
+   background-color:#000000;
+}
+/*=======================================
+    BOOTSTRAP STYLES
+==================================================*/
+
+.panel-heading {
+    font-size:25px;
+    font-weight:900;
+border-top-left-radius: 0px;
+border-top-right-radius: 0px;
+-webkit-border-top-left-radius: 0px;
+-moz-border-top-left-radius: 0px;
+-webkit-border-top-right-radius: 0px;
+-moz-border-top-right-radius: 0px;
+}
+.btn-lg, .btn-group-lg > .btn {
+border-radius: 0px; 
+
+}

@@ -36,6 +36,7 @@ namespace SellTables
                 
                 "~/app/main.js",
               "~/app/controllers/tag.js",
+              "~/app/controllers/admin.js",
                 "~/app/controllers/creative.js",
                 "~/app/controllers/user.js",
                  "~/app/controllers/chapter.js"
@@ -55,7 +56,8 @@ namespace SellTables
                       "~/Content/loginRegister.css",
                       "~/Content/counter.css",
                       "~/Content/jqmenu.css",
-                      "~/Content/font-awesome.min.css"
+                      "~/Content/font-awesome.min.css",
+                       "~/Content/font-awesome-animation.css"
                       ));
         }
     }

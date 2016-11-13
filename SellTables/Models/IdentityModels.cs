@@ -25,7 +25,7 @@ namespace SellTables.Models
             Language = "en";
             Theme = "black";
             RegistrationDate = DateTime.Now;
-            AvatarUri = "http://res.cloudinary.com/dum4mjc9q/image/upload/v1462886192/UserAvatars/defaultUser.png";
+            AvatarUri = "http://res.cloudinary.com/festak/image/upload/v1479038549/defaultUser_fofp7w.png";
         }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)

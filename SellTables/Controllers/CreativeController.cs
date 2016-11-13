@@ -77,6 +77,7 @@ namespace SellTables.Controllers
             Creative creative = await dataBaseConnection.Creatives.FindAsync(id);
             RegisterCreativeModel model = new RegisterCreativeModel();
             model.Creative = creative;
+            
             model.Chapters = creative.Chapters;
 
             if (creative == null)

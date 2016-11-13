@@ -13,6 +13,7 @@ namespace SellTables.Controllers
     {
         ChapterService ChapterService;
         ApplicationDbContext dataBaseConnection = new ApplicationDbContext();
+
         public ChapterController() {
             ChapterService = new ChapterService(dataBaseConnection);
         }

@@ -24,6 +24,10 @@ namespace SellTables.Controllers
             return View(UserService.GetCurrentUser(User.Identity.Name));
         }
 
+        public ActionResult UserPage(string name) {
+            return View(UserService.GetUserByName(name));
+        }
+
         public ActionResult Settings()
         {
             return View(UserService.GetCurrentUser(User.Identity.Name));

@@ -41,7 +41,6 @@ namespace SellTables.Controllers
                 cookie.Value = lang;  
             else
             {
-
                 cookie = new HttpCookie("lang");
                 cookie.HttpOnly = false;
                 cookie.Value = lang;

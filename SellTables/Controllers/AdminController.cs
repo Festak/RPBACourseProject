@@ -8,24 +8,39 @@ using System.Web.Mvc;
 
 namespace SellTables.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class AdminController : Controller
     {
-
-        ApplicationDbContext dataBaseConnection = new ApplicationDbContext();
+        ApplicationDbContext DataBaseConnection = new ApplicationDbContext();
 
         CreativeService CreativeService;
         UserService UserService;
 
         public AdminController()
         {
-            CreativeService = new CreativeService(dataBaseConnection);
-            UserService = new UserService(dataBaseConnection);
+            CreativeService = new CreativeService(DataBaseConnection);
+            UserService = new UserService(DataBaseConnection);
         }
 
 
         public ActionResult Index()
         {
-            return View(dataBaseConnection.Users.ToList());
+            return View(GetUsers());
         }
+
+        [HttpPost]
+        public ActionResult DeleteUser(string userName)
+        {
+            if (userName != null)
+            {
+                UserService.DeleteUser(userName);
+            }
+            return RedirectToAction("Index", "Admin");
+        }
+
+        private ICollection<ApplicationUser> GetUsers() {
+            return UserService.GetAllUsers();
+        }
+
     }
 }

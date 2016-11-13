@@ -11,7 +11,7 @@ namespace SellTables.Models
     {
         [Key]
         public int Id { get; set; }
-        [MaxLength(20)]
+        [MaxLength(50)]
         public string Name { get; set; }
         public int Number { get; set; }
         [AllowHtml]

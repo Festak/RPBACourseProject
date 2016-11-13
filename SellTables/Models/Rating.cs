@@ -10,7 +10,6 @@ namespace SellTables.Models
     {
         [Key]
         public int Id { get; set; }
-     //   [Range(0,5)]
         public int Value { get; set; }
 
         public string UserId { get; set; }

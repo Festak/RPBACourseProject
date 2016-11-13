@@ -3,48 +3,113 @@
     ViewBag.Title = "UserPage";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-<link rel='stylesheet prefetch' href='http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css'>
+<link rel="stylesheet"href="~/Content/somestyles/UserPageStyles.css"/>
 
-<h2>UserPage</h2>
+<section id="services-sec">
+    <div class="container">
 
-<div class="col-sm-8">
-    <div ng-controller="CreativeController" ng-init="getCreativesByUser('@User.Identity.Name')">
+        <div class="row ">
+            <div class="col-md-12">
+                <div class="col-md-8 col-sm-8">
+                    <h2>Lorem ipsum dolor sit amet </h2>
+                    <p>
+                        Lorem ipsum dolor sit amet, accumsan.  posuere lectus et, fringilla augue.
+                        Lorem ipsum dolor sit amet, accumsan.  posuere lectus et, fringilla augue.
+                        Lorem ipsum dolor sit amet, accumsan.  posuere lectus et, fringilla augue.
+                        Lorem ipsum dolor sit amet, accumsan.  posuere lectus et, fringilla augue.
+                        Lorem ipsum dolor sit amet, accumsan.  posuere lectus et, fringilla augue.
+                    </p>
+                </div>
 
-            <!-- Wrapper for slides -->
-            <div class="row">
-                <div class="col-xs-offset-3 col-xs-6">
-                 <div ng-repeat="creative in creatives">{{creative.Name}}</div>
-            </div>
-        </div>
-        
-   </div>
-        <div class="col-sm-4">
-            <div class="well">
-                <p>Username: @Model.UserName</p>
-            </div>
-            <div class="well">
-                <p>Upcoming Events..</p>
-            </div>
-            <div class="well">
-                <p>Visit Our Blog</p>
-            </div>
-            <div class="well">
-                @Html.ActionLink("Settings", "Index", "Manage", new { @class = "" })
-            </div>
-        </div>
-        <hr>
-
-
-
-        <div class="container text-center">
-            <div class="wrapper">
-                <div class="counter col_fourth">
-                    <i class="fa fa-code fa-2x"></i>
-                    <h2 class="timer count-title" id="count-number" data-to="@Model.ChaptersCreateCounter" data-speed="7000"></h2>
-                    <p class="count-text ">Total count of chapters</p>
+                <div class="col-md-4 col-sm-4">
+                    <h2>Lorem ipsum  </h2>
+                    <p>
+                        Lorem ipsum dolor sit amet, accumsan.  posuere lectus et, fringilla augue.
+                        Lorem ipsum dolor sit amet, accumsan.  posuere lectus et, fringilla augue.
+                    </p>
                 </div>
             </div>
+
+        </div>
+        <div class="row text-center">
+            <div class="col-md-4  col-sm-4">
+                <i class="fa fa-fax faa-horizontal animated icon-round bk-color-black"></i>
+                <h4>Sure Quique Menu </h4>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Curabitur nec nisl odio. Mauris vehicula at nunc id posuere.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                </p>
+
             </div>
-        </div><br>
+            <div class="col-md-4  col-sm-4">
+                <i class="fa fa-bomb  faa-pulse animated icon-round bk-color-blue"></i>
+                <h4>Sure Quique Menu </h4>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Curabitur nec nisl odio. Mauris vehicula at nunc id posuere.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                </p>
+
+            </div>
+            <div class="col-md-4  col-sm-4">
+                <i class="fa fa-paw  faa-bounce animated icon-round bk-color-brown"></i>
+                <h4>Sure Quique Menu </h4>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Curabitur nec nisl odio. Mauris vehicula at nunc id posuere.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                </p>
+
+            </div>
+        </div>
+        <div class="row pad-top">
+            <div class="col-md-12 text-center">
+                <div class="col-md-2 col-sm-2">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                             
+                        </div>
+                        <div class="panel-body">
+                            <div class="counter col_fourth panel-success">
+                                
+                                <h2 class="timer count-title" id="count-number" data-to="@Model.ChaptersCreateCounter" data-speed="7000"></h2>
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+                            Total count of chapters:
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <div class="panel panel-danger">
+                        <div class="panel-heading">
+                            Service # 2
+                        </div>
+                        <div class="panel-body">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
+                        </div>
+                        <div class="panel-footer">
+                            Panel Footer
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            Service # 3
+                        </div>
+                        <div class="panel-body">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
+                        </div>
+                        <div class="panel-footer">
+                            Panel Footer
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
 

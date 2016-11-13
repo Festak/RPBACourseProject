@@ -33,30 +33,41 @@ namespace SellTables.Services
 
         internal List<CreativeViewModel> GetAllCreatives()
         {
-            var listOfСreatives = InitCreatives(CreativeRepository.GetAll());
+            var listOfСreatives = InitCreatives(GetAllCreativesFromDataBase());
             return listOfСreatives.ToList();
         }
 
         internal List<Creative> GetAllCreativesForLucene()
         {
-            var listOfСreatives = CreativeRepository.GetAll();
-            return listOfСreatives.ToList();
+            return GetAllCreativesFromDataBase();
+        }
+
+        public List<Creative> GetAllCreativesModels() {
+          return  GetAllCreativesFromDataBase();
+        }
+
+        private List<Creative> GetAllCreativesFromDataBase() {
+            var listOfCreatives = CreativeRepository.GetAll();
+            return listOfCreatives.ToList();
         }
 
 
         internal void AddCreative(RegisterCreativeModel creativemodel)
         {
             Creative creative = creativemodel.Creative;
-            (new UserService(dataBaseContext)).AddCreativeToCounter(creative.User.Id);
+            AddCreativeToCounter(creative.User.Id);
             Chapter chapter = creativemodel.Chapter;
             chapter.Creative = creative;
+            if(chapter.TagsString!=null)
             chapter.Tags = GetTags(chapter.TagsString, chapter);
             creative.Chapters.Add(chapter);
-            AddCreativeToUser(creative);
+          //  AddCreativeToUser(creative);
+           
             CreativeSearch.AddUpdateLuceneIndex(creative); //ADD LUCENE INDEX
             CreativeRepository.Add(creative);
             ChapterRepository.Add(chapter);
         }
+
 
         private void AddCreativeToUser(Creative creative) {
             ApplicationUser user = UsersRepository.FindUserById(creative.User.Id);
@@ -75,6 +86,18 @@ namespace SellTables.Services
             return InitCreativesBySearch(creatives);
         }
 
+        private void AddCreativeToCounter(string userId)
+        {
+            ApplicationUser user = UsersRepository.FindUserById(userId);
+            user.ChaptersCreateCounter += 1;
+            if (user.ChaptersCreateCounter == 5) // TODO: make verification for medal exist
+            {
+                user.Medals.Add(dataBaseContext.Medals.FirstOrDefault(m => m.Id == 2));
+            }
+            UsersRepository.UpdateUser(user);
+            dataBaseContext.SaveChanges();
+        }
+
         internal Creative GetCreative(int id)
         {
             return CreativeRepository.Get(id);
@@ -87,14 +110,14 @@ namespace SellTables.Services
 
         }
 
-        private ICollection<Tag> GetTags(String tagList, Chapter chapter)
+        private ICollection<Tag> GetTags(string tagList, Chapter chapter)
         {
             var stringList = tagList.Split(' ');
             var tags = new List<Tag>();
 
             if (stringList != null)
             {
-                foreach (String text in stringList)
+                foreach (string text in stringList)
                 {
                     Tag tag = new Tag();
                     tag.Chapters.Add(chapter);
@@ -120,7 +143,6 @@ namespace SellTables.Services
             }).ToList();
         }
 
-
         private ICollection<CreativeViewModel> InitCreativesBySearch(ICollection<Creative> list)
         {
             return list.Select(creative => new CreativeViewModel
@@ -135,7 +157,6 @@ namespace SellTables.Services
             }).ToList();
         }
 
-
         private ICollection<ChapterViewModel> InitChapters(ICollection<Chapter> list)
         {
             var Chapters = list.Select(c => new ChapterViewModel
@@ -148,6 +169,7 @@ namespace SellTables.Services
             }).ToList();
             return Chapters;
         }
+
         private ICollection<ChapterViewModel> InitChaptersBySearch(ICollection<Chapter> list)
         {
             var Chapters = list.Select(c => new ChapterViewModel
@@ -162,15 +184,13 @@ namespace SellTables.Services
             return Chapters;
         }
 
-
-
-        private static ICollection<Tag> GetTags(String tagList)
+        private static ICollection<Tag> GetTags(string tagList)
         {
             var stringList = tagList.Split(' ');
             var tags = new List<Tag>();
             if (stringList != null)
             {
-                foreach (String text in stringList)
+                foreach (string text in stringList)
                     tags.Add(new Tag() { Description = text });
             }
             return tags;
@@ -209,13 +229,18 @@ namespace SellTables.Services
 
         internal void SetRatingToCreative(int rating, CreativeViewModel creativemodel, ApplicationUser user)
         {
-            Rating ratingObj = new Rating();
             Creative creative = dataBaseContext.Creatives.Find(creativemodel.Id);
+            Rating ratingObj = InitRating(creative, rating, user);
+            CalculateRating(ratingObj, creative);
+        }
+
+        private Rating InitRating(Creative creative, int rating, ApplicationUser user) {
+            Rating ratingObj = new Rating();
             ratingObj.Creative = creative;
             ratingObj.Value = rating;
             ratingObj.User = user;
             ratingObj.UserId = user.Id;
-            CalculateRating(ratingObj, creative);
+            return ratingObj;
         }
 
         private void CalculateRating(Rating rating, Creative creative)
@@ -228,11 +253,8 @@ namespace SellTables.Services
             }
             a /= creative.Ratings.Count;
             creative.Rating = Math.Round(a, 2);
-
             CreativeRepository.Update(creative);
             RatingsRepository.Add(rating);
-
-
         }
 
         internal List<CreativeViewModel> GetPopularCreatives()
@@ -247,6 +269,7 @@ namespace SellTables.Services
             var listOfCreatives = InitCreatives(CreativeRepository.GetAll().Where(u => u.User == user).ToList());
             return listOfCreatives.ToList();
         }
+
 
 
 
