@@ -22,24 +22,38 @@
         @{
             foreach (var user in Model)
             {
-                <div class="row main col-md-10 border-main-dark">
-                    <div class="col-md-2 bg-main">
-                        <ul class="border-main-dark list-unstyled">
-                            <li><img src="@user.AvatarUri" /></li>
-                                                   <li>
-                                    <button type="button" class="btn btn-default default-button bg-main-light main border-blue interactive"
-                                             id="DeleteUser"
-                                             ng-click="DeleteUser('@user.UserName')">
-                                        Delete User
-                                    </button>
-                                </li>
-                        </ul>
-                    </div>
-                    <div class="col-md-3">
-                        <h3><a href="../../User/UserPage/@user.UserName">@user.UserName</a></h3>
-                        <p>Email: @user.Email</p>
-                        <p>Joined: @user.RegistrationDate.ToString()</p>
-                        <p>Role: @user.UserName</p>
+                <div class="col-xs-12 col-sm-6 col-md-6">
+                    <div class="well well-sm">
+                        <div class="row">
+                            <div class="col-sm-6 col-md-4">
+                                <img src="@user.AvatarUri" alt="avatar" class="img-rounded img-responsive" />
+                                @foreach(var medal in user.Medals) { 
+                                <img style="width: 32px; height: 32px" src="@medal.ImageUri" title="@medal.Name"/>
+                                }
+                            </div>
+                            <div class="col-sm-6 col-md-8">
+                                <h4>
+                                    @*<a href="../../User/UserPage/?name=@user.UserName">@user.UserName</a>*@
+                                    @Html.ActionLink(@user.UserName, "UserPage", "Admin", new { area="", username = user.UserName.ToString()}, null)
+                                </h4>
+              
+                                <p>
+                                    <i class="glyphicon glyphicon-envelope"></i> @user.Email
+                                    <br />
+                                    <i class="glyphicon glyphicon-gift"></i>@user.RegistrationDate
+                                </p> 
+                                @if (user.LockoutEndDateUtc == null)
+                                {
+                                    <span ng-click="BanUser('@user.UserName')" class="fa fa-list">Ban</span>
+                                }
+                                else
+                                {
+                                    <span ng-click="UnbanUser('@user.UserName')" class="fa fa-list">Unban</span>
+                                }
+                                <span ng-click="DeleteUser('@user.UserName')" class="fa fa-warning">Delete user</span>
+
+                            </div>
+                        </div>
                     </div>
                 </div>
             }

@@ -91,6 +91,10 @@ angular.module('creative', ['ngRoute'])
               }
           }
 
+      
+        
+
+
           $scope.setRating = function (id, i) {
               for (var j = 1; j <= i; j++) {
                   var element = angular.element(document.getElementById('' + id + j));

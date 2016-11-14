@@ -52,6 +52,22 @@ namespace SellTables.Services
             DeleteUser(user);
         }
 
+        public void BanUser(string userName) {
+            ApplicationUser user = UsersRepository.FindUser(userName);
+            if (!UsersRepository.IsInAdminRole(user.Id))
+            {
+                user.LockoutEndDateUtc = DateTime.UtcNow.AddDays(15);
+                UsersRepository.UpdateUser(user);
+            }
+           // DataBaseContext.SaveChanges();
+        }
+        public void UnbanUser(string userName) {
+            ApplicationUser user = UsersRepository.FindUser(userName);
+            user.LockoutEndDateUtc = null;
+            UsersRepository.UpdateUser(user);
+           // DataBaseContext.SaveChanges();
+        }
+
 
         private void ReCalculateRating()
         {

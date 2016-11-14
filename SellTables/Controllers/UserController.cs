@@ -38,6 +38,7 @@ namespace SellTables.Controllers
             var creatives = CreativeService.GetCreativesByUser(userName);
             return Json(creatives, JsonRequestBehavior.AllowGet);
         }
+     
       
     }
 }

@@ -136,7 +136,9 @@ namespace SellTables.Services
                     Tag tag = new Tag();
                     tag.Chapters.Add(chapter);
                     tag.Description = text;
+                    if(dataBaseContext.Tags.Where(t=>t.Description == text).ToList().Count==0)
                     tags.Add(tag);
+
                 }
             }
             return tags;

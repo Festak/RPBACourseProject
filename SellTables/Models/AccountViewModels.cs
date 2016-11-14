@@ -54,7 +54,7 @@ namespace SellTables.Models
     public class LoginViewModel
     {
 
-
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [Display(Name = "Name", ResourceType = typeof(Resources.Resource))]
         public string UserName { get; set; }
 
@@ -75,6 +75,7 @@ namespace SellTables.Models
     {
         [Required]
         [Display(Name = "User Name")]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         public string UserName { get; set; }
 
         [Required]

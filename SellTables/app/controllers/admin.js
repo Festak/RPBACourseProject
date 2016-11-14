@@ -7,6 +7,18 @@
                   $window.location.href = '/Admin/Index/';
               });
       };
- 
+
+      $scope.BanUser = function (user) {
+          $http.post('/Admin/BanUser', { userName: user }).success(function (result) {
+              $window.location.href = '/Admin/Index/';
+          });
+
+      }
+
+      $scope.UnbanUser = function (user) {
+          $http.post('/Admin/UnbanUser', { userName: user }).success(function (result) {
+              $window.location.href = '/Admin/Index/';
+          });
+      }
 
   }]);

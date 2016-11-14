@@ -15,7 +15,7 @@ namespace SellTables.Interfaces
         ApplicationUser FindUserById(string userId);
         IdentityResult UpdateUser(ApplicationUser user);
         IdentityResult DeleteUser(ApplicationUser user);
-        bool CheckUserRole(string userId);
+        bool IsInAdminRole(string userId);
         ApplicationUser GetCurrentUser(string id);
     }
 }

@@ -40,8 +40,25 @@ namespace SellTables.Controllers
             return RedirectToAction("Index", "Admin");
         }
 
+        [HttpPost]
+        public void BanUser(string userName)
+        {
+            UserService.BanUser(userName);
+        }
+
+        [HttpPost]
+        public void UnbanUser(string userName)
+        {
+            UserService.UnbanUser(userName);
+        }
+
         private ICollection<ApplicationUser> GetUsers() {
             return UserService.GetAllUsers();
+        }
+
+        [HttpGet]
+        public ActionResult UserPage(string username) {
+            return View(UserService.GetUserByName(username));
         }
 
     }

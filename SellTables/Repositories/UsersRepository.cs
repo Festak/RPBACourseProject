@@ -20,7 +20,7 @@ namespace SellTables.Repositories
             userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(dataBaseContext));
         }
 
-        bool IUserRepository.CheckUserRole(string userId)
+        bool IUserRepository.IsInAdminRole(string userId)
         {
             return userManager.IsInRole(userId, "admin");
         }
