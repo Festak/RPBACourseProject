@@ -1,25 +1,40 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+<header class="intro-header container-fluid" style="background-image: url('http://www.freeoboi.ru/images/249509332.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="site-heading">
+                    <h1>Creatives</h1>
+                    <hr class="small">
+                    <span class="subheading">See what people create here</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
 
 <div class="row" ng-controller='CreativeController'>
-    <div class="col-md-2 col-sd-2" ng-init="getPopular()">
+    <div class="col-md-4 col-sd-4" ng-init="getPopular()">
       @Html.Partial("_PopularCreatives")
     </div>
-    <div class="col-md-7" data-ng-controller='CreativeController'>
+    <div class="col-md-7">
         <div>
             Testing language locale:
             @Resources.Resource.ChooseLanguage
             @Resources.Resource.Name
         </div>
       @Html.Partial("_SortPanel")
-
-        @Html.ActionLink("Add creative", "Create", "Creative")
-
-        @Html.Partial("_CreativesList")
-       
-    </div>
-    <div class="col-md-3 col-sd-4">
-       @Html.Partial("_TagCloud")
+        
+                <div class="col-md-12">
+                    <i class="h2">Add your own creative now!</i> <span class="glyphicon glyphicon-arrow-right h2"></span>
+                    <a class="glyphicon glyphicon-plus-sign h2" style="text-decoration:none; color: lawngreen;" href="@Url.Action("Create", "Creative")"></a>
+                </div>
+  
+        <div class="row">
+                @Html.Partial("_CreativesList")
+          
+        </div>
     </div>
 </div>

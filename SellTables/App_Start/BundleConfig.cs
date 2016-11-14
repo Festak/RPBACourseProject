@@ -18,7 +18,7 @@ namespace SellTables
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
-           
+
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
                           "~/Scripts/angular.js",
                           "~/Scripts/angular-route.js",
@@ -29,11 +29,15 @@ namespace SellTables
                 "~/app/main.js",
                 "~/app/controllers/creative.js",
                 "~/app/controllers/user.js",
+                "~/app/controllers/widthChange.js",
                 "~/app/controllers/tag.js",
                  "~/app/controllers/chapter.js",
-                "~/Scripts/scripts/tagcloud.js"
+                "~/Scripts/scripts/clean-blog.js",
+                "~/Scripts/scripts/star-rating.js",
+                "~/Scripts/jquery-2.1.4.js"
+                
                 ));
-                    
+
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
@@ -45,7 +49,10 @@ namespace SellTables
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/Site.css",
-                      "~/Content/summernote.css"
+                      "~/Content/summernote.css",
+                      "~/Content/clean-blog.css",
+                      "~/Content/star-rating.css"
+
                       ));
         }
     }

@@ -1,4 +1,4 @@
-﻿angular.module('main', ['user', 'creative', 'tag', 'ngRoute', 'chapter'])
+﻿angular.module('main', ['user', 'creative', 'tag', 'ngRoute', 'chapter', 'widthChange'])
   .controller('MainController', [
       '$scope',
       '$http',

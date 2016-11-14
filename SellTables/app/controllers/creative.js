@@ -23,9 +23,10 @@ angular.module('creative', [])
               $scope.load();
           }
 
-      
+
 
           $scope.load = function () {
+
               if (haveMore && !isBusy) {
                   isBusy = true;
                   $http.get('/Home/GetCreativesRange?start=' + current + '&count=' + count + '&sortType=' + sortType).success(function (result) {
@@ -108,7 +109,7 @@ angular.module('creative', [])
           }
 
           $scope.getCreativesByUser = function (name) {
-              $http.post('/Creative/GetCreativesByUser', {userName: name}).success(function (result) {
+              $http.post('/Creative/GetCreativesByUser', { userName: name }).success(function (result) {
                   $scope.creatives = result;
               })
           .error(function (data) {
@@ -117,21 +118,4 @@ angular.module('creative', [])
           }
 
 
-      }]).directive("whenScrolled", function () {
-          return {
-              restrict: 'A',
-              link: function (scope, elem, attrs) {
-
-                  // we get a list of elements of size 1 and need the first element
-                  raw = elem[0];
-                  // we load more elements when scrolled past a limit
-                  elem.bind("scroll", function () {
-                      if (raw.scrollTop + raw.offsetHeight + 5 >= raw.scrollHeight) {
-                          scope.loading = true;
-                          // we can give any function which loads more elements into the list
-                          scope.$apply(attrs.whenScrolled);
-                      }
-                  });
-              }
-          }
-      });
+      }]);
