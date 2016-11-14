@@ -3,12 +3,25 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<header class="intro-header container-fluid" style="background-image: url('http://www.freeoboi.ru/images/249509332.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="site-heading">
+                    <h1>Admin page</h1>
+                    <hr class="small">
+                    <span class="subheading">See what people create here</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
 <div class="container" ng-controller="AdminController">
     <div class="row" id="userList">
         @{
             foreach (var user in Model)
             {
-
                 <div class="row main col-md-10 border-main-dark">
                     <div class="col-md-2 bg-main">
                         <ul class="border-main-dark list-unstyled">
@@ -28,12 +41,6 @@
                         <p>Joined: @user.RegistrationDate.ToString()</p>
                         <p>Role: @user.UserName</p>
                     </div>
-                    @*@if (!ViewBag.AdminId.Equals(@user.Id))
-                    {
-                        <div class="col-md-5">
-                            @Html.Partial("../Account/ResetPassword", new ResetPasswordViewModel() { Email = @user.Email })
-                        </div>
-                    }*@
                 </div>
             }
         }

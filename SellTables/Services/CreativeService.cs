@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.Entity;
 
 namespace SellTables.Services
 {
@@ -42,11 +43,13 @@ namespace SellTables.Services
             return GetAllCreativesFromDataBase();
         }
 
-        public List<Creative> GetAllCreativesModels() {
-          return  GetAllCreativesFromDataBase();
+        public List<Creative> GetAllCreativesModels()
+        {
+            return GetAllCreativesFromDataBase();
         }
 
-        private List<Creative> GetAllCreativesFromDataBase() {
+        private List<Creative> GetAllCreativesFromDataBase()
+        {
             var listOfCreatives = CreativeRepository.GetAll();
             return listOfCreatives.ToList();
         }
@@ -58,17 +61,18 @@ namespace SellTables.Services
             AddCreativeToCounter(creative.User.Id);
             Chapter chapter = creativemodel.Chapter;
             chapter.Creative = creative;
-            if(chapter.TagsString!=null)
-            chapter.Tags = GetTags(chapter.TagsString, chapter);
+            if (chapter.TagsString != null)
+                chapter.Tags = GetTags(chapter.TagsString, chapter);
             creative.Chapters.Add(chapter);
-           
+
             CreativeSearch.AddUpdateLuceneIndex(creative); //ADD LUCENE INDEX
             CreativeRepository.Add(creative);
             ChapterRepository.Add(chapter);
         }
 
 
-        private void AddCreativeToUser(Creative creative) {
+        private void AddCreativeToUser(Creative creative)
+        {
             ApplicationUser user = UsersRepository.FindUserById(creative.User.Id);
             user.Creatives.Add(creative);
             UsersRepository.UpdateUser(user);
@@ -92,11 +96,12 @@ namespace SellTables.Services
             if (user.ChaptersCreateCounter == 1) // TODO: make verification for medal exist
             {
                 Medal medal = dataBaseContext.Medals.FirstOrDefault(m => m.Id == 3);
-                if(!user.Medals.Contains(medal))
-                user.Medals.Add(medal);
+                if (!user.Medals.Contains(medal))
+                    user.Medals.Add(medal);
 
             }
-            if (user.ChaptersCreateCounter==5) {
+            if (user.ChaptersCreateCounter == 5)
+            {
                 Medal medal = dataBaseContext.Medals.FirstOrDefault(m => m.Id == 4);
                 if (!user.Medals.Contains(medal))
                     user.Medals.Add(medal);
@@ -110,8 +115,10 @@ namespace SellTables.Services
             return CreativeRepository.Get(id);
         }
 
-        private void AddTagsTodataBaseContext(Chapter chapter) {
-            foreach (var tag in chapter.Tags) {
+        private void AddTagsTodataBaseContext(Chapter chapter)
+        {
+            foreach (var tag in chapter.Tags)
+            {
                 TagsRepository.Add(tag);
             }
 
@@ -198,8 +205,8 @@ namespace SellTables.Services
             {
                 Id = c.Id,
                 Name = c.Name,
-               Description = c.Description,
-               ImageUri = c.ImageUri
+                Description = c.Description,
+                ImageUri = c.ImageUri
             }).ToList();
             return medals;
         }
@@ -255,7 +262,8 @@ namespace SellTables.Services
             CalculateRating(ratingObj, creative);
         }
 
-        private Rating InitRating(Creative creative, int rating, ApplicationUser user) {
+        private Rating InitRating(Creative creative, int rating, ApplicationUser user)
+        {
             Rating ratingObj = new Rating();
             ratingObj.Creative = creative;
             ratingObj.Value = rating;
@@ -291,8 +299,66 @@ namespace SellTables.Services
             return listOfCreatives.ToList();
         }
 
+        public void DeleteCreativeById(int id, string userName)
+        {
+            var creative = dataBaseContext.Creatives.Include(c => c.Chapters).FirstOrDefault(i => i.Id == id);
+            ApplicationUser user = UsersRepository.FindUser(userName);
+            user.Creatives.Remove(creative);
+            DeleteAllCreativesRating(creative);
+            DeleteAllChaptersFromCreative(creative);
+            if (creative != null)
+            {
+                dataBaseContext.Creatives.Remove(creative);
+                CreativeSearch.ClearLuceneIndexRecord(creative.Id);
+            }
+            dataBaseContext.SaveChanges(); 
+        }
+
+        private void DeleteAllChaptersFromCreative(Creative creative)
+        {
+            foreach (var chapter in creative.Chapters.ToList())
+            {
+                DeleteTagFromChapter(chapter);
+                var c = dataBaseContext.Chapters.Find(chapter.Id);
+                if (c != null)
+                {
+                    dataBaseContext.Chapters.Remove(c);
+                    
+                }
+            }
+            dataBaseContext.SaveChanges();
+        }
+
+        private void DeleteTagFromChapter(Chapter chapter)
+        {
+            foreach (var tag in chapter.Tags.ToList())
+            {
+                var t = dataBaseContext.Tags.Find(tag.Id);
+                if (t != null)
+                    dataBaseContext.Tags.Remove(t);
+               
+            }
+            dataBaseContext.SaveChanges();
+        }
 
 
+        private void DeleteAllCreativesRating(Creative creative)
+        {
+            var ratings = GetAllCreativeRatings(creative);
+            if (ratings != null)
+            {
+                dataBaseContext.Rating.RemoveRange(ratings);
+                dataBaseContext.SaveChanges();
+            }
+        }
+
+        public ICollection<Rating> GetAllCreativeRatings(Creative creative)
+        {
+            if (creative == null)
+                return null;
+            return dataBaseContext.Rating
+                        .Where(r => r.CreativeId == creative.Id).ToList();
+        }
 
     }
 }

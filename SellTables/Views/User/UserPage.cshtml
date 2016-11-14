@@ -3,8 +3,19 @@
     ViewBag.Title = "UserPage";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<link rel="stylesheet"href="~/Content/somestyles/UserPageStyles.css"/>
-
+<header class="intro-header container-fluid" style="background-image: url('http://www.freeoboi.ru/images/249509332.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="site-heading">
+                    <h1>User Page</h1>
+                    <hr class="small">
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<link rel="stylesheet" href="~/Content/somestyles/UserPageStyles.css" />
 <section id="services-sec">
     <div class="container" ng-controller="CreativeController" ng-init="getCreativesByUser('@User.Identity.Name')">
 
@@ -71,7 +82,7 @@
                     <div class="panel panel-info">
                         <div class="panel-heading">             
                                 {{creative.Name}}
-                                <button ng-click="" style="">
+                                <button ng-click="deleteCreativeById(creative.Id, '@User.Identity.Name')" style="">
                                     <i class="fa fa-times" aria-hidden="true"></i>
                                 </button>
                                

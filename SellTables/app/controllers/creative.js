@@ -60,7 +60,7 @@ angular.module('creative', ['ngRoute'])
         .error(function (data) {
             console.log(data);
         });
-              $window.location.href = ''; //test variant to reload the page 
+              $window.location.href = ''; 
           }
 
           $scope.changeSortType = function (i) {
@@ -107,6 +107,17 @@ angular.module('creative', ['ngRoute'])
                console.log(data);
            });
           }
+          
+          $scope.deleteCreativeById = function(creativeId, user) {
+              $http.post('/Creative/DeleteCreativeById', { id: creativeId, userName: user }).success(function (result) {
+                  $scope.getCreativesByUser(user);
+              })
+        .error(function (data) {
+            console.log(data);
+        });
+             
+          }
+
 
           $scope.getCreativesByUser = function (name) {
               $http.post('/Creative/GetCreativesByUser', { userName: name }).success(function (result) {

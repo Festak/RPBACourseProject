@@ -130,5 +130,9 @@ namespace SellTables.Controllers
             return Json(creatives, JsonRequestBehavior.AllowGet);
         }
 
+        public void DeleteCreativeById(int id, string userName) {
+            CreativeService.DeleteCreativeById(id, userName);
+        }
+
     }
 }
