@@ -369,6 +369,8 @@
     <Content Include="Content\ng-tags-input.bootstrap.min.css" />
     <Content Include="Content\ng-tags-input.min.css" />
     <Content Include="Content\somestyles\UserPageStyles.css" />
+    <Content Include="Content\star-rating.css" />
+    <Content Include="Content\star-rating.min.css" />
     <Content Include="Content\summernote.css" />
     <Content Include="Content\ui-bootstrap-csp.css" />
     <Content Include="favicon.ico" />
@@ -1190,9 +1192,14 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\scripts\clean-blog.js" />
+    <Content Include="Scripts\scripts\clean-blog.min.js" />
+    <Content Include="Scripts\scripts\contact_me.js" />
     <Content Include="Scripts\scripts\counter.js" />
     <Content Include="Scripts\scripts\ng-tags-input.min.js" />
     <Content Include="Scripts\scripts\registerLoginMenu.js" />
+    <Content Include="Scripts\scripts\star-rating.js" />
+    <Content Include="Scripts\scripts\star-rating.min.js" />
     <Content Include="Scripts\scripts\tagscloud.js" />
     <Content Include="Scripts\scripts\jqmenu.js" />
     <Content Include="Scripts\scripts\tagcloud.js" />

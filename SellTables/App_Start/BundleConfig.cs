@@ -43,9 +43,7 @@ namespace SellTables
                 "~/app/controllers/tag.js",
                  "~/app/controllers/chapter.js",
                 "~/Scripts/scripts/clean-blog.js",
-                "~/Scripts/scripts/star-rating.js",
-                "~/Scripts/jquery-2.1.4.js"
-                
+                "~/Scripts/scripts/star-rating.js"
                 ));
 
 
@@ -62,7 +60,7 @@ namespace SellTables
                       "~/Content/counter.css",
                       "~/Content/jqmenu.css",
                       "~/Content/font-awesome.min.css",
-                       "~/Content/font-awesome-animation.css"
+                       "~/Content/font-awesome-animation.css",
                       "~/Content/summernote.css",
                       "~/Content/clean-blog.css",
                       "~/Content/star-rating.css"

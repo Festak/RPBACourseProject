@@ -6,10 +6,8 @@
                     <div ng-controller="MainController">
                         <h2 class="post-title cursor-pointer" ng-click="redirectToCreative(creative.Id)">{{creative.Name}}</h2>
                     </div>
-                <div class="col-md-8"><span>{{creative.Name}}</span></div>
-                <div class="col-md-4"><span>{{creative.UserName}}</span></div>
             </div>
-            <div class="well well-sm">
+            <div class="row">
          
                 <div ng-repeat="medal in creative.Medals">
                     <img src="{{medal.ImageUri}}" title="{{medal.Description}}" class="col-md-1 col-sm-1 col-xs-1" data-toggle="popover" />
