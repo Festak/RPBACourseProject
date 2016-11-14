@@ -50,6 +50,7 @@ namespace SellTables
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js",
+                      "~/Scripts/scripts/redipadding.js",
                       "~/Scripts/angular-ui/ui-bootstrap-tpls.js"
                       ));
 
