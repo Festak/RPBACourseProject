@@ -3,6 +3,9 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@ViewBag.Title - My ASP.NET Application</title>
   
     @Scripts.Render("~/bundles/angular")
@@ -26,18 +29,18 @@
         }*@
 
 </head>
-<body ng-app="main">
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
+<body ng-app="main" class="scr">
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top" >
+        <div class="container-fluid">
+            <div class="navbar-header  page-scroll">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
+                    <span class="icon-bar sr-only"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
                 @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
-            <div class="navbar-collapse collapse">
+            <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1">
                 @Html.Partial("_LoginPartial")
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href=@Url.Action("Create", "Creative")>Create</a></li>
@@ -47,14 +50,14 @@
                         }
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Choose lang<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu transparentbar">
                             <li><a href="@Url.Action("ChangeCulture", "Home", new { lang = "ru"})">@Resources.Resource.Russian</a></li>
                             <li><a href="@Url.Action("ChangeCulture", "Home", new { lang = "en"})">@Resources.Resource.English</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">@Resources.Resource.Styles<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu transparentbar">
                             <li onclick="setCookie('style', '1', '/')"><a>@Resources.Resource.Dark</a></li>
                             <li onclick="setCookie('style', '2', '/')"><a>@Resources.Resource.White</a></li>
                         </ul>
@@ -67,9 +70,9 @@
 
 
         </div>
-    </div>
-    <div class="row">
-        <div class="container body-content col-md-12">
+    </nav>
+   
+        <div class="col-md-12">
             @RenderBody()
             <hr />
         </div>

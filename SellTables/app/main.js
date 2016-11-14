@@ -1,11 +1,4 @@
-﻿angular.module('main',
-    ['user',
-    'creative',
-    'tag',
-    'ngRoute',
-    'chapter',
-    'admin'
-    ])
+﻿angular.module('main', ['user', 'creative', 'tag', 'ngRoute', 'chapter', 'widthChange', 'admin'])
   .controller('MainController', [
       '$scope',
       '$http',

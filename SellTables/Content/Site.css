@@ -1,6 +1,10 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    
+    margin-top: -10px;
+    Overflow:auto;
+
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -22,19 +26,16 @@ textarea {
     max-width: 280px;
 }
 .scr {
-  height: 600px;
-  overflow: scroll;
-  border-radius: 5px;
-  margin: 0 auto;
-  padding: 0.5em;
+
+  
 }
 .scr::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
   background-color: transparent;
 }
 .scr::-webkit-scrollbar-thumb {
-  background-color: #b0fccd;
-  border-radius: 10px;
+  background-color: deepskyblue;
+  border-radius: 20px;
 }
 
 
@@ -141,4 +142,23 @@ textarea {
         color: #fff;
         background-color: #1CA347;
         border-color: #1CA347;
+    /* Hide the carousel text when the screen is less than 600 pixels wide */
+    @media (max-width: 600px) {
+      .carousel-caption {
+        display: none;
+      }
+    }
+
+    .transparentbar {
+        background-repeat:no-repeat;
+        cursor:pointer;
+        outline:none;
+        border:none;
+        box-shadow:none; 
+        background-image: none;
+
+        background-color: transparent;
+        background: transparent;
+        border-color: transparent;
+
     }

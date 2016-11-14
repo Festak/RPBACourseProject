@@ -344,6 +344,7 @@
     <Content Include="app\controllers\chapter.js" />
     <Content Include="app\controllers\tag.js" />
     <Content Include="app\controllers\user.js" />
+    <Content Include="app\controllers\widthChange.js" />
     <Content Include="app\main.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -356,6 +357,8 @@
     <Content Include="Content\bootstrapWhite.css" />
     <Content Include="Content\counter.css" />
     <Content Include="Content\font-awesome-animation.css" />
+    <Content Include="Content\clean-blog.css" />
+    <Content Include="Content\clean-blog.min.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\images\Facebook.png" />

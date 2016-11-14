@@ -1,11 +1,10 @@
-﻿
-<div>
-    <div class='scr' ng-init='getCreatives()' when-scrolled="load()">
-        <div data-ng-repeat='creative in creatives' class="well well-sm">
-            <div class="well well-sm">
-                <div ng-controller="MainController">
-                <a><i ng-click="redirectToAddCreative(creative.Id)">Add</i></a>
-                   <a><i ng-click="redirectToEditCreative(creative.Id)">Edit</i></a>
+﻿<div class="row">
+    <div class="col-md-12">
+        <div ng-init='getCreatives()' class="scr" id="scroller">
+            <div data-ng-repeat='creative in creatives' class="post-preview">
+                <div class="post-title">
+                    <div ng-controller="MainController">
+                        <h2 class="post-title cursor-pointer" ng-click="redirectToCreative(creative.Id)">{{creative.Name}}</h2>
                     </div>
                 <div class="col-md-8"><span>{{creative.Name}}</span></div>
                 <div class="col-md-4"><span>{{creative.UserName}}</span></div>
@@ -17,26 +16,53 @@
                 </div>
             </div>
 
-            <div class="well">
-                <div ng-repeat="chapter in creative.Chapters" ng-controller="MainController">
+                <h4 class="post-subtitle cursor-pointer">
+                    <span class="glyphicon glyphicon-chevron-down"></span>
+                    <span role="button" data-toggle="collapse" href="#collapseExample{{$index}}" aria-expanded="false" aria-controls="collapseExample">
+                        Глав: {{creative.Chapters.length}}
+                    </span>
+                </h4>
+                <div class="collapse" id="collapseExample{{$index}}">
 
-                    <a ng-click="redirect(chapter.Id)">{{chapter.Name}}</a>
+                    <div ng-repeat="chapter in creative.Chapters" ng-controller="MainController">
+
+                        <span class="cursor-pointer" ng-click="redirect(chapter.Id)">
+                            <small>
+                                <span class="glyphicon glyphicon-chevron-right"></span>
+                            </small>
+                            {{chapter.Name}}
+                        </span>
+                    </div>
+
                 </div>
-            </div>
-            <div class="well well-sm">
-                <div class="col-md-4">
 
-                    <span id="{{$index}}1" ng-click="vote(1, creative)" class="glyphicon glyphicon-star-empty creative.Id+'1'" ng-mouseover="show($index,1)" ng-mouseleave="hide($index)" aria-hidden="true"></span>
-                    <span id="{{$index}}2" ng-click="vote(2, creative)" class="glyphicon glyphicon-star-empty creative.Id+'1'" ng-mouseover="show($index,2)" ng-mouseleave="hide($index)" aria-hidden="true"></span>
-                    <span id="{{$index}}3" ng-click="vote(3, creative)" class="glyphicon glyphicon-star-empty creative.Id+'1'" ng-mouseover="show($index,3)" ng-mouseleave="hide($index)" aria-hidden="true"></span>
-                    <span id="{{$index}}4" ng-click="vote(4, creative)" class="glyphicon glyphicon-star-empty creative.Id+'1'" ng-mouseover="show($index,4)" ng-mouseleave="hide($index)" aria-hidden="true"></span>
-                    <span id="{{$index}}5" ng-click="vote(5, creative)" class="glyphicon glyphicon-star-empty creative.Id+'1'" ng-mouseover="show($index,5)" ng-mouseleave="hide($index)" aria-hidden="true"></span>
+                <div class="row">
+                    <div class="col-md-4">
 
+                        <span id="{{$index}}1" ng-click="vote(1, creative)" class="glyphicon glyphicon-star-empty creative.Id+'1'" ng-mouseover="show($index,1)" ng-mouseleave="hide($index)" aria-hidden="true"></span>
+                        <span id="{{$index}}2" ng-click="vote(2, creative)" class="glyphicon glyphicon-star-empty creative.Id+'1'" ng-mouseover="show($index,2)" ng-mouseleave="hide($index)" aria-hidden="true"></span>
+                        <span id="{{$index}}3" ng-click="vote(3, creative)" class="glyphicon glyphicon-star-empty creative.Id+'1'" ng-mouseover="show($index,3)" ng-mouseleave="hide($index)" aria-hidden="true"></span>
+                        <span id="{{$index}}4" ng-click="vote(4, creative)" class="glyphicon glyphicon-star-empty creative.Id+'1'" ng-mouseover="show($index,4)" ng-mouseleave="hide($index)" aria-hidden="true"></span>
+                        <span id="{{$index}}5" ng-click="vote(5, creative)" class="glyphicon glyphicon-star-empty creative.Id+'1'" ng-mouseover="show($index,5)" ng-mouseleave="hide($index)" aria-hidden="true"></span>
+
+                    </div>
+                    <div class="col-md-8">
+                        <span class="post-meta">Posted by <a href="#">{{creative.UserName}}</a> on {{creative.CreationDate}}</span>
+                    </div>
                 </div>
-                <div class="col-md-2">{{creative.Rating}}</div>
-                <div class="col-md-6">{{creative.CreationDate}}</div>
+                <hr />
             </div>
+            <div data-ng-show='loading'>Loading</div>
         </div>
-
     </div>
 </div>
+<script>
+
+    $(window).scroll(function () {
+      
+        if ($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+            
+            angular.element($('#scroller')).scope().load();
+        }
+    });
+</script>
