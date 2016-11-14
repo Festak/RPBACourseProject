@@ -47,7 +47,6 @@ namespace SellTables
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js",
                       "~/Scripts/angular-ui/ui-bootstrap-tpls.js"
-
                       ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(

@@ -32,22 +32,22 @@ namespace SellTables.Repositories
 
        ApplicationUser IUserRepository.FindUser(string userName)
         {
-            return userManager.FindByName(userName);
+            return userManager.Users.Include(m => m.Medals).Include(c => c.Creatives).FirstOrDefault(u => u.UserName == userName);
         }
 
        ApplicationUser IUserRepository.FindUserById(string userId)
         {
-           return userManager.FindById(userId);
+            return userManager.Users.Include(m => m.Medals).Include(c => c.Creatives).FirstOrDefault(u => u.Id == userId);
         }
 
         ICollection<ApplicationUser> IUserRepository.GetAllUsers()
         {
-            return userManager.Users.ToList();
+            return userManager.Users.Include(m => m.Medals).Include(c => c.Creatives).ToList();
         }
 
      ApplicationUser IUserRepository.GetCurrentUser(string name)
         {
-            return userManager.FindByName(name);
+            return userManager.Users.Include(m => m.Medals).Include(c => c.Creatives).FirstOrDefault(u=>u.UserName == name); 
         }
 
         IdentityResult IUserRepository.UpdateUser(ApplicationUser user)

@@ -52,9 +52,12 @@ namespace SellTables.Models
     }
 
     public class LoginViewModel
-    { 
+    {
 
-        [Required]
+
+        [Display(Name = "Name", ResourceType = typeof(Resources.Resource))]
+        public string UserName { get; set; }
+
         [Display(Name = "Email", ResourceType = typeof(Resources.Resource))]
         [EmailAddress]
         public string Email { get; set; }

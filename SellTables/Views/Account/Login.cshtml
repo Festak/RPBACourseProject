@@ -28,8 +28,8 @@
                             {
                                 @Html.AntiForgeryToken()
                                 <div class="form-group">
-                                    @Html.TextBoxFor(m => m.LoginViewModel.Email, new { @class = "form-control", placeholder = "Email", tabindex = 1, value = "" })
-                                    @*@Html.ValidationMessageFor(m => m.LoginViewModel.Email, "", new { @class = "text-danger" })*@
+                                    @Html.TextBoxFor(m => m.LoginViewModel.UserName, new { @class = "form-control", placeholder = "Login", tabindex = 1, value = "" })
+                                    @Html.ValidationMessageFor(m => m.LoginViewModel.UserName, "", new { @class = "text-danger" })
                                 </div>
                                 <div class="form-group">
                                     @Html.PasswordFor(m => m.LoginViewModel.Password, new { @class = "form-control", placeholder = "Password", tabindex = 2, id = "password" })

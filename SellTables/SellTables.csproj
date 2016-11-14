@@ -337,6 +337,7 @@
     <Compile Include="ViewModels\TagViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\controllers\test.js" />
     <Content Include="app\controllers\admin.js" />
     <Content Include="app\controllers\carousel.js" />
     <Content Include="app\controllers\creative.js" />
