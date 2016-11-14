@@ -1266,7 +1266,6 @@
     <Content Include="Views\Home\_TagCloud.cshtml" />
     <Content Include="Views\Chapter\Details.cshtml" />
     <Content Include="Views\Creative\Search.cshtml" />
-    <Content Include="Views\Creative\_ChapterCreate.cshtml" />
     <Content Include="Views\Home\_CreativesList.cshtml" />
     <Content Include="Views\Home\_SortPanel.cshtml" />
     <Content Include="Views\Home\_PopularCreatives.cshtml" />

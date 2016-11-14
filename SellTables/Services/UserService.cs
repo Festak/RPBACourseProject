@@ -83,6 +83,11 @@ namespace SellTables.Services
         private void DeleteAllUserCreatives(ApplicationUser user)
         {
             var creatives = GetAllUserCreatives(user);
+            foreach(var cr in creatives)
+            {
+                user.Creatives.Remove(cr);
+
+            }
             DeleteAllChaptersFromCreatives(creatives);
             if (creatives != null)
             {
@@ -92,8 +97,10 @@ namespace SellTables.Services
                     CreativeSearch.ClearLuceneIndexRecord(c.Id);
                 }
             }
-            DataBaseContext.SaveChanges(); // TODO: External login can't be deleted :O
+            DataBaseContext.SaveChanges(); 
         }
+
+      
 
         private void DeleteAllChaptersFromCreatives(ICollection<Creative> creatives)
         {
