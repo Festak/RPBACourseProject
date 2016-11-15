@@ -12,11 +12,12 @@
     @Scripts.Render("~/bundles/angular")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/app")
-    
+
+
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
   
-
+    @Scripts.Render("~/bundles/bootstrap")
 
     @*@if (Request.Cookies["style"] == null)
         {
@@ -76,7 +77,6 @@
 
     </div>
 
-    @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
 </html>

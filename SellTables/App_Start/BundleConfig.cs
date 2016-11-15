@@ -63,7 +63,8 @@ namespace SellTables
                        "~/Content/font-awesome-animation.css",
                       "~/Content/summernote.css",
                       "~/Content/clean-blog.css",
-                      "~/Content/star-rating.css"
+                      "~/Content/star-rating.css",
+                      "~/Content/creatives.css"
 
                       ));
         }
