@@ -369,6 +369,7 @@
     <Content Include="Content\ng-tags-input.bootstrap.min.css" />
     <Content Include="Content\ng-tags-input.min.css" />
     <Content Include="Content\somestyles\AdminUserPage.css" />
+    <Content Include="Content\somestyles\search.css" />
     <Content Include="Content\somestyles\UserPageStyles.css" />
     <Content Include="Content\star-rating.css" />
     <Content Include="Content\star-rating.min.css" />
@@ -1295,6 +1296,8 @@
     <Content Include="Scripts\summernote\font\summernote.ttf" />
     <Content Include="Scripts\summernote\font\summernote.woff" />
     <Content Include="Views\Admin\UserPage.cshtml" />
+    <Content Include="Views\Account\ResetLogin.cshtml" />
+    <Content Include="Views\Account\ResetEmail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

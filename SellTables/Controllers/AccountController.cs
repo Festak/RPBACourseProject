@@ -261,20 +261,85 @@ namespace SellTables.Controllers
             {
                 return View(model);
             }
-            var user = await UserManager.FindByNameAsync(model.Email);
+            var user = await UserManager.FindByNameAsync(model.Name);
             if (user == null)
             {
-                // Don't reveal that the user does not exist
                 return RedirectToAction("ResetPasswordConfirmation", "Account");
             }
-            var result = await UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
+            var code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+            var result = await UserManager.ResetPasswordAsync(user.Id, code, model.Password);
             if (result.Succeeded)
+            {
+                return RedirectToAction("Index", "Admin");
+            }
+         //   AddErrors(result);
+            return View();
+        }
+
+        [AllowAnonymous]
+        public ActionResult ResetLogin() {
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ResetLogin(ResetLoginViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            var user = await UserManager.FindByIdAsync(model.Id);
+            if (user == null)
             {
                 return RedirectToAction("ResetPasswordConfirmation", "Account");
             }
-            AddErrors(result);
+            user.UserName = model.Name;
+          //  var code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+       //    var result = await UserManager.ResetPasswordAsync(user.Id, code, model.Password);
+            var res = UserManager.Update(user);
+            if (res.Succeeded)
+            {
+                return RedirectToAction("Index", "Admin");
+            }
+           // AddErrors(result);
             return View();
         }
+
+
+        [AllowAnonymous]
+        public ActionResult ResetEmail()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ResetEmail(ResetEmailViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            var user = await UserManager.FindByIdAsync(model.Id);
+            if (user == null)
+            {
+                return RedirectToAction("ResetPasswordConfirmation", "Account");
+            }
+            user.Email = model.Email;
+            //  var code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+            //    var result = await UserManager.ResetPasswordAsync(user.Id, code, model.Password);
+            var res = UserManager.Update(user);
+            if (res.Succeeded)
+            {
+                return RedirectToAction("Index", "Admin");
+            }
+            // AddErrors(result);
+            return View();
+        }
+
 
         //
         // GET: /Account/ResetPasswordConfirmation
