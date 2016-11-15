@@ -10,6 +10,7 @@ angular.module('creative', ['ngRoute'])
           $scope.creatives = [];
           $scope.popular = [];
           $scope.shownCreatives = [];
+          $scope.sortedCreatives = [];
           var sortType = 1;
           $scope.loading = true;
           var current = 1;
@@ -54,7 +55,9 @@ angular.module('creative', ['ngRoute'])
               }
           }
 
-          $scope.vote = function (rate, creativeObj) {
+          
+
+          $scope.vote = function (rate, creativeObj) {            
               $http.post('/Creative/GetRatingFromView', { rating: rate, creative: creativeObj }).success(function (result) {
               })
         .error(function (data) {

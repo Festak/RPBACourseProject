@@ -100,9 +100,14 @@ namespace SellTables.Controllers
         //    }
         //    return View(creative);
         //}
-
+        
         public void GetRatingFromView(int rating, CreativeViewModel creative) {
            CreativeService.SetRatingToCreative(rating, creative, FindUser());
+        }
+        
+        public void GetRatingFromViewModel(int rating, Creative creative)
+        {
+           // CreativeService.SetRatingToCreative(rating, creative, FindUser());
         }
 
         private ApplicationUser FindUser()
