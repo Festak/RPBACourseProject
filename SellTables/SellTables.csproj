@@ -226,77 +226,13 @@
     <Compile Include="Interfaces\IUserService.cs" />
     <Compile Include="Lucene\CreativeSearch.cs" />
     <Compile Include="Lucene\ChapterSearch.cs" />
-    <Compile Include="Migrations\201611081418070_changedRating.cs" />
-    <Compile Include="Migrations\201611081418070_changedRating.Designer.cs">
-      <DependentUpon>201611081418070_changedRating.cs</DependentUpon>
+    <Compile Include="Migrations\201611151622394_testMigr.cs" />
+    <Compile Include="Migrations\201611151622394_testMigr.Designer.cs">
+      <DependentUpon>201611151622394_testMigr.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201611081450017_ChangesUser.cs" />
-    <Compile Include="Migrations\201611081450017_ChangesUser.Designer.cs">
-      <DependentUpon>201611081450017_ChangesUser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611081617017_AddData.cs" />
-    <Compile Include="Migrations\201611081617017_AddData.Designer.cs">
-      <DependentUpon>201611081617017_AddData.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611090853127_updateRating.cs" />
-    <Compile Include="Migrations\201611090853127_updateRating.Designer.cs">
-      <DependentUpon>201611090853127_updateRating.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611091045292_wtf.cs" />
-    <Compile Include="Migrations\201611091045292_wtf.Designer.cs">
-      <DependentUpon>201611091045292_wtf.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611091057148_ChangedDate.cs" />
-    <Compile Include="Migrations\201611091057148_ChangedDate.Designer.cs">
-      <DependentUpon>201611091057148_ChangedDate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611100721075_tags.cs" />
-    <Compile Include="Migrations\201611100721075_tags.Designer.cs">
-      <DependentUpon>201611100721075_tags.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611100740038_tagsString.cs" />
-    <Compile Include="Migrations\201611100740038_tagsString.Designer.cs">
-      <DependentUpon>201611100740038_tagsString.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611100810130_changeTags.cs" />
-    <Compile Include="Migrations\201611100810130_changeTags.Designer.cs">
-      <DependentUpon>201611100810130_changeTags.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611101036409_changeTags1.cs" />
-    <Compile Include="Migrations\201611101036409_changeTags1.Designer.cs">
-      <DependentUpon>201611101036409_changeTags1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611101307230_willItWork.cs" />
-    <Compile Include="Migrations\201611101307230_willItWork.Designer.cs">
-      <DependentUpon>201611101307230_willItWork.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611101454451_asd.cs" />
-    <Compile Include="Migrations\201611101454451_asd.Designer.cs">
-      <DependentUpon>201611101454451_asd.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611101558181_asd1.cs" />
-    <Compile Include="Migrations\201611101558181_asd1.Designer.cs">
-      <DependentUpon>201611101558181_asd1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611101607062_asd2.cs" />
-    <Compile Include="Migrations\201611101607062_asd2.Designer.cs">
-      <DependentUpon>201611101607062_asd2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611101625590_asd3.cs" />
-    <Compile Include="Migrations\201611101625590_asd3.Designer.cs">
-      <DependentUpon>201611101625590_asd3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611121754045_newone.cs" />
-    <Compile Include="Migrations\201611121754045_newone.Designer.cs">
-      <DependentUpon>201611121754045_newone.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611131006415_addRoles.cs" />
-    <Compile Include="Migrations\201611131006415_addRoles.Designer.cs">
-      <DependentUpon>201611131006415_addRoles.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611131408443_changeMdal.cs" />
-    <Compile Include="Migrations\201611131408443_changeMdal.Designer.cs">
-      <DependentUpon>201611131408443_changeMdal.cs</DependentUpon>
+    <Compile Include="Migrations\201611151637198_maxlength.cs" />
+    <Compile Include="Migrations\201611151637198_maxlength.Designer.cs">
+      <DependentUpon>201611151637198_maxlength.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -1313,59 +1249,11 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201611081418070_changedRating.resx">
-      <DependentUpon>201611081418070_changedRating.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201611151622394_testMigr.resx">
+      <DependentUpon>201611151622394_testMigr.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611081450017_ChangesUser.resx">
-      <DependentUpon>201611081450017_ChangesUser.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611081617017_AddData.resx">
-      <DependentUpon>201611081617017_AddData.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611090853127_updateRating.resx">
-      <DependentUpon>201611090853127_updateRating.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611091045292_wtf.resx">
-      <DependentUpon>201611091045292_wtf.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611091057148_ChangedDate.resx">
-      <DependentUpon>201611091057148_ChangedDate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611100721075_tags.resx">
-      <DependentUpon>201611100721075_tags.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611100740038_tagsString.resx">
-      <DependentUpon>201611100740038_tagsString.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611100810130_changeTags.resx">
-      <DependentUpon>201611100810130_changeTags.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611101036409_changeTags1.resx">
-      <DependentUpon>201611101036409_changeTags1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611101307230_willItWork.resx">
-      <DependentUpon>201611101307230_willItWork.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611101454451_asd.resx">
-      <DependentUpon>201611101454451_asd.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611101558181_asd1.resx">
-      <DependentUpon>201611101558181_asd1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611101607062_asd2.resx">
-      <DependentUpon>201611101607062_asd2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611101625590_asd3.resx">
-      <DependentUpon>201611101625590_asd3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611121754045_newone.resx">
-      <DependentUpon>201611121754045_newone.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611131006415_addRoles.resx">
-      <DependentUpon>201611131006415_addRoles.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611131408443_changeMdal.resx">
-      <DependentUpon>201611131408443_changeMdal.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201611151637198_maxlength.resx">
+      <DependentUpon>201611151637198_maxlength.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Resource.en.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

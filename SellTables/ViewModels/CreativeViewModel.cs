@@ -10,6 +10,7 @@ namespace SellTables.Models
     public class CreativeViewModel
     {
         public int Id { get; set; }
+        [StringLength(18, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 3)]
         public string Name { get; set; }
         public double Rating { get; set; }
         public ICollection<MedalViewModel> Medals { get; set; }

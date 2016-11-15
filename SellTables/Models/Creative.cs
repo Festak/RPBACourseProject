@@ -10,6 +10,7 @@ namespace SellTables.Models
     {
         [Key]
         public int Id { get; set; }
+        [MaxLength(20)]
         public string Name { get; set; }
         public virtual ICollection<Chapter> Chapters { get; set; }
         public virtual ICollection<Rating> Ratings { get; set; }

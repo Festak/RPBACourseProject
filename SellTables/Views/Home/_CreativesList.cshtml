@@ -1,7 +1,8 @@
 ﻿<div class="row">
     <div ng-init='getCreatives()' id="scroller">
-        <div data-ng-repeat='creative in creatives' class="row">
+        <div data-ng-repeat='creative in creatives' class="col-md-6 col-xs-12 col-lg-6 col-sm-12">
             <div class="box{{($index%12)+1}}">
+
                 <div class="post-title">
                     <div ng-controller="MainController">
                         <h2 class="post-title cursor-pointer" ng-click="redirectToCreative(creative.Id)">{{creative.Name}}</h2>
@@ -48,7 +49,6 @@
                 </div>
 
             </div>
-            <div data-ng-show='loading'>Loading</div>
 
         </div>
     </div>

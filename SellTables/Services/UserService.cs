@@ -104,9 +104,18 @@ namespace SellTables.Services
                 user.Creatives.Remove(cr);
 
             }
+            foreach (var login in user.Logins.ToList()) {
+                user.Logins.Remove(login);
+            }
             DeleteAllChaptersFromCreatives(creatives);
             if (creatives != null)
             {
+
+                foreach (var c in creatives) {
+                    c.User = null;
+                    c.UserId = null;
+                }
+
                 DataBaseContext.Creatives.RemoveRange(creatives);
                 foreach (var c in creatives)
                 {
