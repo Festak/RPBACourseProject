@@ -1151,6 +1151,7 @@
     <Content Include="Scripts\scripts\ng-tags-input.min.js" />
     <Content Include="Scripts\scripts\redipadding.js" />
     <Content Include="Scripts\scripts\registerLoginMenu.js" />
+    <Content Include="Scripts\scripts\scroll.js" />
     <Content Include="Scripts\scripts\star-rating.js" />
     <Content Include="Scripts\scripts\star-rating.min.js" />
     <Content Include="Scripts\scripts\tagscloud.js" />
@@ -1234,6 +1235,7 @@
     <Content Include="Views\Admin\UserPage.cshtml" />
     <Content Include="Views\Account\ResetLogin.cshtml" />
     <Content Include="Views\Account\ResetEmail.cshtml" />
+    <Content Include="Views\Account\_UserSettingsPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

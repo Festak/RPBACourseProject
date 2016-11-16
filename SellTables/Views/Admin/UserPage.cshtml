@@ -95,13 +95,13 @@
                             </fieldset>
                         </form>
                             <div class="col-md-4">
-                                @Html.Partial("../Account/ResetPassword", new ResetPasswordViewModel() { Name = Model.UserName })
+                                @Html.Partial("../Account/ResetPassword", new ResetPasswordViewModel() { Name = Model.UserName, Type="admin" })
                         </div>
                         <div class="col-md-4">
-                            @Html.Partial("../Account/ResetLogin", new ResetLoginViewModel() { Id = Model.Id })
+                            @Html.Partial("../Account/ResetLogin", new ResetLoginViewModel() { Id = Model.Id, Type="admin" })
                         </div>
                         <div class="col-md-4">
-                            @Html.Partial("../Account/ResetEmail", new ResetEmailViewModel() { Id = Model.Id })
+                            @Html.Partial("../Account/ResetEmail", new ResetEmailViewModel() { Id = Model.Id, Type="admin" })
                         </div>
                     </div>
                 </div>

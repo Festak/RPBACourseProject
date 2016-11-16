@@ -270,7 +270,10 @@ namespace SellTables.Controllers
             var result = await UserManager.ResetPasswordAsync(user.Id, code, model.Password);
             if (result.Succeeded)
             {
-                return RedirectToAction("Index", "Admin");
+                if (model.Type == "admin")
+                    return RedirectToAction("Index", "Admin");
+                if (model.Type == "user")
+                   return RedirectToAction("UserPage", "User");
             }
          //   AddErrors(result);
             return View();
@@ -301,7 +304,10 @@ namespace SellTables.Controllers
             var res = UserManager.Update(user);
             if (res.Succeeded)
             {
-                return RedirectToAction("Index", "Admin");
+                if (model.Type == "admin")
+                    return RedirectToAction("Index", "Admin");
+                if (model.Type == "user")
+                    return RedirectToAction("UserPage", "User");
             }
            // AddErrors(result);
             return View();
@@ -334,7 +340,11 @@ namespace SellTables.Controllers
             var res = UserManager.Update(user);
             if (res.Succeeded)
             {
+                if(model.Type == "admin")
                 return RedirectToAction("Index", "Admin");
+                if(model.Type == "user")
+                    return RedirectToAction("UserPage", "User");
+
             }
             // AddErrors(result);
             return View();

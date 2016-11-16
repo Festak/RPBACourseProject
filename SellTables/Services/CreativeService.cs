@@ -32,30 +32,18 @@ namespace SellTables.Services
             UsersRepository = new UsersRepository(dataBaseContext);
         }
 
-        internal List<CreativeViewModel> GetAllCreatives()
+        public List<CreativeViewModel> GetAllCreatives()
         {
             var listOfСreatives = InitCreatives(GetAllCreativesFromDataBase());
             return listOfСreatives.ToList();
         }
 
-        internal List<Creative> GetAllCreativesForLucene()
+        public List<Creative> GetAllCreativesForLucene()
         {
             return GetAllCreativesFromDataBase();
         }
 
-        public List<Creative> GetAllCreativesModels()
-        {
-            return GetAllCreativesFromDataBase();
-        }
-
-        private List<Creative> GetAllCreativesFromDataBase()
-        {
-            var listOfCreatives = CreativeRepository.GetAll();
-            return listOfCreatives.ToList();
-        }
-
-
-        internal void AddCreative(RegisterCreativeModel creativemodel)
+        public void AddCreative(RegisterCreativeModel creativemodel)
         {
             Creative creative = creativemodel.Creative;
             AddCreativeToCounter(creative.User.Id);
@@ -64,18 +52,9 @@ namespace SellTables.Services
             if (chapter.TagsString != null)
                 chapter.Tags = GetTags(chapter.TagsString, chapter);
             creative.Chapters.Add(chapter);
-
             CreativeSearch.AddUpdateLuceneIndex(creative); //ADD LUCENE INDEX
             CreativeRepository.Add(creative);
             ChapterRepository.Add(chapter);
-        }
-
-
-        private void AddCreativeToUser(Creative creative)
-        {
-            ApplicationUser user = UsersRepository.FindUserById(creative.User.Id);
-            user.Creatives.Add(creative);
-            UsersRepository.UpdateUser(user);
         }
 
         public ICollection<CreativeViewModel> GetCreativesBySearch(ICollection<CreativeViewModel> list)
@@ -87,6 +66,82 @@ namespace SellTables.Services
                 creatives.Add(creative);
             }
             return InitCreativesBySearch(creatives);
+        }
+
+        public List<CreativeViewModel> GetCreativesRange(int start, int count, int sortType)
+        {
+            var listOfUsers = InitCreatives(((CreativesRepository)CreativeRepository).GetRange(start, count, sortType));
+            if (listOfUsers == null)
+            {
+                return null;
+            }
+            return listOfUsers.ToList();
+        }
+
+        public Creative GetCreative(int id)
+        {
+            return CreativeRepository.Get(id);
+        }
+
+        public List<Creative> GetAllCreativesModels()
+        {
+            return GetAllCreativesFromDataBase();
+        }
+
+        public List<CreativeViewModel> GetPopularCreatives()
+        {
+            var listOfСreatives = InitCreatives(((CreativesRepository)CreativeRepository).GetPopular());
+            return listOfСreatives.ToList();
+        }
+
+        public List<CreativeViewModel> GetCreativesByUser(string userName)
+        {
+            var user = UsersRepository.FindUser(userName);
+            var listOfCreatives = InitCreatives(CreativeRepository.GetAll().Where(u => u.User == user).ToList());
+            return listOfCreatives.ToList();
+        }
+
+        public void DeleteCreativeById(int id, string userName)
+        {
+            var creative = dataBaseContext.Creatives.Include(c => c.Chapters).FirstOrDefault(i => i.Id == id);
+            ApplicationUser user = UsersRepository.FindUser(userName);
+            user.Creatives.Remove(creative);
+            DeleteAllCreativesRating(creative);
+            DeleteAllChaptersFromCreative(creative);
+            if (creative != null)
+            {
+                dataBaseContext.Creatives.Remove(creative);
+                CreativeSearch.ClearLuceneIndexRecord(creative.Id);
+            }
+            dataBaseContext.SaveChanges();
+        }
+
+        public void SetRatingToCreative(int rating, CreativeViewModel creativemodel, ApplicationUser user)
+        {
+            Creative creative = dataBaseContext.Creatives.Find(creativemodel.Id);
+            Rating ratingObj = InitRating(creative, rating, user);
+            CalculateRating(ratingObj, creative);
+        }
+
+        public ICollection<Rating> GetAllCreativeRatings(Creative creative)
+        {
+            if (creative == null)
+                return new List<Rating>();
+            return dataBaseContext.Rating
+                        .Where(r => r.CreativeId == creative.Id).ToList();
+        }
+
+        private List<Creative> GetAllCreativesFromDataBase()
+        {
+            var listOfCreatives = CreativeRepository.GetAll();
+            return listOfCreatives.ToList();
+        }
+
+        private void AddCreativeToUser(Creative creative)
+        {
+            ApplicationUser user = UsersRepository.FindUserById(creative.User.Id);
+            user.Creatives.Add(creative);
+            UsersRepository.UpdateUser(user);
         }
 
         private void AddCreativeToCounter(string userId)
@@ -110,10 +165,6 @@ namespace SellTables.Services
             dataBaseContext.SaveChanges();
         }
 
-        internal Creative GetCreative(int id)
-        {
-            return CreativeRepository.Get(id);
-        }
 
         private void AddTagsTodataBaseContext(Chapter chapter)
         {
@@ -136,8 +187,8 @@ namespace SellTables.Services
                     Tag tag = new Tag();
                     tag.Chapters.Add(chapter);
                     tag.Description = text;
-                    if(dataBaseContext.Tags.Where(t=>t.Description == text).ToList().Count==0)
-                    tags.Add(tag);
+                    if (dataBaseContext.Tags.Where(t => t.Description == text).ToList().Count == 0)
+                        tags.Add(tag);
 
                 }
             }
@@ -246,24 +297,6 @@ namespace SellTables.Services
             return Chapters;
         }
 
-
-        internal List<CreativeViewModel> GetCreativesRange(int start, int count, int sortType)
-        {
-            var listOfUsers = InitCreatives(((CreativesRepository)CreativeRepository).GetRange(start, count, sortType));
-            if (listOfUsers == null)
-            {
-                return null;
-            }
-            return listOfUsers.ToList();
-        }
-
-        internal void SetRatingToCreative(int rating, CreativeViewModel creativemodel, ApplicationUser user)
-        {
-            Creative creative = dataBaseContext.Creatives.Find(creativemodel.Id);
-            Rating ratingObj = InitRating(creative, rating, user);
-            CalculateRating(ratingObj, creative);
-        }
-
         private Rating InitRating(Creative creative, int rating, ApplicationUser user)
         {
             Rating ratingObj = new Rating();
@@ -288,34 +321,6 @@ namespace SellTables.Services
             RatingsRepository.Add(rating);
         }
 
-        internal List<CreativeViewModel> GetPopularCreatives()
-        {
-            var listOfСreatives = InitCreatives(((CreativesRepository)CreativeRepository).GetPopular());
-            return listOfСreatives.ToList();
-        }
-
-        internal List<CreativeViewModel> GetCreativesByUser(string userName)
-        {
-            var user = UsersRepository.FindUser(userName);
-            var listOfCreatives = InitCreatives(CreativeRepository.GetAll().Where(u => u.User == user).ToList());
-            return listOfCreatives.ToList();
-        }
-
-        public void DeleteCreativeById(int id, string userName)
-        {
-            var creative = dataBaseContext.Creatives.Include(c => c.Chapters).FirstOrDefault(i => i.Id == id);
-            ApplicationUser user = UsersRepository.FindUser(userName);
-            user.Creatives.Remove(creative);
-            DeleteAllCreativesRating(creative);
-            DeleteAllChaptersFromCreative(creative);
-            if (creative != null)
-            {
-                dataBaseContext.Creatives.Remove(creative);
-                CreativeSearch.ClearLuceneIndexRecord(creative.Id);
-            }
-            dataBaseContext.SaveChanges(); 
-        }
-
         private void DeleteAllChaptersFromCreative(Creative creative)
         {
             foreach (var chapter in creative.Chapters.ToList())
@@ -325,7 +330,7 @@ namespace SellTables.Services
                 if (c != null)
                 {
                     dataBaseContext.Chapters.Remove(c);
-                    
+
                 }
             }
             dataBaseContext.SaveChanges();
@@ -338,7 +343,7 @@ namespace SellTables.Services
                 var t = dataBaseContext.Tags.Find(tag.Id);
                 if (t != null)
                     dataBaseContext.Tags.Remove(t);
-               
+
             }
             dataBaseContext.SaveChanges();
         }
@@ -354,13 +359,7 @@ namespace SellTables.Services
             }
         }
 
-        public ICollection<Rating> GetAllCreativeRatings(Creative creative)
-        {
-            if (creative == null)
-                return null;
-            return dataBaseContext.Rating
-                        .Where(r => r.CreativeId == creative.Id).ToList();
-        }
+
 
     }
 }

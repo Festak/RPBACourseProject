@@ -14,7 +14,6 @@ namespace SellTables.Services
     public class UserService
     {
         private IUserRepository UsersRepository;
-        private IRepository<Rating> RatingsRepository;
         private IRepository<Creative> CreativesRepository;
         private ApplicationDbContext DataBaseContext;
         private CreativeService CreativeService;
@@ -27,18 +26,18 @@ namespace SellTables.Services
             CreativesRepository = new CreativesRepository(DataBaseContext);
         }
 
-        internal List<ApplicationUser> GetAllUsers()
+        public List<ApplicationUser> GetAllUsers()
         {
             var listOfUsers = UsersRepository.GetAllUsers();
             return listOfUsers.ToList();
         }
 
-        internal ApplicationUser GetUserByName(string name)
+        public ApplicationUser GetUserByName(string name)
         {
             return UsersRepository.FindUser(name);
         }
 
-        internal ApplicationUser GetCurrentUser(string name)
+        public ApplicationUser GetCurrentUser(string name)
         {
             return UsersRepository.GetCurrentUser(name);
         }
@@ -59,13 +58,36 @@ namespace SellTables.Services
                 user.LockoutEndDateUtc = DateTime.UtcNow.AddDays(15);
                 UsersRepository.UpdateUser(user);
             }
-           // DataBaseContext.SaveChanges();
         }
+
         public void UnbanUser(string userName) {
             ApplicationUser user = UsersRepository.FindUser(userName);
             user.LockoutEndDateUtc = null;
             UsersRepository.UpdateUser(user);
-           // DataBaseContext.SaveChanges();
+        }
+
+        public ICollection<Medal> GetAllUserMedals(ApplicationUser user)
+        {
+            if (user == null)
+                return null;
+            return DataBaseContext.Medals.Include(u => u.Users.Where(m => m.Id == user.Id)).ToList();
+
+        }
+
+        public ICollection<Rating> GetAllUserRatings(ApplicationUser user)
+        {
+            if (user == null)
+                return null;
+            return DataBaseContext.Rating
+                        .Where(r => r.UserId == user.Id).ToList();
+        }
+
+        public ICollection<Creative> GetAllUserCreatives(ApplicationUser user)
+        {
+            if (user == null)
+                return null;
+            return DataBaseContext.Creatives
+                        .Where(r => r.UserId == user.Id).ToList();
         }
 
 
@@ -102,7 +124,6 @@ namespace SellTables.Services
             foreach(var cr in creatives)
             {
                 user.Creatives.Remove(cr);
-
             }
             foreach (var login in user.Logins.ToList()) {
                 user.Logins.Remove(login);
@@ -178,30 +199,6 @@ namespace SellTables.Services
 
         }
 
-
-        public ICollection<Medal> GetAllUserMedals(ApplicationUser user)
-        {
-            if (user == null)
-                return null;
-            return DataBaseContext.Medals.Include(u => u.Users.Where(m => m.Id == user.Id)).ToList();
-
-        }
-
-        public ICollection<Rating> GetAllUserRatings(ApplicationUser user)
-        {
-            if (user == null)
-                return null;
-            return DataBaseContext.Rating
-                        .Where(r => r.UserId == user.Id).ToList();
-        }
-
-        public ICollection<Creative> GetAllUserCreatives(ApplicationUser user)
-        {
-            if (user == null)
-                return null;
-            return DataBaseContext.Creatives
-                        .Where(r => r.UserId == user.Id).ToList();
-        }
 
 
     }

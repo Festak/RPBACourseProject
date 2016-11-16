@@ -100,7 +100,7 @@ namespace SellTables.Models
     
         [Display(Name = "Name", ResourceType = typeof(Resources.Resource))]
         public string Name { get; set; }
-
+        public string Type { get; set; }
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
@@ -127,6 +127,7 @@ namespace SellTables.Models
     public class ResetLoginViewModel {
         [Display(Name = "Name", ResourceType = typeof(Resources.Resource))]
         public string Name { get; set; }
+        public string Type { get; set; }
         public string Id { get; set; }
     }
 
@@ -134,7 +135,7 @@ namespace SellTables.Models
     {
         [Display(Name = "Email", ResourceType = typeof(Resources.Resource))]
         public string Email { get; set; }
-
+        public string Type { get; set; }
         public string Id { get; set; }
     }
 }

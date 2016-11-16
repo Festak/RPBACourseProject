@@ -1,4 +1,5 @@
-﻿@model SellTables.Models.ApplicationUser
+﻿@using SellTables.Models;
+@model SellTables.Models.ApplicationUser
 @{
     ViewBag.Title = "UserPage";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -22,7 +23,7 @@
         <div class="row ">
             <div class="col-md-12">
                 <div class="col-md-8 col-sm-8">
-                    <h2>Lorem ipsum dolor sit amet </h2>
+                    <h2>Some information about user page </h2>
                     <p>
                         Lorem ipsum dolor sit amet, accumsan.  posuere lectus et, fringilla augue.
                         Lorem ipsum dolor sit amet, accumsan.  posuere lectus et, fringilla augue.
@@ -32,10 +33,13 @@
                     </p>
                 </div>
 
-                <div class="col-md-4 col-sm-4 text-center">
+                <div class="col-md-4 col-sm-4 text-center" id="myScroll">
                     <p>
-                       <img src="@Model.AvatarUri"/>
-                        @Model.UserName
+                       <img src="@Model.AvatarUri"/><br/>
+                       <a href="#section1">@Model.UserName<br /></a>
+                        @foreach (var medal in Model.Medals) {
+                            <img style="width: 32px; height: 32px" src="@medal.ImageUri" title="@medal.Name"/>
+                        }
                     </p>
                 </div>
             </div>
@@ -68,9 +72,8 @@
                     data-to="@Model.Medals.Count" data-speed="9300"></i>
                 <h4>All your medals count </h4>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Curabitur nec nisl odio. Mauris vehicula at nunc id posuere.
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    The medals plays an a very important role for
+                    some persons, who want to be most active.
                 </p>
 
             </div>
@@ -98,7 +101,17 @@
                 </div>
             </div>
             </div>
-
+        <div class="row" id="section1">
+            <div class="col-md-4">
+                @Html.Partial("../Account/ResetPassword", new ResetPasswordViewModel() { Name = Model.UserName, Type = "user" })
+            </div>
+            <div class="col-md-4">
+                @Html.Partial("../Account/ResetLogin", new ResetLoginViewModel() { Id = Model.Id, Type="user" })
+            </div>
+            <div class="col-md-4">
+                @Html.Partial("../Account/ResetEmail", new ResetEmailViewModel() { Id = Model.Id, Type="user" })
+            </div>
+        </div>
         </div>
 </section>
 @*<style>
@@ -114,3 +127,6 @@ color: black;
 opacity: 1; 
 }
 </style>*@
+@section Scripts {
+    @Scripts.Render("~/bundles/scroll")
+}
