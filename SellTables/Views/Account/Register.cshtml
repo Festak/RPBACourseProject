@@ -73,15 +73,19 @@
                                 @Html.AntiForgeryToken()
                                 <div class="form-group">
                                     @Html.TextBoxFor(m => m.RegisterViewModel.UserName, new { @class = "form-control", placeholder = "User Name" })
+                                    @Html.ValidationMessageFor(m => m.RegisterViewModel.UserName, "", new { @class = "text-danger" })
                                 </div>
                                 <div class="form-group">
                                     @Html.TextBoxFor(m => m.RegisterViewModel.Email, new { @class = "form-control", placeholder = "Email" })
+                                    @Html.ValidationMessageFor(m => m.RegisterViewModel.Email, "", new { @class = "text-danger" })
                                 </div>
                                 <div class="form-group">
                                     @Html.PasswordFor(m => m.RegisterViewModel.Password, new { @class = "form-control", placeholder = "Password" })
+                                    @Html.ValidationMessageFor(m => m.RegisterViewModel.Password, "", new { @class = "text-danger" })
                                 </div>
                                 <div class="form-group">
                                     @Html.PasswordFor(m => m.RegisterViewModel.ConfirmPassword, new { @class = "form-control", placeholder = "Confirm Password" })
+                                    @Html.ValidationMessageFor(m => m.RegisterViewModel.ConfirmPassword, "", new { @class = "text-danger" })
                                 </div>
                                 <div class="form-group">
                                     <div class="row">

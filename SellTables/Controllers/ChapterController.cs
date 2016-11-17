@@ -12,10 +12,10 @@ namespace SellTables.Controllers
     public class ChapterController : Controller
     {
         ChapterService ChapterService;
-        ApplicationDbContext dataBaseConnection = new ApplicationDbContext();
+        ApplicationDbContext DataBaseConnection = new ApplicationDbContext();
 
         public ChapterController() {
-            ChapterService = new ChapterService(dataBaseConnection);
+            ChapterService = new ChapterService(DataBaseConnection);
         }
 
         [HttpGet]

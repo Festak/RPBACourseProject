@@ -52,7 +52,13 @@ namespace SellTables.Repositories
 
         void IRepository<Chapter>.Update(Chapter item)
         {
-            dataBaseContext.Entry(item).State = EntityState.Modified;
+            if (item != null)
+            {
+                var _Item = dataBaseContext.Entry(item);
+                Chapter itemObj = dataBaseContext.Chapters.Where(x => x.Id == item.Id).FirstOrDefault();
+                itemObj = item;
+                dataBaseContext.SaveChanges();
+            }
         }
     }
 }

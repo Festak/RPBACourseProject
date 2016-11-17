@@ -94,7 +94,10 @@ angular.module('creative', ['ngRoute'])
               }
           }
 
-      
+   
+          $scope.updateCreativeName = function (creativeId, oldName) {
+              $http.post('/Creative/UpdateCreativeName', { id: creativeId, newName: oldName });
+          }
         
 
 
@@ -136,4 +139,33 @@ angular.module('creative', ['ngRoute'])
           }
 
 
-      }]);
+      }]).directive("directive", function () {
+          return {
+              restrict: "A",
+              require: "ngModel",
+              link: function (scope, element, attrs, ngModel) {
+
+                  function read() {
+                      // view -> model
+                      var html = element.html();
+                      console.log(html);
+                    html = html.replace(/&nbsp;/g, "\u00a0");
+                      ngModel.$setViewValue(html);
+                  }
+                  // model -> view
+                  ngModel.$render = function () {
+                      element.html(ngModel.$viewValue || "");
+                  };
+
+                  element.bind("text-change blur", function () {
+                      scope.$apply(read);
+                  });
+                  element.bind("keydown keypress", function (event) {
+                      if (event.which === 13) {
+                          this.blur();
+                          event.preventDefault();
+                      }
+                  });
+              }
+          };
+      });

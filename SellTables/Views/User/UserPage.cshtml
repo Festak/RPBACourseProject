@@ -1,5 +1,5 @@
 ﻿@using SellTables.Models;
-@model SellTables.Models.ApplicationUser
+@model ApplicationUser
 @{
     ViewBag.Title = "UserPage";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -9,14 +9,12 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="site-heading">
-                    <h1>User Page</h1>
-                   
+                    <h1>User Page</h1>  
                 </div>
             </div>
         </div>
     </div>
 </header>
-<link rel="stylesheet" href="~/Content/somestyles/UserPageStyles.css" />
 <section id="services-sec">
     <div class="container" ng-controller="CreativeController" ng-init="getCreativesByUser('@User.Identity.Name')">
 
@@ -80,18 +78,20 @@
         </div>
         <div class="row pad-top">
             <div ng-repeat="creative in creatives">
-                <div class="col-md-4 col-sm-4">
+                <div class="col-md-12 col-sm-12">
                     <div class="panel panel-info">
-                        <div class="panel-heading">             
-                                {{creative.Name}}
+                        <div class="panel-heading"> 
+                            <div contenteditable data-directive ng-model="creative.Name"
+                                  ng-blur="updateCreativeName(creative.Id, creative.Name)">{{creative.Name}}</div>
                                 <button ng-click="deleteCreativeById(creative.Id, '@User.Identity.Name')" style="">
                                     <i class="fa fa-times" aria-hidden="true"></i>
-                                </button>
-                               
+                                </button> 
                             </div>
                         <div class="panel-body">
+                            <a href="../../Creative/CreateChapter/?creativeId={{creative.Id}}">Add</a>
                             <div ng-repeat="chapter in creative.Chapters">
                                 <p>{{chapter.Name}}</p>
+                                <a href="../../Creative/EditChapter/?creativeId={{creative.Id}}&chapterId={{chapter.Id}}">Edit</a>  
                             </div>
                         </div>
                         <div class="panel-footer">
@@ -114,6 +114,12 @@
         </div>
         </div>
 </section>
+<style>
+
+
+   
+
+</style>
 @*<style>
 .panel-heading button { 
 opacity: .3; 
@@ -129,4 +135,7 @@ opacity: 1;
 </style>*@
 @section Scripts {
     @Scripts.Render("~/bundles/scroll")
+}
+@section Styles {
+   @Styles.Render("~/Content/somestyles")
 }

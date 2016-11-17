@@ -123,12 +123,55 @@ namespace SellTables.Services
             CalculateRating(ratingObj, creative);
         }
 
+        public void AddChapterToCreative(RegisterCreativeModel model) {
+            Creative creative = model.Creative;
+            Chapter chapter = model.Chapter;
+            chapter.Creative = creative;
+            if (chapter.TagsString != null)
+                chapter.Tags = GetTags(chapter.TagsString, chapter);
+            creative.Chapters.Add(chapter);
+            CreativeSearch.AddUpdateLuceneIndex(creative); //ADD LUCENE INDEX
+            ChapterRepository.Add(chapter);
+            CreativeRepository.Update(creative);
+            
+        }
+
+
+        public void EditCreativeChapter(RegisterCreativeModel model) {
+            Chapter chapter = BuildChapterByRegisterModel(model);
+            ChapterRepository.Update(chapter);
+         
+        }
+
+        private Chapter BuildChapterByRegisterModel(RegisterCreativeModel model) {
+            Chapter chapter = ChapterRepository.Get(model.chapterId);
+            chapter.Text = model.Chapter.Text;
+            chapter.Name = model.Chapter.Name;
+            if (model.Chapter.TagsString != null)
+            {
+                chapter.Tags = GetTags(model.Chapter.TagsString, model.Chapter);
+            }
+            
+            return chapter;
+        }
+
+
+        public void UpdateCreativeName(int id, string name) {
+            Creative creative = CreativeRepository.Get(id);
+            creative.Name = name;
+            CreativeRepository.Update(creative);
+        }
+
         public ICollection<Rating> GetAllCreativeRatings(Creative creative)
         {
             if (creative == null)
                 return new List<Rating>();
             return dataBaseContext.Rating
                         .Where(r => r.CreativeId == creative.Id).ToList();
+        }
+
+        public Creative GetCreativeById(int creativeId) {
+            return CreativeRepository.Get(creativeId);
         }
 
         private List<Creative> GetAllCreativesFromDataBase()
@@ -148,7 +191,7 @@ namespace SellTables.Services
         {
             ApplicationUser user = UsersRepository.FindUserById(userId);
             user.ChaptersCreateCounter += 1;
-            if (user.ChaptersCreateCounter == 1) // TODO: make verification for medal exist
+            if (user.ChaptersCreateCounter == 1) 
             {
                 Medal medal = dataBaseContext.Medals.FirstOrDefault(m => m.Id == 3);
                 if (!user.Medals.Contains(medal))

@@ -269,6 +269,7 @@
     <Compile Include="ViewModels\CreativeViewModel.cs" />
     <Compile Include="ViewModels\LoginRegisterUserModel.cs" />
     <Compile Include="ViewModels\MedalViewModel.cs" />
+    <Compile Include="ViewModels\RegisterChapterViewModel.cs" />
     <Compile Include="ViewModels\RegisterCreativeModel.cs" />
     <Compile Include="ViewModels\TagViewModel.cs" />
   </ItemGroup>
@@ -306,7 +307,7 @@
     <Content Include="Content\ng-tags-input.min.css" />
     <Content Include="Content\somestyles\AdminUserPage.css" />
     <Content Include="Content\somestyles\search.css" />
-    <Content Include="Content\somestyles\UserPageStyles.css" />
+    <Content Include="Content\somestyles\userpage.css" />
     <Content Include="Content\star-rating.css" />
     <Content Include="Content\star-rating.min.css" />
     <Content Include="Content\summernote.css" />
@@ -1227,7 +1228,6 @@
     <Content Include="Views\User\Settings.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Creative\Details.cshtml" />
-    <Content Include="Views\Creative\Edit.cshtml" />
     <Content Include="Views\Home\_MenuOfSome.cshtml" />
     <Content Include="Scripts\summernote\font\summernote.eot" />
     <Content Include="Scripts\summernote\font\summernote.ttf" />
@@ -1236,6 +1236,8 @@
     <Content Include="Views\Account\ResetLogin.cshtml" />
     <Content Include="Views\Account\ResetEmail.cshtml" />
     <Content Include="Views\Account\_UserSettingsPartial.cshtml" />
+    <Content Include="Views\Creative\CreateChapter.cshtml" />
+    <Content Include="Views\Creative\EditChapter.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

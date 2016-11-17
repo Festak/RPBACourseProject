@@ -18,16 +18,17 @@ namespace SellTables.Controllers
     [Authorize]
     public class CreativeController : Controller
     {
-       ApplicationDbContext dataBaseConnection = new ApplicationDbContext();
+        ApplicationDbContext dataBaseConnection = new ApplicationDbContext();
 
         CreativeService CreativeService;
+        ChapterService ChapterService;
 
         public CreativeController()
         {
             CreativeService = new CreativeService(dataBaseConnection);
+            ChapterService = new ChapterService(dataBaseConnection);
         }
 
-        // GET: Creative
         public ActionResult Index()
         {
             return RedirectToAction("Index", "Home", new { area = "" });
@@ -43,7 +44,7 @@ namespace SellTables.Controllers
         {
             if (ModelState.IsValid)
             {
-              creativemodel.Creative.User = FindUser();
+                creativemodel.Creative.User = FindUser();
                 CreativeService.AddCreative(creativemodel);
                 return RedirectToAction("Index");
             }
@@ -66,48 +67,32 @@ namespace SellTables.Controllers
             return View(creative);
         }
 
-        
-        public async Task<ActionResult> Edit(int? id)
+        [HttpPost]
+        public void UpdateCreativeName(int id, string newName) {
+            CreativeService.UpdateCreativeName(id, newName);
+        }
+
+        [HttpGet]
+        public ActionResult EditChapter(int creativeId, int chapterId)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+            return View(new RegisterCreativeModel() { creativeId = creativeId, chapterId = chapterId, Chapter = ChapterService.GetChapter(chapterId) });
+        }
 
-            Creative creative = await dataBaseConnection.Creatives.FindAsync(id);
-            RegisterCreativeModel model = new RegisterCreativeModel();
-            model.Creative = creative;
-            
-            model.Chapters = creative.Chapters;
-
-            if (creative == null)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditChapter(RegisterCreativeModel model)
+        {
+            if (ModelState.IsValid)
             {
-                return HttpNotFound();
+                CreativeService.EditCreativeChapter(model);
+                return RedirectToAction("UserPage", "User", new { area = "" });
             }
             return View(model);
         }
 
-        // TODO
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<ActionResult> Edit(RegisterCreativeModel registerCreativeModel)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        dataBaseConnection.Entry(creative).State = EntityState.Modified;
-        //        await db.SaveChangesAsync();
-        //        return RedirectToAction("Index");
-        //    }
-        //    return View(creative);
-        //}
-        
-        public void GetRatingFromView(int rating, CreativeViewModel creative) {
-           CreativeService.SetRatingToCreative(rating, creative, FindUser());
-        }
-        
-        public void GetRatingFromViewModel(int rating, Creative creative)
+        public void GetRatingFromView(int rating, CreativeViewModel creative)
         {
-           // CreativeService.SetRatingToCreative(rating, creative, FindUser());
+            CreativeService.SetRatingToCreative(rating, creative, FindUser());
         }
 
         private ApplicationUser FindUser()
@@ -117,8 +102,10 @@ namespace SellTables.Controllers
             return dataBaseConnection.Users.Find(System.Web.HttpContext.Current.User.Identity.GetUserId());
         }
 
-        public ActionResult Search(string query) {
-            if (query == null) {
+        public ActionResult Search(string query)
+        {
+            if (query == null)
+            {
                 return RedirectToAction("Index", "Home");
             }
             var listOfLuceneObjectsByTags = Lucene.CreativeSearch.Search(query, "Tags");
@@ -130,13 +117,38 @@ namespace SellTables.Controllers
             return View(listOfCreativeViewModelObjects.ToList());
         }
 
-        public JsonResult GetCreativesByUser(string userName) {
+        public JsonResult GetCreativesByUser(string userName)
+        {
             var creatives = CreativeService.GetCreativesByUser(userName);
             return Json(creatives, JsonRequestBehavior.AllowGet);
         }
 
-        public void DeleteCreativeById(int id, string userName) {
+        public void DeleteCreativeById(int id, string userName)
+        {
             CreativeService.DeleteCreativeById(id, userName);
+        }
+
+        [HttpGet]
+        public ActionResult CreateChapter(int? creativeId)
+        {
+            RegisterCreativeModel model = new RegisterCreativeModel()
+            {
+                creativeId = creativeId ?? 0
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateChapter(RegisterCreativeModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                model.Creative = CreativeService.GetCreativeById(model.creativeId);
+                CreativeService.AddChapterToCreative(model);
+                return RedirectToAction("UserPage", "User");
+            }
+            return View(model);
         }
 
     }

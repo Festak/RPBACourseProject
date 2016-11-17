@@ -33,7 +33,8 @@ namespace SellTables.Repositories
 
         Creative IRepository<Creative>.Get(int id)
         {
-            return dataBaseContext.Creatives.Find(id);
+            return dataBaseContext.Creatives.Include(c => c.Chapters).Include(u => u.User).Include(m => m.User.Medals).
+                FirstOrDefault(i=>i.Id == id);
         }
 
         ICollection<Creative> IRepository<Creative>.GetAll()
@@ -111,7 +112,6 @@ namespace SellTables.Repositories
                 Creative itemObj = dataBaseContext.Creatives.Where(x => x.Id == item.Id).FirstOrDefault();
                 itemObj = item;
                 itemObj.Rating = item.Rating;
-              //  dataBaseContext.Entry(item).State = EntityState.Modified;
                 dataBaseContext.SaveChanges();
             }
         }
