@@ -62,10 +62,12 @@ namespace SellTables.Services
             List<Creative> creatives = new List<Creative>();
             foreach (var cr in list)
             {
-                var creative = dataBaseContext.Creatives.FirstOrDefault(c => c.Name.Equals(cr.Name));
+                var creative = dataBaseContext.Creatives.FirstOrDefault(c => c.Name == cr.Name);
                 creatives.Add(creative);
             }
-            return InitCreativesBySearch(creatives);
+            if (creatives != null)
+                return InitCreativesBySearch(creatives);
+            else return new List<CreativeViewModel>();
         }
 
         public List<CreativeViewModel> GetCreativesRange(int start, int count, int sortType)
@@ -123,7 +125,8 @@ namespace SellTables.Services
             CalculateRating(ratingObj, creative);
         }
 
-        public void AddChapterToCreative(RegisterCreativeModel model) {
+        public void AddChapterToCreative(RegisterCreativeModel model)
+        {
             Creative creative = model.Creative;
             Chapter chapter = model.Chapter;
             chapter.Creative = creative;
@@ -133,32 +136,25 @@ namespace SellTables.Services
             CreativeSearch.AddUpdateLuceneIndex(creative); //ADD LUCENE INDEX
             ChapterRepository.Add(chapter);
             CreativeRepository.Update(creative);
-            
+
         }
 
-
-        public void EditCreativeChapter(RegisterCreativeModel model) {
+        public void EditCreativeChapter(RegisterCreativeModel model)
+        {
             Chapter chapter = BuildChapterByRegisterModel(model);
+            Creative creative = CreativeRepository.Get(model.creativeId);
+            creative.EditDate = DateTime.Now;
+            CreativeSearch.AddUpdateLuceneIndex(creative);
+            CreativeRepository.Update(creative);
             ChapterRepository.Update(chapter);
-         
         }
 
-        private Chapter BuildChapterByRegisterModel(RegisterCreativeModel model) {
-            Chapter chapter = ChapterRepository.Get(model.chapterId);
-            chapter.Text = model.Chapter.Text;
-            chapter.Name = model.Chapter.Name;
-            if (model.Chapter.TagsString != null)
-            {
-                chapter.Tags = GetTags(model.Chapter.TagsString, model.Chapter);
-            }
-            
-            return chapter;
-        }
-
-
-        public void UpdateCreativeName(int id, string name) {
+        public void UpdateCreativeName(int id, string name)
+        {
             Creative creative = CreativeRepository.Get(id);
             creative.Name = name;
+            creative.EditDate = DateTime.Now;
+            CreativeSearch.AddUpdateLuceneIndex(creative);
             CreativeRepository.Update(creative);
         }
 
@@ -170,7 +166,8 @@ namespace SellTables.Services
                         .Where(r => r.CreativeId == creative.Id).ToList();
         }
 
-        public Creative GetCreativeById(int creativeId) {
+        public Creative GetCreativeById(int creativeId)
+        {
             return CreativeRepository.Get(creativeId);
         }
 
@@ -187,11 +184,25 @@ namespace SellTables.Services
             UsersRepository.UpdateUser(user);
         }
 
+        private Chapter BuildChapterByRegisterModel(RegisterCreativeModel model)
+        {
+            Chapter chapter = ChapterRepository.Get(model.chapterId);
+            chapter.Text = model.Chapter.Text;
+            chapter.Name = model.Chapter.Name;
+            if (model.Chapter.TagsString != null)
+            {
+                chapter.TagsString = model.Chapter.TagsString;
+                chapter.Tags = GetTags(model.Chapter.TagsString, model.Chapter);
+            }
+
+            return chapter;
+        }
+
         private void AddCreativeToCounter(string userId)
         {
             ApplicationUser user = UsersRepository.FindUserById(userId);
             user.ChaptersCreateCounter += 1;
-            if (user.ChaptersCreateCounter == 1) 
+            if (user.ChaptersCreateCounter == 1)
             {
                 Medal medal = dataBaseContext.Medals.FirstOrDefault(m => m.Id == 3);
                 if (!user.Medals.Contains(medal))
@@ -231,6 +242,10 @@ namespace SellTables.Services
                     tag.Chapters.Add(chapter);
                     tag.Description = text;
                     if (dataBaseContext.Tags.Where(t => t.Description == text).ToList().Count == 0)
+                    {
+                        dataBaseContext.Tags.Add(tag);
+                        dataBaseContext.SaveChanges();
+                    }
                         tags.Add(tag);
 
                 }
@@ -261,6 +276,7 @@ namespace SellTables.Services
                 Chapters = InitChaptersBySearch(creative.Chapters),
                 UserName = creative.User.UserName,
                 Name = creative.Name,
+                EditDate = (creative.EditDate.ToString()),
                 Rating = creative.Rating,
                 Medals = InitMedals(creative.User.Medals),
                 CreationDate = creative.CreationDate.ToShortDateString() + " " + creative.CreationDate.ToShortTimeString()
@@ -401,8 +417,5 @@ namespace SellTables.Services
                 dataBaseContext.SaveChanges();
             }
         }
-
-
-
     }
 }

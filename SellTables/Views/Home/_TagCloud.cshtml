@@ -1,7 +1,14 @@
-﻿<div ng-controller="TagController" ng-init="getTags()">
+﻿@model List<string>
+@*<div ng-controller="TagController" ng-init="getTags()">
     <div id="div1">
         <div ng-repeat="tag in tags">
             <a href="~/Creative/Search/?query={{tag.Description}}" class="red">{{tag.Description}}</a>
         </div>
     </div>
+</div>*@
+<div id="div1">
+   @foreach (var tag in Model)
+   {
+    <a href="~/Creative/Search/?query=@tag" class="red">@tag</a>
+   }
 </div>

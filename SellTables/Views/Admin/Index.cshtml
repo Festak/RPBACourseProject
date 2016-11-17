@@ -23,7 +23,7 @@
             foreach (var user in Model)
             {
                 <div class="col-xs-12 col-sm-6 col-md-6">
-                    <div class="well well-sm">
+                    <div class="well well-sm" style="height: 230px">
                         <div class="row">
                             <div class="col-sm-5 col-md-3">
                                 <img src="@user.AvatarUri" alt="avatar" class="img-rounded img-responsive" />
@@ -38,6 +38,7 @@
               
                                 <p>
                                     <i class="glyphicon glyphicon-gift">@user.Creatives.Count</i>
+                                    <br />
                                     <i class="glyphicon glyphicon-envelope"></i> @user.Email
                                     <br />
                                     <i class="glyphicon glyphicon-gift"></i>@user.RegistrationDate

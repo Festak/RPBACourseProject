@@ -41,6 +41,7 @@ namespace SellTables
                 
                 "~/app/main.js",
               "~/app/controllers/tag.js",
+               "~/app/controllers/cookies.js",
               "~/app/controllers/admin.js",
                 "~/app/controllers/creative.js",
                 "~/app/controllers/user.js",

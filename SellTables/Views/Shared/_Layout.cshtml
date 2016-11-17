@@ -1,25 +1,22 @@
 ﻿<!DOCTYPE html>
-<html>
+<html ng-app="main" >
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Creatives</title>
-   
-    
+
     @Scripts.Render("~/bundles/angular")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/app")
     
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-  
 
-
-    @*@if (Request.Cookies["style"] == null)
+    @if (Request.Cookies["style"] == null)
         {
-        <link href="~/Content/bootstrapCerulean.min.css" rel="stylesheet" />
+        <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
         }
         else if (Request.Cookies["style"].Value == "1")
         {
@@ -27,11 +24,11 @@
         }
         else if (Request.Cookies["style"].Value == "2")
         {
-        <link href="~/Content/bootstrapCerulean.min.css" rel="stylesheet" />
-        }*@
+        <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+        }
 
 </head>
-<body ng-app="main" class="scr">
+<body class="scr">
     <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header page-scroll">

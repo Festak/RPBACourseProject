@@ -234,6 +234,10 @@
     <Compile Include="Migrations\201611151637198_maxlength.Designer.cs">
       <DependentUpon>201611151637198_maxlength.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611171440194_editDateChange.cs" />
+    <Compile Include="Migrations\201611171440194_editDateChange.Designer.cs">
+      <DependentUpon>201611171440194_editDateChange.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Chapter.cs" />
@@ -274,6 +278,7 @@
     <Compile Include="ViewModels\TagViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\controllers\cookies.js" />
     <Content Include="app\controllers\test.js" />
     <Content Include="app\controllers\admin.js" />
     <Content Include="app\controllers\carousel.js" />
@@ -1258,6 +1263,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611151637198_maxlength.resx">
       <DependentUpon>201611151637198_maxlength.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611171440194_editDateChange.resx">
+      <DependentUpon>201611171440194_editDateChange.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Resource.en.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

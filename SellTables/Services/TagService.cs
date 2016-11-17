@@ -21,20 +21,24 @@ namespace SellTables.Services
             Repository = new TagsRepository(dataBaseContext);
         }
 
-        internal List<Tag> GetAllTags()
+        public List<Tag> GetAllTags()
         {
             var listOfTags = (Repository.GetAll());
             return listOfTags.ToList();
         }
 
+        public List<TagViewModel> GetAllModelTags()
+        {
+            var listOfTags = InitTagModel(Repository.GetAll());
+            return listOfTags.ToList();
+        }
 
-        internal ICollection<TagViewModel> GetMostPopularTags(int number = 10)
+        public ICollection<string> GetMostPopularTags(int number = 20)
         {
             var mostPopular = new int[number];
-            var result = new String[number];
-            string pTag = "";
+            var result = new string[number];
             if (GetAllTags() == null)
-                return null;
+                return result.ToList();
             foreach (Tag tag in GetAllTags())
                 for (int i = 0; i < number; i++)
                 {
@@ -43,7 +47,6 @@ namespace SellTables.Services
                     {
                         var index = Array.IndexOf(result, null);
                         result[index] = tag.Description;
-                        pTag += result[index] + " ";
                         mostPopular[index] = newTagRepeats;
                         break;
                     }
@@ -51,11 +54,10 @@ namespace SellTables.Services
                     {
                         mostPopular[i] = newTagRepeats;
                         result[i] = tag.Description;
-                        pTag += result[i] + " ";
                         break;
                     }
                 }
-            return InitTagModel(GetTags(pTag));
+            return result.ToList();
         }
 
 
@@ -87,11 +89,7 @@ namespace SellTables.Services
         }
 
 
-        internal List<TagViewModel> GetAllModelTags()
-        {
-            var listOfTags = InitTagModel(Repository.GetAll());
-            return listOfTags.ToList();
-        }
+
 
         private ICollection<TagViewModel> InitTagModel(ICollection<Tag> list)
         {

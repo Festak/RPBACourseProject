@@ -85,7 +85,8 @@ namespace SellTables.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            var allTags = TagService.GetMostPopularTags();
+            return View(allTags);
         }
 
     }
