@@ -21,24 +21,25 @@ namespace SellTables.Controllers
         TagService TagService;
         ApplicationDbContext dataBaseConnection = new ApplicationDbContext();
 
-        public HomeController() {
+        public HomeController()
+        {
             UserService = new UserService(dataBaseConnection);
             CreativeService = new CreativeService(dataBaseConnection);
             TagService = new TagService(dataBaseConnection);
-         //CreativeSearch.AddUpdateLuceneIndex(CreativeService.GetAllCreativesForLucene());
+            //CreativeSearch.AddUpdateLuceneIndex(CreativeService.GetAllCreativesForLucene());
         }
 
         public ActionResult ChangeCulture(string lang)
         {
             string returnUrl = Request.UrlReferrer.AbsolutePath;
-            List<string> cultures = new List<string>() { "ru", "en"};
+            List<string> cultures = new List<string>() { "ru", "en" };
             if (!cultures.Contains(lang))
             {
                 lang = "ru";
             }
             HttpCookie cookie = Request.Cookies["lang"];
             if (cookie != null)
-                cookie.Value = lang;  
+                cookie.Value = lang;
             else
             {
                 cookie = new HttpCookie("lang");
@@ -50,7 +51,8 @@ namespace SellTables.Controllers
             return Redirect(returnUrl);
         }
 
-        public JsonResult GetUsers() {
+        public JsonResult GetUsers()
+        {
             var allUsers = UserService.GetAllUsers();
             return Json(allUsers, JsonRequestBehavior.AllowGet);
         }
@@ -60,25 +62,27 @@ namespace SellTables.Controllers
             var allCreatives = CreativeService.GetAllCreatives();
             return Json(allCreatives, JsonRequestBehavior.AllowGet);
         }
-       
-        public JsonResult GetCreativesRange(int start, int count, int sortType) {
+
+        public JsonResult GetCreativesRange(int start, int count, int sortType)
+        {
             var rangeCreatives = CreativeService.GetCreativesRange(start, count, sortType);
             return Json(rangeCreatives, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult GetTags() {
-           var allTags = TagService.GetAllModelTags();
-           // var allTags = TagService.GetMostPopularTags(); //popular tags
+        public JsonResult GetTags()
+        {
+            var allTags = TagService.GetAllModelTags();
+            // var allTags = TagService.GetMostPopularTags(); //popular tags
             return Json(allTags, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult GetPopular() {
+        public JsonResult GetPopular()
+        {
             var popularCreatives = CreativeService.GetPopularCreatives();
             return Json(popularCreatives, JsonRequestBehavior.AllowGet);
-
         }
 
-   
+
         public ActionResult Index()
         {
             return View();
