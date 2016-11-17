@@ -8,51 +8,75 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-
-    <div class="form-horizontal">
-        <h4 class="text-center">Creative</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Creative.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Creative.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Creative.Name, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Chapter.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Chapter.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Chapter.Name, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Chapter.Text, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-8">
-                @Html.HiddenFor(model => model.Chapter.Text, new { htmlAttributes = new { @class = "form-control" } })
-                <div class="col-md-offset-2" id="summernote"><p>Hello</p></div>
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Chapter.TagsString, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-8">
-                @Html.EditorFor(model => model.Chapter.TagsString, new { htmlAttributes = new { @class = "form-control" } })
-            </div>
-        </div>
+<header class="intro-header container-fluid" style="background-image: url('http://tutfon.ru/wallpapers/image.raw?view=image&type=orig&id=10882')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="site-heading">
+                    <h1>
+                        Creative create
+                    </h1>
+                </div>
 
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input id="submit" type="submit" value="Create" class="btn btn-success col-md-offset-5 col-md-6" />
             </div>
         </div>
     </div>
-}
+</header>
+<div class="row">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="panel panel-default col-md-10 col-md-offset-1">
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    <h3 class="col-md-2 col-md-offset-5">Creative name</h3>
+                    <div class="col-md-2 col-md-offset-5">
+                        @Html.EditorFor(model => model.Creative.Name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Creative.Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <h4 class="col-md-2 col-md-offset-5">First chapter name</h4>
+                    <div class="col-md-2 col-md-offset-5">
+                        @Html.EditorFor(model => model.Chapter.Name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Chapter.Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <h4 class="col-md-2 col-md-offset-5">Your creative text</h4>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        @Html.HiddenFor(model => model.Chapter.Text, new { htmlAttributes = new { @class = "form-control" } })
+                        <div class="col-md-offset-2" id="summernote"><p>Hello</p></div>
+                    </div>
+                </div>
+                <div class="form-group" ng-controller="TagController">
+               
+                   
+                    <div class="col-md-10 col-md-offset-1" ng-init="getTags()">
+                        <div ng-click="get()">asd</div>
+                        <h4>Tags</h4>
+                        <input id="tags" ng-keyup="complete()" />
+                        @Html.EditorFor(model => model.Chapter.TagsString, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input id="submit" type="submit" value="Create" class="btn btn-success col-md-offset-5 col-md-6" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
 <script>
+
     $(document).ready(function () {
         $('#summernote').summernote();
     });
