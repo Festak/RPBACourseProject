@@ -16,7 +16,7 @@ namespace SellTables.Controllers
 {
     [Culture]
     [Authorize]
-    public class CreativeController : Controller
+    public class CreativeController : DefaultController
     {
         ApplicationDbContext dataBaseConnection = new ApplicationDbContext();
 
@@ -28,7 +28,7 @@ namespace SellTables.Controllers
             CreativeService = new CreativeService(dataBaseConnection);
             ChapterService = new ChapterService(dataBaseConnection);
         }
-
+        [AllowAnonymous]
         public ActionResult Index()
         {
             return RedirectToAction("Index", "Home", new { area = "" });
@@ -51,7 +51,7 @@ namespace SellTables.Controllers
 
             return View(creativemodel);
         }
-
+        [AllowAnonymous]
         [HttpGet]
         public ActionResult Details(int? id)
         {
@@ -102,6 +102,7 @@ namespace SellTables.Controllers
             return dataBaseConnection.Users.Find(System.Web.HttpContext.Current.User.Identity.GetUserId());
         }
 
+        [AllowAnonymous]
         public ActionResult Search(string query)
         {
             if (query == null)
@@ -115,6 +116,7 @@ namespace SellTables.Controllers
             return View(listOfLuceneObjectsByTags.ToList());
         }
 
+        [AllowAnonymous]
         public JsonResult GetCreativesByUser(string userName)
         {
             var creatives = CreativeService.GetCreativesByUser(userName);

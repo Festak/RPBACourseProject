@@ -7,11 +7,13 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using SellTables.Models;
+using MultilingualSite.Filters;
 
 namespace SellTables.Controllers
 {
     [Authorize]
-    public class ManageController : Controller
+    [Culture]
+    public class ManageController : DefaultController
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;

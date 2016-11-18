@@ -1,4 +1,5 @@
-﻿using SellTables.Models;
+﻿using MultilingualSite.Filters;
+using SellTables.Models;
 using SellTables.Services;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,8 @@ using System.Web.Mvc;
 
 namespace SellTables.Controllers
 {
-    public class ChapterController : Controller
+    [Culture]
+    public class ChapterController : DefaultController
     {
         ChapterService ChapterService;
         ApplicationDbContext DataBaseConnection = new ApplicationDbContext();
@@ -17,6 +19,7 @@ namespace SellTables.Controllers
         public ChapterController() {
             ChapterService = new ChapterService(DataBaseConnection);
         }
+
 
         [HttpGet]
         public ActionResult Details(int? id)

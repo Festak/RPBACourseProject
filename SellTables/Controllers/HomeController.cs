@@ -13,8 +13,7 @@ using System.Web.Mvc;
 namespace SellTables.Controllers
 {
     [Culture]
-    [Authorize]
-    public class HomeController : Controller
+    public class HomeController : DefaultController
     {
         CreativeService CreativeService;
         UserService UserService;
@@ -26,30 +25,10 @@ namespace SellTables.Controllers
             UserService = new UserService(dataBaseConnection);
             CreativeService = new CreativeService(dataBaseConnection);
             TagService = new TagService(dataBaseConnection);
-          //  CreativeSearch.AddUpdateLuceneIndex(CreativeService.GetAllCreativesForLucene());
+            CreativeSearch.AddUpdateLuceneIndex(CreativeService.GetAllCreativesForLucene());
         }
 
-        public ActionResult ChangeCulture(string lang)
-        {
-            string returnUrl = Request.UrlReferrer.AbsolutePath;
-            List<string> cultures = new List<string>() { "ru", "en" };
-            if (!cultures.Contains(lang))
-            {
-                lang = "ru";
-            }
-            HttpCookie cookie = Request.Cookies["lang"];
-            if (cookie != null)
-                cookie.Value = lang;
-            else
-            {
-                cookie = new HttpCookie("lang");
-                cookie.HttpOnly = false;
-                cookie.Value = lang;
-                cookie.Expires = DateTime.Now.AddYears(1);
-            }
-            Response.Cookies.Add(cookie);
-            return Redirect(returnUrl);
-        }
+ 
 
         public JsonResult GetUsers()
         {
@@ -72,7 +51,6 @@ namespace SellTables.Controllers
         public JsonResult GetTags()
         {
             var allTags = TagService.GetAllModelTags();
-            // var allTags = TagService.GetMostPopularTags(); //popular tags
             return Json(allTags, JsonRequestBehavior.AllowGet);
         }
 
@@ -82,10 +60,9 @@ namespace SellTables.Controllers
             return Json(popularCreatives, JsonRequestBehavior.AllowGet);
         }
 
-
         public ActionResult Index()
         {
-            CreativeSearch.AddUpdateLuceneIndex(CreativeService.GetAllCreativesForLucene());
+           
             var allTags = TagService.GetMostPopularTags();
             return View(allTags);
         }

@@ -23,7 +23,7 @@ namespace SellTables
             bundles.Add(new ScriptBundle("~/bundles/scroll").Include(
                        "~/Scripts/scripts/scroll.js"));
 
-         
+
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
@@ -38,7 +38,8 @@ namespace SellTables
                           )); 
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
-                
+                "~/Scripts/scripts/ng-sortable.js",
+                "~/Scripts/scripts/Sortable.js",
                 "~/app/main.js",
               "~/app/controllers/tag.js",
                "~/app/controllers/cookies.js",

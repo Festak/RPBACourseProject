@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
+using MultilingualSite.Filters;
 using SellTables.Models;
 using SellTables.Services;
 using System;
@@ -10,7 +11,8 @@ using System.Web.Mvc;
 namespace SellTables.Controllers
 {
     [Authorize(Roles = "admin")]
-    public class AdminController : Controller
+    [Culture]
+    public class AdminController : DefaultController
     {
         ApplicationDbContext DataBaseConnection = new ApplicationDbContext();
 

@@ -128,24 +128,27 @@ namespace SellTables.Services
             foreach (var login in user.Logins.ToList()) {
                 user.Logins.Remove(login);
             }
-            DeleteAllChaptersFromCreatives(creatives);
+            DeleteCreatives(creatives);
+
+            DataBaseContext.SaveChanges();
+
+        }
+
+        private void DeleteCreatives(ICollection<Creative> creatives) {
             if (creatives != null)
             {
-
-                foreach (var c in creatives) {
+                foreach (var c in creatives)
+                {
                     c.User = null;
                     c.UserId = null;
                 }
-
                 DataBaseContext.Creatives.RemoveRange(creatives);
                 foreach (var c in creatives)
                 {
                     CreativeSearch.ClearLuceneIndexRecord(c.Id);
                 }
             }
-            DataBaseContext.SaveChanges(); 
         }
-
       
 
         private void DeleteAllChaptersFromCreatives(ICollection<Creative> creatives)

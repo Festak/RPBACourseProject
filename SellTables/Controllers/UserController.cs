@@ -1,4 +1,5 @@
-﻿using SellTables.Models;
+﻿using MultilingualSite.Filters;
+using SellTables.Models;
 using SellTables.Services;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,8 @@ using System.Web.Mvc;
 
 namespace SellTables.Controllers
 {
-    public class UserController : Controller
+    [Culture]
+    public class UserController : DefaultController
     {
         ApplicationDbContext dataBaseConnection = new ApplicationDbContext();
         CreativeService CreativeService;
