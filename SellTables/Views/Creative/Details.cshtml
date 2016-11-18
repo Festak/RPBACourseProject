@@ -39,6 +39,19 @@
     <div ng-controller="WidthChangeController">
         <div class="row">
             <div class="col-md-12">
+                <div class="btn-group pull-left">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="glyphicon glyphicon-search"></span>
+                        Font
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu cursor-pointer">
+                        <li><a ng-click="changeFontTo70()">70%</a></li>
+                        <li><a ng-click="changeFontTo100()">100%</a></li>
+                        <li><a ng-click="changeFontTo200()">200%</a></li>
+                        <li><a ng-click="changeFontTo300()">300%</a></li>
+                    </ul>
+                </div>
                 <div class="btn-group pull-right">
                     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="glyphicon glyphicon-search"></span>
@@ -57,17 +70,17 @@
     </div>
     <div class="swiper-container">
         <div class="swiper-wrapper">
-            <div class="container col-md-11 col-sm-11 col-xs-10" id="content">
-                @foreach (var c in Model.Chapters)
-                {
-                    <div class="well swiper-slide" style="background-color: rgba(245, 245, 245, 0.2);">
+            @foreach (var c in Model.Chapters)
+            {
+                <div class="swiper-slide container" >
+                    <div class="well col-md-12 col-sm-12 col-xs-12" 
+                         name="content"
+                         style="background-color: rgba(245, 245, 245, 0.2);">
                         <h2 class="text-center">@c.Name</h2>
                         @Html.Raw(c.Text)
                     </div>
-                }
-
-            </div>
-
+                </div>
+            }
         </div>
         <!-- Add Pagination -->
         <div class="swiper-pagination swiper-pagination-white"></div>
@@ -84,8 +97,10 @@
         pagination: '.swiper-pagination',
         paginationClickable: true,
         nextButton: '.swiper-button-next',
-        prevButton: '.swiper-button-prev',        
+        prevButton: '.swiper-button-prev',
+        spaceBetween: 30,
         grabCursor: true,
+        autoHeight: true,
         // Enable debugger
         debugger: true
     });
