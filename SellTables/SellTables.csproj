@@ -313,6 +313,9 @@
     <Content Include="Content\somestyles\AdminUserPage.css" />
     <Content Include="Content\somestyles\search.css" />
     <Content Include="Content\somestyles\userpage.css" />
+    <Content Include="Content\somestyles\swiper.css" />
+    <Content Include="Content\somestyles\swiper.min.css" />
+    <Content Include="Content\somestyles\UserPageStyles.css" />
     <Content Include="Content\star-rating.css" />
     <Content Include="Content\star-rating.min.css" />
     <Content Include="Content\summernote.css" />
@@ -1160,6 +1163,8 @@
     <Content Include="Scripts\scripts\scroll.js" />
     <Content Include="Scripts\scripts\star-rating.js" />
     <Content Include="Scripts\scripts\star-rating.min.js" />
+    <Content Include="Scripts\scripts\swiper.js" />
+    <Content Include="Scripts\scripts\swiper.min.js" />
     <Content Include="Scripts\scripts\tagscloud.js" />
     <Content Include="Scripts\scripts\jqmenu.js" />
     <Content Include="Scripts\scripts\tagcloud.js" />

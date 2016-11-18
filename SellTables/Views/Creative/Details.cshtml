@@ -4,63 +4,233 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<link rel="stylesheet" href="~/Content/somestyles/swiper.css" />
+<script src="~/Scripts/scripts/swiper.js"></script>
 
-<header class="intro-header container-fluid" style="background-image: url('http://tutfon.ru/wallpapers/image.raw?view=image&type=orig&id=10882')">
+<div id="video-wrapper" class="video-wrapper">
+    <video autoplay loop id="bgvid">
+        <source src="http://www.eyalkrief.fr/videos/scene_9_14.mp4" type="video/mp4">
+        @*<source src="http://www.xtianmiller.com/dist/videos/winter_creek.webm" type="video/webm">*@
+    </video>
+</div>
+
+
+
+<header class="intro-header container-fluid">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="site-heading">
-                    <h1>
-                        @Html.DisplayFor(model => model.Name)
-                    </h1>
+                    <h1>@Model.Name</h1>
                     <hr class="small">
-                    <span class="subheading">by @Html.DisplayFor(model => model.User.UserName)</span>
-                </div>
-               
-                  
-                <input id="input-21b" value="@Model.Rating.ToString().Replace(",",".")" type="number" class="rating" min=0 max=5 step=0.1 data-size="md">
+                    <span class="subheading">by @Model.User.UserName</span>
 
+                </div>
             </div>
+        </div>
+        <div class="col-md-offset-4">
+            <input id="input-21b" value="@Model.Rating.ToString().Replace(",",".")" type="number" class="rating" min=0 max=5 step=0.1 data-size="md">
         </div>
     </div>
 </header>
-<div ng-controller="WidthChangeController">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="btn-group col-md-offset-10">
-                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="glyphicon glyphicon-search"></span>
-                    Scale
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a ng-click="changeTo40()">40%</a></li>
-                    <li><a ng-click="changeTo60()">60%</a></li>
-                    <li><a ng-click="changeTo80()">80%</a></li>
-                    <li><a ng-click="changeTo100()">100%</a></li>
-                </ul>
+
+<div class="container">
+
+    @*<div class="col-md-12">
+            @foreach (var c in Model.Chapters)
+            {
+                <div class="well" style="background-color: rgba(245, 245, 245, 0.2);">
+                    @Html.Raw(c.Text)
+
+                </div>
+            }
+
+        </div>*@
+    <div ng-controller="WidthChangeController">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="btn-group pull-right">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="glyphicon glyphicon-search"></span>
+                        Scale
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a ng-click="changeTo40()">40%</a></li>
+                        <li><a ng-click="changeTo60()">60%</a></li>
+                        <li><a ng-click="changeTo80()">80%</a></li>
+                        <li><a ng-click="changeTo100()">100%</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
-    <div class="container post-preview" id="content">
-
-        @foreach (var c in Model.Chapters)
-        {
-            <div class="well">
-                <h4 class="post-subtitle cursor-pointer">
-                    <span class="glyphicon glyphicon-chevron-down"></span>
-                    <span role="button" data-toggle="collapse" href="#@c.Number" aria-expanded="false" aria-controls="collapseExample">
-                        Chapter #@c.Number
-                    </span>
-                </h4>
-                <div class="collapse" id="@c.Number">
-
-                    <h2 class="post-title">@c.Name</h2>
-                    <div class="post-subtitle">@Html.Raw(c.Text)</div>
-
-                </div>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="container col-md-11 col-sm-11 col-xs-10" id="content">
+                @foreach (var c in Model.Chapters)
+                {
+                    <div class="well swiper-slide" style="background-color: rgba(245, 245, 245, 0.2);">
+                        <h2 class="text-center">@c.Name</h2>
+                        @Html.Raw(c.Text)
+                    </div>
+                }
 
             </div>
-        }
+
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination swiper-pagination-white"></div>
+        <!-- Add Navigation -->
+        <div class="swiper-button-prev swiper-button-white"></div>
+        <div class="swiper-button-next swiper-button-white"></div>
     </div>
+
+
 </div>
+
+<script>
+    var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        paginationClickable: true,
+        nextButton: '.swiper-button-next',
+        prevButton: '.swiper-button-prev',        
+        grabCursor: true,
+        // Enable debugger
+        debugger: true
+    });
+
+    var $vid = document.getElementById('bgvid');
+
+    function calculateNewSize() {
+        var videoWidth,
+            videoHeight,
+            videoAspectRatio = 16 / 9,
+            windowWidth = window.innerWidth,
+            windowHeight = window.innerHeight,
+            windowAspectRatio = window.innerWidth / window.innerHeight;
+
+        if (windowAspectRatio < videoAspectRatio) {
+            videoHeight = windowHeight;
+            videoWidth = Math.ceil(videoHeight * videoAspectRatio);
+        } else {
+            videoWidth = windowWidth;
+            videoHeight = videoWidth / videoAspectRatio;
+        }
+
+
+        $vid.style.width = videoWidth + 'px';
+        $vid.style.height = videoHeight + 'px';
+    }
+
+
+    window.onresize = calculateNewSize;
+
+    calculateNewSize();
+</script>
+<style>
+    html,
+    body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        font-family: 'sans-serif';
+        color: white;
+        line-height: 1.3em;
+    }
+
+    article {
+        margin: 10px 0;
+        background: rgba(0,0,0,0.7);
+        padding: 4px 20px;
+    }
+
+    .video-wrapper {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        overflow: hidden;
+        z-index: -1;
+    }
+
+        .video-wrapper video {
+            position: fixed;
+            top: 0;
+            right: 0;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+        }
+
+    .content {
+        position: relative;
+        margin: 60px auto;
+        width: 80%;
+        max-width: 640px;
+        z-index: 1;
+    }
+</style>
+
+
+@*<header class="intro-header container-fluid" style="background-image: url('http://tutfon.ru/wallpapers/image.raw?view=image&type=orig&id=10882')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="site-heading">
+                        <h1>
+                            @Html.DisplayFor(model => model.Name)
+                        </h1>
+                        <hr class="small">
+                        <span class="subheading">by @Html.DisplayFor(model => model.User.UserName)</span>
+                    </div>
+
+
+                    <input id="input-21b" value="@Model.Rating.ToString().Replace(",",".")" type="number" class="rating" min=0 max=5 step=0.1 data-size="md">
+
+                </div>
+            </div>
+        </div>
+    </header>
+    <div ng-controller="WidthChangeController">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="btn-group col-md-offset-10">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="glyphicon glyphicon-search"></span>
+                        Scale
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a ng-click="changeTo40()">40%</a></li>
+                        <li><a ng-click="changeTo60()">60%</a></li>
+                        <li><a ng-click="changeTo80()">80%</a></li>
+                        <li><a ng-click="changeTo100()">100%</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container post-preview" id="content">
+
+            @foreach (var c in Model.Chapters)
+            {
+                <div class="well">
+                    <h4 class="post-subtitle cursor-pointer">
+                        <span class="glyphicon glyphicon-chevron-down"></span>
+                        <span role="button" data-toggle="collapse" href="#@c.Number" aria-expanded="false" aria-controls="collapseExample">
+                            Chapter #@c.Number
+                        </span>
+                    </h4>
+                    <div class="collapse" id="@c.Number">
+
+                        <h2 class="post-title">@c.Name</h2>
+                        <div class="post-subtitle">@Html.Raw(c.Text)</div>
+
+                    </div>
+
+                </div>
+            }
+        </div>
+    </div>*@

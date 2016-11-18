@@ -231,7 +231,7 @@ namespace SellTables.Services
 
         private ICollection<Tag> GetTags(string tagList, Chapter chapter)
         {
-            var stringList = tagList.Split(' ');
+            var stringList = tagList.Split('/');
             var tags = new List<Tag>();
 
             if (stringList != null)

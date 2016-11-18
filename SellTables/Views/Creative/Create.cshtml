@@ -6,71 +6,206 @@
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<header class="intro-header container-fluid" style="background-image: url('http://www.freeoboi.ru/images/249509332.jpg')">
+
+<header class="intro-header container-fluid" style="background-image: url('http://tutfon.ru/wallpapers/image.raw?view=image&type=orig&id=10882')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="site-heading">
-                    <h1>Creatives</h1>
-                    <hr class="small">
-                    <span class="subheading">See what people create here</span>
+                    <h1>
+                        Creative create
+                    </h1>
                 </div>
             </div>
         </div>
     </div>
 </header>
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+<div class="row">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="panel panel-default col-md-10 col-md-offset-1">
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    <h3 class="col-md-2 col-md-offset-5">Creative name</h3>
+                    <div class="col-md-2 col-md-offset-5">
+                        @Html.EditorFor(model => model.Creative.Name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Creative.Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <h4 class="col-md-2 col-md-offset-5">First chapter name</h4>
+                    <div class="col-md-2 col-md-offset-5">
+                        @Html.EditorFor(model => model.Chapter.Name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Chapter.Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <h4 class="col-md-2 col-md-offset-5">Your creative text</h4>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        @Html.HiddenFor(model => model.Chapter.Text, new { htmlAttributes = new { @class = "form-control" } })
+                        <div class="col-md-offset-2" id="summernote"><p>Hello</p></div>
+                    </div>
+                </div>
+                <div class="form-group" ng-controller="TagController">
+                    <div ng-init="getTags()">
+                        <div class="row container">
+                            <h4 class="col-md-1 col-md-offset-1">Tags</h4>
+                            <ul class="tags col-md-9 col-md-offset-1">
 
-    <div class="form-horizontal">
-        <h4 class="text-center">Creative</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Creative.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Creative.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Creative.Name, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Chapter.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Chapter.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Chapter.Name, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Chapter.Text, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-8">
-                @Html.HiddenFor(model => model.Chapter.Text, new { htmlAttributes = new { @class = "form-control" } })
-                <div class="col-md-offset-2" id="summernote">Hello</div>
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Chapter.TagsString, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-8">
-                @Html.EditorFor(model => model.Chapter.TagsString, new { htmlAttributes = new { @class = "form-control" } })
-            </div>
-        </div>
+                                <li class="tagAdd taglist">
+
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="col-md-3 col-md-offset-1">
+                            <input id="search-field"
+                                   type="text"
+                                   placeholder="Enter your tags here"
+                                   class="form-control"
+                                   ng-keyup="checkKeyUp($event)"
+                                   ng-model="searchText"
+                                   ng-change="search()" />
+                            <ul class="list-group">
+                                <li ng-repeat="suggestion in suggestions track by $index"
+                                    ng-class="{active : selectedIndex === $index}"
+                                    ng-click="AssignValueAndHide($index)"
+                                    class="list-group-item cursor-pointer">
+                                    {{suggestion}}
+                                </li>
+                            </ul>
+
+                        </div>
+                        @Html.HiddenFor(model => model.Chapter.TagsString, null)
+                    </div>
+                </div>
 
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input id="submit" type="submit" value="Create" class="btn btn-success col-md-offset-5 col-md-6" />
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input id="submit" type="submit" value="Create" class="btn btn-success col-md-offset-5 col-md-6" />
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-}
+    }
+</div>
 <script>
+    var takeTags = function () {
+        var element = document.getElementsByClassName("userTags");
+        var result = '';
+        for (var i = 0; i < element.length ; i++) {
+            result += element[i].value;
+            result += '/';
+        }
+        return result;
+    }
+
     $(document).ready(function () {
         $('#summernote').summernote();
     });
     document.getElementById("submit").onclick = function () {
-        // Chapter_Text => id which was generated by VS
+
         document.getElementById("Chapter_Text").value = $('#summernote').summernote('code');
+        document.getElementById("Chapter_TagsString").value = takeTags();
+
     };
+
+
+    $.expr[":"].contains = $.expr.createPseudo(function (arg) {
+        return function (elem) {
+            return $(elem).text().toUpperCase().indexOf(arg.toUpperCase()) >= 0;
+        };
+    });
+    $(document).ready(function () {
+        $('#addTagBtn').click(function () {
+            $('#tags option:selected').each(function () {
+                $(this).appendTo($('#selectedTags'));
+            });
+        });
+        $('#removeTagBtn').click(function () {
+            $('#selectedTags option:selected').each(function (el) {
+                $(this).appendTo($('#tags'));
+            });
+        });
+        $('.tagRemove').click(function (event) {
+            event.preventDefault();
+            $(this).parent().remove();
+        });
+        $('ul.tags').click(function () {
+            $('#search-field').focus();
+        });
+        $('#search-field').keypress(function (event) {
+            if (event.which == '13') {
+                if (($(this).val() != '')
+                    && ($(".tags .addedTag:contains('" + $(this).val() + "') ")
+                    .length == 0)) {
+                    $('<li class="addedTag">'
+                        + $(this).val()
+                        + '<span class="tagRemove" onclick="$(this).parent().remove();">x</span><input type="hidden" value="'
+                        + $(this).val() + '" name="tags[]" class="userTags"></li>').insertBefore('.tags .tagAdd');
+                }
+                $(this).val('');
+            }
+        });
+
+    });
+
 </script>
 
+<style>
+    ol, ul {
+        list-style: outside none none;
+    }
 
+    #container {
+        margin: 0 auto;
+        width: 60rem;
+    }
+
+    .tags {
+        display: table;
+        padding: 0.5em;
+        width: 100%;
+    }
+
+        .tags li.tagAdd, .tags li.addedTag {
+            float: left;
+            margin-left: 0.25em;
+            margin-right: 0.25em;
+            margin-bottom: 0.25em;
+        }
+
+        .tags li.addedTag {
+            background: none repeat scroll 0 0 #019f86;
+            border-radius: 2px;
+            color: #fff;
+            padding: 0.25em;
+        }
+
+        .tags input, li.addedTag {
+            border: 1px solid transparent;
+            border-radius: 2px;
+            box-shadow: none;
+            display: block;
+            padding: 0.5em;
+        }
+
+            .tags input:hover {
+                border: 1px solid #000;
+            }
+
+    span.tagRemove {
+        cursor: pointer;
+        display: inline-block;
+        padding-left: 0.5em;
+    }
+
+        span.tagRemove:hover {
+            color: #222222;
+        }
+</style>
