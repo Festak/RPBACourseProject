@@ -55,8 +55,6 @@ angular.module('creative', ['ngRoute'])
               }
           }
 
-          
-
           $scope.vote = function (rate, creativeObj) {            
               $http.post('/Creative/GetRatingFromView', { rating: rate, creative: creativeObj }).success(function (result) {
               })

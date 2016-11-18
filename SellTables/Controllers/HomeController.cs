@@ -25,7 +25,7 @@ namespace SellTables.Controllers
             UserService = new UserService(dataBaseConnection);
             CreativeService = new CreativeService(dataBaseConnection);
             TagService = new TagService(dataBaseConnection);
-            CreativeSearch.AddUpdateLuceneIndex(CreativeService.GetAllCreativesForLucene());
+        //    CreativeSearch.AddUpdateLuceneIndex(CreativeService.GetAllCreativesForLucene());
         }
 
  
@@ -62,7 +62,6 @@ namespace SellTables.Controllers
 
         public ActionResult Index()
         {
-           
             var allTags = TagService.GetMostPopularTags();
             return View(allTags);
         }

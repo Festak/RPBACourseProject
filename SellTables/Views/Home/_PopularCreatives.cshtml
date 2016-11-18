@@ -1,8 +1,8 @@
-﻿<h3>Most popular</h3>
+﻿<img src="https://res.cloudinary.com/festak/image/upload/v1479482149/stars_gj0naj.png" style="width: inherit" />
 <ul>
     <li ng-repeat="popularCreative in popular">
         <h5>
-            {{popularCreative.Name}} <i>by {{popularCreative.UserName}}</i>
+            <a href="../../Creative/Details/?id={{popularCreative.Id}}">{{popularCreative.Name}}</a> <i>by {{popularCreative.UserName}}</i>
         </h5>   
         <i>{{popularCreative.Rating}} stars</i>
         <br />
