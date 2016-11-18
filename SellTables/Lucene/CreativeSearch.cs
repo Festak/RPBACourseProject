@@ -195,15 +195,6 @@ namespace SellTables.Lucene
 
         private static CreativeViewModel MapLuceneDocumentToData(Document doc)
         {
-            //return new CreativeViewModel
-            //{
-            //    Id = Convert.ToInt32(doc.Get("Id")),
-            //    Name = doc.Get("Name"),
-            //    UserName = doc.Get("User"),
-            //    Rating = Convert.ToDouble(doc.Get("Rating")),
-            //    CreationDate = doc.Get("Date")
-
-            //};
             return new CreativeViewModel
             {
                 Id = Convert.ToInt32(doc.Get("Id")),

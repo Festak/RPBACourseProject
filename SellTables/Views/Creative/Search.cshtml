@@ -4,8 +4,30 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Search</h2>
-@foreach (var creative in Model) {
-<p>@creative.Name</p>
+<header class="intro-header container-fluid" style="background-image: url('http://www.freeoboi.ru/images/249509332.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="site-heading">
+                    <h1>Creatives</h1>
+                    <hr class="small">
+                    <span class="subheading">See what you found</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
 
+@foreach (var creative in Model)
+{
+ <div class="row">
+ 
+<a href="../../Creative/Details/?id=@creative.Id">@creative.Name</a><br />
+Creative made by: @creative.UserName<br />
+Creative Rating: @creative.Rating<br />
+Chapters:
+     @foreach (var chapter in creative.Chapters) {
+         <span>Chapter name: </span>@chapter.Name<br/>
+     }
+</div>
 }
