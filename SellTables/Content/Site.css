@@ -3,6 +3,7 @@
     padding-bottom: 20px;
     margin-top: -10px;
     Overflow: auto;
+    cursor: url(../Resources/cursor.cur), pointer;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -198,5 +199,26 @@ textarea {
     border-radius: 24px;
 }
 
-
+.font100 {
+    font-size: 100%;
+    line-height: 100%;
+}
+  
+.font200 {
+    font-size: 200%;
+    line-height: 110%;
+}
     
+.font70 {
+    font-size: 70%;
+    line-height: 90%;
+}
+    
+.font300 {
+    font-size: 300%;
+    line-height: 120%;
+}
+
+.cursor-fuck {
+    cursor: url(../Resources/cursor.cur);
+}
