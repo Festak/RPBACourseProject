@@ -13,6 +13,7 @@ using SellTables.Models;
 using Lucene.Net.Search;
 using Lucene.Net.QueryParsers;
 using Lucene.Net.Linq;
+using SellTables.ViewModels;
 
 namespace SellTables.Lucene
 {
@@ -34,53 +35,37 @@ namespace SellTables.Lucene
             }
         }
 
-        private static void AddToLuceneIndex(Creative creative, IndexWriter writer)
+
+        public static ICollection<CreativeViewModel> Search(string input, string fieldName = "")
         {
-            // remove older index
-            var searchQuery = new TermQuery(new Term("Id", creative.Id.ToString()));
-            writer.DeleteDocuments(searchQuery);
-            // add new index
-            var doc = new Document();
-            // add lucene fields mapped to db fields
-            doc.Add(new Field("Id", creative.Id.ToString(), Field.Store.YES, Field.Index.NOT_ANALYZED));
-            doc.Add(new Field("Name", creative.Name, Field.Store.YES, Field.Index.ANALYZED));
-            doc.Add(new Field("User", creative.User.UserName, Field.Store.YES, Field.Index.ANALYZED));
-            doc.Add(new Field("Rating", creative.Rating.ToString(), Field.Store.YES, Field.Index.ANALYZED));
-            doc.Add(new Field("Date", creative.CreationDate.ToShortDateString() + " " + creative.CreationDate.ToShortTimeString(), Field.Store.YES, Field.Index.ANALYZED));
-            string tags = "";
-            foreach (var chapter in creative.Chapters)
-            {
-                if (chapter.TagsString != null)
-                {
-                  //  foreach (var tag in chapter.Tags)
-                //    {
-                        tags += chapter.TagsString + " ";
-                 //   }
-                }
-            }
-            //string tags = "";
-            //if (chapter.Tags != null)
-            //    foreach (var tag in chapter.Tags)
-            //    {
-            //        tags += tag.Description + " ";
-            //    }
-            //doc.Add(new Field("Tags", tags, Field.Store.YES, Field.Index.ANALYZED));
-            doc.Add(new Field("Tags", tags, Field.Store.YES, Field.Index.ANALYZED));
-            // add to index
-            writer.AddDocument(doc);
+            if (string.IsNullOrEmpty(input)) return new List<CreativeViewModel>();
+
+            var terms = input.Trim().Replace("-", " ").Split(' ')
+                .Where(x => !string.IsNullOrEmpty(x)).Select(x => x.Trim() + "*");
+            input = string.Join(" ", terms);
+
+            return _search(input, fieldName);
         }
 
-        private static ICollection<Tag> GetTags(string tagList)
+        public static ICollection<CreativeViewModel> GetAllIndexRecords()
         {
-            var stringList = tagList.Split(' ');
-            var tags = new List<Tag>();
-            if (stringList != null)
-            {
-                foreach (string text in stringList)
-                    tags.Add(new Tag() { Description = text });
-            }
-            return tags;
+            // validate search index
+            if (!System.IO.Directory.EnumerateFiles(_luceneDir).Any()) return new List<CreativeViewModel>();
+
+            // set up lucene searcher
+            var searcher = new IndexSearcher(_directory, false);
+            var reader = IndexReader.Open(_directory, false);
+            var docs = new List<Document>();
+            var term = reader.TermDocs();
+            while (term.Next()) docs.Add(searcher.Doc(term.Doc));
+            reader.Dispose();
+            searcher.Dispose();
+            return MapLuceneToDataList(docs);
         }
+
+
+      
+
 
         public static void AddUpdateLuceneIndex(ICollection<Creative> creative)
         {
@@ -115,6 +100,7 @@ namespace SellTables.Lucene
                 writer.Dispose();
             }
         }
+
         public static bool ClearLuceneIndex()
         {
             try
@@ -147,6 +133,66 @@ namespace SellTables.Lucene
             }
         }
 
+
+        private static void AddToLuceneIndex(Creative creative, IndexWriter writer)
+        {
+            // remove older index
+            var searchQuery = new TermQuery(new Term("Id", creative.Id.ToString()));
+            writer.DeleteDocuments(searchQuery);
+            // add new index
+            var doc = new Document();
+            // add lucene fields mapped to db fields
+            doc.Add(new Field("Id", creative.Id.ToString(), Field.Store.YES, Field.Index.NOT_ANALYZED));
+            doc.Add(new Field("Name", creative.Name, Field.Store.YES, Field.Index.ANALYZED));
+            doc.Add(new Field("User", creative.User.UserName, Field.Store.YES, Field.Index.ANALYZED));
+            doc.Add(new Field("Rating", creative.Rating.ToString(), Field.Store.YES, Field.Index.ANALYZED));
+            doc.Add(new Field("Date", creative.CreationDate.ToShortDateString() + " " + creative.CreationDate.ToShortTimeString(), Field.Store.YES, Field.Index.ANALYZED));
+            string tags = "";
+            string chapters = "";
+            foreach (var chapter in creative.Chapters)
+            {
+                if (chapter.TagsString != null)
+                {
+                    tags += chapter.TagsString + " ";
+                }
+                if (chapter != null)
+                {
+                    chapters += chapter.Name + "/";
+                }
+            }
+            doc.Add(new Field("Tags", tags, Field.Store.YES, Field.Index.ANALYZED));
+            doc.Add(new Field("Chapters", chapters, Field.Store.YES, Field.Index.ANALYZED));
+
+            writer.AddDocument(doc);
+        }
+
+     
+
+        private static ICollection<Tag> GetTags(string tagList)
+        {
+            var stringList = tagList.Split(' ');
+            var tags = new List<Tag>();
+            if (stringList != null)
+            {
+                foreach (string text in stringList)
+                    tags.Add(new Tag() { Description = text });
+            }
+            return tags;
+        }
+
+
+        private static ICollection<ChapterViewModel> GetChapters(string chaptersList)
+        {
+            var stringList = chaptersList.Split('/');
+            var chapters = new List<ChapterViewModel>();
+            if (stringList != null)
+            {
+                foreach (string text in stringList)
+                    chapters.Add(new ChapterViewModel() { Name = text });
+            }
+            return chapters;
+        }
+
         private static CreativeViewModel MapLuceneDocumentToData(Document doc)
         {
             //return new CreativeViewModel
@@ -162,8 +208,10 @@ namespace SellTables.Lucene
             {
                 Id = Convert.ToInt32(doc.Get("Id")),
                 Name = doc.Get("Name"),
-                Tags = doc.Get("Tags")
-                
+                Tags = doc.Get("Tags"),
+                Rating = Convert.ToDouble(doc.Get("Rating")),
+                CreationDate = doc.Get("Date"),
+                Chapters = GetChapters(doc.Get("Chapters"))   
             };
         }
 
@@ -235,31 +283,6 @@ namespace SellTables.Lucene
             }
         }
 
-        public static ICollection<CreativeViewModel> Search(string input, string fieldName = "")
-        {
-            if (string.IsNullOrEmpty(input)) return new List<CreativeViewModel>();
-
-            var terms = input.Trim().Replace("-", " ").Split(' ')
-                .Where(x => !string.IsNullOrEmpty(x)).Select(x => x.Trim() + "*");
-            input = string.Join(" ", terms);
-
-            return _search(input, fieldName);
-        }
-
-        public static ICollection<CreativeViewModel> GetAllIndexRecords()
-        {
-            // validate search index
-            if (!System.IO.Directory.EnumerateFiles(_luceneDir).Any()) return new List<CreativeViewModel>();
-
-            // set up lucene searcher
-            var searcher = new IndexSearcher(_directory, false);
-            var reader = IndexReader.Open(_directory, false);
-            var docs = new List<Document>();
-            var term = reader.TermDocs();
-            while (term.Next()) docs.Add(searcher.Doc(term.Doc));
-            reader.Dispose();
-            searcher.Dispose();
-            return MapLuceneToDataList(docs);
-        }
+    
     }
 }

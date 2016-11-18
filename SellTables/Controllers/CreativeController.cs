@@ -109,10 +109,10 @@ namespace SellTables.Controllers
                 return RedirectToAction("Index", "Home");
             }
             var listOfLuceneObjectsByTags = Lucene.CreativeSearch.Search(query, "Tags");
-            var listOfCreativeViewModelObjects = CreativeService.GetCreativesBySearch(listOfLuceneObjectsByTags);
+          //  var listOfCreativeViewModelObjects = CreativeService.GetCreativesBySearch(listOfLuceneObjectsByTags);
       
 
-            return View(listOfCreativeViewModelObjects.ToList());
+            return View(listOfLuceneObjectsByTags.ToList());
         }
 
         public JsonResult GetCreativesByUser(string userName)
