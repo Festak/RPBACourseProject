@@ -1,17 +1,21 @@
 ﻿
 .parent2 {
-  top:15px;
+  top:10%;
   left:15px;
   position:fixed;
  display:block;
   width:100px;
   height:100px;
+  opacity: 0.6;
   background-color:transparent;
   border-radius:50%;
   z-index:20;
   -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
 -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
 box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+}
+.parent2:hover{
+    opacity: 1;
 }
 .test1 {
   width:60%;
@@ -60,7 +64,7 @@ box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
   transition: all 500ms cubic-bezier(0.680, -0.550, 0.265, 1.550) .6s;  
 }
 .mask2 {
-  top:15px;
+  top:10%;
   left:15px;
   width:100px;
   height:100px;

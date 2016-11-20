@@ -9,6 +9,7 @@ angular.module('creative', ['ngRoute'])
       function ($scope, $http, $window) {
           $scope.creatives = [];
           $scope.popular = [];
+          $scope.lastEdited = [];
           $scope.shownCreatives = [];
           $scope.sortedCreatives = [];
           var sortType = 1;
@@ -19,6 +20,7 @@ angular.module('creative', ['ngRoute'])
           var isBusy = false;
           $scope.orderByField = 'firstName';
           $scope.reverseSort = false;
+    
 
           $scope.getCreatives = function () {
               $scope.load();
@@ -54,6 +56,8 @@ angular.module('creative', ['ngRoute'])
                   current += count;
               }
           }
+
+
 
           $scope.vote = function (rate, creativeObj) {            
               $http.post('/Creative/GetRatingFromView', { rating: rate, creative: creativeObj }).success(function (result) {
@@ -92,13 +96,10 @@ angular.module('creative', ['ngRoute'])
               }
           }
 
-   
           $scope.updateCreativeName = function (creativeId, oldName) {
               $http.post('/Creative/UpdateCreativeName', { id: creativeId, newName: oldName });
           }
         
-
-
           $scope.setRating = function (id, i) {
               for (var j = 1; j <= i; j++) {
                   var element = angular.element(document.getElementById('' + id + j));
@@ -114,6 +115,16 @@ angular.module('creative', ['ngRoute'])
            .error(function (data) {
                console.log(data);
            });
+          }
+
+          $scope.getLastEditedCreatives = function () {
+              console.log("here");
+              $http.get('/Home/GetLastEdited').success(function (result) {
+                  $scope.lastEdited = result;
+              })
+         .error(function (data) {
+             console.log(data);
+         });
           }
           
           $scope.deleteCreativeById = function(creativeId, user) {

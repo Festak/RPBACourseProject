@@ -1158,6 +1158,7 @@
     <Content Include="Scripts\scripts\clean-blog.min.js" />
     <Content Include="Scripts\scripts\contact_me.js" />
     <Content Include="Scripts\scripts\counter.js" />
+    <Content Include="Scripts\scripts\jquery.tabslideout.v1.2.js" />
     <Content Include="Scripts\scripts\ng-sortable.js" />
     <Content Include="Scripts\scripts\ng-tags-input.min.js" />
     <Content Include="Scripts\scripts\redipadding.js" />
@@ -1231,6 +1232,7 @@
     <Content Include="Views\Account\_UserSettingsPartial.cshtml" />
     <Content Include="Views\Creative\CreateChapter.cshtml" />
     <Content Include="Views\Creative\EditChapter.cshtml" />
+    <Content Include="Views\Home\_LastEditedCreatives.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

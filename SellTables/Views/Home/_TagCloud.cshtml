@@ -1,7 +1,42 @@
 ﻿@model List<string>
+    @*<div class="panel">
+        <a class="handle" href="#">Content</a>
 <div id="div1">
+    
    @foreach (var tag in Model)
    {
     <a href="~/Creative/Search/?query=@tag" class="red">@tag</a>
    }
 </div>
+        </div>
+<script type="text/javascript">
+$(function(){
+	$('.panel').tabSlideOut({							//Класс панели
+		tabHandle: '.handle',						//Класс кнопки
+		pathToTabImage: 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQPjXAr5D-SUGtGPKMAN-YQ-RIXaGlpazcUft7eL8p3uAWzG9QK',				//Путь к изображению кнопки
+		imageHeight: '122px',						//Высота кнопки
+		imageWidth: '40px',						//Ширина кнопки
+		tabLocation: 'left',						//Расположение панели top - выдвигается сверху, right - выдвигается справа, bottom - выдвигается снизу, left - выдвигается слева
+		speed: 300,								//Скорость анимации
+		action: 'click',								//Метод показа click - выдвигается по клику на кнопку, hover - выдвигается при наведении курсора
+		topPos: '200px',							//Отступ сверху
+		fixedPosition: false						//Позиционирование блока false - position: absolute, true - position: fixed
+	});
+});
+</script>*@
+
+    <div id="myCanvasContainer">
+        <canvas width="300" height="300" id="myCanvas">
+            <p>Anything in here will be replaced on browsers that support the canvas element</p>
+        </canvas>
+    </div>
+    <div id="tags">
+        <ul>
+            @foreach (var tag in Model)
+            {
+                <li>
+                    <a href="~/Creative/Search/?query=@tag" class="red">@tag</a>
+                </li>
+            }
+        </ul>
+    </div>

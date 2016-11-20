@@ -1,0 +1,14 @@
+﻿<img src="https://res.cloudinary.com/festak/image/upload/v1479482149/stars_gj0naj.png" />
+
+<div ng-init="getLastEditedCreatives()">
+<ul>
+    <li ng-repeat="creative in lastEdited">
+        <h5>
+            <a href="../../Creative/Details/?id={{creative.Id}}">{{creative.Name}}</a> <i>by {{creative.UserName}}</i>
+        </h5>
+        <i>{{creative.Rating}} stars</i>
+        <br />
+        <i>At: {{creative.EditDate}}</i>
+    </li>
+</ul>
+    </div>

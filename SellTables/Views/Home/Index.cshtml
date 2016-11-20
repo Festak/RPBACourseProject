@@ -17,12 +17,13 @@
     </header>
 
     <div class="row" ng-controller='CreativeController'>
-        <div class="col-md-4 col-sd-4" ng-init="getPopular()">
+        <div class="col-md-4 col-sd-4" >
             @Html.Partial("_PopularCreatives")
-            @Html.Partial("_TagCloud", Model)
-
+            @Html.Partial("_LastEditedCreatives")
+            @Html.Partial("_TagCloud")
         </div>
-        <div class="col-md-7">
+
+        <div class="col-md-8">
             <div>
                 Testing language locale:
                 @Resources.Resource.ChooseLanguage

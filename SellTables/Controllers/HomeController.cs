@@ -24,8 +24,7 @@ namespace SellTables.Controllers
         {
             UserService = new UserService(dataBaseConnection);
             CreativeService = new CreativeService(dataBaseConnection);
-            TagService = new TagService(dataBaseConnection);
-        //    CreativeSearch.AddUpdateLuceneIndex(CreativeService.GetAllCreativesForLucene());
+            TagService = new TagService(dataBaseConnection); 
         }
 
  
@@ -60,8 +59,14 @@ namespace SellTables.Controllers
             return Json(popularCreatives, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult GetLastEdited() {
+            var lastEditedCreatives = CreativeService.GetLastEditedCreatives();
+            return Json(lastEditedCreatives, JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult Index()
         {
+            CreativeSearch.AddUpdateLuceneIndex(CreativeService.GetAllCreativesForLucene());
             var allTags = TagService.GetMostPopularTags();
             return View(allTags);
         }

@@ -96,6 +96,13 @@ namespace SellTables.Services
             return listOfСreatives.ToList();
         }
 
+        public List<CreativeViewModel> GetLastEditedCreatives() {
+            var listOfCreatives = InitCreatives(((CreativesRepository)CreativeRepository).GetLastEdited());
+            return listOfCreatives.ToList();
+        }
+
+     
+
         public List<CreativeViewModel> GetCreativesByUser(string userName)
         {
             var user = UsersRepository.FindUser(userName);
@@ -256,32 +263,45 @@ namespace SellTables.Services
 
         private ICollection<CreativeViewModel> InitCreatives(ICollection<Creative> list)
         {
-            return list.Select(creative => new CreativeViewModel
+            if (list != null)
             {
-                Id = creative.Id,
-                Chapters = InitChapters(creative.Chapters),
-                UserName = creative.User.UserName,
-                Name = creative.Name,
-                Rating = creative.Rating,
-                Medals = InitMedals(creative.User.Medals),
-                CreationDate = creative.CreationDate.ToShortDateString() + " " + creative.CreationDate.ToShortTimeString()
-            }).ToList();
+                return list.Select(creative => new CreativeViewModel
+                {
+                    Id = creative.Id,
+                    Chapters = InitChapters(creative.Chapters),
+                    UserName = creative.User.UserName,
+                    Name = creative.Name,
+                    Rating = creative.Rating,
+                    Medals = InitMedals(creative.User.Medals),
+                    CreationDate = creative.CreationDate.ToShortDateString() + " " + creative.CreationDate.ToShortTimeString()
+                }).ToList();
+            }
+            else {
+                return new List<CreativeViewModel>();
+            }
         }
 
         private ICollection<CreativeViewModel> InitCreativesBySearch(ICollection<Creative> list)
         {
-            return list.Select(creative => new CreativeViewModel
+            if (list != null)
             {
-                Id = creative.Id,
-                Chapters = InitChaptersBySearch(creative.Chapters),
-                UserName = creative.User.UserName,
-                Name = creative.Name,
-                EditDate = (creative.EditDate.ToString()),
-                Rating = creative.Rating,
-                Medals = InitMedals(creative.User.Medals),
-                CreationDate = creative.CreationDate.ToShortDateString() + " " + creative.CreationDate.ToShortTimeString()
-            }).ToList();
-        }
+                return list.Select(creative => new CreativeViewModel
+                {
+                    Id = creative.Id,
+                    Chapters = InitChaptersBySearch(creative.Chapters),
+                    UserName = creative.User.UserName,
+                    Name = creative.Name,
+                    EditDate = (creative.EditDate.ToString()),
+                    Rating = creative.Rating,
+                    Medals = InitMedals(creative.User.Medals),
+                    CreationDate = creative.CreationDate.ToShortDateString() + " " + creative.CreationDate.ToShortTimeString()
+                }).ToList();
+            }
+            else
+            {
+                return new List<CreativeViewModel>();
+            }
+            }
 
         private ICollection<ChapterViewModel> InitChapters(ICollection<Chapter> list)
         {

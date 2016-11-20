@@ -1,4 +1,5 @@
 ﻿using MultilingualSite.Filters;
+using Microsoft.AspNet.Identity;
 using SellTables.Models;
 using SellTables.Services;
 using System;
@@ -40,7 +41,14 @@ namespace SellTables.Controllers
             var creatives = CreativeService.GetCreativesByUser(userName);
             return Json(creatives, JsonRequestBehavior.AllowGet);
         }
-     
-      
+        public bool IsCurrentUserIsAnAdmin()
+        {
+            var IsCurrentUserIsAnAdmin = UserService.IsCurrentUserIsAnAdmin(User.Identity.GetUserId());
+            return IsCurrentUserIsAnAdmin;
+
+        }
+
+
+
     }
 }

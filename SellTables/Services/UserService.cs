@@ -42,6 +42,13 @@ namespace SellTables.Services
             return UsersRepository.GetCurrentUser(name);
         }
 
+        public bool IsCurrentUserIsAnAdmin(string userId)
+        {
+            bool IsCurrentUserIsAnAdmin = UsersRepository.IsInAdminRole(userId);
+            return IsCurrentUserIsAnAdmin;
+
+        }
+
         public void DeleteUser(string name)
         {
             ApplicationUser user = GetUserByName(name);

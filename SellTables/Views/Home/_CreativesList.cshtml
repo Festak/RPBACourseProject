@@ -1,7 +1,7 @@
-﻿<div class="row">
+﻿
     <div ng-init='getCreatives()' id="scroller">
-        <div data-ng-repeat='creative in creatives' class="col-md-6 col-xs-12 col-lg-6 col-sm-12">
-            <div class="box{{($index%12)+1}}">
+        <div data-ng-repeat='creative in creatives' class="col-md-12 col-xs-12 col-lg-12 col-sm-12">
+            <div class="box5">
 
                 <div class="post-title">
                     <div ng-controller="MainController">
@@ -28,7 +28,7 @@
                         <span class="cursor-pointer" ng-click="redirect(chapter.Id)">
                             <small>
                                 <span class="glyphicon glyphicon-chevron-right"></span>
-                            </small>
+                            </small>=
                             {{chapter.Name}}
                         </span>
                     </div>
@@ -44,7 +44,7 @@
                         <span id="{{$index}}5" ng-click="vote(5, creative)" class="glyphicon glyphicon-star-empty creative.Id+'1'" ng-mouseover="show($index,5)" ng-mouseleave="hide($index)" aria-hidden="true"></span>
                     </div>
                     <div class="col-md-8">
-                        <span class="post-meta">Posted by <a href="#">{{creative.UserName}}</a> on {{creative.CreationDate}}</span>
+                        <span class="post-meta">Posted by <a href="../../User/UserPage/?name={{creative.UserName}}">{{creative.UserName}}</a> on {{creative.CreationDate}}</span>
                     </div>
                 </div>
 
@@ -53,7 +53,6 @@
         </div>
     </div>
 
-</div>
 <script>
 
     $(window).scroll(function () {
