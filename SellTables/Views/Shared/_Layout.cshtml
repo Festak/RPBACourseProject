@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html ng-app="main" >
+<html ng-app="main">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,22 +10,22 @@
     @Scripts.Render("~/bundles/angular")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/app")
-    
+
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
     @if (Request.Cookies["style"] == null)
-        {
+    {
         <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-        }
-        else if (Request.Cookies["style"].Value == "1")
-        {
+    }
+    else if (Request.Cookies["style"].Value == "1")
+    {
         <link href="~/Content/bootstrapGrey.css" rel="stylesheet" />
-        }
-        else if (Request.Cookies["style"].Value == "2")
-        {
+    }
+    else if (Request.Cookies["style"].Value == "2")
+    {
         <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-        }
+    }
 
 </head>
 <body class="scr">
@@ -46,30 +46,43 @@
                     {
                         <li><a href=@Url.Action("Index", "Admin")>AdminPanel</a></li>
                     }
-                    <li><a href=@Url.Action("Create","Creative")>Create</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Choose lang<b class="caret"></b></a>
-                        <ul class="dropdown-menu transparentbar">
-                            <li><a href="@Url.Action("ChangeCulture", "Home", new { lang = "ru"})">@Resources.Resource.Russian</a></li>
-                            <li><a href="@Url.Action("ChangeCulture", "Home", new { lang = "en"})">@Resources.Resource.English</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">@Resources.Resource.Styles<b class="caret"></b></a>
-                        <ul class="dropdown-menu transparentbar">
-                            <li onclick="setCookie('style', '1', '/')"><a>@Resources.Resource.Dark</a></li>
-                            <li onclick="setCookie('style', '2', '/')"><a>@Resources.Resource.White</a></li>
-                        </ul>
-                    </li>
-                </ul> 
+                </ul>
+
                 <form class="navbar-form" action="@Url.Action("Search", "Creative")">
                     <input type="text" name="query" id="tags" class="form-control col-lg-8" placeholder="Search">
                 </form>
+
+                <div class="parent2">
+                    <div class="test1">
+                        <a href="@Url.Action("ChangeCulture", "Home", new { lang = "ru"})">
+                            <img class="language" src="https://res.cloudinary.com/festak/image/upload/v1479630141/russia_640_jjm7s9.png" />
+                        </a>
+                    </div>
+                    <div class="test2">
+                        <a href="@Url.Action("ChangeCulture", "Home", new { lang = "en"})">
+                            <img class="language" src="https://res.cloudinary.com/festak/image/upload/v1479630142/usa_ihhnj0.png" />
+                        </a>
+                    </div>
+                    <div class="test3" onclick="setCookie('style', '2', '/')">
+                        @*<a>
+                            <i onclick="setCookie('style', '2', '/')"></i>
+                        </a>*@
+                    </div>
+
+                    <div class="test4" onclick="setCookie('style', '1', '/')">
+                        @*<a>
+                            <i onclick="setCookie('style', '1', '/')"></i>
+                        </a>*@
+                    </div>
+
+                    <div class="mask2"><i class="fa fa-home fa-3x"></i></div>
+                </div>
 
             </div>
 
 
         </div>
+
     </nav>
 
     <div class="col-md-12">
@@ -82,8 +95,8 @@
 </body>
 </html>
 <script type="text/javascript">
-window.setCookie = setCookie = function(name, value, path) {
-document.cookie = name + "=" + escape(value) + (path ? "; path=" + path : "");
-return location.reload();
-};
+    window.setCookie = setCookie = function (name, value, path) {
+        document.cookie = name + "=" + escape(value) + (path ? "; path=" + path : "");
+        return location.reload();
+    };
 </script>

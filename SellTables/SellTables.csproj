@@ -294,6 +294,7 @@
     <Content Include="Content\bootstrapDarkly.min.css" />
     <Content Include="Content\bootstrapGrey.css" />
     <Content Include="Content\bootstrapWhite.css" />
+    <Content Include="Content\circlemenu.css" />
     <Content Include="Content\counter.css" />
     <Content Include="Content\creatives.css" />
     <Content Include="Content\font-awesome-animation.css" />
@@ -318,6 +319,7 @@
     <Content Include="Content\star-rating.min.css" />
     <Content Include="Content\summernote.css" />
     <Content Include="Content\ui-bootstrap-csp.css" />
+    <Content Include="Content\video\bck.mp4" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\fontawesome-webfontba72.svg" />
@@ -1235,7 +1237,6 @@
     <Folder Include="images\" />
     <Folder Include="LuceneIndexOfCreative\" />
     <Folder Include="Views\Default\" />
-    <Folder Include="Views\Rating\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

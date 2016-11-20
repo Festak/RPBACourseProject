@@ -66,7 +66,7 @@ namespace SellTables
                       "~/Content/Site.css",
                       "~/Content/loginRegister.css",
                       "~/Content/counter.css",
-                      "~/Content/jqmenu.css",
+                      "~/Content/circlemenu.css",
                       "~/Content/font-awesome.min.css",
                        "~/Content/font-awesome-animation.css",
                       "~/Content/summernote.css",

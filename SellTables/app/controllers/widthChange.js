@@ -1,13 +1,9 @@
 ﻿angular.module('widthChange', [])
-  .controller('WidthChangeController', function ($scope, $http) {
+  .controller('WidthChangeController',['$scope', '$http', function ($scope, $http) {
       var currentClasses = "col-md-12 col-sm-12 col-xs-12";
       var currentFontClass = "font100";
 
-
-
-
       $scope.changeTo40 = function () {
-     
           var element = angular.element(document.getElementsByName("content"));
           console.log(element);
           element.removeClass(currentClasses);
@@ -65,4 +61,4 @@
           element.addClass(currentFontClass);
       }
 
-  });
+  }]);
