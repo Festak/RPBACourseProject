@@ -312,6 +312,7 @@
     <Content Include="Content\ng-tags-input.min.css" />
     <Content Include="Content\somestyles\AdminUserPage.css" />
     <Content Include="Content\somestyles\search.css" />
+    <Content Include="Content\somestyles\TagsStyles.css" />
     <Content Include="Content\somestyles\userpage.css" />
     <Content Include="Content\somestyles\swiper.css" />
     <Content Include="Content\somestyles\swiper.min.css" />
@@ -1169,6 +1170,7 @@
     <Content Include="Scripts\scripts\tagscloud.js" />
     <Content Include="Scripts\scripts\jqmenu.js" />
     <Content Include="Scripts\scripts\tagcloud.js" />
+    <Content Include="Scripts\scripts\TagsScript.js" />
     <Content Include="Scripts\summernote\jquery-2.1.4.js" />
     <Content Include="Scripts\summernote\summernote.css" />
     <Content Include="Scripts\summernote\summernote.js" />

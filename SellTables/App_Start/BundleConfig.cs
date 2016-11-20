@@ -76,10 +76,19 @@ namespace SellTables
                       ));
 
             bundles.Add(new StyleBundle("~/Content/somestyles").Include(
-                      "~/Content/somestyles/userpage.css"
-     
+                      "~/Content/somestyles/userpage.css"    
 
                       ));
+
+            bundles.Add(new ScriptBundle("~/bundles/tags").Include(
+                      "~/Scripts/scripts/TagsScript.js"
+                      
+                      ));
+            bundles.Add(new StyleBundle("~/Content/tags").Include(
+                      "~/Content/somestyles/TagsStyles.css"
+
+                      ));
+
         }
     }
 }

@@ -43,10 +43,37 @@
                 <div class="col-md-offset-2" id="summernote">Hello</div>
             </div>
         </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Chapter.TagsString, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-8">
-                @Html.EditorFor(model => model.Chapter.TagsString, new { htmlAttributes = new { @class = "form-control" } })
+        <div class="form-group" ng-controller="TagController">
+            <div ng-init="getTags()">
+                <div class="row container">
+                    <h4 class="col-md-1 col-md-offset-1">Tags</h4>
+                    <ul class="tags col-md-9 col-md-offset-1">
+
+                        <li class="tagAdd taglist">
+
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-md-offset-1">
+                    <input id="search-field"
+                           type="text"
+                           placeholder="Enter your tags here"
+                           class="form-control"
+                           ng-keyup="checkKeyUp($event)"
+                           ng-model="searchText"
+                           ng-change="search()" />
+                    <ul class="list-group">
+                        <li ng-repeat="suggestion in suggestions track by $index"
+                            ng-class="{active : selectedIndex === $index}"
+                            ng-click="AssignValueAndHide($index)"
+                            class="list-group-item cursor-pointer">
+                            {{suggestion}}
+                        </li>
+                    </ul>
+
+                </div>
+                @Html.HiddenFor(model => model.Chapter.TagsString, null)
             </div>
         </div>
         <div class="form-group">
@@ -61,8 +88,15 @@
         $('#summernote').summernote();
     });
     document.getElementById("submit").onclick = function () {
+
         document.getElementById("Chapter_Text").value = $('#summernote').summernote('code');
+        document.getElementById("Chapter_TagsString").value = takeTags();
+
     };
 </script>
+@section Scripts {
+    @Scripts.Render("~/bundles/tags")
+}
 
+<link type="text/css" href="~/Content/somestyles/TagsStyles.css" rel="stylesheet" />
 
