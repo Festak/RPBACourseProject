@@ -21,7 +21,6 @@ namespace SellTables.Services
         private IRepository<Tag> TagsRepository;
         private IUserRepository UsersRepository;
 
-
         public CreativeService(ApplicationDbContext dataBaseContext)
         {
             this.dataBaseContext = dataBaseContext;
@@ -338,7 +337,6 @@ namespace SellTables.Services
             return Chapters;
         }
 
-
         private ICollection<MedalViewModel> InitMedals(ICollection<Medal> list)
         {
             var medals = list.Select(c => new MedalViewModel
@@ -434,7 +432,6 @@ namespace SellTables.Services
             }
             dataBaseContext.SaveChanges();
         }
-
 
         private void DeleteAllCreativesRating(Creative creative)
         {

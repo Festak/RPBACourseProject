@@ -20,11 +20,13 @@ namespace SellTables.Controllers
         ApplicationDbContext dataBaseConnection = new ApplicationDbContext();
         CreativeService CreativeService;
         UserService UserService;
+        CloudinaryService CloudinaryService;
 
         public UserController()
         {
             CreativeService = new CreativeService(dataBaseConnection);
             UserService = new UserService(dataBaseConnection);
+            CloudinaryService = new CloudinaryService(dataBaseConnection);
         }
 
 
@@ -55,28 +57,9 @@ namespace SellTables.Controllers
 
         }
 
-
-
-
-        public ActionResult Upload(byte[] img)
+        public ActionResult UploadUserAvatar(byte[] img)
         {
-            Account account = new Account(
-                            "qwe123",
-                            "361919682238885",
-                            "rxw9_ETqk63uignEfF1R9TCcZ6I");
-            Cloudinary cloudinary = new Cloudinary(account);
-            if (img != null)
-            {
-                using (Stream str = new MemoryStream(img))
-                {
-                    var uploadParams = new ImageUploadParams()
-                    {
-                        File = new FileDescription("name", str)
-                    };
-                    var uploadResult = cloudinary.Upload(uploadParams);
-                    UserService.UpdateUserAvatar(uploadResult.SecureUri.ToString(), User.Identity.Name);
-                }
-            }
+            CloudinaryService.UploadUserAvatar(img, User.Identity.Name);
             return RedirectToAction("UserPage");
         }
     }

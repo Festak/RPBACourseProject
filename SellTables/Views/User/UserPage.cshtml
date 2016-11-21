@@ -35,7 +35,7 @@
 
                     <p>
                         <div id="dropzone">
-                            <img class="file__drop" src="@Model.AvatarUri" data-image data-image-uploader />
+                            <img class="file__drop" style="width: 100%; height: 100%" src="@Model.AvatarUri" data-image data-image-uploader />
                         </div>
                         <br />
                         <a href="#section1">@Model.UserName<br /></a>
@@ -307,7 +307,7 @@
             imageResizer(img, callback);
         }
         console.log(base64);
-        post('Upload', { img: base64 });
+        post('UploadUserAvatar', { img: base64 });
 
     }
 

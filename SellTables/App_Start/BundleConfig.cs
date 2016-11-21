@@ -11,7 +11,7 @@ namespace SellTables
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-2.1.4.js",
                         "~/Scripts/scripts/jquery.tabslideout.v1.2.js",
-                 "~/Scripts/scripts/tagcloud.js","~/Scripts/scripts/tagscloud.js",
+            "~/Scripts/scripts/jquery.tagcanvas.js",
                       "~/Scripts/scripts/counter.js",
                  "~/Scripts/scripts/jqmenu.js",
                   "~/Scripts/scripts/registerLoginMenu.js"
