@@ -5,7 +5,7 @@
     
    @foreach (var tag in Model)
    {
-    <a href="~/Creative/Search/?query=@tag" class="red">@tag</a>
+    <a href="~/Creative/Search/?query=@tag" class="type-@(Model.IndexOf(tag)%5)">@tag</a>
    }
 </div>
         </div>
