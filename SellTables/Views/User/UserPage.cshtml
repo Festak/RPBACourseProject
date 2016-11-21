@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="site-heading">
-                    <h1>User Page</h1>  
+                    <h1>User Page</h1>
                 </div>
             </div>
         </div>
@@ -32,11 +32,16 @@
                 </div>
 
                 <div class="col-md-4 col-sm-4 text-center" id="myScroll">
+
                     <p>
-                       <img src="@Model.AvatarUri"/><br/>
-                       <a href="#section1">@Model.UserName<br /></a>
-                        @foreach (var medal in Model.Medals) {
-                            <img style="width: 32px; height: 32px" src="@medal.ImageUri" title="@medal.Name"/>
+                        <div id="dropzone">
+                            <img class="file__drop" src="@Model.AvatarUri" data-image data-image-uploader />
+                        </div>
+                        <br />
+                        <a href="#section1">@Model.UserName<br /></a>
+                        @foreach (var medal in Model.Medals)
+                        {
+                            <img style="width: 32px; height: 32px" src="@medal.ImageUri" title="@medal.Name" />
                         }
                     </p>
                 </div>
@@ -46,7 +51,7 @@
         <div class="row text-center">
             <div class="col-md-4  col-sm-4">
                 <i class="fa faa-horizontal animated icon-round bk-color-black timer count-title" id="count-number"
-                    data-to="@Model.ChaptersCreateCounter" data-speed="9300"></i>
+                   data-to="@Model.ChaptersCreateCounter" data-speed="9300"></i>
                 <h4>All your chapters </h4>
                 <p>
                     Total count of your chapters, which
@@ -57,17 +62,17 @@
             </div>
             <div class="col-md-4  col-sm-4">
                 <i class="fa faa-float animated icon-round bk-color-blue timer count-title" id="count-number"
-                    data-to="@Model.Creatives.Count" data-speed="9300"></i>
+                   data-to="@Model.Creatives.Count" data-speed="9300"></i>
                 <h4>All your creatives count </h4>
                 <p>
-                    Total count of your current creatives, 
+                    Total count of your current creatives,
                     which you have got right now
                 </p>
 
             </div>
             <div class="col-md-4  col-sm-4">
                 <i class="fa faa-ring animated icon-round bk-color-brown timer count-title" id="count-number"
-                    data-to="@Model.Medals.Count" data-speed="9300"></i>
+                   data-to="@Model.Medals.Count" data-speed="9300"></i>
                 <h4>All your medals count </h4>
                 <p>
                     The medals plays an a very important role for
@@ -80,18 +85,33 @@
             <div ng-repeat="creative in creatives">
                 <div class="col-md-12 col-sm-12">
                     <div class="panel panel-info">
-                        <div class="panel-heading"> 
-                            <div contenteditable data-directive ng-model="creative.Name"
-                                  ng-blur="updateCreativeName(creative.Id, creative.Name)">{{creative.Name}}</div>
-                                <button ng-click="deleteCreativeById(creative.Id, '@User.Identity.Name')" style="">
-                                    <i class="fa fa-times" aria-hidden="true"></i>
-                                </button> 
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-md-11 col-sm-11 col-xs-11">
+                                    <div contenteditable data-directive ng-model="creative.Name"
+                                         ng-blur="updateCreativeName(creative.Id, creative.Name)">
+                                        {{creative.Name}}
+                                    </div>
+                                </div>
+                                <div class="pull-right">
+                                    <span class="glyphicon glyphicon-remove cursor-pointer" ng-click="deleteCreativeById(creative.Id, '@User.Identity.Name')"></span>
+                                </div>
                             </div>
+                        </div>
                         <div class="panel-body">
-                            <a href="../../Creative/CreateChapter/?creativeId={{creative.Id}}">Add</a>
+
+                            <a href="../../Creative/CreateChapter/?creativeId={{creative.Id}}">
+                                <span class="glyphicon glyphicon-plus-sign" style="color:lawngreen; font-size:200%;"></span>
+
+                            </a>
                             <div ng-repeat="chapter in creative.Chapters">
-                                <p>{{chapter.Name}}</p>
-                                <a href="../../Creative/EditChapter/?creativeId={{creative.Id}}&chapterId={{chapter.Id}}">Edit</a>  
+                                <div class="row" style="margin-left: 1%; margin-bottom: 1%">
+                                    <span class="glyphicon glyphicon-asterisk" style="font-size: 70%;"></span>
+                                    <span style="font-size: 150%"><b>{{chapter.Name}}</b></span>
+                                    <a href="../../Creative/EditChapter/?creativeId={{creative.Id}}&chapterId={{chapter.Id}}">
+                                        <span class="glyphicon glyphicon-pencil" style="color:black"></span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                         <div class="panel-footer">
@@ -100,42 +120,263 @@
                     </div>
                 </div>
             </div>
-            </div>
+        </div>
         <div class="row" id="section1">
             <div class="col-md-4">
                 @Html.Partial("../Account/ResetPassword", new ResetPasswordViewModel() { Name = Model.UserName, Type = "user" })
             </div>
             <div class="col-md-4">
-                @Html.Partial("../Account/ResetLogin", new ResetLoginViewModel() { Id = Model.Id, Type="user" })
+                @Html.Partial("../Account/ResetLogin", new ResetLoginViewModel() { Id = Model.Id, Type = "user" })
             </div>
             <div class="col-md-4">
-                @Html.Partial("../Account/ResetEmail", new ResetEmailViewModel() { Id = Model.Id, Type="user" })
+                @Html.Partial("../Account/ResetEmail", new ResetEmailViewModel() { Id = Model.Id, Type = "user" })
             </div>
         </div>
-        </div>
+    </div>
 </section>
 <style>
+    body.hover {
+        background-color: rgba(0,0,0,.6);
+    }
 
+    #dropzone {
+        position: relative;
+        border: 10px dotted #FFF;
+        border-radius: 20px;
+        color: white;
+        font: bold 24px/200px arial;
+        height: 200px;
+        margin: 30px auto;
+        text-align: center;
+        width: 200px;
+    }
 
-   
+        #dropzone.activate {
+            box-shadow: 0 0 30px 15px rgb(182, 255, 0);
+        }
 
+        #dropzone.hover {
+            border: 10px solid #FE5;
+            color: #FE5;
+        }
+
+        #dropzone.dropped {
+            background: #222;
+            border: 10px solid #444;
+        }
+
+        #dropzone div {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+
+        #dropzone img {
+            border-radius: 10px;
+            vertical-align: middle;
+            max-width: 95%;
+            max-height: 95%;
+        }
+
+        #dropzone [type="file"] {
+            cursor: pointer;
+            position: absolute;
+            opacity: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
 </style>
+
+<script>
+    $('body').on({ 'drop dragover dragenter': dropHandler }, '[data-image-uploader]');
+    $('body').on({ 'change': regularImageUpload }, '#file');
+
+    function regularImageUpload(e) {
+        var file = $(this)[0],
+            type = file.files[0].type.toLocaleLowerCase();
+        if (type.match(/jpg/) !== null ||
+           type.match(/jpeg/) !== null ||
+           type.match(/png/) !== null ||
+           type.match(/gif/) !== null) {
+
+            readUploadedImage(file.files[0]);
+        }
+    }
+
+    function dropHandler(e) {
+        e.preventDefault();
+
+        if (e.type === 'drop' && e.originalEvent.dataTransfer && e.originalEvent.dataTransfer.files.length) {
+
+            var files = e.originalEvent.dataTransfer.files,
+				type = files[0].type.toLocaleLowerCase();
+            if (type.match(/jpg/) !== null ||
+				type.match(/jpeg/) !== null ||
+				type.match(/png/) !== null ||
+				type.match(/gif/) !== null) {
+                readUploadedImage(files[0]);
+            }
+
+        }
+
+        return false;
+    }
+
+    function readUploadedImage(img) {
+        var reader;
+
+        if (window.FileReader) {
+            reader = new FileReader();
+            reader.readAsDataURL(img);
+
+            reader.onload = function (file) {
+                if (file.target && file.target.result) {
+                    imageLoader(file.target.result, displayImage);
+                }
+
+            };
+
+            reader.onerror = function () {
+                throw new Error('Something went wrong!');
+            };
+
+        } else {
+            throw new Error('FileReader not supported!');
+        }
+
+    }
+
+    function imageLoader(src, callback) {
+        var img;
+
+        img = new Image();
+
+        img.src = src;
+        base64 = src.split(",")[1];
+
+        img.onload = function () {
+            imageResizer(img, callback);
+        }
+        console.log(base64);
+        post('Upload', { img: base64 });
+
+    }
+
+    function post(path, params, method) {
+        method = method || "post"; // Set method to post by default if not specified.
+
+        // The rest of this code assumes you are not using a library.
+        // It can be made less wordy if you use one.
+        var form = document.createElement("form");
+        form.setAttribute("method", method);
+        form.setAttribute("action", path);
+
+        for (var key in params) {
+            if (params.hasOwnProperty(key)) {
+                var hiddenField = document.createElement("input");
+                hiddenField.setAttribute("type", "hidden");
+                hiddenField.setAttribute("name", key);
+                hiddenField.setAttribute("value", params[key]);
+
+                form.appendChild(hiddenField);
+            }
+        }
+
+        document.body.appendChild(form);
+        form.submit();
+    }
+
+    function imageResizer(img, callback) {
+        var canvas = document.createElement('canvas');
+        canvas.width = 200;
+        canvas.height = 200;
+        context = canvas.getContext('2d');
+        context.drawImage(img, 0, 0, 200, 200);
+
+        callback(canvas.toDataURL());
+
+    }
+
+    function displayImage(img) {
+        $('[data-image]').attr('src', img);
+    }
+    //---------------------
+    $(function () {
+        $('body').on('dragover', function () {
+            $(this).addClass('hover');
+            $('#dropzone').addClass('activate');
+        });
+
+        $('body').on('dragleave', function () {
+            $(this).removeClass('hover');
+            $('#dropzone').removeClass('activate');
+        });
+
+        $('#dropzone').on('dragover', function () {
+            $(this).addClass('hover');
+        });
+
+        $('#dropzone').on('dragleave', function () {
+            $(this).removeClass('hover');
+        });
+
+        $('#dropzone input').on('change', function (e) {
+            var file = this.files[0];
+
+            $('#dropzone').removeClass('hover');
+
+            if (this.accept && $.inArray(file.type, this.accept.split(/, ?/)) == -1) {
+                return alert('File type not allowed.');
+            }
+
+            $('#dropzone').addClass('dropped');
+            $('#dropzone img').remove();
+
+            if ((/^image\/(gif|png|jpeg)$/i).test(file.type)) {
+                var reader = new FileReader(file);
+
+                reader.readAsDataURL(file);
+
+                reader.onload = function (e) {
+                    var data = e.target.result,
+                        $img = $('<img />').attr('src', data).fadeIn();
+
+                    $('#dropzone div').html($img);
+                };
+            } else {
+                var ext = file.name.split('.').pop();
+
+                $('#dropzone div').html(ext);
+            }
+        });
+    });
+
+
+</script>
 @*<style>
-.panel-heading button { 
-opacity: .3; 
-background: transparent; 
-font-size: 15px; 
-border: none; 
-position: absolute; 
-color: black; 
-} 
-.panel-heading button:hover { 
-opacity: 1; 
-}
-</style>*@
+    .panel-heading button {
+    opacity: .3;
+    background: transparent;
+    font-size: 15px;
+    border: none;
+    position: absolute;
+    color: black;
+    }
+    .panel-heading button:hover {
+    opacity: 1;
+    }
+    </style>*@
 @section Scripts {
     @Scripts.Render("~/bundles/scroll")
+    @Scripts.Render("~/bundles/dropzonescripts")
+
+
 }
 @section Styles {
-   @Styles.Render("~/Content/somestyles")
+    @Styles.Render("~/Content/somestyles")
+    @Styles.Render("~/Content/dropzonescss")
 }

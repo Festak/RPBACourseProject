@@ -5,9 +5,8 @@
     Overflow: auto;
     
 }
-
-/* Set padding to keep content from hitting the edges */
-.body-content {
+is-dragover {
+  display: none;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -24,8 +23,6 @@ textarea {
     max-width: 280px;
 }
 
-.scr {
-}
 
     .scr::-webkit-scrollbar {
         width: 10px;
@@ -61,18 +58,23 @@ textarea {
             background: transparent;
         }
 
-    #div1 .blue {
+    #div1 .type-0 {
         color: blue;
     }
 
-    #div1 .red {
+    #div1 .type-1 {
         color: red;
     }
 
-    #div1 .yellow {
-        color: yellow;
+    #div1 .type-2 {
+        color: greenyellow;
     }
-
+    #div1 .type-3 {
+        color: fuchsia;
+    }
+    #div1 .type-4 {
+        color:hotpink;
+    }
 
 .panel-login {
     border-color: #ccc;
@@ -217,8 +219,4 @@ textarea {
 .font300 {
     font-size: 300%;
     line-height: 120%;
-}
-
-.cursor-fuck {
-    cursor: url(../Resources/cursor.cur);
 }
