@@ -3,7 +3,7 @@ namespace SellTables.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class editDateChange : DbMigration
+    public partial class editDate : DbMigration
     {
         public override void Up()
         {

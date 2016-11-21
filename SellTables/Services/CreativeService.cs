@@ -101,7 +101,12 @@ namespace SellTables.Services
             return listOfCreatives.ToList();
         }
 
-     
+        public void DeleteChapterById(int id, string userName) {
+            var chapter = dataBaseContext.Chapters.Include(t=>t.Tags).FirstOrDefault(i=>i.Id == id);
+            DeleteTagFromChapter(chapter);
+            dataBaseContext.Chapters.Remove(chapter);
+            dataBaseContext.SaveChanges();
+        }
 
         public List<CreativeViewModel> GetCreativesByUser(string userName)
         {
@@ -140,7 +145,7 @@ namespace SellTables.Services
             if (chapter.TagsString != null)
                 chapter.Tags = GetTags(chapter.TagsString, chapter);
             creative.Chapters.Add(chapter);
-            CreativeSearch.AddUpdateLuceneIndex(creative); //ADD LUCENE INDEX
+           // CreativeSearch.AddUpdateLuceneIndex(creative); 
             ChapterRepository.Add(chapter);
             CreativeRepository.Update(creative);
 
@@ -151,7 +156,7 @@ namespace SellTables.Services
             Chapter chapter = BuildChapterByRegisterModel(model);
             Creative creative = CreativeRepository.Get(model.creativeId);
             creative.EditDate = DateTime.Now;
-            CreativeSearch.AddUpdateLuceneIndex(creative);
+         //   CreativeSearch.AddUpdateLuceneIndex(creative);
             CreativeRepository.Update(creative);
             ChapterRepository.Update(chapter);
         }
@@ -161,7 +166,7 @@ namespace SellTables.Services
             Creative creative = CreativeRepository.Get(id);
             creative.Name = name;
             creative.EditDate = DateTime.Now;
-            CreativeSearch.AddUpdateLuceneIndex(creative);
+         //   CreativeSearch.AddUpdateLuceneIndex(creative);
             CreativeRepository.Update(creative);
         }
 
@@ -271,6 +276,7 @@ namespace SellTables.Services
                     Chapters = InitChapters(creative.Chapters),
                     UserName = creative.User.UserName,
                     Name = creative.Name,
+                    EditDate = creative.EditDate.ToShortDateString() + " " + creative.EditDate.ToShortTimeString(),
                     Rating = creative.Rating,
                     Medals = InitMedals(creative.User.Medals),
                     CreationDate = creative.CreationDate.ToShortDateString() + " " + creative.CreationDate.ToShortTimeString()

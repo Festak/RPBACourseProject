@@ -137,6 +137,15 @@ angular.module('creative', ['ngRoute'])
              
           }
 
+          $scope.deleteChapterById = function (chapterId, user) {
+              $http.post('/Creative/DeleteChapterById', { id: chapterId, userName: user }).success(function (result) {
+                  $scope.getCreativesByUser(user);
+              })
+  .error(function (data) {
+      console.log(data);
+  });
+          }
+
 
           $scope.getCreativesByUser = function (name) {
               $http.post('/Creative/GetCreativesByUser', { userName: name }).success(function (result) {

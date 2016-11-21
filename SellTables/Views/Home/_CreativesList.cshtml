@@ -25,10 +25,10 @@
 
                     <div ng-repeat="chapter in creative.Chapters" ng-controller="MainController">
 
-                        <span class="cursor-pointer" ng-click="redirect(chapter.Id)">
+                        <span class="cursor-pointer" ng-click="redirectToCreative(creative.Id)">
                             <small>
                                 <span class="glyphicon glyphicon-chevron-right"></span>
-                            </small>=
+                            </small>
                             {{chapter.Name}}
                         </span>
                     </div>

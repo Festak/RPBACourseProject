@@ -81,15 +81,12 @@ namespace SellTables.Services
             return findTag.Chapters.Count;
         }
 
-        private Tag FindTag(String name)
+        private Tag FindTag(string name)
         {
             return dataBaseContext.Tags
-                    .Where(t => t.Description.Equals(name))
+                    .Where(t => t.Description == name)
                     .FirstOrDefault();
         }
-
-
-
 
         private ICollection<TagViewModel> InitTagModel(ICollection<Tag> list)
         {

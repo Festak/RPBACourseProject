@@ -222,18 +222,9 @@
     <Compile Include="Interfaces\IUserRepository.cs" />
     <Compile Include="Interfaces\IUserService.cs" />
     <Compile Include="Lucene\CreativeSearch.cs" />
-    <Compile Include="Lucene\ChapterSearch.cs" />
-    <Compile Include="Migrations\201611151622394_testMigr.cs" />
-    <Compile Include="Migrations\201611151622394_testMigr.Designer.cs">
-      <DependentUpon>201611151622394_testMigr.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611151637198_maxlength.cs" />
-    <Compile Include="Migrations\201611151637198_maxlength.Designer.cs">
-      <DependentUpon>201611151637198_maxlength.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611171440194_editDateChange.cs" />
-    <Compile Include="Migrations\201611171440194_editDateChange.Designer.cs">
-      <DependentUpon>201611171440194_editDateChange.cs</DependentUpon>
+    <Compile Include="Migrations\201611210733101_editDate.cs" />
+    <Compile Include="Migrations\201611210733101_editDate.Designer.cs">
+      <DependentUpon>201611210733101_editDate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -1248,14 +1239,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201611151622394_testMigr.resx">
-      <DependentUpon>201611151622394_testMigr.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611151637198_maxlength.resx">
-      <DependentUpon>201611151637198_maxlength.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611171440194_editDateChange.resx">
-      <DependentUpon>201611171440194_editDateChange.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201611210733101_editDate.resx">
+      <DependentUpon>201611210733101_editDate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Resource.en.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

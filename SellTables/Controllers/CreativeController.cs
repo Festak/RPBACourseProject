@@ -102,6 +102,10 @@ namespace SellTables.Controllers
             return dataBaseConnection.Users.Find(System.Web.HttpContext.Current.User.Identity.GetUserId());
         }
 
+        public void DeleteChapterById(int id, string userName) {
+            CreativeService.DeleteChapterById(id, userName);
+        }
+
         [AllowAnonymous]
         public ActionResult Search(string query)
         {
@@ -109,10 +113,7 @@ namespace SellTables.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            var listOfLuceneObjectsByTags = Lucene.CreativeSearch.Search(query, "Tags");
-          //  var listOfCreativeViewModelObjects = CreativeService.GetCreativesBySearch(listOfLuceneObjectsByTags);
-      
-
+            var listOfLuceneObjectsByTags = Lucene.CreativeSearch.Search(query, "Tags");  
             return View(listOfLuceneObjectsByTags.ToList());
         }
 

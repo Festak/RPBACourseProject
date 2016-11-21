@@ -24,8 +24,6 @@ namespace SellTables.Services
         }
 
 
-
-
         private static ICollection<Tag> GetTags(string tagList)
         {
             var stringList = tagList.Split(' ');

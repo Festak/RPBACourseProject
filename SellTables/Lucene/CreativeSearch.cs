@@ -147,6 +147,7 @@ namespace SellTables.Lucene
             doc.Add(new Field("User", creative.User.UserName, Field.Store.YES, Field.Index.ANALYZED));
             doc.Add(new Field("Rating", creative.Rating.ToString(), Field.Store.YES, Field.Index.ANALYZED));
             doc.Add(new Field("Date", creative.CreationDate.ToShortDateString() + " " + creative.CreationDate.ToShortTimeString(), Field.Store.YES, Field.Index.ANALYZED));
+            doc.Add(new Field("EditDate", creative.EditDate.ToShortDateString() + " " + creative.EditDate.ToShortTimeString(), Field.Store.YES, Field.Index.ANALYZED));
             string tags = "";
             string chapters = "";
             foreach (var chapter in creative.Chapters)
@@ -198,8 +199,10 @@ namespace SellTables.Lucene
             return new CreativeViewModel
             {
                 Id = Convert.ToInt32(doc.Get("Id")),
+                UserName = doc.Get("User"),
                 Name = doc.Get("Name"),
                 Tags = doc.Get("Tags"),
+                EditDate = doc.Get("EditDate"),
                 Rating = Convert.ToDouble(doc.Get("Rating")),
                 CreationDate = doc.Get("Date"),
                 Chapters = GetChapters(doc.Get("Chapters"))   
@@ -262,7 +265,7 @@ namespace SellTables.Lucene
                 else
                 {
                     var parser = new MultiFieldQueryParser
-                        (Version.LUCENE_30, new[] { "Id", "Name", "User, Rating", "Date", "Tags"}, analyzer);
+                        (Version.LUCENE_30, new[] { "Id", "Name", "User, Rating", "Date", "Tags", "EditDate"}, analyzer);
                     var query = parseQuery(searchQuery, parser);
                     var hits = searcher.Search
                     (query, null, hits_limit, Sort.RELEVANCE).ScoreDocs;
