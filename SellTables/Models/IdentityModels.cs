@@ -15,15 +15,11 @@ namespace SellTables.Models
         public ICollection<Medal> Medals { get; set; }
         public int ChaptersCreateCounter { get; set; }
         public string AvatarUri { get; set; }
-        public string Language { get; set; }
-        public string Theme { get; set; }
         public DateTime RegistrationDate { get; set; }
 
         public ApplicationUser() {
             Creatives = new List<Creative>();
             Medals = new List<Medal>();
-            Language = "en";
-            Theme = "black";
             RegistrationDate = DateTime.Now;
             AvatarUri = "http://res.cloudinary.com/festak/image/upload/v1479038549/defaultUser_fofp7w.png";
         }

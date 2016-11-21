@@ -48,13 +48,15 @@ namespace SellTables.Services
             Creative creative = creativemodel.Creative;
             AddCreativeToCounter(creative.User.Id);
             Chapter chapter = creativemodel.Chapter;
-            chapter.Creative = creative;
+          //  chapter.Creative = creative;
+           // chapter.CreativeId = creative.Id;
             if (chapter.TagsString != null)
                 chapter.Tags = GetTags(chapter.TagsString, chapter);
             creative.Chapters.Add(chapter);
-            CreativeSearch.AddUpdateLuceneIndex(creative); //ADD LUCENE INDEX
-            CreativeRepository.Add(creative);
+            //  CreativeSearch.AddUpdateLuceneIndex(creative); //ADD LUCENE INDEX
             ChapterRepository.Add(chapter);
+            CreativeRepository.Add(creative);
+            
         }
 
         public ICollection<CreativeViewModel> GetCreativesBySearch(ICollection<CreativeViewModel> list)
@@ -142,6 +144,7 @@ namespace SellTables.Services
             Creative creative = model.Creative;
             Chapter chapter = model.Chapter;
             chapter.Creative = creative;
+            
             if (chapter.TagsString != null)
                 chapter.Tags = GetTags(chapter.TagsString, chapter);
             creative.Chapters.Add(chapter);
@@ -251,10 +254,12 @@ namespace SellTables.Services
                 foreach (string text in stringList)
                 {
                     Tag tag = new Tag();
-                    tag.Chapters.Add(chapter);
+               //   tag.Chapters.Add(chapter);
                     tag.Description = text;
-                    if (dataBaseContext.Tags.Where(t => t.Description == text).ToList().Count == 0)
+                    if (tag.Description == "") tag.Description = "tag"; 
+                    if (dataBaseContext.Tags.Where(t => t.Description == text).ToList().Count == 0 )
                     {
+                   //  chapter.Tags.Add(tag);
                         dataBaseContext.Tags.Add(tag);
                         dataBaseContext.SaveChanges();
                     }
