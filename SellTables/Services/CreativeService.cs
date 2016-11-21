@@ -253,18 +253,15 @@ namespace SellTables.Services
             {
                 foreach (string text in stringList)
                 {
+                    if (text == "") continue;
                     Tag tag = new Tag();
-               //   tag.Chapters.Add(chapter);
                     tag.Description = text;
-                    if (tag.Description == "") tag.Description = "tag"; 
                     if (dataBaseContext.Tags.Where(t => t.Description == text).ToList().Count == 0 )
                     {
-                   //  chapter.Tags.Add(tag);
                         dataBaseContext.Tags.Add(tag);
                         dataBaseContext.SaveChanges();
                     }
                         tags.Add(tag);
-
                 }
             }
             return tags;
