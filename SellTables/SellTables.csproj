@@ -207,6 +207,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Content Include="Content\somestyles\dropzone.css" />
     <Content Include="Content\somestyles\form.css" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
@@ -236,6 +237,10 @@
     <Compile Include="Migrations\201611211420048_user.Designer.cs">
       <DependentUpon>201611211420048_user.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611211617462_creativeUri.cs" />
+    <Compile Include="Migrations\201611211617462_creativeUri.Designer.cs">
+      <DependentUpon>201611211617462_creativeUri.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Chapter.cs" />
@@ -263,6 +268,7 @@
       <DependentUpon>Resource.resx</DependentUpon>
     </Compile>
     <Compile Include="Services\ChapterService.cs" />
+    <Compile Include="Services\CloudinaryService.cs" />
     <Compile Include="Services\TagService.cs" />
     <Compile Include="Services\CreativeService.cs" />
     <Compile Include="Services\UserService.cs" />
@@ -311,6 +317,7 @@
     <Content Include="Content\ng-tags-input.bootstrap.min.css" />
     <Content Include="Content\ng-tags-input.min.css" />
     <Content Include="Content\somestyles\AdminUserPage.css" />
+    <Content Include="Content\somestyles\jqui.js" />
     <Content Include="Content\somestyles\search.css" />
     <Content Include="Content\somestyles\TagsStyles.css" />
     <Content Include="Content\somestyles\userpage.css" />
@@ -1159,6 +1166,7 @@
     <Content Include="Scripts\scripts\clean-blog.min.js" />
     <Content Include="Scripts\scripts\contact_me.js" />
     <Content Include="Scripts\scripts\counter.js" />
+    <Content Include="Scripts\scripts\dropzone.js" />
     <Content Include="Scripts\scripts\jquery.tabslideout.v1.2.js" />
     <Content Include="Scripts\scripts\ng-sortable.js" />
     <Content Include="Scripts\scripts\ng-tags-input.min.js" />
@@ -1170,9 +1178,8 @@
     <Content Include="Scripts\scripts\star-rating.min.js" />
     <Content Include="Scripts\scripts\swiper.js" />
     <Content Include="Scripts\scripts\swiper.min.js" />
-    <Content Include="Scripts\scripts\tagscloud.js" />
+    <Content Include="Scripts\scripts\jquery.tagcanvas.js" />
     <Content Include="Scripts\scripts\jqmenu.js" />
-    <Content Include="Scripts\scripts\tagcloud.js" />
     <Content Include="Scripts\scripts\TagsScript.js" />
     <Content Include="Scripts\summernote\jquery-2.1.4.js" />
     <Content Include="Scripts\summernote\summernote.css" />
@@ -1248,8 +1255,8 @@
     <Folder Include="images\" />
     <Folder Include="LuceneIndexOfCreative\" />
     <Folder Include="Scripts\cloudinary\" />
-    <Folder Include="Views\Rating\" />
     <Folder Include="Views\Default\" />
+    <Folder Include="Views\Rating\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -1266,6 +1273,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611211420048_user.resx">
       <DependentUpon>201611211420048_user.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611211617462_creativeUri.resx">
+      <DependentUpon>201611211617462_creativeUri.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Resource.en.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

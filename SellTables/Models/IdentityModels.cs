@@ -21,7 +21,7 @@ namespace SellTables.Models
             Creatives = new List<Creative>();
             Medals = new List<Medal>();
             RegistrationDate = DateTime.Now;
-            AvatarUri = "http://res.cloudinary.com/festak/image/upload/v1479038549/defaultUser_fofp7w.png";
+            AvatarUri = "https://res.cloudinary.com/festak/image/upload/v1479038549/defaultUser_fofp7w.png";
         }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
