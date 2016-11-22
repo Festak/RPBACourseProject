@@ -1,14 +1,8 @@
-﻿using SellTables.Interfaces;
+﻿
 using SellTables.Models;
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
-using SellTables.Repositories;
-using SellTables.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+
 using System.IO;
 
 namespace SellTables.Services

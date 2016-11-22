@@ -1,5 +1,5 @@
 ﻿@using SellTables.Models
-@model SellTables.Models.ApplicationUser
+@model ApplicationUser
 @{
     ViewBag.Title = "UserPage";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -55,17 +55,63 @@
         </ul>
         <div class="tab-content">
             <div class="tab-pane fade active in" id="profile">
-                <div class="container">
+                <div class="container" ng-controller="CreativeController" ng-init="getCreativesByUser('@Model.UserName')">
+                    <div class="row">
+                        <div ng-repeat='creative in creatives' class="col-md-12 col-xs-12 col-lg-12 col-sm-12">
+                            <div class="box3">
+                                <header>
+                                    <div class="row">
+                                        <div class="col-md-11 col-sm-11 col-xs-11 col-lg-11"></div>
+                                        <div class="col-md-1 col-sm-1 col-xs-1 col-lg-1">
 
-                    <br clear="all" />
-                    <div class="row" ng-controller="CreativeController"
-                         ng-init="getCreativesByUser('@Model.UserName')">
-                        <div ng-repeat="creative in creatives">
-                            <div class="col-sm-11">{{creative.Name}}</div>
-                            <div class="col-sm-1"><i ng-click="deleteCreativeById(creative.Id, '@Model.UserName')">Delete</i></div>
+                                            <button ng-click="deleteCreativeById(creative.Id, '@User.Identity.Name')">
+                                                <i class="fa fa-times" aria-hidden="true"></i>
+                                            </button>
 
+                                        </div>
+                                    </div>
+                                </header>
+                                <div class="post-title">
+                                    <div ng-controller="MainController">
+                                        <h2 class="post-title cursor-pointer"
+                                            ng-click="redirectToCreative(creative.Id)">
+                                            Read creative
+                                        </h2>
+                                    </div>
+                                    <div contenteditable data-directive ng-model="creative.Name">
+                                        <h2 class="post-title">{{creative.Name}}</h2>
+                                    </div>
+                                    <i ng-click="updateCreativeName(creative.Id, creative.Name)">Update Name</i>
+                                </div>
+
+                                <h4 class="post-subtitle cursor-pointer">
+                                    <a href="../../Creative/CreateChapter/?creativeId={{creative.Id}}">Add</a><br />
+                                    <span class="glyphicon glyphicon-chevron-down"></span>
+                                    <span role="button" data-toggle="collapse" href="#collapseExample{{$index}}"
+                                          aria-expanded="false" aria-controls="collapseExample">
+                                        Глав: {{creative.Chapters.length}}
+                                    </span>
+                                </h4>
+                                <div class="collapse" id="collapseExample{{$index}}">
+                                    <div ng-repeat="chapter in creative.Chapters" ng-controller="MainController">
+                                        <span class="cursor-pointer" ng-click="redirect(chapter.Id)">
+                                            {{chapter.Name}}
+                                        </span>
+                                        <a href="../../Creative/EditChapter/?creativeId={{creative.Id}}&chapterId={{chapter.Id}}">Edit</a>
+                                        <i ng-click="deleteChapterById(chapter.Id, '@Model.UserName')">Delete</i>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <span id="{{$index}}1" ng-click="vote(1, creative)" class="glyphicon glyphicon-star-empty creative.Id+'1'" ng-mouseover="show($index,1)" ng-mouseleave="hide($index)" aria-hidden="true"></span>
+                                        <span id="{{$index}}2" ng-click="vote(2, creative)" class="glyphicon glyphicon-star-empty creative.Id+'1'" ng-mouseover="show($index,2)" ng-mouseleave="hide($index)" aria-hidden="true"></span>
+                                        <span id="{{$index}}3" ng-click="vote(3, creative)" class="glyphicon glyphicon-star-empty creative.Id+'1'" ng-mouseover="show($index,3)" ng-mouseleave="hide($index)" aria-hidden="true"></span>
+                                        <span id="{{$index}}4" ng-click="vote(4, creative)" class="glyphicon glyphicon-star-empty creative.Id+'1'" ng-mouseover="show($index,4)" ng-mouseleave="hide($index)" aria-hidden="true"></span>
+                                        <span id="{{$index}}5" ng-click="vote(5, creative)" class="glyphicon glyphicon-star-empty creative.Id+'1'" ng-mouseover="show($index,5)" ng-mouseleave="hide($index)" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -80,24 +126,6 @@
                     </div>
                     <br />
                     <div class="row">
-                        <form class="form-horizontal main_form text-left" action=" " method="post" id="contact_form">
-                            <fieldset>
-
-                                <div class="col-md-12 text-left">
-                                    <div class="uplod-picture">
-                                        <span class="btn btn-default uplod-file">
-                                            Upload Photo <input type="file" />
-                                        </span>
-                                    </div>
-                                </div>
-
-                                <div class="form-group col-md-10">
-                                    <div class="col-md-6">
-                                        <button type="submit" class="btn btn-warning submit-button">Save</button>
-                                    </div>
-                                </div>
-                            </fieldset>
-                        </form>
                         <div class="col-md-4">
                             @Html.Partial("../Account/ResetPassword", new ResetPasswordViewModel() { Name = Model.UserName, Type = "admin" })
                         </div>

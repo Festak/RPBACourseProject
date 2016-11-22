@@ -39,8 +39,6 @@ namespace SellTables
                           )); 
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
-                "~/Scripts/scripts/ng-sortable.js",
-                "~/Scripts/scripts/Sortable.js",
                 "~/app/main.js",
               "~/app/controllers/tag.js",
                "~/app/controllers/cookies.js",

@@ -56,7 +56,7 @@
                 <p>
                     Total count of chapters, which
                     was created for the all time.
-                    
+
                 </p>
 
             </div>
@@ -98,34 +98,52 @@
                     </header>
                     <div class="post-title">
                         <div ng-controller="MainController">
-                            <h2 class="post-title cursor-pointer"
+                            <h2 class="cursor-pointer"
                                 ng-click="redirectToCreative(creative.Id)">
                                 Read creative
                             </h2>
                         </div>
-                        <div contenteditable data-directive ng-model="creative.Name">
-                            <h2 class="post-title">{{creative.Name}}</h2>
-                        </div>
-                        <i ng-click="updateCreativeName(creative.Id, creative.Name)">Update Name</i>
+                        @if ((User.Identity.Name == Model.UserName) || User.IsInRole("admin"))
+                        {
+                            <div contenteditable data-directive ng-model="creative.Name">
+                                <h2 class="post-title">{{creative.Name}}</h2>
+                            </div>
+                            <i ng-click="updateCreativeName(creative.Id, creative.Name)">Update Name</i>
+                        }
+                        else
+                        {
+                            <div>
+                                <h2 class="post-title">{{creative.Name}}</h2>
+                            </div>
+                        }
                     </div>
 
                     <h4 class="post-subtitle cursor-pointer">
-                        <a href="../../Creative/CreateChapter/?creativeId={{creative.Id}}">Add</a><br />
-                        <span class="glyphicon glyphicon-chevron-down"></span>
-                        <span role="button" data-toggle="collapse" href="#collapseExample{{$index}}"
-                              aria-expanded="false" aria-controls="collapseExample">
-                            Глав: {{creative.Chapters.length}}
-                        </span>
-                    </h4>
-                    <div class="collapse" id="collapseExample{{$index}}">
-                        <div ng-repeat="chapter in creative.Chapters" ng-controller="MainController">
-                            <span class="cursor-pointer" ng-click="redirect(chapter.Id)">
-                                {{chapter.Name}}
+                            <a href="../../Creative/CreateChapter/?creativeId={{creative.Id}}">Add</a><br />
+                            <span class="glyphicon glyphicon-chevron-down"></span>
+                            <span role="button" data-toggle="collapse" href="#collapseExample{{$index}}"
+                                  aria-expanded="false" aria-controls="collapseExample">
+                                Глав: {{creative.Chapters.length}}
                             </span>
-                            <a href="../../Creative/EditChapter/?creativeId={{creative.Id}}&chapterId={{chapter.Id}}">Edit</a>
-                            <i ng-click="deleteChapterById(chapter.Id, '@Model.UserName')">Delete</i>
+                        </h4>
+                        <div class="collapse" id="collapseExample{{$index}}">
+                                <ul data-as-sortable="dragControlListeners"
+                                    data-ng-model="creative.Chapters">
+                                    <li data-ng-repeat="chapter in creative.Chapters"
+                                        data-as-sortable-item>
+                                        <div data-as-sortable-item-handle>
+                                            {{chapter.Name}}
+                                            @if ((User.Identity.Name == Model.UserName) || User.IsInRole("admin"))
+                                            {
+                                                <a href="../../Creative/EditChapter/?creativeId={{creative.Id}}&chapterId={{chapter.Id}}">Edit</a>
+                                                <i ng-click="deleteChapterById(chapter.Id, '@Model.UserName')">Delete</i>
+                                            }
+                                        </div>
+                                    </li>
+                                </ul>
+                           
                         </div>
-                    </div>
+
                     <div class="row">
                         <div class="col-md-12">
                             <span id="{{$index}}1" ng-click="vote(1, creative)" class="glyphicon glyphicon-star-empty creative.Id+'1'" ng-mouseover="show($index,1)" ng-mouseleave="hide($index)" aria-hidden="true"></span>
@@ -135,33 +153,8 @@
                             <span id="{{$index}}5" ng-click="vote(5, creative)" class="glyphicon glyphicon-star-empty creative.Id+'1'" ng-mouseover="show($index,5)" ng-mouseleave="hide($index)" aria-hidden="true"></span>
                         </div>
                     </div>
-
                 </div>
-
             </div>
-            @*<div ng-repeat="creative in creatives">
-                    <div class="col-md-12 col-sm-12">
-                        <div class="panel panel-info">
-                            <div class="panel-heading">
-                                <div contenteditable data-directive ng-model="creative.Name"
-                                      ng-blur="updateCreativeName(creative.Id, creative.Name)">{{creative.Name}}</div>
-                                    <button ng-click="deleteCreativeById(creative.Id, '@User.Identity.Name')" style="">
-                                        <i class="fa fa-times" aria-hidden="true"></i>
-                                    </button>
-                                </div>
-                            <div class="panel-body">
-                                <a href="../../Creative/CreateChapter/?creativeId={{creative.Id}}">Add</a>
-                                <div ng-repeat="chapter in creative.Chapters">
-                                    <p>{{chapter.Name}}</p>
-                                    <a href="../../Creative/EditChapter/?creativeId={{creative.Id}}&chapterId={{chapter.Id}}">Edit</a>
-                                </div>
-                            </div>
-                            <div class="panel-footer">
-                                {{creative.CreationDate}} | {{creative.Rating}}
-                            </div>
-                        </div>
-                    </div>
-                </div>*@
         </div>
         @if ((User.Identity.Name == Model.UserName) || User.IsInRole("admin"))
         {

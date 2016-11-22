@@ -3,13 +3,8 @@ using MultilingualSite.Filters;
 using SellTables.Models;
 using SellTables.Services;
 using SellTables.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 
 namespace SellTables.Controllers
@@ -28,11 +23,13 @@ namespace SellTables.Controllers
             CreativeService = new CreativeService(dataBaseConnection);
             ChapterService = new ChapterService(dataBaseConnection);
         }
+
         [AllowAnonymous]
         public ActionResult Index()
         {
             return RedirectToAction("Index", "Home", new { area = "" });
         }
+
         public ActionResult Create()
         {
             return View();
@@ -51,6 +48,7 @@ namespace SellTables.Controllers
 
             return View(creativemodel);
         }
+
         [AllowAnonymous]
         [HttpGet]
         public ActionResult Details(int? id)
@@ -150,6 +148,10 @@ namespace SellTables.Controllers
                 return RedirectToAction("UserPage", "User");
             }
             return View(model);
+        }
+
+        public void UpdateChapterPos(int oldPosition,int newPosition) {
+
         }
 
     }

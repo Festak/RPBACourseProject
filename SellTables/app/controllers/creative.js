@@ -1,5 +1,5 @@
 ﻿
-angular.module('creative', ['ngRoute'])
+angular.module('creative', ['ngRoute','as.sortable'])
   .controller('CreativeController',
   ['$scope',
       '$http',
@@ -57,7 +57,39 @@ angular.module('creative', ['ngRoute'])
               }
           }
 
+          $scope.dragControlListeners = {
+              accept: function (sourceItemHandleScope, destSortableScope) {
+                  //alert(sourceItemHandleScope.itemScope.sortableScope.$id);
+                  //alert(destSortableScope.$id);
+                  return sourceItemHandleScope.itemScope.sortableScope.$id === destSortableScope.$id;
+                  
+              },//override to determine drag is allowed or not. default is true.
+              itemMoved: function (eventObj) {
+              },
+              orderChanged: function (eventObj) {//Do what you want},
+                  containment: '#board'//optional param.
+                  clone: true //optional param for clone feature.
+                  allowDuplicates: false //optional param allows duplicates to be dropped.
+                  //  eventObj.source.index откуда
+                  // куда eventObj.dest.index
+                  alert(eventObj.dest.index);
+                  $scope.SendLastAndNewChapterPos(eventObj.source.index, eventObj.dest.index);
+              }
+          };
 
+          $scope.SendLastAndNewChapterPos = function (oldPos, newPos) {
+              $http.post('/Creative/UpdateChapterPos', { oldPosition: oldPos, newPosition: newPos }).success(function (result) {
+              })
+                  .error(function (data) {
+                      console.log(data);
+                  });
+          }
+         
+
+              $scope.dragControlListeners1 = {
+                  containment: '#board',//optional param.
+                  allowDuplicates: true //optional param allows duplicates to be dropped.
+          };
 
           $scope.vote = function (rate, creativeObj) {            
               $http.post('/Creative/GetRatingFromView', { rating: rate, creative: creativeObj }).success(function (result) {

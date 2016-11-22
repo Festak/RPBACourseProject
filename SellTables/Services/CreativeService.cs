@@ -6,8 +6,7 @@ using SellTables.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+
 using System.Data.Entity;
 
 namespace SellTables.Services
@@ -47,6 +46,7 @@ namespace SellTables.Services
             Creative creative = creativemodel.Creative;
             AddCreativeToCounter(creative.User.Id);
             Chapter chapter = creativemodel.Chapter;
+           // int lastNumber = dataBaseContext.Chapters.OrderBy();
             //  chapter.Creative = creative;
             // chapter.CreativeId = creative.Id;
             if (chapter.TagsString != null)
@@ -282,6 +282,7 @@ namespace SellTables.Services
                     Id = creative.Id,
                     Chapters = InitChapters(creative.Chapters),
                     UserName = creative.User.UserName,
+                    UserUri = creative.User.AvatarUri,
                     Name = creative.Name,
                     EditDate = creative.EditDate.ToShortDateString() + " " + creative.EditDate.ToShortTimeString(),
                     Rating = creative.Rating,

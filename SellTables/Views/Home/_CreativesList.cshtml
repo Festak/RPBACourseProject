@@ -3,47 +3,46 @@
         <div data-ng-repeat='creative in creatives' class="col-md-12 col-xs-12 col-lg-12 col-sm-12">
             <div class="box7">
 
-                <div class="post-title">
+                <div class="post-title text-center">
                     <div ng-controller="MainController">
                         <h2 class="post-title cursor-pointer" ng-click="redirectToCreative(creative.Id)">{{creative.Name}}</h2>
                     </div>
                 </div>
                 <div class="row">
-
-                    <div ng-repeat="medal in creative.Medals">
-                        <img src="{{medal.ImageUri}}" title="{{medal.Description}}" class="col-md-1 col-sm-1 col-xs-1" style="width:16px; height:16px;" data-toggle="popover" />
+                    <div class="col-md-3">
+                        <img src="{{creative.UserUri}}" style="width: 200px; height: 200px" title="UserAvatar"/>
                     </div>
-                </div>
+                    
+                    <div class="col-md-9">
+                        <h4 class="post-subtitle cursor-pointer">
+                            <span class="glyphicon glyphicon-chevron-down"></span>
+                            <span role="button" data-toggle="collapse" href="#collapseExample{{$index}}" aria-expanded="false" aria-controls="collapseExample">
+                                Глав: {{creative.Chapters.length}}
+                            </span>
+                        </h4>
+                        <div class="collapse" id="collapseExample{{$index}}">
 
-                <h4 class="post-subtitle cursor-pointer">
-                    <span class="glyphicon glyphicon-chevron-down"></span>
-                    <span role="button" data-toggle="collapse" href="#collapseExample{{$index}}" aria-expanded="false" aria-controls="collapseExample">
-                        Глав: {{creative.Chapters.length}}
-                    </span>
-                </h4>
-                <div class="collapse" id="collapseExample{{$index}}">
+                            <div ng-repeat="chapter in creative.Chapters" ng-controller="MainController">
 
-                    <div ng-repeat="chapter in creative.Chapters" ng-controller="MainController">
-
-                        <span class="cursor-pointer" ng-click="redirectToCreative(creative.Id)">
-                            <small>
-                                <span class="glyphicon glyphicon-chevron-right"></span>
-                            </small>
-                            {{chapter.Name}}
-                        </span>
+                                <span class="cursor-pointer" ng-click="redirectToCreative(creative.Id)">
+                                    <small>
+                                        <span class="glyphicon glyphicon-chevron-right"></span>
+                                    </small>
+                                    {{chapter.Name}}
+                                </span>
+                            </div>
+                        </div>
                     </div>
-
-                </div>
-
+</div>
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-3 text-center">
                         <span id="{{$index}}1" ng-click="vote(1, creative)" class="glyphicon glyphicon-star-empty creative.Id+'1'" ng-mouseover="show($index,1)" ng-mouseleave="hide($index)" aria-hidden="true"></span>
                         <span id="{{$index}}2" ng-click="vote(2, creative)" class="glyphicon glyphicon-star-empty creative.Id+'1'" ng-mouseover="show($index,2)" ng-mouseleave="hide($index)" aria-hidden="true"></span>
                         <span id="{{$index}}3" ng-click="vote(3, creative)" class="glyphicon glyphicon-star-empty creative.Id+'1'" ng-mouseover="show($index,3)" ng-mouseleave="hide($index)" aria-hidden="true"></span>
                         <span id="{{$index}}4" ng-click="vote(4, creative)" class="glyphicon glyphicon-star-empty creative.Id+'1'" ng-mouseover="show($index,4)" ng-mouseleave="hide($index)" aria-hidden="true"></span>
                         <span id="{{$index}}5" ng-click="vote(5, creative)" class="glyphicon glyphicon-star-empty creative.Id+'1'" ng-mouseover="show($index,5)" ng-mouseleave="hide($index)" aria-hidden="true"></span>
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-md-9 text-right">
                         <span class="post-meta">Posted by <a href="../../User/UserPage/?name={{creative.UserName}}">{{creative.UserName}}</a> on {{creative.CreationDate}}</span>
                     </div>
                 </div>
