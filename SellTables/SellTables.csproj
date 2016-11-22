@@ -44,6 +44,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CloudinaryDotNet, Version=1.0.27.0, Culture=neutral, PublicKeyToken=c8234dc617ae7841, processorArchitecture=MSIL">
+      <HintPath>..\packages\CloudinaryDotNet.1.0.27\lib\net40\CloudinaryDotNet.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Common.Logging, Version=2.3.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
       <HintPath>..\packages\Common.Logging.2.3.1\lib\net40\Common.Logging.dll</HintPath>
       <Private>True</Private>
@@ -203,6 +207,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Content Include="Content\somestyles\form.css" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ChapterController.cs" />
@@ -225,6 +230,10 @@
     <Compile Include="Migrations\201611220922444_wat.cs" />
     <Compile Include="Migrations\201611220922444_wat.Designer.cs">
       <DependentUpon>201611220922444_wat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611211617356_creativeUri.cs" />
+    <Compile Include="Migrations\201611211617356_creativeUri.Designer.cs">
+      <DependentUpon>201611211617356_creativeUri.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -253,6 +262,7 @@
       <DependentUpon>Resource.resx</DependentUpon>
     </Compile>
     <Compile Include="Services\ChapterService.cs" />
+    <Compile Include="Services\CloudinaryService.cs" />
     <Compile Include="Services\TagService.cs" />
     <Compile Include="Services\CreativeService.cs" />
     <Compile Include="Services\UserService.cs" />
@@ -302,6 +312,7 @@
     <Content Include="Content\ng-tags-input.min.css" />
     <Content Include="Content\somestyles\AdminUserPage.css" />
     <Content Include="Content\somestyles\search.css" />
+    <Content Include="Content\somestyles\TagsStyles.css" />
     <Content Include="Content\somestyles\userpage.css" />
     <Content Include="Content\somestyles\swiper.css" />
     <Content Include="Content\somestyles\swiper.min.css" />
@@ -324,7 +335,6 @@
     <Content Include="node_modules\angular-tag-cloud\examples\js\app.js" />
     <Content Include="node_modules\angular-tag-cloud\src\css\ng-tag-cloud.css" />
     <Content Include="node_modules\angular-tag-cloud\src\ng-tag-cloud.js" />
-    <Content Include="Resources\cursor.cur" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
     <Content Include="Scripts\angular-aria.js" />
@@ -1160,14 +1170,16 @@
     <Content Include="Scripts\scripts\star-rating.min.js" />
     <Content Include="Scripts\scripts\swiper.js" />
     <Content Include="Scripts\scripts\swiper.min.js" />
-    <Content Include="Scripts\scripts\tagscloud.js" />
+    <Content Include="Scripts\scripts\jquery.tagcanvas.js" />
     <Content Include="Scripts\scripts\jqmenu.js" />
-    <Content Include="Scripts\scripts\tagcloud.js" />
+    <Content Include="Scripts\scripts\TagsScript.js" />
     <Content Include="Scripts\summernote\jquery-2.1.4.js" />
     <Content Include="Scripts\summernote\summernote.css" />
     <Content Include="Scripts\summernote\summernote.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -1229,18 +1241,25 @@
     <Folder Include="App_Data\" />
     <Folder Include="images\" />
     <Folder Include="LuceneIndexOfCreative\" />
+    <Folder Include="Scripts\cloudinary\" />
     <Folder Include="Views\Default\" />
+    <Folder Include="Views\Rating\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201611220922444_wat.resx">
       <DependentUpon>201611220922444_wat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611211617356_creativeUri.resx">
+      <DependentUpon>201611211617356_creativeUri.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Resource.en.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

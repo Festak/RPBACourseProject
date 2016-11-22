@@ -11,7 +11,7 @@ namespace SellTables
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-2.1.4.js",
                         "~/Scripts/scripts/jquery.tabslideout.v1.2.js",
-                 "~/Scripts/scripts/tagcloud.js","~/Scripts/scripts/tagscloud.js",
+            "~/Scripts/scripts/jquery.tagcanvas.js",
                       "~/Scripts/scripts/counter.js",
                  "~/Scripts/scripts/jqmenu.js",
                   "~/Scripts/scripts/registerLoginMenu.js"
@@ -78,8 +78,25 @@ namespace SellTables
                       ));
 
             bundles.Add(new StyleBundle("~/Content/somestyles").Include(
-                      "~/Content/somestyles/userpage.css"
+                      "~/Content/somestyles/userpage.css"    
+
                       ));
+
+            bundles.Add(new ScriptBundle("~/bundles/tags").Include(
+                      "~/Scripts/scripts/TagsScript.js"
+                      
+                      ));
+            bundles.Add(new StyleBundle("~/Content/tags").Include(
+                      "~/Content/somestyles/TagsStyles.css"
+
+                      ));
+
+            bundles.Add(new ScriptBundle("~/bundles/dropzonescripts").Include(
+                     "~/Scripts/dropzone/dropzone.js"));
+
+            bundles.Add(new StyleBundle("~/Content/dropzonescss").Include(
+                     "~/Scripts/dropzone/css/basic.css",
+                     "~/Scripts/dropzone/css/dropzone.css"));
         }
     }
 }

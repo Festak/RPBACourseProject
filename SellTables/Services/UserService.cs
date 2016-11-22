@@ -81,6 +81,13 @@ namespace SellTables.Services
 
         }
 
+        public void UpdateUserAvatar(string uri, string userName) {
+            ApplicationUser user = UsersRepository.FindUser(userName);
+            user.AvatarUri = uri;
+            UsersRepository.UpdateUser(user);
+
+        }
+
         public ICollection<Rating> GetAllUserRatings(ApplicationUser user)
         {
             if (user == null)
