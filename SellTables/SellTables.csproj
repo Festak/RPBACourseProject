@@ -228,17 +228,9 @@
     <Compile Include="Interfaces\IUserRepository.cs" />
     <Compile Include="Interfaces\IUserService.cs" />
     <Compile Include="Lucene\CreativeSearch.cs" />
-    <Compile Include="Migrations\201611220922444_wat.cs" />
-    <Compile Include="Migrations\201611220922444_wat.Designer.cs">
-      <DependentUpon>201611220922444_wat.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611211617356_creativeUri.cs" />
-    <Compile Include="Migrations\201611211617356_creativeUri.Designer.cs">
-      <DependentUpon>201611211617356_creativeUri.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611220927253_merge.cs" />
-    <Compile Include="Migrations\201611220927253_merge.Designer.cs">
-      <DependentUpon>201611220927253_merge.cs</DependentUpon>
+    <Compile Include="Migrations\201611221539506_newbase.cs" />
+    <Compile Include="Migrations\201611221539506_newbase.Designer.cs">
+      <DependentUpon>201611221539506_newbase.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -1260,17 +1252,11 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201611220922444_wat.resx">
-      <DependentUpon>201611220922444_wat.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611211617356_creativeUri.resx">
-      <DependentUpon>201611211617356_creativeUri.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611220927253_merge.resx">
-      <DependentUpon>201611220927253_merge.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611211617462_creativeUri.resx">
       <DependentUpon>201611211617462_creativeUri.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611221539506_newbase.resx">
+      <DependentUpon>201611221539506_newbase.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Resource.en.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
