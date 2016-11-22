@@ -1221,7 +1221,6 @@
     <Content Include="Scripts\version.json" />
     <Content Include="Views\Creative\Create.cshtml" />
     <Content Include="Views\Home\_TagCloud.cshtml" />
-    <Content Include="Views\Chapter\Details.cshtml" />
     <Content Include="Views\Creative\Search.cshtml" />
     <Content Include="Views\Home\_CreativesList.cshtml" />
     <Content Include="Views\Home\_SortPanel.cshtml" />
@@ -1247,8 +1246,6 @@
     <Folder Include="images\" />
     <Folder Include="LuceneIndexOfCreative\" />
     <Folder Include="Scripts\cloudinary\" />
-    <Folder Include="Views\Default\" />
-    <Folder Include="Views\Rating\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

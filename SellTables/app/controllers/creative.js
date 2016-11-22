@@ -57,28 +57,28 @@ angular.module('creative', ['ngRoute','as.sortable'])
               }
           }
 
-          $scope.dragControlListeners = {
+          $scope.dragControlListeners =  {
               accept: function (sourceItemHandleScope, destSortableScope) {
-                  //alert(sourceItemHandleScope.itemScope.sortableScope.$id);
-                  //alert(destSortableScope.$id);
                   return sourceItemHandleScope.itemScope.sortableScope.$id === destSortableScope.$id;
                   
-              },//override to determine drag is allowed or not. default is true.
+              },
               itemMoved: function (eventObj) {
               },
               orderChanged: function (eventObj) {//Do what you want},
                   containment: '#board'//optional param.
                   clone: true //optional param for clone feature.
                   allowDuplicates: false //optional param allows duplicates to be dropped.
-                  //  eventObj.source.index откуда
+                  // откуда eventObj.source.index
                   // куда eventObj.dest.index
-                  alert(eventObj.dest.index);
-                  $scope.SendLastAndNewChapterPos(eventObj.source.index, eventObj.dest.index);
+                  $scope.from = angular.element(eventObj)[0].dest.sortableScope.modelValue[eventObj.source.index].Id;
+                  $scope.to = angular.element(eventObj)[0].dest.sortableScope.modelValue[eventObj.dest.index].Id;
+          
+                 $scope.SendLastAndNewChapterPos(eventObj.source.index, eventObj.dest.index, $scope.from, $scope.to);
               }
           };
 
-          $scope.SendLastAndNewChapterPos = function (oldPos, newPos) {
-              $http.post('/Creative/UpdateChapterPos', { oldPosition: oldPos, newPosition: newPos }).success(function (result) {
+          $scope.SendLastAndNewChapterPos = function (oldPos, newPos, from, to) {
+              $http.post('/Creative/UpdateChapterPos', { oldPosition: oldPos, newPosition: newPos, fromChapterId: from, toChapterId: to }).success(function (result) {
               })
                   .error(function (data) {
                       console.log(data);

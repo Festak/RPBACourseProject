@@ -3,6 +3,7 @@ using MultilingualSite.Filters;
 using SellTables.Models;
 using SellTables.Services;
 using SellTables.ViewModels;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
@@ -150,8 +151,8 @@ namespace SellTables.Controllers
             return View(model);
         }
 
-        public void UpdateChapterPos(int oldPosition,int newPosition) {
-
+        public void UpdateChapterPos(int oldPosition,int newPosition, int fromChapterId, int toChapterId) {
+           ChapterService.UpdateChapterPos(oldPosition, newPosition, fromChapterId, toChapterId);
         }
 
     }

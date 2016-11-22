@@ -33,13 +33,26 @@ namespace SellTables.Repositories
 
         Creative IRepository<Creative>.Get(int id)
         {
-            return dataBaseContext.Creatives.Include(c => c.Chapters).Include(u => u.User).Include(m => m.User.Medals).
-                FirstOrDefault(i=>i.Id == id);
+            var creative = dataBaseContext.Creatives.Include(c => c.Chapters).Include(u => u.User).Include(m => m.User.Medals).
+                FirstOrDefault(i => i.Id == id);
+
+            foreach (var chapter in creative.Chapters) {
+                
+            }
+            return creative;
         }
 
         ICollection<Creative> IRepository<Creative>.GetAll()
         {
-            return dataBaseContext.Creatives.Include(c => c.Chapters).Include(u => u.User).ToList();
+            var list = dataBaseContext.Creatives
+                .Include(c => c.Chapters)
+                .Include(u => u.User)
+                .ToList();
+            list.ForEach(m=>m.Chapters = m.Chapters.OrderBy(n=>n.Number).ToList());
+
+            
+            return list;
+
         }
         // TODO: replace ifs
         public ICollection<Creative> GetRange(int start, int count, int sortType)
@@ -64,20 +77,29 @@ namespace SellTables.Repositories
             }
         
 
+
         private IEnumerable<Creative> GetDateSortedCreatives() {
-            return dataBaseContext.Creatives.Include(c => c.Chapters).Include(u => u.User).Include(m=>m.User.Medals).OrderByDescending(c => c.CreationDate);
+            var list = dataBaseContext.Creatives.Include(c => c.Chapters).Include(u => u.User).Include(m => m.User.Medals).OrderByDescending(c => c.CreationDate).ToList();
+            list.ForEach(m => m.Chapters = m.Chapters.OrderBy(n => n.Number).ToList());
+            return list;
         }
 
         private IEnumerable<Creative> GetEditDateSortedCreatives()
         {
-            return dataBaseContext.Creatives.Include(c => c.Chapters).Include(u => u.User).Include(m => m.User.Medals).OrderBy(c => c.EditDate);
+            var list = dataBaseContext.Creatives.Include(c => c.Chapters).Include(u => u.User).Include(m => m.User.Medals).OrderBy(c => c.EditDate).ToList();
+            list.ForEach(m => m.Chapters = m.Chapters.OrderBy(n => n.Number).ToList());
+            return list;
         }
 
         private IEnumerable<Creative> GetNameSortedCreatives()
         {
-            return dataBaseContext.Creatives.Include(c => c.Chapters).Include(u => u.User).Include(m => m.User.Medals).OrderBy(c => c.Name);
+            var list = dataBaseContext.Creatives.Include(c => c.Chapters).Include(u => u.User).Include(m => m.User.Medals).OrderBy(c => c.Name).ToList();
+            list.ForEach(m => m.Chapters = m.Chapters.OrderBy(n => n.Number).ToList());
+            return list;
         }
      
+
+
         public ICollection<Creative> GetPopular()
         {
             int count = dataBaseContext.Creatives.Where(p => p.Rating >= 4).Count();
@@ -120,7 +142,6 @@ namespace SellTables.Repositories
                 dataBaseContext.Creatives.Remove(Creative);
                 return true;
             }
-
             return false;
         }
 

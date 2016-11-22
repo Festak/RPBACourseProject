@@ -1,20 +1,23 @@
 ﻿using SellTables.Interfaces;
 using SellTables.Models;
 using SellTables.Repositories;
-
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Data.Entity;
+
 
 
 namespace SellTables.Services
 {
     public class ChapterService
     {
-        private ApplicationDbContext db;
+        private ApplicationDbContext DataBaseContext;
         private IRepository<Chapter> ChapterRepository ;
        
-        public ChapterService(ApplicationDbContext db) {
-            this.db = db;
-            ChapterRepository = new ChaptersRepository(db);
+        public ChapterService(ApplicationDbContext DataBaseContext) {
+            this.DataBaseContext = DataBaseContext;
+            ChapterRepository = new ChaptersRepository(DataBaseContext);
         }
 
        public Chapter GetChapter(int id)
@@ -22,22 +25,17 @@ namespace SellTables.Services
             return ChapterRepository.Get(id);
         }
 
-
-        private static ICollection<Tag> GetTags(string tagList)
+        public void UpdateChapterPos(int oldPosition, int newPosition, int fromChapterId, int toChapterId)
         {
-            var stringList = tagList.Split(' ');
-            var tags = new List<Tag>();
-            if (stringList != null)
-            {
-                foreach (string text in stringList)
-                    tags.Add(new Tag() { Description = text });
-            }
-            return tags;
+            Chapter oldChapter = DataBaseContext.Chapters.FirstOrDefault(p=>p.Id == fromChapterId);
+            Chapter newChapter = DataBaseContext.Chapters.FirstOrDefault(p => p.Id == toChapterId);
+            int oldchapterpos = oldChapter.Number;
+            oldChapter.Number = newChapter.Number;
+            newChapter.Number = oldchapterpos;
+
+            ChapterRepository.Update(oldChapter);
+            ChapterRepository.Update(newChapter);
+
         }
-
-
-
-
-
     }
 }

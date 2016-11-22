@@ -46,13 +46,10 @@ namespace SellTables.Services
             Creative creative = creativemodel.Creative;
             AddCreativeToCounter(creative.User.Id);
             Chapter chapter = creativemodel.Chapter;
-           // int lastNumber = dataBaseContext.Chapters.OrderBy();
-            //  chapter.Creative = creative;
-            // chapter.CreativeId = creative.Id;
+            chapter.Number = 0;
             if (chapter.TagsString != null)
                 chapter.Tags = GetTags(chapter.TagsString);
             creative.Chapters.Add(chapter);
-            //  CreativeSearch.AddUpdateLuceneIndex(creative); //ADD LUCENE INDEX
             ChapterRepository.Add(chapter);
             CreativeRepository.Add(creative);
 
@@ -144,15 +141,14 @@ namespace SellTables.Services
         {
             Creative creative = model.Creative;
             Chapter chapter = model.Chapter;
+            int lastIndex = GetLastIndexOfChapter(creative);
             chapter.Creative = creative;
-
+            chapter.Number = lastIndex + 1;
             if (chapter.TagsString != null)
                 chapter.Tags = GetTags(chapter.TagsString);
             creative.Chapters.Add(chapter);
-            // CreativeSearch.AddUpdateLuceneIndex(creative); 
             ChapterRepository.Add(chapter);
             CreativeRepository.Update(creative);
-
         }
 
         public void EditCreativeChapter(RegisterCreativeModel model)
@@ -160,7 +156,6 @@ namespace SellTables.Services
             Chapter chapter = BuildChapterByRegisterModel(model);
             Creative creative = CreativeRepository.Get(model.creativeId);
             creative.EditDate = DateTime.Now;
-            //   CreativeSearch.AddUpdateLuceneIndex(creative);
             CreativeRepository.Update(creative);
             ChapterRepository.Update(chapter);
         }
@@ -170,7 +165,6 @@ namespace SellTables.Services
             Creative creative = CreativeRepository.Get(id);
             creative.Name = name;
             creative.EditDate = DateTime.Now;
-            //   CreativeSearch.AddUpdateLuceneIndex(creative);
             CreativeRepository.Update(creative);
         }
 
@@ -212,6 +206,15 @@ namespace SellTables.Services
             }
 
             return chapter;
+        }
+
+        private int GetLastIndexOfChapter(Creative creative)
+        {
+            Creative currentCreative = dataBaseContext.Creatives
+                .Include(c => c.Chapters)
+                .FirstOrDefault(i => i.Id == creative.Id);
+            int lastIndexOfChapter = currentCreative.Chapters.Count - 1; // start from 0 at ng-sortable
+            return lastIndexOfChapter;
         }
 
         private void AddCreativeToCounter(string userId)
@@ -422,8 +425,9 @@ namespace SellTables.Services
             {
                 var t = dataBaseContext.Tags.Find(tag.Id);
                 if (t != null)
+                {
                     dataBaseContext.Tags.Remove(t);
-
+                }
             }
             dataBaseContext.SaveChanges();
         }
