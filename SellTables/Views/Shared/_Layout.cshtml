@@ -11,9 +11,7 @@
     @Scripts.Render("~/bundles/jquery")
     <script type="text/javascript" src="~/Scripts/sortable/ng-sortable.min.js"></script>
    <link rel="stylesheet" type="text/css" href="~/Scripts/sortable/ng-sortable.min.css">
-   @* <link rel="stylesheet" type="text/css" href="~/Scripts/sortable/ng-sortable.style.min.css">*@
     @Scripts.Render("~/bundles/app")
-
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -40,19 +38,19 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Creatives", "Index", "Home", new { area = "" }, new { @class = "navbar-brand", style="margin-left: 50px;" })
+                @Html.ActionLink(Resources.Resource.Creatives, "Index", "Home", new { area = "" }, new { @class = "navbar-brand", style="margin-left: 50px;" })
             </div>
             <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1">
                 @Html.Partial("_LoginPartial")
                 <ul class="nav navbar-nav navbar-right">
                     @if (User.IsInRole("admin"))
                     {
-                        <li><a href=@Url.Action("Index", "Admin")>AdminPanel</a></li>
+                        <li><a href=@Url.Action("Index", "Admin")>@Resources.Resource.AdminPanel</a></li>
                     }
 
                 </ul>
                     <form style="float: right" class="navbar-form" action="@Url.Action("Search", "Creative")">
-                        <input type="text" name="query" class="form-control col-lg-8" placeholder="search">
+                        <input type="text" name="query" class="form-control col-lg-8" placeholder="@Resources.Resource.Search">
                     </form>     
             </div>
         </div>

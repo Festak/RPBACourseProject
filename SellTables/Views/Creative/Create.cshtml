@@ -13,7 +13,7 @@
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="site-heading">
                     <h1>
-                        Creative create
+                        @Resources.Resource.CreativeCreate
                     </h1>
                 </div>
             </div>
@@ -40,23 +40,20 @@
 
                 <div class="form-group">
 
-                    @Html.EditorFor(model => model.Creative.Name, new { htmlAttributes = new { @class = "form-control", @id = "input-name", @placeholder = "Creative name" } })
+                    @Html.EditorFor(model => model.Creative.Name, new { htmlAttributes = new { @class = "form-control", @id = "input-name", @placeholder = Resources.Resource.CreativeName } })
                     @Html.ValidationMessageFor(model => model.Creative.Name, "", new { @class = "text-danger" })
                 </div>
 
 
                 <div class="form-group">
 
-                    @Html.EditorFor(model => model.Chapter.Name, new { htmlAttributes = new { @class = "form-control", @id = "input-email", @placeholder = "First chapter name" } })
+                    @Html.EditorFor(model => model.Chapter.Name, new { htmlAttributes = new { @class = "form-control", @id = "input-email", @placeholder = Resources.Resource.FirstChapterName } })
                     @Html.ValidationMessageFor(model => model.Chapter.Name, "", new { @class = "text-danger" })
 
                 </div>
 
                 <div class="form-group" ng-controller="TagController">
                     <div ng-init="getTags()">
-
-
-
                         <input id="search-field"
                                type="text"
                                placeholder="Enter your tags here"
@@ -86,7 +83,7 @@
                 <div class="form-group">
                     <div class="col-md-11">
                         @Html.HiddenFor(model => model.Chapter.Text, new { htmlAttributes = new { @class = "form-control" } })
-                        <div class="col-md-offset-2" id="summernote"><p>Your chapter text</p></div>
+                        <div class="col-md-offset-2" id="summernote"><p>@Resources.Resource.YourChapterText</p></div>
                     </div>
                 </div>
                 <div class="row container">

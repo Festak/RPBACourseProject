@@ -10,9 +10,7 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="site-heading">
-                    <h1>Login page</h1>
-                    <hr class="small">
-                    <span class="subheading">Log in</span>
+                    <h1>@Resources.Resource.LoginPage</h1>
                 </div>
             </div>
         </div>
@@ -26,10 +24,10 @@
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-6">
-                            <a href="#" class="active" id="login-form-link">Login</a>
+                            <a href="#" class="active" id="login-form-link">@Resources.Resource.Login</a>
                         </div>
                         <div class="col-xs-6">
-                            <a href="#" id="register-form-link">Register</a>
+                            <a href="#" id="register-form-link">@Resources.Resource.Register</a>
                         </div>
                     </div>
                     <hr>
@@ -41,21 +39,21 @@
                             {
                                 @Html.AntiForgeryToken()
                                 <div class="form-group">
-                                    @Html.TextBoxFor(m => m.LoginViewModel.UserName, new { @class = "form-control", placeholder = "Login", tabindex = 1, value = "" })
+                                    @Html.TextBoxFor(m => m.LoginViewModel.UserName, new { @class = "form-control", placeholder = Resources.Resource.Login, tabindex = 1, value = "" })
                                     @Html.ValidationMessageFor(m => m.LoginViewModel.UserName, "", new { @class = "text-danger" })
                                 </div>
                                 <div class="form-group">
-                                    @Html.PasswordFor(m => m.LoginViewModel.Password, new { @class = "form-control", placeholder = "Password", tabindex = 2, id = "password" })
+                                    @Html.PasswordFor(m => m.LoginViewModel.Password, new { @class = "form-control", placeholder = Resources.Resource.Password, tabindex = 2, id = "password" })
                                     @Html.ValidationMessageFor(m => m.LoginViewModel.Password, "", new { @class = "text-danger" })
                                 </div>
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-sm-6 col-sm-offset-3">
-                                            <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Log In">
+                                            <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="@Resources.Resource.Login">
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                @*<div class="form-group">
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="text-center">
@@ -63,7 +61,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    </div>
+                                    </div>*@
                             }
                                     <div class="text-center">
                                         <section id="socialLoginForm">@Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })</section>
@@ -72,25 +70,25 @@
                             {
                                 @Html.AntiForgeryToken()
                                 <div class="form-group">
-                                    @Html.TextBoxFor(m => m.RegisterViewModel.UserName, new { @class = "form-control", placeholder = "User Name" })
+                                    @Html.TextBoxFor(m => m.RegisterViewModel.UserName, new { @class = "form-control", placeholder = Resources.Resource.UserName })
                                     @Html.ValidationMessageFor(m => m.RegisterViewModel.UserName, "", new { @class = "text-danger" })
                                 </div>
                                 <div class="form-group">
-                                    @Html.TextBoxFor(m => m.RegisterViewModel.Email, new { @class = "form-control", placeholder = "Email" })
+                                    @Html.TextBoxFor(m => m.RegisterViewModel.Email, new { @class = "form-control", placeholder =  Resources.Resource.Email })
                                     @Html.ValidationMessageFor(m => m.RegisterViewModel.Email, "", new { @class = "text-danger" })
                                 </div>
                                 <div class="form-group">
-                                    @Html.PasswordFor(m => m.RegisterViewModel.Password, new { @class = "form-control", placeholder = "Password" })
+                                    @Html.PasswordFor(m => m.RegisterViewModel.Password, new { @class = "form-control", placeholder = Resources.Resource.Password })
                                     @Html.ValidationMessageFor(m => m.RegisterViewModel.Password, "", new { @class = "text-danger" })
                                 </div>
                                 <div class="form-group">
-                                    @Html.PasswordFor(m => m.RegisterViewModel.ConfirmPassword, new { @class = "form-control", placeholder = "Confirm Password" })
+                                    @Html.PasswordFor(m => m.RegisterViewModel.ConfirmPassword, new { @class = "form-control", placeholder = Resources.Resource.ConfirmPassword })
                                     @Html.ValidationMessageFor(m => m.RegisterViewModel.ConfirmPassword, "", new { @class = "text-danger" })
                                 </div>
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-sm-6 col-sm-offset-3">
-                                            <input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Register Now">
+                                            <input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="@Resources.Resource.Register">
                                         </div>
                                     </div>
                                 </div>

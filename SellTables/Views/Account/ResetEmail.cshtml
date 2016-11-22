@@ -1,6 +1,6 @@
 ﻿@model SellTables.Models.ResetEmailViewModel
 <hr />
-<h4>Change email</h4>
+<h4>@Resources.Resource.ChangeEmail</h4>
 @using (Html.BeginForm("ResetEmail", "Account", FormMethod.Post, new { @class = "form-horizontal main_form", role = "form" }))
 {
     <fieldset>
@@ -9,11 +9,11 @@
         @Html.HiddenFor(m => m.Id)
         @Html.HiddenFor(m => m.Type)
         <div class="form-group">
-            @Html.EditorFor(m => m.Email, new { @class = "form-control default-input", @placeholder = "Email" })
+            @Html.EditorFor(m => m.Email, new { @class = "form-control default-input", @placeholder = Resources.Resource.Email })
         </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" class="btn btn-default" value="Reset" />
+                <input type="submit" class="btn btn-default" value="@Resources.Resource.Apply" />
             </div>
         </div>
     </fieldset>

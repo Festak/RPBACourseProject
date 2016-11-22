@@ -117,6 +117,30 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AddYourCreative" xml:space="preserve">
+    <value>Создай свой креатив прямо сейчас!</value>
+  </data>
+  <data name="AdminPanel" xml:space="preserve">
+    <value>Панель администратора</value>
+  </data>
+  <data name="Apply" xml:space="preserve">
+    <value>Применить</value>
+  </data>
+  <data name="Ban" xml:space="preserve">
+    <value>Забанить</value>
+  </data>
+  <data name="ChangeEmail" xml:space="preserve">
+    <value>Измените электронную почту</value>
+  </data>
+  <data name="ChangeLogin" xml:space="preserve">
+    <value>Измените логин</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Измените пароль</value>
+  </data>
+  <data name="Chapters" xml:space="preserve">
+    <value>Глав</value>
+  </data>
   <data name="ChooseLanguage" xml:space="preserve">
     <value>Выберите язык</value>
   </data>
@@ -126,8 +150,44 @@
   <data name="Country" xml:space="preserve">
     <value>Страна</value>
   </data>
+  <data name="CreateChapter" xml:space="preserve">
+    <value>Создайте еще одну главу</value>
+  </data>
+  <data name="Creative" xml:space="preserve">
+    <value>Креатива</value>
+  </data>
+  <data name="CreativeCreate" xml:space="preserve">
+    <value>Создание креативы</value>
+  </data>
+  <data name="CreativeName" xml:space="preserve">
+    <value>Название креативы</value>
+  </data>
+  <data name="Creatives" xml:space="preserve">
+    <value>Креативы</value>
+  </data>
+  <data name="CreativesBySearch" xml:space="preserve">
+    <value>Найденные по Вашему запросу креативы</value>
+  </data>
+  <data name="CreativeTopInfo" xml:space="preserve">
+    <value>Посмотри на креативы, созданные людьми</value>
+  </data>
+  <data name="CurCountOfCr" xml:space="preserve">
+    <value>Текущее количество креативов</value>
+  </data>
+  <data name="CurCountOfMed" xml:space="preserve">
+    <value>Текущее количество медалей</value>
+  </data>
   <data name="Dark" xml:space="preserve">
     <value>Темный</value>
+  </data>
+  <data name="DeleteUser" xml:space="preserve">
+    <value>Удалить пользователя</value>
+  </data>
+  <data name="EditChapter" xml:space="preserve">
+    <value>Редактирование главы</value>
+  </data>
+  <data name="EditProfile" xml:space="preserve">
+    <value>Редактировать профиль</value>
   </data>
   <data name="Email" xml:space="preserve">
     <value>Электронная почта</value>
@@ -135,8 +195,35 @@
   <data name="English" xml:space="preserve">
     <value>Английский</value>
   </data>
+  <data name="EnterYourTags" xml:space="preserve">
+    <value>Добавьте сюда Ваши теги</value>
+  </data>
+  <data name="ExternalFailute" xml:space="preserve">
+    <value>Вы неудачно вошли через соц сеть</value>
+  </data>
+  <data name="FirstChapterName" xml:space="preserve">
+    <value>Название главы</value>
+  </data>
+  <data name="Font" xml:space="preserve">
+    <value>Шрифт</value>
+  </data>
+  <data name="LockedOut" xml:space="preserve">
+    <value>Вы заблокированы</value>
+  </data>
+  <data name="LockedOutText" xml:space="preserve">
+    <value>Ваш аккаунт заблокирован. Пожалуйста,попробуйте войти позже.</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Войти</value>
+  </data>
+  <data name="LoginPage" xml:space="preserve">
+    <value>Страница входа</value>
+  </data>
   <data name="Name" xml:space="preserve">
     <value>Имя</value>
+  </data>
+  <data name="On" xml:space="preserve">
+    <value>в</value>
   </data>
   <data name="Password" xml:space="preserve">
     <value>Пароль</value>
@@ -144,13 +231,73 @@
   <data name="PasswordEquals" xml:space="preserve">
     <value>Пароли должны быть одинаковы!</value>
   </data>
+  <data name="PostedBy" xml:space="preserve">
+    <value>Создано </value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Профиль</value>
+  </data>
+  <data name="Read" xml:space="preserve">
+    <value>Читать</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Зарегистрироваться</value>
+  </data>
   <data name="Russian" xml:space="preserve">
     <value>Русский</value>
+  </data>
+  <data name="Scale" xml:space="preserve">
+    <value>Масштаб</value>
+  </data>
+  <data name="Sort" xml:space="preserve">
+    <value>Сортировка</value>
+  </data>
+  <data name="SortCreateDate" xml:space="preserve">
+    <value>Сортировка по дате создания</value>
+  </data>
+  <data name="SortEditDate" xml:space="preserve">
+    <value>Сортировка по дате редактирования</value>
+  </data>
+  <data name="SortName" xml:space="preserve">
+    <value>Сортировка по имени</value>
+  </data>
+  <data name="Stars" xml:space="preserve">
+    <value>звезд</value>
   </data>
   <data name="Styles" xml:space="preserve">
     <value>Стили</value>
   </data>
+  <data name="Tags" xml:space="preserve">
+    <value>Теги</value>
+  </data>
+  <data name="Unban" xml:space="preserve">
+    <value>Разбанить</value>
+  </data>
+  <data name="UseAnotherService" xml:space="preserve">
+    <value>Войдите через социальную сеть</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>Имя пользователя</value>
+  </data>
+  <data name="UserPage" xml:space="preserve">
+    <value>Страница пользователя</value>
+  </data>
+  <data name="UserPage1" xml:space="preserve">
+    <value>Страница пользователя</value>
+  </data>
   <data name="White" xml:space="preserve">
     <value>Светлый</value>
+  </data>
+  <data name="YourChapterText" xml:space="preserve">
+    <value>Текст для главы</value>
+  </data>
+  <data name="LogOf" xml:space="preserve">
+    <value>Выйти</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>поиск</value>
+  </data>
+  <data name="At" xml:space="preserve">
+    <value>В</value>
   </data>
 </root>

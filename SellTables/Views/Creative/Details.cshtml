@@ -39,7 +39,7 @@
                 <div class="btn-group pull-left">
                     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="glyphicon glyphicon-search"></span>
-                        Font
+                        @Resources.Resource.Font
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu cursor-pointer">
@@ -52,7 +52,7 @@
                 <div class="btn-group pull-right">
                     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="glyphicon glyphicon-search"></span>
-                        Scale
+                        @Resources.Resource.Scale
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">
@@ -79,9 +79,7 @@
                 </div>
             }
         </div>
-        <!-- Add Pagination -->
         <div class="swiper-pagination swiper-pagination-white"></div>
-        <!-- Add Navigation -->
         <div class="swiper-button-prev swiper-button-white"></div>
         <div class="swiper-button-next swiper-button-white"></div>
     </div>
@@ -98,7 +96,6 @@
         spaceBetween: 30,
         grabCursor: true,
         autoHeight: true,
-        // Enable debugger
         debugger: true
     });
 
@@ -175,64 +172,3 @@
         z-index: 1;
     }
 </style>
-
-
-@*<header class="intro-header container-fluid" style="background-image: url('http://tutfon.ru/wallpapers/image.raw?view=image&type=orig&id=10882')">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <div class="site-heading">
-                        <h1>
-                            @Html.DisplayFor(model => model.Name)
-                        </h1>
-                        <hr class="small">
-                        <span class="subheading">by @Html.DisplayFor(model => model.User.UserName)</span>
-                    </div>
-
-
-                    <input id="input-21b" value="@Model.Rating.ToString().Replace(",",".")" type="number" class="rating" min=0 max=5 step=0.1 data-size="md">
-
-                </div>
-            </div>
-        </div>
-    </header>
-    <div ng-controller="WidthChangeController">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="btn-group col-md-offset-10">
-                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="glyphicon glyphicon-search"></span>
-                        Scale
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a ng-click="changeTo40()">40%</a></li>
-                        <li><a ng-click="changeTo60()">60%</a></li>
-                        <li><a ng-click="changeTo80()">80%</a></li>
-                        <li><a ng-click="changeTo100()">100%</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="container post-preview" id="content">
-
-            @foreach (var c in Model.Chapters)
-            {
-                <div class="well">
-                    <h4 class="post-subtitle cursor-pointer">
-                        <span class="glyphicon glyphicon-chevron-down"></span>
-                        <span role="button" data-toggle="collapse" href="#@c.Number" aria-expanded="false" aria-controls="collapseExample">
-                            Chapter #@c.Number
-                        </span>
-                    </h4>
-                    <div class="collapse" id="@c.Number">
-
-                        <h2 class="post-title">@c.Name</h2>
-                        <div class="post-subtitle">@Html.Raw(c.Text)</div>
-
-                    </div>
-
-                </div>
-            }
-        </div>
-    </div>*@

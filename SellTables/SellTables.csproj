@@ -1202,7 +1202,6 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
-    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\SendCode.cshtml" />
     <Content Include="Views\Account\VerifyCode.cshtml" />
     <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
@@ -1221,10 +1220,8 @@
     <Content Include="Views\Home\_SortPanel.cshtml" />
     <Content Include="Views\Home\_PopularCreatives.cshtml" />
     <Content Include="Views\User\UserPage.cshtml" />
-    <Content Include="Views\User\Settings.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Creative\Details.cshtml" />
-    <Content Include="Views\Home\_MenuOfSome.cshtml" />
     <Content Include="Scripts\summernote\font\summernote.eot" />
     <Content Include="Scripts\summernote\font\summernote.ttf" />
     <Content Include="Scripts\summernote\font\summernote.woff" />
@@ -1252,9 +1249,6 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201611211617462_creativeUri.resx">
-      <DependentUpon>201611211617462_creativeUri.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611221539506_newbase.resx">
       <DependentUpon>201611221539506_newbase.cs</DependentUpon>
     </EmbeddedResource>

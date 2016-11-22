@@ -13,9 +13,7 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="site-heading">
-                    <h1>Creatives</h1>
-                    <hr class="small">
-                    <span class="subheading">See what people create here</span>
+                    <h1>@Resources.Resource.EditChapter</h1>
                 </div>
             </div>
         </div>
@@ -46,7 +44,7 @@
         <div class="form-group" ng-controller="TagController">
             <div ng-init="getTags()">
                 <div class="row container">
-                    <h4 class="col-md-1 col-md-offset-1">Tags</h4>
+                    <h4 class="col-md-1 col-md-offset-1">@Resources.Resource.Tags</h4>
                     <ul class="tags col-md-9 col-md-offset-1">
 
                         <li class="tagAdd taglist">
@@ -54,11 +52,10 @@
                         </li>
                     </ul>
                 </div>
-
                 <div class="col-md-3 col-md-offset-1">
                     <input id="search-field"
                            type="text"
-                           placeholder="Enter your tags here"
+                           placeholder="@Resources.Resource.EnterYourTags"
                            class="form-control"
                            ng-keyup="checkKeyUp($event)"
                            ng-model="searchText"
@@ -88,7 +85,6 @@
         $('#summernote').summernote();
     });
     document.getElementById("submit").onclick = function () {
-
         document.getElementById("Chapter_Text").value = $('#summernote').summernote('code');
         document.getElementById("Chapter_TagsString").value = takeTags();
 

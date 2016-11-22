@@ -17,7 +17,7 @@
                         <h4 class="post-subtitle cursor-pointer">
                             <span class="glyphicon glyphicon-chevron-down"></span>
                             <span role="button" data-toggle="collapse" href="#collapseExample{{$index}}" aria-expanded="false" aria-controls="collapseExample">
-                                Глав: {{creative.Chapters.length}}
+                                @Resources.Resource.Chapters: {{creative.Chapters.length}}
                             </span>
                         </h4>
                         <div class="collapse" id="collapseExample{{$index}}">
@@ -43,15 +43,12 @@
                         <span id="{{$index}}5" ng-click="vote(5, creative)" class="glyphicon glyphicon-star-empty creative.Id+'1'" ng-mouseover="show($index,5)" ng-mouseleave="hide($index)" aria-hidden="true"></span>
                     </div>
                     <div class="col-md-9 text-right">
-                        <span class="post-meta">Posted by <a href="../../User/UserPage/?name={{creative.UserName}}">{{creative.UserName}}</a> on {{creative.CreationDate}}</span>
+                        <span class="post-meta">@Resources.Resource.PostedBy <a href="../../User/UserPage/?name={{creative.UserName}}">{{creative.UserName}}</a> @Resources.Resource.On {{creative.CreationDate}}</span>
                     </div>
                 </div>
-
             </div>
-
         </div>
     </div>
-
 <script>
 
     $(window).scroll(function () {

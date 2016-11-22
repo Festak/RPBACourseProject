@@ -8,9 +8,7 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="site-heading">
-                    <h1>Admin page</h1>
-                    <hr class="small">
-                    <span class="subheading">See what people create here</span>
+                    <h1>@Resources.Resource.AdminPanel</h1>
                 </div>
             </div>
         </div>
@@ -45,13 +43,13 @@
                                 </p> 
                                 @if (user.LockoutEndDateUtc == null)
                                 {
-                                    <span ng-click="BanUser('@user.UserName')" class="fa fa-list">Ban</span>
+                                    <span ng-click="BanUser('@user.UserName')" class="fa fa-list">@Resources.Resource.Ban</span>
                                 }
                                 else
                                 {
-                                    <span ng-click="UnbanUser('@user.UserName')" class="fa fa-list">Unban</span>
+                                    <span ng-click="UnbanUser('@user.UserName')" class="fa fa-list">@Resources.Resource.Unban</span>
                                 }
-                                <span ng-click="DeleteUser('@user.UserName')" class="fa fa-warning">Delete user</span>
+                                <span ng-click="DeleteUser('@user.UserName')" class="fa fa-warning">@Resources.Resource.DeleteUser</span>
 
                             </div>
                         </div>

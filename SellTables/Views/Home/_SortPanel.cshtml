@@ -1,11 +1,11 @@
 ﻿
 <div class="btn-group">
     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Сортировка <span class="caret"></span>
+        @Resources.Resource.Sort <span class="caret"></span>
     </button>
     <ul class="dropdown-menu">
-        <li><a class="btn" ng-click="changeSortType(1)">По дате создания(сначала новые)</a></li>
-        <li><a class="btn" ng-click="changeSortType(2)">По дате редактирования(не работает)</a></li>
-        <li><a class="btn" ng-click="changeSortType(3)">По имени</a></li>
+        <li><a class="btn" ng-click="changeSortType(1)">@Resources.Resource.SortCreateDate</a></li>
+        <li><a class="btn" ng-click="changeSortType(2)">@Resources.Resource.SortEditDate</a></li>
+        <li><a class="btn" ng-click="changeSortType(3)">@Resources.Resource.SortName</a></li>
     </ul>
 </div>

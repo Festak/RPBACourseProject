@@ -34,11 +34,6 @@ namespace SellTables.Controllers
                 return View(UserService.GetUserByName(name));
         }
 
-        public ActionResult Settings()
-        {
-            return View(UserService.GetCurrentUser(User.Identity.Name));
-        }
-
         public JsonResult GetCreativesByUser(string userName)
         {
             var creatives = CreativeService.GetCreativesByUser(userName);

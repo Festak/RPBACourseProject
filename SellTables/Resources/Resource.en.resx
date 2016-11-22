@@ -117,6 +117,33 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AddYourCreative" xml:space="preserve">
+    <value>Add your creative now</value>
+  </data>
+  <data name="AdminPanel" xml:space="preserve">
+    <value>AdminPanel</value>
+  </data>
+  <data name="Apply" xml:space="preserve">
+    <value>Apply</value>
+  </data>
+  <data name="asd" xml:space="preserve">
+    <value>asd</value>
+  </data>
+  <data name="Ban" xml:space="preserve">
+    <value>Ban</value>
+  </data>
+  <data name="ChangeEmail" xml:space="preserve">
+    <value>Change Email</value>
+  </data>
+  <data name="ChangeLogin" xml:space="preserve">
+    <value>Change Login</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Change Password</value>
+  </data>
+  <data name="Chapters" xml:space="preserve">
+    <value>chapters</value>
+  </data>
   <data name="ChooseLanguage" xml:space="preserve">
     <value>Choose Language</value>
   </data>
@@ -126,8 +153,41 @@
   <data name="Country" xml:space="preserve">
     <value>Country</value>
   </data>
+  <data name="CreateChapter" xml:space="preserve">
+    <value>Create one more chapter</value>
+  </data>
+  <data name="Creative" xml:space="preserve">
+    <value>Creative</value>
+  </data>
+  <data name="CreativeCreate" xml:space="preserve">
+    <value>Create creative</value>
+  </data>
+  <data name="CreativeName" xml:space="preserve">
+    <value>Creative name</value>
+  </data>
+  <data name="Creatives" xml:space="preserve">
+    <value>Creatives</value>
+  </data>
+  <data name="CreativesBySearch" xml:space="preserve">
+    <value>Found creatives by your request</value>
+  </data>
+  <data name="CreativeTopInfo" xml:space="preserve">
+    <value>See what peoples create</value>
+  </data>
+  <data name="CurCountOfCr" xml:space="preserve">
+    <value>Current count of creatives</value>
+  </data>
+  <data name="CurCountOfMed" xml:space="preserve">
+    <value>Current count of medals</value>
+  </data>
   <data name="Dark" xml:space="preserve">
     <value>Dark</value>
+  </data>
+  <data name="DeleteUser" xml:space="preserve">
+    <value>Delete User</value>
+  </data>
+  <data name="EditProfile" xml:space="preserve">
+    <value>Edit profile</value>
   </data>
   <data name="Email" xml:space="preserve">
     <value>Email</value>
@@ -135,8 +195,35 @@
   <data name="English" xml:space="preserve">
     <value>English</value>
   </data>
+  <data name="EnterYourTags" xml:space="preserve">
+    <value>Enter your tags here</value>
+  </data>
+  <data name="ExternalFailute" xml:space="preserve">
+    <value>Unsuccessful login with service.</value>
+  </data>
+  <data name="FirstChapterName" xml:space="preserve">
+    <value>Сhapter name</value>
+  </data>
+  <data name="Font" xml:space="preserve">
+    <value>Font</value>
+  </data>
+  <data name="LockedOut" xml:space="preserve">
+    <value>Locked out</value>
+  </data>
+  <data name="LockedOutText" xml:space="preserve">
+    <value>This account has been locked out, please try again later.</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="LoginPage" xml:space="preserve">
+    <value>Login page</value>
+  </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>
+  </data>
+  <data name="On" xml:space="preserve">
+    <value>on</value>
   </data>
   <data name="Password" xml:space="preserve">
     <value>Password</value>
@@ -144,13 +231,70 @@
   <data name="PasswordEquals" xml:space="preserve">
     <value>Password must be equals!</value>
   </data>
+  <data name="PostedBy" xml:space="preserve">
+    <value>Posted by</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="Read" xml:space="preserve">
+    <value>Read</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Register</value>
+  </data>
   <data name="Russian" xml:space="preserve">
     <value>Russian</value>
+  </data>
+  <data name="Scale" xml:space="preserve">
+    <value>Scale</value>
+  </data>
+  <data name="Sort" xml:space="preserve">
+    <value>Sort</value>
+  </data>
+  <data name="SortCreateDate" xml:space="preserve">
+    <value>Sort by create date</value>
+  </data>
+  <data name="SortEditDate" xml:space="preserve">
+    <value>Sort by edit date</value>
+  </data>
+  <data name="SortName" xml:space="preserve">
+    <value>Sort by name</value>
+  </data>
+  <data name="Stars" xml:space="preserve">
+    <value>stars</value>
   </data>
   <data name="Styles" xml:space="preserve">
     <value>Styles</value>
   </data>
+  <data name="Tags" xml:space="preserve">
+    <value>Tags</value>
+  </data>
+  <data name="Unban" xml:space="preserve">
+    <value>Unban</value>
+  </data>
+  <data name="UseAnotherService" xml:space="preserve">
+    <value>Use another service to log in.</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>User Name</value>
+  </data>
+  <data name="UserPage" xml:space="preserve">
+    <value>User Page</value>
+  </data>
   <data name="White" xml:space="preserve">
     <value>White</value>
+  </data>
+  <data name="YourChapterText" xml:space="preserve">
+    <value>Chapter text</value>
+  </data>
+  <data name="LogOff" xml:space="preserve">
+    <value>Log Off</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>search</value>
+  </data>
+  <data name="At" xml:space="preserve">
+    <value>At</value>
   </data>
 </root>

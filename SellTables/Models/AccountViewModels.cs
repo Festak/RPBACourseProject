@@ -7,7 +7,7 @@ namespace SellTables.Models
     {
 
         [Required]
-        [Display(Name = "User Name")]
+        [Display(Name = "UserName", ResourceType = typeof(Resources.Resource))]
         public string UserName { get; set; }
 
         [Required]
@@ -55,7 +55,7 @@ namespace SellTables.Models
     {
 
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
-        [Display(Name = "Name", ResourceType = typeof(Resources.Resource))]
+        [Display(Name = "UserName", ResourceType = typeof(Resources.Resource))]
         public string UserName { get; set; }
 
         [Display(Name = "Email", ResourceType = typeof(Resources.Resource))]
@@ -74,7 +74,7 @@ namespace SellTables.Models
     public class RegisterViewModel
     {
         [Required]
-        [Display(Name = "User Name")]
+        [Display(Name = "UserName", ResourceType = typeof(Resources.Resource))]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         public string UserName { get; set; }
 
@@ -98,7 +98,7 @@ namespace SellTables.Models
     public class ResetPasswordViewModel
     {
     
-        [Display(Name = "Name", ResourceType = typeof(Resources.Resource))]
+        [Display(Name = "UserName", ResourceType = typeof(Resources.Resource))]
         public string Name { get; set; }
         public string Type { get; set; }
         [Required]
@@ -125,7 +125,7 @@ namespace SellTables.Models
     }
 
     public class ResetLoginViewModel {
-        [Display(Name = "Name", ResourceType = typeof(Resources.Resource))]
+        [Display(Name = "UserName", ResourceType = typeof(Resources.Resource))]
         public string Name { get; set; }
         public string Type { get; set; }
         public string Id { get; set; }

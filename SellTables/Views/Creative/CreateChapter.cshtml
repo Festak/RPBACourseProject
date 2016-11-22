@@ -13,9 +13,7 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="site-heading">
-                    <h1>Creatives</h1>
-                    <hr class="small">
-                    <span class="subheading">See what people create here</span>
+                    <h1>@Resources.Resource.CreateChapter</h1>
                 </div>
             </div>
         </div>
@@ -34,7 +32,7 @@
                         @Html.HiddenFor(model => model.creativeId)
 
 
-                        @Html.EditorFor(model => model.Chapter.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Your chapter name" } })
+                        @Html.EditorFor(model => model.Chapter.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = Resources.Resource.FirstChapterName } })
                         @Html.ValidationMessageFor(model => model.Chapter.Name, "", new { @class = "text-danger" })
 
                     </div>
@@ -70,7 +68,7 @@
                 <div class="form-group">
                     <div class="col-md-11">
                         @Html.HiddenFor(model => model.Chapter.Text, new { htmlAttributes = new { @class = "form-control" } })
-                        <div class="col-md-offset-2" id="summernote">Your chapter text</div>
+                        <div class="col-md-offset-2" id="summernote">@Resources.Resource.YourChapterText</div>
                     </div>
                 </div><div class="row container">
                     <ul class="tags col-md-9 col-md-offset-1">

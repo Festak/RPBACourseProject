@@ -12,7 +12,7 @@
                 <div class="site-heading">
                     <h1>@Model.UserName</h1>
                     <hr class="small">
-                    <span class="subheading">Page of user</span>
+                    <span class="subheading">@Resources.Resource.UserPage</span>
                 </div>
             </div>
         </div>
@@ -32,8 +32,8 @@
             <div class="col-md-5 col-sm-5 col-xs-12">
                 <h5>@Model.UserName</h5>
                 <ul>
-                    <li><span class="glyphicon glyphicon-home"></span> Текущее количество медалей: @Model.Medals.Count</li>
-                    <li><span class="glyphicon glyphicon-phone"></span> Текущее количество креативов: @Model.Creatives.Count</li>
+                    <li><span class="glyphicon glyphicon-home"></span> @Resources.Resource.CurCountOfMed: @Model.Medals.Count</li>
+                    <li><span class="glyphicon glyphicon-phone"></span> @Resources.Resource.CurCountOfCr: @Model.Creatives.Count</li>
                     <li><span class="glyphicon glyphicon-envelope"></span>@Model.Email</li>
                 </ul>
             </div>
@@ -44,12 +44,12 @@
         <ul class="nav nav-tabs nav-menu" role="tablist">
             <li class="active">
                 <a href="#profile" role="tab" data-toggle="tab">
-                    <i class="fa fa-male"></i> Profile
+                    <i class="fa fa-male"></i> @Resources.Resource.Profile
                 </a>
             </li>
             <li>
                 <a href="#change" role="tab" data-toggle="tab">
-                    <i class="fa fa-key"></i> Edit Profile
+                    <i class="fa fa-key"></i> @Resources.Resource.EditProfile
                 </a>
             </li>
         </ul>
@@ -75,7 +75,7 @@
                                     <div ng-controller="MainController">
                                         <h2 class="post-title cursor-pointer"
                                             ng-click="redirectToCreative(creative.Id)">
-                                            Read creative
+                                            @Resources.Resource.Read
                                         </h2>
                                     </div>
                                     <div contenteditable data-directive ng-model="creative.Name">
@@ -89,7 +89,7 @@
                                     <span class="glyphicon glyphicon-chevron-down"></span>
                                     <span role="button" data-toggle="collapse" href="#collapseExample{{$index}}"
                                           aria-expanded="false" aria-controls="collapseExample">
-                                        Глав: {{creative.Chapters.length}}
+                                        @Resources.Resource.Chapters: {{creative.Chapters.length}}
                                     </span>
                                 </h4>
                                 <div class="collapse" id="collapseExample{{$index}}">
@@ -121,7 +121,7 @@
                 <div class="container fom-main">
                     <div class="row">
                         <div class="col-sm-12">
-                            <h2 class="register">Edit User Profile</h2>
+                            <h2 class="register">@Resources.Resource.EditProfile</h2>
                         </div>
                     </div>
                     <br />
