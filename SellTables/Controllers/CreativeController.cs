@@ -18,11 +18,14 @@ namespace SellTables.Controllers
 
         CreativeService CreativeService;
         ChapterService ChapterService;
+        private CloudinaryService CloudinaryService;
 
         public CreativeController()
         {
             CreativeService = new CreativeService(dataBaseConnection);
             ChapterService = new ChapterService(dataBaseConnection);
+            CloudinaryService = new CloudinaryService(dataBaseConnection);
+
         }
 
         [AllowAnonymous]
@@ -43,6 +46,8 @@ namespace SellTables.Controllers
             if (ModelState.IsValid)
             {
                 creativemodel.Creative.User = FindUser();
+                string path = CloudinaryService.UploadCreativeImage(creativemodel.Image);
+                creativemodel.Creative.CreativeUri = path;
                 CreativeService.AddCreative(creativemodel);
                 return RedirectToAction("Index");
             }
@@ -135,7 +140,7 @@ namespace SellTables.Controllers
             {
                 creativeId = creativeId ?? 0
             };
-            return View(model);
+            return PartialView(model);
         }
 
         [HttpPost]

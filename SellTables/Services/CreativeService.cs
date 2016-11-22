@@ -19,6 +19,7 @@ namespace SellTables.Services
         private IRepository<Rating> RatingsRepository;
         private IRepository<Tag> TagsRepository;
         private IUserRepository UsersRepository;
+      //  private CloudinaryService CloudinaryService;
 
         public CreativeService(ApplicationDbContext dataBaseContext)
         {
@@ -28,6 +29,7 @@ namespace SellTables.Services
             RatingsRepository = new RatingsRepository(dataBaseContext);
             TagsRepository = new TagsRepository(dataBaseContext);
             UsersRepository = new UsersRepository(dataBaseContext);
+          //  CloudinaryService = new CloudinaryService(dataBaseContext);
         }
 
         public List<CreativeViewModel> GetAllCreatives()
@@ -45,6 +47,7 @@ namespace SellTables.Services
         {
             Creative creative = creativemodel.Creative;
             AddCreativeToCounter(creative.User.Id);
+            creative.CreativeUri = creativemodel.Creative.CreativeUri;
             Chapter chapter = creativemodel.Chapter;
             chapter.Number = 0;
             if (chapter.TagsString != null)
@@ -290,6 +293,7 @@ namespace SellTables.Services
                     EditDate = creative.EditDate.ToShortDateString() + " " + creative.EditDate.ToShortTimeString(),
                     Rating = creative.Rating,
                     Medals = InitMedals(creative.User.Medals),
+                    CreativeUri = creative.CreativeUri,
                     CreationDate = creative.CreationDate.ToShortDateString() + " " + creative.CreationDate.ToShortTimeString()
                 }).ToList();
             }
@@ -312,6 +316,7 @@ namespace SellTables.Services
                     EditDate = (creative.EditDate.ToString()),
                     Rating = creative.Rating,
                     Medals = InitMedals(creative.User.Medals),
+                    CreativeUri = creative.CreativeUri,
                     CreationDate = creative.CreationDate.ToShortDateString() + " " + creative.CreationDate.ToShortTimeString()
                 }).ToList();
             }

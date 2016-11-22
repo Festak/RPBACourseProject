@@ -207,6 +207,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Content Include="Content\somestyles\dropzone.css" />
     <Content Include="Content\somestyles\form.css" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
@@ -315,6 +316,7 @@
     <Content Include="Content\ng-tags-input.bootstrap.min.css" />
     <Content Include="Content\ng-tags-input.min.css" />
     <Content Include="Content\somestyles\AdminUserPage.css" />
+    <Content Include="Content\somestyles\jqui.js" />
     <Content Include="Content\somestyles\search.css" />
     <Content Include="Content\somestyles\TagsStyles.css" />
     <Content Include="Content\somestyles\userpage.css" />
@@ -1163,6 +1165,7 @@
     <Content Include="Scripts\scripts\clean-blog.min.js" />
     <Content Include="Scripts\scripts\contact_me.js" />
     <Content Include="Scripts\scripts\counter.js" />
+    <Content Include="Scripts\scripts\dropzone.js" />
     <Content Include="Scripts\scripts\jquery.tabslideout.v1.2.js" />
     <Content Include="Scripts\scripts\ng-tags-input.min.js" />
     <Content Include="Scripts\scripts\redipadding.js" />
@@ -1265,6 +1268,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611220927253_merge.resx">
       <DependentUpon>201611220927253_merge.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611211617462_creativeUri.resx">
+      <DependentUpon>201611211617462_creativeUri.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Resource.en.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

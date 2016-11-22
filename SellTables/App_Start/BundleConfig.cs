@@ -11,10 +11,10 @@ namespace SellTables
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-2.1.4.js",
                         "~/Scripts/scripts/jquery.tabslideout.v1.2.js",
-            "~/Scripts/scripts/jquery.tagcanvas.js",
-                      "~/Scripts/scripts/counter.js",
-                 "~/Scripts/scripts/jqmenu.js",
-                  "~/Scripts/scripts/registerLoginMenu.js"
+                        "~/Scripts/scripts/jquery.tagcanvas.js",
+                        "~/Scripts/scripts/counter.js",
+                        "~/Scripts/scripts/jqmenu.js",
+                        "~/Scripts/scripts/registerLoginMenu.js"
 
                 ));
 
@@ -36,7 +36,7 @@ namespace SellTables
                           "~/Scripts/angular-route.js",
                           "~/Scripts/angular-cookies.js",
                           "~/Scripts/ng-inline-edit.js"
-                          )); 
+                          ));
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                 "~/app/main.js",
@@ -76,13 +76,13 @@ namespace SellTables
                       ));
 
             bundles.Add(new StyleBundle("~/Content/somestyles").Include(
-                      "~/Content/somestyles/userpage.css"    
+                      "~/Content/somestyles/userpage.css"
 
                       ));
 
             bundles.Add(new ScriptBundle("~/bundles/tags").Include(
                       "~/Scripts/scripts/TagsScript.js"
-                      
+
                       ));
             bundles.Add(new StyleBundle("~/Content/tags").Include(
                       "~/Content/somestyles/TagsStyles.css"

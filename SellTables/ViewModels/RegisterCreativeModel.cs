@@ -16,6 +16,7 @@ namespace SellTables.ViewModels
         public int chapterId { get; set; }
         [AllowHtml]
         public string ChapterText { get; set; }
+        public byte[] Image { get; set; }
 
         public RegisterCreativeModel() {
             Chapters = new List<Chapter>();
