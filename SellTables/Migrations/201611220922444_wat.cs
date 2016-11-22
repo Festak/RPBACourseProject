@@ -3,16 +3,16 @@ namespace SellTables.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class editDate : DbMigration
+    public partial class wat : DbMigration
     {
         public override void Up()
         {
-            AlterColumn("dbo.Creatives", "EditDate", c => c.DateTime(nullable: false));
+            DropColumn("dbo.Creatives", "CreativeUri");
         }
         
         public override void Down()
         {
-            AlterColumn("dbo.Creatives", "EditDate", c => c.DateTime());
+            AddColumn("dbo.Creatives", "CreativeUri", c => c.String());
         }
     }
 }

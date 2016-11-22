@@ -207,7 +207,6 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ChapterController.cs" />
     <Compile Include="Controllers\CreativeController.cs" />
-    <Compile Include="Controllers\CreativesController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -223,13 +222,9 @@
     <Compile Include="Interfaces\IUserRepository.cs" />
     <Compile Include="Interfaces\IUserService.cs" />
     <Compile Include="Lucene\CreativeSearch.cs" />
-    <Compile Include="Migrations\201611210733101_editDate.cs" />
-    <Compile Include="Migrations\201611210733101_editDate.Designer.cs">
-      <DependentUpon>201611210733101_editDate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611211420048_user.cs" />
-    <Compile Include="Migrations\201611211420048_user.Designer.cs">
-      <DependentUpon>201611211420048_user.cs</DependentUpon>
+    <Compile Include="Migrations\201611220922444_wat.cs" />
+    <Compile Include="Migrations\201611220922444_wat.Designer.cs">
+      <DependentUpon>201611220922444_wat.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -1229,11 +1224,6 @@
     <Content Include="Views\Creative\CreateChapter.cshtml" />
     <Content Include="Views\Creative\EditChapter.cshtml" />
     <Content Include="Views\Home\_LastEditedCreatives.cshtml" />
-    <Content Include="Views\Creatives\Create.cshtml" />
-    <Content Include="Views\Creatives\Delete.cshtml" />
-    <Content Include="Views\Creatives\Details.cshtml" />
-    <Content Include="Views\Creatives\Edit.cshtml" />
-    <Content Include="Views\Creatives\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1249,11 +1239,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201611210733101_editDate.resx">
-      <DependentUpon>201611210733101_editDate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611211420048_user.resx">
-      <DependentUpon>201611211420048_user.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201611220922444_wat.resx">
+      <DependentUpon>201611220922444_wat.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Resource.en.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
