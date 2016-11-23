@@ -64,14 +64,16 @@ angular.module('creative', ['ngRoute','as.sortable'])
               },
               itemMoved: function (eventObj) {
               },
-              orderChanged: function (eventObj) {//Do what you want},
+              orderChanged: function (eventObj) {
                   containment: '#board'//optional param.
                   clone: true //optional param for clone feature.
                   allowDuplicates: false //optional param allows duplicates to be dropped.
-                  // откуда eventObj.source.index
-                  // куда eventObj.dest.index
-                  $scope.from = angular.element(eventObj)[0].dest.sortableScope.modelValue[eventObj.source.index].Id;
-                  $scope.to = angular.element(eventObj)[0].dest.sortableScope.modelValue[eventObj.dest.index].Id;
+                  // from this index eventObj.source.index
+                  // to this index eventObj.dest.index
+                  $scope.from = angular.element(eventObj)[0].dest
+                      .sortableScope.modelValue[eventObj.source.index].Id;
+                  $scope.to = angular.element(eventObj)[0].dest
+                  .sortableScope.modelValue[eventObj.dest.index].Id;
           
                  $scope.SendLastAndNewChapterPos(eventObj.source.index, eventObj.dest.index, $scope.from, $scope.to);
               }
@@ -110,7 +112,6 @@ angular.module('creative', ['ngRoute','as.sortable'])
                       'color': 'yellow',
                   });
               }
-
           }
 
           $scope.hide = function (id) {

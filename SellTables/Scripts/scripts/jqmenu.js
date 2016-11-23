@@ -11,10 +11,10 @@ $(document).ready(function() {
     else $(this).find('.test1').css({'transform': 'none'}); 
      if (!active2) $(this).find('.test2').css({'transform': 'translate(60px,105px)'});
     else $(this).find('.test2').css({'transform': 'none'});
-     if (!active3) $(this).find('.test3').css({ 'background-color': 'white', 'transform': 'translate(105px,60px)' });
-    else $(this).find('.test3').css({'background-color': 'white', 'transform': 'none'});
-      if (!active4) $(this).find('.test4').css({'background-color': 'grey', 'transform': 'translate(125px,0px)'});
-    else $(this).find('.test4').css({'background-color': 'silver', 'transform': 'none'});
+     if (!active3) $(this).find('.test3').css({ 'background-color': 'white', '5px border': 'solid', 'transform': 'translate(105px,60px)' });
+     else $(this).find('.test3').css({ 'background-color': 'white', 'border': '5px solid', 'transform': 'none' });
+     if (!active4) $(this).find('.test4').css({ 'background-color': 'grey', '5px border': 'solid', 'transform': 'translate(125px,0px)' });
+     else $(this).find('.test4').css({ 'background-color': 'silver', 'border': '5px solid', 'transform': 'none' });
     active1 = !active1;
     active2 = !active2;
     active3 = !active3;
