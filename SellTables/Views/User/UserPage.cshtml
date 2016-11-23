@@ -161,7 +161,7 @@
         </div>
         @if ((User.Identity.Name == Model.UserName) || User.IsInRole("admin"))
         {
-            <div class="row" id="section1">
+            <div class="row" id="section1" style="text-align: center">
                 <div class="col-md-4">
                     @Html.Partial("../Account/ResetPassword", new ResetPasswordViewModel() { Name = Model.UserName, Type = "user" })
                 </div>

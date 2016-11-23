@@ -13,78 +13,84 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="site-heading">
-                    <h1>@Resources.Resource.EditChapter</h1>
+                    <h1>@Resources.Resource.CreateChapter</h1>
                 </div>
             </div>
         </div>
     </div>
 </header>
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    <div class="form-horizontal">
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.HiddenFor(model => model.creativeId)
-            @Html.HiddenFor(model => model.chapterId)
-            @Html.LabelFor(model => model.Chapter.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Chapter.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Chapter.Name, "", new { @class = "text-danger" })
+<div class="row">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-horizontal">
+            <div class="col-md-4">
+                <div class="col-md-offset-6">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.HiddenFor(model => model.Creative)
+                        @Html.HiddenFor(model => model.creativeId)
+
+
+                        @Html.EditorFor(model => model.Chapter.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = Resources.Resource.FirstChapterName } })
+                        @Html.ValidationMessageFor(model => model.Chapter.Name, "", new { @class = "text-danger" })
+
+                    </div>
+                    <div class="form-group" ng-controller="TagController">
+                        <div ng-init="getTags()">
+
+
+
+                            <input id="search-field"
+                                   type="text"
+                                   placeholder="Enter your tags here"
+                                   class="form-control"
+                                   ng-keyup="checkKeyUp($event)"
+                                   ng-model="searchText"
+                                   ng-change="search()" />
+                            <ul class="list-group">
+                                <li ng-repeat="suggestion in suggestions track by $index"
+                                    ng-class="{active : selectedIndex === $index}"
+                                    ng-click="AssignValueAndHide($index)"
+                                    class="list-group-item cursor-pointer">
+                                    {{suggestion}}
+                                </li>
+                            </ul>
+
+
+                            @Html.HiddenFor(model => model.Chapter.TagsString, null)
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Chapter.Text, htmlAttributes: new { @class = "control-label col-md-2" })
+            @*===================================*@
             <div class="col-md-8">
-                @Html.HiddenFor(model => model.Chapter.Text, new { htmlAttributes = new { @class = "form-control" } })
-                <div class="col-md-offset-2" id="summernote">@Html.Raw(Model.Chapter.Text)</div>
-            </div>
-        </div>
-        <div class="form-group" ng-controller="TagController">
-            <div ng-init="getTags()">
-                <div class="row container">
-                    <h4 class="col-md-1 col-md-offset-1">@Resources.Resource.Tags</h4>
+                <div class="form-group">
+                    <div class="col-md-11">
+                        @Html.HiddenFor(model => model.Chapter.Text, new { htmlAttributes = new { @class = "form-control" } })
+                        <div class="col-md-offset-2" id="summernote">@Resources.Resource.YourChapterText</div>
+                    </div>
+                </div><div class="row container">
                     <ul class="tags col-md-9 col-md-offset-1">
-
                         <li class="tagAdd taglist">
-
                         </li>
                     </ul>
                 </div>
-                <div class="col-md-3 col-md-offset-1">
-                    <input id="search-field"
-                           type="text"
-                           placeholder="@Resources.Resource.EnterYourTags"
-                           class="form-control"
-                           ng-keyup="checkKeyUp($event)"
-                           ng-model="searchText"
-                           ng-change="search()" />
-                    <ul class="list-group">
-                        <li ng-repeat="suggestion in suggestions track by $index"
-                            ng-class="{active : selectedIndex === $index}"
-                            ng-click="AssignValueAndHide($index)"
-                            class="list-group-item cursor-pointer">
-                            {{suggestion}}
-                        </li>
-                    </ul>
-
+            </div>
+            <div class="form-group">
+                <div class="col-md-4 col-md-offset-4">
+                    <input id="submit" type="submit" value="Create" class="btn btn-success col-md-offset-5 col-md-6" />
                 </div>
-                @Html.HiddenFor(model => model.Chapter.TagsString, null)
             </div>
         </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input id="submit" type="submit" value="Edit" class="btn btn-success col-md-offset-5 col-md-6" />
-            </div>
-        </div>
-    </div>
-}
+    }
+</div>
 <script>
     $(document).ready(function () {
         $('#summernote').summernote();
     });
     document.getElementById("submit").onclick = function () {
+
         document.getElementById("Chapter_Text").value = $('#summernote').summernote('code');
         document.getElementById("Chapter_TagsString").value = takeTags();
 
@@ -93,6 +99,6 @@
 @section Scripts {
     @Scripts.Render("~/bundles/tags")
 }
-
+<link type="text/css" href="~/Content/somestyles/form.css" rel="stylesheet" />
 <link type="text/css" href="~/Content/somestyles/TagsStyles.css" rel="stylesheet" />
 

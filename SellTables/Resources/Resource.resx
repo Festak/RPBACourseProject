@@ -300,4 +300,7 @@
   <data name="At" xml:space="preserve">
     <value>В</value>
   </data>
+  <data name="CreateOwnCreative" xml:space="preserve">
+    <value>Создайте Ваш собственный креатив</value>
+  </data>
 </root>

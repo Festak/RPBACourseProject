@@ -38,7 +38,13 @@ namespace SellTables.Services
             var result = new string[number];
             if (GetAllTags() == null)
                 return result.ToList();
+            result = FindPopularTags(result, mostPopular, number);
+            return result.ToList();
+        }
+
+        private string[] FindPopularTags(string[] result, int[] mostPopular, int number) {
             foreach (Tag tag in GetAllTags())
+            {
                 for (int i = 0; i < number; i++)
                 {
                     var newTagRepeats = GetTagRepeatNumber(tag);
@@ -56,21 +62,13 @@ namespace SellTables.Services
                         break;
                     }
                 }
-            return result.ToList();
-        }
-
-
-        private static ICollection<Tag> GetTags(string tagList)
-        {
-            var stringList = tagList.Split(' ');
-            var tags = new List<Tag>();
-            if (stringList != null)
-            {
-                foreach (string text in stringList)
-                    tags.Add(new Tag() { Description = text });
             }
-            return tags;
+            return result;
         }
+
+   
+
+
 
         private int GetTagRepeatNumber(Tag tag)
         {

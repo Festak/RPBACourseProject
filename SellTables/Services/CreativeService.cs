@@ -19,7 +19,6 @@ namespace SellTables.Services
         private IRepository<Rating> RatingsRepository;
         private IRepository<Tag> TagsRepository;
         private IUserRepository UsersRepository;
-      //  private CloudinaryService CloudinaryService;
 
         public CreativeService(ApplicationDbContext dataBaseContext)
         {
@@ -29,7 +28,6 @@ namespace SellTables.Services
             RatingsRepository = new RatingsRepository(dataBaseContext);
             TagsRepository = new TagsRepository(dataBaseContext);
             UsersRepository = new UsersRepository(dataBaseContext);
-          //  CloudinaryService = new CloudinaryService(dataBaseContext);
         }
 
         public List<CreativeViewModel> GetAllCreatives()
@@ -135,10 +133,17 @@ namespace SellTables.Services
 
         public void SetRatingToCreative(int rating, CreativeViewModel creativemodel, ApplicationUser user)
         {
-            Creative creative = dataBaseContext.Creatives.Find(creativemodel.Id);
-            Rating ratingObj = InitRating(creative, rating, user);
-            CalculateRating(ratingObj, creative);
+
+            bool isUserNotVoted = IsUserNotVoted(user, creativemodel.Id);
+            if (isUserNotVoted)
+            {
+                Creative creative = dataBaseContext.Creatives.Find(creativemodel.Id);
+                Rating ratingObj = InitRating(creative, rating, user);
+                CalculateRating(ratingObj, creative);
+            }
         }
+
+
 
         public void AddChapterToCreative(RegisterCreativeModel model)
         {
@@ -149,9 +154,7 @@ namespace SellTables.Services
             chapter.Number = lastIndex + 1;
             if (chapter.TagsString != null)
                 chapter.Tags = GetTags(chapter.TagsString);
-            creative.Chapters.Add(chapter);
-            ChapterRepository.Add(chapter);
-            CreativeRepository.Update(creative);
+            UpdateDBAfterAddChapterToCreative(creative,chapter);
         }
 
         public void EditCreativeChapter(RegisterCreativeModel model)
@@ -190,6 +193,15 @@ namespace SellTables.Services
             return listOfCreatives.ToList();
         }
 
+        private bool IsUserNotVoted(ApplicationUser user, int creativeId)
+        {
+            int count = dataBaseContext.Rating
+                .Where(r => r.CreativeId == creativeId && r.UserId == user.Id)
+                .Count();
+            if (count == 0) return true;
+            else return false;
+        }
+
         private void AddCreativeToUser(Creative creative)
         {
             ApplicationUser user = UsersRepository.FindUserById(creative.User.Id);
@@ -207,7 +219,6 @@ namespace SellTables.Services
                 chapter.TagsString = model.Chapter.TagsString;
                 chapter.Tags = GetTags(model.Chapter.TagsString);
             }
-
             return chapter;
         }
 
@@ -216,7 +227,7 @@ namespace SellTables.Services
             Creative currentCreative = dataBaseContext.Creatives
                 .Include(c => c.Chapters)
                 .FirstOrDefault(i => i.Id == creative.Id);
-            int lastIndexOfChapter = currentCreative.Chapters.Count - 1; // start from 0 at ng-sortable
+            int lastIndexOfChapter = currentCreative.Chapters.Count - 1; // start from 0 at ng-sortable lib
             return lastIndexOfChapter;
         }
 
@@ -246,7 +257,6 @@ namespace SellTables.Services
             return user;
         }
 
-
         private void AddTagsTodataBaseContext(Chapter chapter)
         {
             foreach (var tag in chapter.Tags)
@@ -262,22 +272,40 @@ namespace SellTables.Services
 
             if (stringList != null)
             {
-                foreach (string text in stringList)
-                {
-                    if (text == "") continue;
-                    Tag tag = new Tag();
-                    tag.Description = text;
-                    if (dataBaseContext.Tags.Where(t => t.Description == text).ToList().Count == 0)
-                    {
-                        dataBaseContext.Tags.Add(tag);
-                        dataBaseContext.SaveChanges();
-                    }
-                    tags.Add(tag);
-                }
+                tags = GetListOfTagsBySplit(stringList);
             }
             return tags;
         }
 
+        private List<Tag> GetListOfTagsBySplit(string[] stringList)
+        {
+            var tags = new List<Tag>();
+            foreach (string text in stringList)
+            {
+                if (text == "") continue;
+                Tag tag = new Tag();
+                tag.Description = text;
+                AddTagToDataBaseByCondition(tag, text);
+                tags.Add(tag);
+            }
+            return tags;
+        }
+
+        private void AddTagToDataBaseByCondition(Tag tag, string text) {
+            if (dataBaseContext.Tags
+                .Where(t => t.Description == text).ToList().Count == 0)
+            {
+                dataBaseContext.Tags.Add(tag);
+                dataBaseContext.SaveChanges();
+            }
+        }
+
+        private void UpdateDBAfterAddChapterToCreative(Creative creative, Chapter chapter)
+        {
+            creative.Chapters.Add(chapter);
+            ChapterRepository.Add(chapter);
+            CreativeRepository.Update(creative);
+        }
 
         private ICollection<CreativeViewModel> InitCreatives(ICollection<Creative> list)
         {
@@ -405,6 +433,10 @@ namespace SellTables.Services
             }
             a /= creative.Ratings.Count;
             creative.Rating = Math.Round(a, 2);
+            UpdateDataBaseAfterCalculateRating(creative, rating);
+        }
+
+        private void UpdateDataBaseAfterCalculateRating(Creative creative, Rating rating) {
             CreativeRepository.Update(creative);
             RatingsRepository.Add(rating);
         }

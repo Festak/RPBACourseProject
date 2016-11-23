@@ -84,12 +84,6 @@ angular.module('creative', ['ngRoute','as.sortable'])
                       console.log(data);
                   });
           }
-         
-
-              $scope.dragControlListeners1 = {
-                  containment: '#board',//optional param.
-                  allowDuplicates: true //optional param allows duplicates to be dropped.
-          };
 
           $scope.vote = function (rate, creativeObj) {            
               $http.post('/Creative/GetRatingFromView', { rating: rate, creative: creativeObj }).success(function (result) {

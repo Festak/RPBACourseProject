@@ -140,6 +140,7 @@ namespace SellTables.Services
             foreach (var login in user.Logins.ToList()) {
                 user.Logins.Remove(login);
             }
+            DeleteAllChaptersFromCreatives(creatives);
             DeleteCreatives(creatives);
 
             DataBaseContext.SaveChanges();

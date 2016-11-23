@@ -178,6 +178,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Создайте Ваш собственный креатив.
+        /// </summary>
+        public static string CreateOwnCreative {
+            get {
+                return ResourceManager.GetString("CreateOwnCreative", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Креатива.
         /// </summary>
         public static string Creative {

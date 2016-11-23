@@ -297,4 +297,7 @@
   <data name="At" xml:space="preserve">
     <value>At</value>
   </data>
+  <data name="CreateOwnCreative" xml:space="preserve">
+    <value>Create your own creative</value>
+  </data>
 </root>
