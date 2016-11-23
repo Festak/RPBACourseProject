@@ -16,8 +16,8 @@ namespace SellTables.Controllers
     {
         ApplicationDbContext dataBaseConnection = new ApplicationDbContext();
 
-        CreativeService CreativeService;
-        ChapterService ChapterService;
+        private CreativeService CreativeService;
+        private ChapterService ChapterService;
         private CloudinaryService CloudinaryService;
 
         public CreativeController()
@@ -74,6 +74,12 @@ namespace SellTables.Controllers
         [HttpPost]
         public void UpdateCreativeName(int id, string newName) {
             CreativeService.UpdateCreativeName(id, newName);
+        }
+
+        [HttpPost]
+        public void UpdateCreativeImage(int id, byte[] image) {
+            string path = CloudinaryService.UploadImage(image);
+            CreativeService.UpdateCreativeImage(id, path);
         }
 
         [HttpGet]

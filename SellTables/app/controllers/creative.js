@@ -1,5 +1,5 @@
 ﻿
-angular.module('creative', ['ngRoute','as.sortable'])
+angular.module('creative', ['ngRoute', 'as.sortable'])
   .controller('CreativeController',
   ['$scope',
       '$http',
@@ -20,7 +20,9 @@ angular.module('creative', ['ngRoute','as.sortable'])
           var isBusy = false;
           $scope.orderByField = 'firstName';
           $scope.reverseSort = false;
-    
+
+          $scope.creativeId;
+
 
           $scope.getCreatives = function () {
               $scope.load();
@@ -57,10 +59,10 @@ angular.module('creative', ['ngRoute','as.sortable'])
               }
           }
 
-          $scope.dragControlListeners =  {
+          $scope.dragControlListeners = {
               accept: function (sourceItemHandleScope, destSortableScope) {
                   return sourceItemHandleScope.itemScope.sortableScope.$id === destSortableScope.$id;
-                  
+
               },
               itemMoved: function (eventObj) {
               },
@@ -93,7 +95,7 @@ angular.module('creative', ['ngRoute','as.sortable'])
         .error(function (data) {
             console.log(data);
         });
-              $window.location.href = ''; 
+              $window.location.href = '';
           }
 
           $scope.changeSortType = function (i) {
@@ -126,7 +128,7 @@ angular.module('creative', ['ngRoute','as.sortable'])
           $scope.updateCreativeName = function (creativeId, oldName) {
               $http.post('/Creative/UpdateCreativeName', { id: creativeId, newName: oldName });
           }
-        
+
           $scope.setRating = function (id, i) {
               for (var j = 1; j <= i; j++) {
                   var element = angular.element(document.getElementById('' + id + j));
@@ -153,15 +155,15 @@ angular.module('creative', ['ngRoute','as.sortable'])
              console.log(data);
          });
           }
-          
-          $scope.deleteCreativeById = function(creativeId, user) {
+
+          $scope.deleteCreativeById = function (creativeId, user) {
               $http.post('/Creative/DeleteCreativeById', { id: creativeId, userName: user }).success(function (result) {
                   $scope.getCreativesByUser(user);
               })
         .error(function (data) {
             console.log(data);
         });
-             
+
           }
 
           $scope.deleteChapterById = function (chapterId, user) {
@@ -183,6 +185,23 @@ angular.module('creative', ['ngRoute','as.sortable'])
           });
           }
 
+          $scope.startChanging = function (id) {
+              clearInput();
+              $scope.creativeId = id;
+          }
+
+          $scope.acceptImageChange = function (user) {
+
+              img = angular.element(document.getElementById('imageUploadInput')).attr('value');
+              $http.post('/Creative/UpdateCreativeImage', { id: $scope.creativeId, image: img })
+                  .success(function (result) {
+                      $scope.getCreativesByUser(user);
+                  }).error(function (data) {
+                      console.log(data);
+                  });
+              $scope.creativeId = null;
+          }
+
 
       }]).directive("directive", function () {
           return {
@@ -194,7 +213,7 @@ angular.module('creative', ['ngRoute','as.sortable'])
                       // view -> model
                       var html = element.html();
                       console.log(html);
-                    html = html.replace(/&nbsp;/g, "\u00a0");
+                      html = html.replace(/&nbsp;/g, "\u00a0");
                       ngModel.$setViewValue(html);
                   }
                   // model -> view

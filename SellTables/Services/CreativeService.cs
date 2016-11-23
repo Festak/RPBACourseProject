@@ -174,6 +174,12 @@ namespace SellTables.Services
             CreativeRepository.Update(creative);
         }
 
+        public void UpdateCreativeImage(int id, string path) {
+            Creative creative = CreativeRepository.Get(id);
+            creative.CreativeUri = path;
+            CreativeRepository.Update(creative);
+        }
+
         public ICollection<Rating> GetAllCreativeRatings(Creative creative)
         {
             if (creative == null)
