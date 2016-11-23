@@ -153,6 +153,7 @@ namespace SellTables.Repositories
                 Creative itemObj = dataBaseContext.Creatives.Where(x => x.Id == item.Id).FirstOrDefault();
                 itemObj = item;
                 itemObj.Rating = item.Rating;
+                itemObj.CreativeUri = item.CreativeUri;
                 dataBaseContext.SaveChanges();
             }
         }

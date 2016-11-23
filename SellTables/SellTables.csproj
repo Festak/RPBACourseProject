@@ -1158,6 +1158,7 @@
     <Content Include="Scripts\scripts\contact_me.js" />
     <Content Include="Scripts\scripts\counter.js" />
     <Content Include="Scripts\scripts\dropzone.js" />
+    <Content Include="Scripts\scripts\dropzoneForCreative.js" />
     <Content Include="Scripts\scripts\jquery.tabslideout.v1.2.js" />
     <Content Include="Scripts\scripts\ng-tags-input.min.js" />
     <Content Include="Scripts\scripts\redipadding.js" />
