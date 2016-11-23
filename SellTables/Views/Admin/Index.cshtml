@@ -21,15 +21,13 @@
             foreach (var user in Model)
             {
                 <div class="col-xs-12 col-sm-6 col-md-6">
-                    <div class="well well-sm" style="height: 230px">
+                    <div class="well well-sm" >
                         <div class="row">
-                            <div class="col-sm-4 col-md-4">
-                                <img src="@user.AvatarUri" alt="avatar" style="height: 60%; width: 30%;" class="img-rounded img-responsive" />
-                                @foreach(var medal in user.Medals) { 
-                                <img style="width: 32px; height: 32px" src="@medal.ImageUri" title="@medal.Name"/>
-                                }
+                            <div class="col-sm-12 col-md-4 col-xs-12">
+                                <img src="@user.AvatarUri" alt="avatar" style="height: 170px; width: 150px;" class="img-rounded img-responsive" />
+                           
                             </div>
-                            <div class="col-sm-7 col-md-7">
+                            <div class="col-sm-12 col-md-7 col-xs-12">
                                 <h4>
                                     @Html.ActionLink(@user.UserName, "UserPage", "Admin", new { area="", username = user.UserName.ToString()}, null)
                                 </h4>
@@ -40,6 +38,12 @@
                                     <i class="glyphicon glyphicon-envelope"></i> @user.Email
                                     <br />
                                     <i class="glyphicon glyphicon-gift"></i>@user.RegistrationDate
+                                    <br/>
+                                    @foreach (var medal in user.Medals)
+                                    {
+                                        <img style="width: 20px; height: 20px" src="@medal.ImageUri" title="@medal.Name" />
+                                    }
+                                    
                                 </p> 
                                 @if (user.LockoutEndDateUtc == null)
                                 {
