@@ -36,11 +36,7 @@
 </div>
                 <div class="row">
                     <div class="col-md-3 text-center">
-                        <span id="{{$index}}1" ng-click="vote(1, creative)" class="glyphicon glyphicon-star-empty" ng-mouseover="show($index,1)" ng-mouseleave="hide($index)" aria-hidden="true"></span>
-                        <span id="{{$index}}2" ng-click="vote(2, creative)" class="glyphicon glyphicon-star-empty" ng-mouseover="show($index,2)" ng-mouseleave="hide($index)" aria-hidden="true"></span>
-                        <span id="{{$index}}3" ng-click="vote(3, creative)" class="glyphicon glyphicon-star-empty" ng-mouseover="show($index,3)" ng-mouseleave="hide($index)" aria-hidden="true"></span>
-                        <span id="{{$index}}4" ng-click="vote(4, creative)" class="glyphicon glyphicon-star-empty" ng-mouseover="show($index,4)" ng-mouseleave="hide($index)" aria-hidden="true"></span>
-                        <span id="{{$index}}5" ng-click="vote(5, creative)" class="glyphicon glyphicon-star-empty" ng-mouseover="show($index,5)" ng-mouseleave="hide($index)" aria-hidden="true"></span>
+                        <input-stars max="5" ng-model="creative.Rating" on-star-click="vote(creative.Rating,creative)"></input-stars>
                     </div>
                     <div class="col-md-9 text-right">
                         <span class="post-meta">@Resources.Resource.PostedBy <a href="../../User/UserPage/?name={{creative.UserName}}">{{creative.UserName}}</a> @Resources.Resource.On {{creative.CreationDate}}</span>

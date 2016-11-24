@@ -303,4 +303,37 @@
   <data name="CreateOwnCreative" xml:space="preserve">
     <value>Создайте Ваш собственный креатив</value>
   </data>
+  <data name="AllChapters" xml:space="preserve">
+    <value>Все главы</value>
+  </data>
+  <data name="AllChaptersText" xml:space="preserve">
+    <value>Общее количество глав, которые вы создали за все время пребывания на нашем сайте.</value>
+  </data>
+  <data name="AllCreativesCount" xml:space="preserve">
+    <value>Общее количество креативов</value>
+  </data>
+  <data name="AllCreativesText" xml:space="preserve">
+    <value>Общее количество креативов, которые Вы имеет в данный момент времени</value>
+  </data>
+  <data name="AllMedalsCount" xml:space="preserve">
+    <value>Общее количество медалей</value>
+  </data>
+  <data name="AllMedalsText" xml:space="preserve">
+    <value>Для большего количества людей достижения играют огромную роль , так как по их количеству можно судить о многом.</value>
+  </data>
+  <data name="ChangeImage" xml:space="preserve">
+    <value>Изменить картинку</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Закрыть окно</value>
+  </data>
+  <data name="SaveChanges" xml:space="preserve">
+    <value>Сохранить картинку</value>
+  </data>
+  <data name="SomeUserInfo" xml:space="preserve">
+    <value>Общая информация о странице пользователя</value>
+  </data>
+  <data name="SomeUserInfoText" xml:space="preserve">
+    <value>МНОГОМНОГОТЕКСТАПОТОМБУДЕТ</value>
+  </data>
 </root>

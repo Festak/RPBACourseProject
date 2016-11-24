@@ -79,6 +79,60 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Все главы.
+        /// </summary>
+        public static string AllChapters {
+            get {
+                return ResourceManager.GetString("AllChapters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Общее количество глав, которые вы создали за все время пребывания на нашем сайте..
+        /// </summary>
+        public static string AllChaptersText {
+            get {
+                return ResourceManager.GetString("AllChaptersText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Общее количество креативов.
+        /// </summary>
+        public static string AllCreativesCount {
+            get {
+                return ResourceManager.GetString("AllCreativesCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Общее количество креативов, которые Вы имеет в данный момент времени.
+        /// </summary>
+        public static string AllCreativesText {
+            get {
+                return ResourceManager.GetString("AllCreativesText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Общее количество медалей.
+        /// </summary>
+        public static string AllMedalsCount {
+            get {
+                return ResourceManager.GetString("AllMedalsCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Для большего количества людей достижения играют огромную роль , так как по их количеству можно судить о многом..
+        /// </summary>
+        public static string AllMedalsText {
+            get {
+                return ResourceManager.GetString("AllMedalsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Применить.
         /// </summary>
         public static string Apply {
@@ -115,6 +169,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Изменить картинку.
+        /// </summary>
+        public static string ChangeImage {
+            get {
+                return ResourceManager.GetString("ChangeImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Измените логин.
         /// </summary>
         public static string ChangeLogin {
@@ -147,6 +210,15 @@ namespace Resources {
         public static string ChooseLanguage {
             get {
                 return ResourceManager.GetString("ChooseLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Закрыть окно.
+        /// </summary>
+        public static string Close {
+            get {
+                return ResourceManager.GetString("Close", resourceCulture);
             }
         }
         
@@ -475,6 +547,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Сохранить картинку.
+        /// </summary>
+        public static string SaveChanges {
+            get {
+                return ResourceManager.GetString("SaveChanges", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Масштаб.
         /// </summary>
         public static string Scale {
@@ -489,6 +570,24 @@ namespace Resources {
         public static string Search {
             get {
                 return ResourceManager.GetString("Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Общая информация о странице пользователя.
+        /// </summary>
+        public static string SomeUserInfo {
+            get {
+                return ResourceManager.GetString("SomeUserInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to МНОГОМНОГОТЕКСТАПОТОМБУДЕТ.
+        /// </summary>
+        public static string SomeUserInfoText {
+            get {
+                return ResourceManager.GetString("SomeUserInfoText", resourceCulture);
             }
         }
         

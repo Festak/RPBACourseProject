@@ -1,5 +1,5 @@
 ﻿
-angular.module('creative', ['ngRoute', 'as.sortable'])
+angular.module('creative', ['ngRoute', 'as.sortable', 'angular-input-stars'])
   .controller('CreativeController',
   ['$scope',
       '$http',
@@ -89,13 +89,13 @@ angular.module('creative', ['ngRoute', 'as.sortable'])
                   });
           }
 
-          $scope.vote = function (rate, creativeObj) {            
-              $http.post('/Creative/GetRatingFromView', { rating: rate, creative: creativeObj }).success(function (result) {
-              })
-        .error(function (data) {
-            console.log(data);
-        });
-              $window.location.href = '';
+          $scope.vote = function (rate, creativeObj) {
+    
+             $http.post('/Creative/GetRatingFromView', { rating: rate, creative: creativeObj }).success(function (result) {
+             })
+       .error(function (data) {
+           console.log(data);
+       });
           }
 
           $scope.changeSortType = function (i) {

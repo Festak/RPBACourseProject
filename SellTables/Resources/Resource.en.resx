@@ -300,4 +300,46 @@
   <data name="CreateOwnCreative" xml:space="preserve">
     <value>Create your own creative</value>
   </data>
+  <data name="AllChapters" xml:space="preserve">
+    <value>All chapters</value>
+  </data>
+  <data name="AllChaptersText" xml:space="preserve">
+    <value>Total count of chapters, which</value>
+  </data>
+  <data name="AllCreativesCount" xml:space="preserve">
+    <value>All creatives count</value>
+  </data>
+  <data name="AllCreativesText" xml:space="preserve">
+    <value>Total count of current creatives,</value>
+  </data>
+  <data name="AllMedalsCount" xml:space="preserve">
+    <value>All medals count</value>
+  </data>
+  <data name="AllMedalsText" xml:space="preserve">
+    <value>The medals plays an a very important role for</value>
+  </data>
+  <data name="ChangeImage" xml:space="preserve">
+    <value>Change image</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Close window</value>
+  </data>
+  <data name="SaveChanges" xml:space="preserve">
+    <value>Save image</value>
+  </data>
+  <data name="SomeUserInfo" xml:space="preserve">
+    <value>Some information about User Page</value>
+  </data>
+  <data name="SomeUserInfoText" xml:space="preserve">
+    <value>ALOTOFTEXTHERELOSADASDJAKSJDAKSHDA</value>
+  </data>
+  <data name="String" xml:space="preserve">
+    <value>was created for the all time.</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value>which user have got right now</value>
+  </data>
+  <data name="String2" xml:space="preserve">
+    <value>some persons, who want to be most active.</value>
+  </data>
 </root>

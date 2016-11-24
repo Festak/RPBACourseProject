@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="site-heading">
-                    <h2>User Page of</h2>
+                    <h2>@Resources.Resource.UserPage</h2>
                     <h1>@Model.UserName</h1>
                 </div>
             </div>
@@ -23,11 +23,10 @@
         <div class="row ">
             <div class="col-md-12">
                 <div class="col-md-8 col-sm-8">
-                    <h2>Some information about user page </h2>
-                    <span id="text">
-                        Lorem ipsum dolor sit amet, accumsan.  posuere lectus et, fringilla augue. Lorem ipsum dolor sit amet, accumsan.  posuere lectus et, fringilla augue. Lorem ipsum dolor sit amet, accumsan.  posuere lectus et, fringilla augue. Lorem ipsum dolor sit amet, accumsan.  posuere lectus et, fringilla augue. Lorem ipsum dolor sit amet, accumsan.  posuere lectus et, fringilla augue.
-                    </span>
-                    <button id="reset" data-bound="true">Push me</button>
+                    <h2>@Resources.Resource.SomeUserInfo</h2>
+                    <p id="text">
+                        @Resources.Resource.SomeUserInfoText
+                    </p>
                 </div>
 
                 <div class="col-md-4 col-sm-4 text-center" id="myScroll">
@@ -51,31 +50,27 @@
             <div class="col-md-4  col-sm-4">
                 <i class="fa faa-horizontal animated icon-round bk-color-black timer count-title" id="count-number"
                    data-to="@Model.ChaptersCreateCounter" data-speed="9300"></i>
-                <h4>All chapters </h4>
+                <h4>@Resources.Resource.AllChapters</h4>
                 <p>
-                    Total count of chapters, which
-                    was created for the all time.
-
+                    @Resources.Resource.AllChaptersText
                 </p>
 
             </div>
             <div class="col-md-4  col-sm-4">
                 <i class="fa faa-float animated icon-round bk-color-blue timer count-title" id="count-number"
                    data-to="@Model.Creatives.Count" data-speed="9300"></i>
-                <h4>All creatives count </h4>
+                <h4>@Resources.Resource.AllCreativesCount </h4>
                 <p>
-                    Total count of current creatives,
-                    which user have got right now
+                   @Resources.Resource.AllCreativesText
                 </p>
 
             </div>
             <div class="col-md-4  col-sm-4">
                 <i class="fa faa-ring animated icon-round bk-color-brown timer count-title" id="count-number"
                    data-to="@Model.Medals.Count" data-speed="9300"></i>
-                <h4>All medals count </h4>
+                <h4>@Resources.Resource.AllMedalsCount</h4>
                 <p>
-                    The medals plays an a very important role for
-                    some persons, who want to be most active.
+                   @Resources.Resource.AllMedalsText
                 </p>
 
             </div>
@@ -100,20 +95,20 @@
                         <div id="dropzone">
                             <img class="file__drop" style="width: 100%; height: 100%" src="{{creative.CreativeUri}}" />
                         </div>
-                        <span ng-click="startChanging(creative.Id)" data-toggle="modal" data-target=".modal{{$index}}">Change picture</span>
+                        <span ng-click="startChanging(creative.Id)" data-toggle="modal" data-target=".modal{{$index}}">@Resources.Resource.ChangeImage</span>
                         <div class="modal fade modal{{$index}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                        <h4 class="modal-title" id="myModalLabel">Change image</h4>
+                                        <h4 class="modal-title" id="myModalLabel">@Resources.Resource.ChangeImage</h4>
                                     </div>
                                     <div class="modal-body">
                                         <img class="file__drop" style="width: 100%; height: 100%" src="{{creative.CreativeUri}}" data-image-creative data-image-creative-uploader />
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                        <button ng-click="acceptImageChange('@Model.UserName')" type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">@Resources.Resource.Close</button>
+                                        <button ng-click="acceptImageChange('@Model.UserName')" type="button" class="btn btn-primary" data-dismiss="modal">@Resources.Resource.SaveChanges</button>
                                     </div>
                                 </div>
                             </div>
@@ -123,7 +118,7 @@
                         <div ng-controller="MainController">
                             <h2 class="cursor-pointer"
                                 ng-click="redirectToCreative(creative.Id)">
-                                Read creative
+                                @Resources.Resource.Read
                             </h2>
                         </div>
                         @if ((User.Identity.Name == Model.UserName) || User.IsInRole("admin"))
@@ -147,7 +142,7 @@
                         <span class="glyphicon glyphicon-chevron-down cursor-pointer"></span>
                         <span role="button" data-toggle="collapse" href="#collapseExample{{$index}}"
                               aria-expanded="false" aria-controls="collapseExample" class="cursor-pointer">
-                            Глав: {{creative.Chapters.length}}
+                            @Resources.Resource.Chapters: {{creative.Chapters.length}}
                         </span>
                     </h4>
                     <div class="collapse" id="collapseExample{{$index}}">
@@ -170,11 +165,7 @@
 
                     <div class="row">
                         <div class="col-md-12">
-                            <span id="{{$index}}1" ng-click="vote(1, creative)" class="glyphicon glyphicon-star-empty creative.Id+'1'" ng-mouseover="show($index,1)" ng-mouseleave="hide($index)" aria-hidden="true"></span>
-                            <span id="{{$index}}2" ng-click="vote(2, creative)" class="glyphicon glyphicon-star-empty creative.Id+'1'" ng-mouseover="show($index,2)" ng-mouseleave="hide($index)" aria-hidden="true"></span>
-                            <span id="{{$index}}3" ng-click="vote(3, creative)" class="glyphicon glyphicon-star-empty creative.Id+'1'" ng-mouseover="show($index,3)" ng-mouseleave="hide($index)" aria-hidden="true"></span>
-                            <span id="{{$index}}4" ng-click="vote(4, creative)" class="glyphicon glyphicon-star-empty creative.Id+'1'" ng-mouseover="show($index,4)" ng-mouseleave="hide($index)" aria-hidden="true"></span>
-                            <span id="{{$index}}5" ng-click="vote(5, creative)" class="glyphicon glyphicon-star-empty creative.Id+'1'" ng-mouseover="show($index,5)" ng-mouseleave="hide($index)" aria-hidden="true"></span>
+                            <input-stars max="5" ng-model="creative.Rating" readonly></input-stars>
                         </div>
                     </div>
                 </div>
@@ -207,234 +198,6 @@
     function send(base64) {
         post('UploadUserAvatar', { img: base64 });
     }
-
-    function sendForCreative(base64) {
-        document.getElementById('imageUploadInput').value = base64;
-    }
-
-    function clearInput() {
-        document.getElementById('imageUploadInput').value = '';
-    }
-
-    var time = 0;
-    function Gravity(id) {
-        var that = this;
-        var element = document.getElementById(id);
-        var text = element.textContent;
-        var arr = text.split('');
-
-        this.animate = false;
-        this.floating = true;
-        this.resetTime = 0;
-
-        this.positionType = getComputedStyle(element).position;
-
-        this.lerp = function (e, t, i) {
-            return (1 - i) * e + i * t;
-        }
-        this.checkBound = function () {
-            if (element.hasAttribute("data-bound")) {
-                return element.dataset.bound === "true";
-            }
-        }
-
-        this.useBound = this.checkBound();
-        this.colors = [
-            '#f44336', '#e91e63', '#9c27b0',
-            '#673ab7', '#3f51b5', '#2196f3',
-            '#03a9f4', '#00bcd4', '#009688',
-            '#4caf50', '#8bc34a', '#cddc39',
-            '#ffeb3b', '#ffc107', '#ff9800',
-            '#ff5722', '#795548', '#9e9e9e',
-            '#607d8b'
-        ];
-
-        this.randomColor = function () {
-            var randNum = Math.floor(Math.random() * this.colors.length);
-            return this.colors[randNum];
-        }
-
-        this.bounds = this.useBound ? {
-            min: {
-                x: element.offsetLeft,
-                y: element.offsetTop
-            },
-            max: {
-                x: element.offsetLeft + element.offsetWidth,
-                y: element.offsetTop + element.offsetHeight
-            }
-        } : {
-            min: {
-                x: 0,
-                y: 0
-            },
-            max: {
-                x: window.innerWidth,
-                y: window.innerHeight
-            }
-        }
-
-        this.pointInCircle = function (point, target, radius) {
-            var distsq = (point.x - target.x) * (point.x - target.x) + (point.y - target.y) * (point.y - target.y);
-            return [distsq <= radius * radius, distsq];
-        }
-
-        function createSpan(text, pos) {
-            var span = document.createElement('span');
-            span.innerHTML = text;
-            span.style.position = "relative";
-            span.style.display = "inline-block";
-            span.style.minWidth = "10px";
-            span.style.color = that.randomColor();
-            span._own = {
-                pos: {
-                    x: 0,
-                    y: 0
-                },
-                vel: {
-                    x: -0.5 + Math.random(),
-                    y: -0.5 + Math.random()
-                },
-                speed: {
-                    x: 1,
-                    y: 1
-                },
-                dir: {
-                    x: 1,
-                    y: 1
-                }
-            }
-            return span;
-        }
-        this.textSpans = [];
-
-        element.innerHTML = '';
-
-        arr.forEach(function (t, i) {
-            var el = createSpan(t, {
-                x: 0,
-                y: 0
-            });
-            element.appendChild(el);
-            that.textSpans.push(el);
-        });
-
-        this.getDim = function () {
-
-            this.textSpans.forEach(function (t, i) {
-                var offset = {
-                    x: 0,
-                    y: 0
-                }
-                if (that.positionType === 'relative' || that.positionType === 'absolute') {
-                    offset.x = element.offsetLeft
-                    offset.y = element.offsetTop
-                }
-                t._own.real = {
-                    x: offset.x + t.offsetLeft,
-                    y: offset.y + t.offsetTop
-                },
-                t._own.size = {
-                    x: t.offsetWidth,
-                    y: t.offsetHeight
-                }
-
-            });
-
-        };
-
-        this.getDim();
-
-        this.floatText = function () {
-            this.textSpans.forEach(function (t, i) {
-
-                if (t._own.pos.x + t._own.real.x < that.bounds.min.x || t._own.pos.x + t._own.real.x + t._own.size.x > that.bounds.max.x) {
-                    t._own.dir.x *= -1;
-                }
-                if (t._own.pos.y + t._own.real.y < that.bounds.min.y || t._own.pos.y + t._own.real.y + t._own.size.y > that.bounds.max.y) {
-                    t._own.dir.y *= -1;
-                }
-                t._own.pos.x += (t._own.vel.x * t._own.speed.x) * t._own.dir.x;
-                t._own.pos.y += (t._own.vel.y * t._own.speed.y) * t._own.dir.y;
-                t.style.transform = 'translateX(' + t._own.pos.x + 'px) translateY(' + t._own.pos.y + 'px)';
-
-            });
-        }
-        this.update = function () {
-            if (this.animate) {
-                if (this.floating) {
-                    this.floatText();
-                } else {
-                    this.floatBackwards();
-                }
-            }
-        }
-
-        this.floatBackwards = function () {
-            this.textSpans.forEach(function (t, i) {
-
-                var x = that.lerp(t._own.pos.x, 0, that.resetTime / 10);
-                var y = that.lerp(t._own.pos.y, 0, that.resetTime / 10);
-
-                t.style.transform = 'translateX(' + x + 'px) translateY(' + y + 'px)';
-
-            });
-
-            if (this.resetTime === 10) {
-                this.animate = false;
-                this.resetTime = 0;
-            }
-            this.resetTime++;
-        }
-        this.reset = function () {
-            this.floating = false;
-        }
-        this.restart = function () {
-            this.textSpans.forEach(function (t, i) {
-                t._own.pos.x = 0;
-                t._own.pos.y = 0;
-            });
-            this.floating = true;
-            this.animate = true;
-        }
-
-        window.onresize = function () {
-            that.getDim();
-        }
-
-    }
-
-    var paragraph = new Gravity('text');
-    var gravity = new Gravity('reset');
-
-    var button = document.getElementById('reset');
-    button.addEventListener('click', function () {
-        if (gravity.animate) {
-            gravity.reset();
-            paragraph.reset();
-        } else {
-            gravity.restart();
-            paragraph.restart();
-        }
-    });
-
-    var render = function (time) {
-        requestAnimationFrame(render);
-
-        animation(time);
-    };
-
-    //__________ animation
-
-    function animation(time) {
-        paragraph.update();
-        gravity.update();
-    };
-
-    //__________
-
-    render(time);
-
 </script>
 
 @section Scripts {

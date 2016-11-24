@@ -1181,6 +1181,8 @@
     <Content Include="Scripts\sortable\ng-sortable.min.css" />
     <Content Include="Scripts\sortable\ng-sortable.min.js" />
     <Content Include="Scripts\sortable\ng-sortable.style.min.css" />
+    <Content Include="Scripts\stars\angular-input-stars.css" />
+    <Content Include="Scripts\stars\angular-input-stars.js" />
     <Content Include="Scripts\summernote\jquery-2.1.4.js" />
     <Content Include="Scripts\summernote\summernote.css" />
     <Content Include="Scripts\summernote\summernote.js" />
