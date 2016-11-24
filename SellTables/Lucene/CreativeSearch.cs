@@ -146,6 +146,7 @@ namespace SellTables.Lucene
             doc.Add(new Field("Name", creative.Name, Field.Store.YES, Field.Index.ANALYZED));
             doc.Add(new Field("User", creative.User.UserName, Field.Store.YES, Field.Index.ANALYZED));
             doc.Add(new Field("Rating", creative.Rating.ToString(), Field.Store.YES, Field.Index.ANALYZED));
+            doc.Add(new Field("CreativeUri", creative.CreativeUri, Field.Store.YES, Field.Index.ANALYZED));
             doc.Add(new Field("Date", creative.CreationDate.ToShortDateString() + " " + creative.CreationDate.ToShortTimeString(), Field.Store.YES, Field.Index.ANALYZED));
             doc.Add(new Field("EditDate", creative.EditDate.ToShortDateString() + " " + creative.EditDate.ToShortTimeString(), Field.Store.YES, Field.Index.ANALYZED));
             string tags = "";
@@ -205,6 +206,7 @@ namespace SellTables.Lucene
                 EditDate = doc.Get("EditDate"),
                 Rating = Convert.ToDouble(doc.Get("Rating")),
                 CreationDate = doc.Get("Date"),
+                CreativeUri = doc.Get("CreativeUri"),
                 Chapters = GetChapters(doc.Get("Chapters"))   
             };
         }

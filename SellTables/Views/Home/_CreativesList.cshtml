@@ -1,50 +1,50 @@
 ﻿
-    <div ng-init='getCreatives()' id="scroller">
-        <div data-ng-repeat='creative in creatives' class="col-md-12 col-xs-12 col-lg-12 col-sm-12">
-            <div class="box7">
+<div ng-init='getCreatives()' id="scroller">
+    <div data-ng-repeat='creative in creatives' class="col-md-12 col-xs-12 col-lg-12 col-sm-12">
+        <div class="box7">
 
-                <div class="post-title text-center">
-                    <div ng-controller="MainController">
-                        <h2 class="post-title cursor-pointer" ng-click="redirectToCreative(creative.Id)">{{creative.Name}}</h2>
-                    </div>
+            <div class="post-title text-center">
+                <div ng-controller="MainController">
+                    <h2 class="post-title cursor-pointer" ng-click="redirectToCreative(creative.Id)">{{creative.Name}}</h2>
                 </div>
-                <div class="row">
-                    <div class="col-md-3">
-                        <img src="{{creative.CreativeUri}}" style="width: 200px; height: 200px" title="UserAvatar"/>
-                    </div>
-                    
-                    <div class="col-md-9">
-                        <h4 class="post-subtitle cursor-pointer">
-                            <span class="glyphicon glyphicon-chevron-down"></span>
-                            <span role="button" data-toggle="collapse" href="#collapseExample{{$index}}" aria-expanded="false" aria-controls="collapseExample">
-                                @Resources.Resource.Chapters: {{creative.Chapters.length}}
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <img src="{{creative.CreativeUri}}" style="width: 200px; height: 200px" title="UserAvatar" />
+                </div>
+
+                <div class="col-md-9">
+                    <h4 class="post-subtitle cursor-pointer">
+                        <span class="glyphicon glyphicon-chevron-down"></span>
+                        <span role="button" data-toggle="collapse" href="#collapseExample{{$index}}" aria-expanded="false" aria-controls="collapseExample">
+                            @Resources.Resource.Chapters: {{creative.Chapters.length}}
+                        </span>
+                    </h4>
+                    <div class="collapse" id="collapseExample{{$index}}">
+
+                        <div ng-repeat="chapter in creative.Chapters" ng-controller="MainController">
+
+                            <span class="cursor-pointer" ng-click="redirectToCreative(creative.Id)">
+                                <small>
+                                    <span class="glyphicon glyphicon-chevron-right"></span>
+                                </small>
+                                {{chapter.Name}}
                             </span>
-                        </h4>
-                        <div class="collapse" id="collapseExample{{$index}}">
-
-                            <div ng-repeat="chapter in creative.Chapters" ng-controller="MainController">
-
-                                <span class="cursor-pointer" ng-click="redirectToCreative(creative.Id)">
-                                    <small>
-                                        <span class="glyphicon glyphicon-chevron-right"></span>
-                                    </small>
-                                    {{chapter.Name}}
-                                </span>
-                            </div>
                         </div>
                     </div>
-</div>
-                <div class="row">
-                    <div class="col-md-3 text-center">
-                        <input-stars max="5" ng-model="creative.Rating" on-star-click="vote(creative.Rating,creative)"></input-stars>
-                    </div>
-                    <div class="col-md-9 text-right">
-                        <span class="post-meta">@Resources.Resource.PostedBy <a href="../../User/UserPage/?name={{creative.UserName}}">{{creative.UserName}}</a> @Resources.Resource.On {{creative.CreationDate}}</span>
-                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 text-center">
+                    <input-stars max="5" ng-model="creative.Rating" on-star-click="vote(creative.Rating,creative)"></input-stars>
+                </div>
+                <div class="col-md-9 text-right">
+                    <span class="post-meta">@Resources.Resource.PostedBy <a href="../../User/UserPage/?name={{creative.UserName}}">{{creative.UserName}}</a> @Resources.Resource.On {{creative.CreationDate}}</span>
                 </div>
             </div>
         </div>
     </div>
+</div>
 <script>
 
     $(window).scroll(function () {

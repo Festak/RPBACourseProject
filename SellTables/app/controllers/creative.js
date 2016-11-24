@@ -70,7 +70,7 @@ angular.module('creative', ['ngRoute', 'as.sortable', 'angular-input-stars'])
                   containment: '#board'//optional param.
                   clone: true //optional param for clone feature.
                   allowDuplicates: false //optional param allows duplicates to be dropped.
-                  // from this index eventObj.source.index
+                 // from this index eventObj.source.index
                   // to this index eventObj.dest.index
                   $scope.from = angular.element(eventObj)[0].dest
                       .sortableScope.modelValue[eventObj.source.index].Id;

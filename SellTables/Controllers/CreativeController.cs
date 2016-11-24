@@ -123,7 +123,7 @@ namespace SellTables.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            var listOfLuceneObjectsByTags = Lucene.CreativeSearch.Search(query, "Tags");  
+            var listOfLuceneObjectsByTags = Lucene.CreativeSearch.Search(query);  
             return View(listOfLuceneObjectsByTags.ToList());
         }
 
