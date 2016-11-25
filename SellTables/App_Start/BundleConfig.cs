@@ -40,8 +40,6 @@ namespace SellTables
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                 "~/app/main.js",
-              "~/app/controllers/tag.js",
-               "~/app/controllers/cookies.js",
               "~/app/controllers/admin.js",
              "~/app/controllers/widthChange.js",
                 "~/app/controllers/creative.js",

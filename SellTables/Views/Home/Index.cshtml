@@ -2,7 +2,7 @@
     @{
         ViewBag.Title = "Home Page";
     }
-    <header class="intro-header container-fluid" style="background-image: url('http://www.freeoboi.ru/images/249509332.jpg');">
+    <header class="intro-header container-fluid" style="background-image: url('https://res.cloudinary.com/qwe123/image/upload/v1480080672/_Some_of_the_bright_graffiti_on_a_brick_wall_104897__ps7z6s.jpg');">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
@@ -26,8 +26,12 @@
         <div class="col-md-8">
             <div class="col-md-12">
                 <div class="pull-right">
-                    <i class="h2">@Resources.Resource.CreateOwnCreative</i> <span class="glyphicon glyphicon-arrow-right h2"></span>
-                    <a class="glyphicon glyphicon-plus-sign h2" style="text-decoration:none; color: lawngreen;" href="@Url.Action("Create", "Creative")"></a>
+                    @*<i class="h2">@Resources.Resource.CreateOwnCreative</i> <span class="glyphicon glyphicon-arrow-right h2"></span>*@
+                    
+                        <a style="text-decoration:none; color: lawngreen;" href="@Url.Action("Create", "Creative")">
+                            <i class="fa fa-2x fa-plus-square-o" aria-hidden="true"></i>
+</a>
+
                 </div>
             </div>
             @Html.Partial("_SortPanel")

@@ -56,6 +56,11 @@ namespace SellTables.Services
             DeleteUser(user);
         }
 
+        public string GetUserAvatarUri(string userId) {
+            ApplicationUser user = UsersRepository.FindUserById(userId);
+            return user.AvatarUri;
+        }
+
         public void BanUser(string userName) {
             ApplicationUser user = UsersRepository.FindUser(userName);
             if (!UsersRepository.IsInAdminRole(user.Id))

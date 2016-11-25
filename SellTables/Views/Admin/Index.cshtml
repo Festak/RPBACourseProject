@@ -3,7 +3,7 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<header class="intro-header container-fluid" style="background-image: url('http://www.freeoboi.ru/images/249509332.jpg')">
+<header class="intro-header container-fluid" style="background-image: url('https://res.cloudinary.com/qwe123/image/upload/v1480080377/D0_BC_D0_BE_D0_B4_D0_B5_D1_80_D0_BD_D0_B8_D0_B7_D0_B0_D1_86_D0_B8_D1_8F-__D1_81_D0_B5_D1_80_D0_B2_D0_B5_D1_80_D0_BD_D0_B0_D1_8F_hjogdm.jpg')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
@@ -29,7 +29,7 @@
                             </div>
                             <div class="col-sm-12 col-md-7 col-xs-12">
                                 <h4>
-                                    @Html.ActionLink(@user.UserName, "UserPage", "Admin", new { area = "", username = user.UserName.ToString() }, null)
+                                    <a href="../../User/UserPage/?name=@user.UserName">@user.UserName</a>
                                 </h4>
 
                                 <p>

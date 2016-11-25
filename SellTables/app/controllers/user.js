@@ -3,6 +3,7 @@ angular.module('user', [])
   .controller('UserController', ['$scope', '$http', function ($scope, $http) {
       $scope.users = [];
       $scope.user = {};
+      $scope.UserAvatarUri;
       $scope.isAdmin = false;
 
       $scope.getUsers = function () {
@@ -22,6 +23,16 @@ angular.module('user', [])
              .error(function (data) {
                  console.log(data);
              });
+      }
+
+      $scope.getUriAvatar = function (id) {
+          console.log(id);
+          $http.post('/User/GetUserAvatarUri', { userId: id }).success(function (result) {
+              $scope.UserAvatarUri = result;
+          })
+      .error(function (data) {
+          console.log(data);
+      });
       }
 
 

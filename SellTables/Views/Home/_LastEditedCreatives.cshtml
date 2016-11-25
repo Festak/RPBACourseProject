@@ -5,11 +5,11 @@
 <ul>
     <li ng-repeat="creative in lastEdited">
         <h5>
-            <a href="../../Creative/Details/?id={{creative.Id}}">{{creative.Name}}</a><i>by {{creative.UserName}}</i>
+            <a href="../../Creative/Details/?id={{creative.Id}}">{{creative.Name}}</a><i> by {{creative.UserName}}</i>
         </h5>
         <i>{{creative.Rating}} @Resources.Resource.Stars</i>
         <br />
-        <i>@Resources.Resource.At: {{creative.EditDate}}</i>
+        <i>@Resources.Resource.At {{creative.EditDate}}</i>
     </li>
 </ul>
     </div>

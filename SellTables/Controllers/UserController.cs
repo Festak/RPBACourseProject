@@ -46,6 +46,11 @@ namespace SellTables.Controllers
 
         }
 
+        public string GetUserAvatarUri(string userId) {
+            string userAvatarUri = UserService.GetUserAvatarUri(userId);
+            return userAvatarUri;
+        }
+
         public void UploadUserAvatar(byte[] img)
         {
             CloudinaryService.UploadUserAvatar(img, User.Identity.Name);

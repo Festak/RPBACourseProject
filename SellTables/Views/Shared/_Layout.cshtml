@@ -23,13 +23,12 @@
     }
     else if (Request.Cookies["style"].Value == "1")
     {
-        <link href="~/Content/bootstrapGrey.css" rel="stylesheet" />
+        <link href="~/Content/bootstrapDark.min.css" rel="stylesheet" />
     }
     else if (Request.Cookies["style"].Value == "2")
     {
         <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     }
-
 </head>
 <body class="scr">
     <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
@@ -40,7 +39,8 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink(Resources.Resource.Creatives, "Index", "Home", new { area = "" }, new { @class = "navbar-brand", style="margin-left: 50px;" })
+                <a class="navbar-brand" href="/">Creatives
+                </a>
             </div>
             <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1">
                 @Html.Partial("_LoginPartial")

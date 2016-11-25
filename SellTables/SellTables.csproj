@@ -216,6 +216,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Content Include="Content\bootstrapDark.min.css" />
     <Content Include="Content\somestyles\dropzone.css" />
     <Content Include="Content\somestyles\form.css" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -296,11 +297,6 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\bootstrapAmelia.min.css" />
-    <Content Include="Content\bootstrapCerulean.min.css" />
-    <Content Include="Content\bootstrapDarkly.min.css" />
-    <Content Include="Content\bootstrapGrey.css" />
-    <Content Include="Content\bootstrapWhite.css" />
     <Content Include="Content\circlemenu.css" />
     <Content Include="Content\counter.css" />
     <Content Include="Content\creatives.css" />

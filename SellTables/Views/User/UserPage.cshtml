@@ -4,7 +4,7 @@
     ViewBag.Title = "UserPage";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<header class="intro-header container-fluid" style="background-image: url('http://www.freeoboi.ru/images/249509332.jpg')">
+<header class="intro-header container-fluid" style="background-image: url('https://res.cloudinary.com/qwe123/image/upload/v1480080465/luxfon.com_2029_wpz8xl.jpg')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
@@ -77,7 +77,7 @@
         </div>
         <div class="row">
             <div ng-repeat='creative in creatives' class="col-md-12 col-xs-12 col-lg-12 col-sm-12">
-                <div class="box3">
+                <div class="box7">
 
                     <header>
                         <div class="row">
@@ -221,8 +221,16 @@
 <script>
     function send(base64) {
         angular.element(document.getElementById('dropzone')).scope().uploadImage(base64);
-        // post('UploadUserAvatar', { img: base64 });
     }
+
+    function sendForCreative(base64) {
+        document.getElementById('imageUploadInput').value = base64;
+    }
+    function clearInput() {
+        document.getElementById('imageUploadInput').value = '';
+    }
+
+
 
 </script>
 
