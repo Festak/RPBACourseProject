@@ -4,7 +4,6 @@
 
 #dropzone {
     position: relative;
-    border: 10px dotted #FFF;
     border-radius: 20px;
     color: white;
     font: bold 24px/200px arial;

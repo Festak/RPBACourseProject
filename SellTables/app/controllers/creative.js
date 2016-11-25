@@ -125,8 +125,12 @@ angular.module('creative', ['ngRoute', 'as.sortable'])
               }
           }
 
-          $scope.updateCreativeName = function (creativeId, oldName) {
-              $http.post('/Creative/UpdateCreativeName', { id: creativeId, newName: oldName });
+          $scope.updateCreativeName = function (creativeId, name, user, index) {              
+              $http.post('/Creative/UpdateCreativeName', { id: creativeId, newName: name }).success(function (result) {
+                  $scope.creatives[index].Name = name;
+              });
+              
+              
           }
 
           $scope.setRating = function (id, i) {
@@ -191,7 +195,7 @@ angular.module('creative', ['ngRoute', 'as.sortable'])
           }
 
           $scope.acceptImageChange = function (user) {
-
+         
               img = angular.element(document.getElementById('imageUploadInput')).attr('value');
               $http.post('/Creative/UpdateCreativeImage', { id: $scope.creativeId, image: img })
                   .success(function (result) {

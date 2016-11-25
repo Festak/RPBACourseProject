@@ -33,7 +33,7 @@
                 <div class="col-md-4 col-sm-4 text-center" id="myScroll">
 
                     <p>
-                        <div id="dropzone">
+                        <div id="dropzone" ng-controller="UserController">
                             <img class="file__drop" style="width: 100%; height: 100%" src="@Model.AvatarUri" data-image data-image-uploader />
                         </div>
                         <br />
@@ -96,11 +96,53 @@
                             </div>
                         </div>
                     </header>
-                    <div class="pull-right">
+                    <div ng-controller="MainController" class="row">
+                        <div class="text-center">
+
+                            <span class="cursor-pointer font200"
+                                  ng-click="redirectToCreative(creative.Id)">
+                                {{creative.Name}}
+                            </span>
+                            @if ((User.Identity.Name == Model.UserName) || User.IsInRole("admin"))
+                            {
+                            <i class="glyphicon glyphicon-pencil cursor-pointer" data-toggle="modal" data-target=".changeNameModal{{$index}}"></i>
+                            }
+                        </div>
+                        <div class="modal fade changeNameModal{{$index}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="myModalLabel">Change name</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <input type="text" ng-model="newCreativeName" placeholder="{{creative.Name}}" />
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button ng-click="updateCreativeName(creative.Id, newCreativeName, '@Model.UserName', $index)" type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
                         <div id="dropzone">
                             <img class="file__drop" style="width: 100%; height: 100%" src="{{creative.CreativeUri}}" />
                         </div>
-                        <span ng-click="startChanging(creative.Id)" data-toggle="modal" data-target=".modal{{$index}}">Change picture</span>
+                        @if ((User.Identity.Name == Model.UserName) || User.IsInRole("admin"))
+                        {
+                        <div class="row text-center">
+                            <span ng-click="startChanging(creative.Id)"
+                                  data-toggle="modal"
+                                  data-target=".modal{{$index}}"
+                                  class="cursor-pointer">
+                                <i class="glyphicon glyphicon-arrow-up"></i>
+                                Change picture
+                                <i class="glyphicon glyphicon-arrow-up"></i>
+                            </span>
+                        </div>
+                        }
                         <div class="modal fade modal{{$index}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
@@ -119,53 +161,35 @@
                             </div>
                         </div>
                     </div>
-                    <div class="post-title">
-                        <div ng-controller="MainController">
-                            <h2 class="cursor-pointer"
-                                ng-click="redirectToCreative(creative.Id)">
-                                Read creative
-                            </h2>
-                        </div>
-                        @if ((User.Identity.Name == Model.UserName) || User.IsInRole("admin"))
-                        {
-                            <div contenteditable data-directive ng-model="creative.Name">
-                                <h2 class="post-title">{{creative.Name}}</h2>
-
-                            </div><span class="glyphicon glyphicon-ok cursor-pointer" ng-click="updateCreativeName(creative.Id, creative.Name)">Accept changes</span>
-
-                        }
-                        else
-                        {
-                            <div>
-                                <h2 class="post-title">{{creative.Name}}</h2>
-                            </div>
-                        }
-                    </div>
 
                     <h4 class="post-subtitle">
-                        <a href="../../Creative/CreateChapter/?creativeId={{creative.Id}}">Add</a><br />
+                        <a href="../../Creative/CreateChapter/?creativeId={{creative.Id}}" style="color: black; text-decoration: none;">
+                            <i class="glyphicon glyphicon-plus"></i>
+                        </a>
+                        <br />
                         <span class="glyphicon glyphicon-chevron-down cursor-pointer"></span>
                         <span role="button" data-toggle="collapse" href="#collapseExample{{$index}}"
                               aria-expanded="false" aria-controls="collapseExample" class="cursor-pointer">
                             Глав: {{creative.Chapters.length}}
                         </span>
                     </h4>
-                    <div class="collapse" id="collapseExample{{$index}}">
-                        <ul data-as-sortable="dragControlListeners"
-                            data-ng-model="creative.Chapters">
-                            <li data-ng-repeat="chapter in creative.Chapters"
-                                data-as-sortable-item>
-                                <div data-as-sortable-item-handle>
-                                    {{chapter.Name}}
-                                    @if ((User.Identity.Name == Model.UserName) || User.IsInRole("admin"))
-                                    {
-                                        <a href="../../Creative/EditChapter/?creativeId={{creative.Id}}&chapterId={{chapter.Id}}">Edit</a>
-                                        <i ng-click="deleteChapterById(chapter.Id, '@Model.UserName')">Delete</i>
-                                    }
-                                </div>
-                            </li>
-                        </ul>
-
+                    <div class="container">
+                        <div class="collapse col-md-3" id="collapseExample{{$index}}">
+                            <ul data-as-sortable="dragControlListeners"
+                                data-ng-model="creative.Chapters">
+                                <li data-ng-repeat="chapter in creative.Chapters"
+                                    data-as-sortable-item>
+                                    <div data-as-sortable-item-handle>
+                                        {{chapter.Name}}
+                                        @if ((User.Identity.Name == Model.UserName) || User.IsInRole("admin"))
+                                        {
+                                            <a href="../../Creative/EditChapter/?creativeId={{creative.Id}}&chapterId={{chapter.Id}}">Edit</a>
+                                            <i ng-click="deleteChapterById(chapter.Id, '@Model.UserName')">Delete</i>
+                                        }
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
 
                     <div class="row">
@@ -197,7 +221,7 @@
     </div>
 
 </section>
-<input type="hidden" id="imageUploadInput" ng-model="imgUploadInput" />
+<input type="hidden" id="imageUploadInput" />
 
 <link rel="stylesheet" href="~/Content/somestyles/dropzone.css" type="text/css" />
 <script src="~/Scripts/scripts/dropzone.js" type="text/javascript"></script>
@@ -205,7 +229,8 @@
 
 <script>
     function send(base64) {
-        post('UploadUserAvatar', { img: base64 });
+        angular.element(document.getElementById('dropzone')).scope().uploadImage(base64);
+        // post('UploadUserAvatar', { img: base64 });
     }
 
     function sendForCreative(base64) {

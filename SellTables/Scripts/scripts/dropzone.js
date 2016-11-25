@@ -9,11 +9,12 @@ function regularImageUpload(e) {
        type.match(/png/) !== null ||
        type.match(/gif/) !== null) {
 
-        readUploadedImage(file.files[0]);
+        readUploadedImage(file.files[0], '[data-image]');
     }
 }
 
 function dropHandler(e) {
+
     e.preventDefault();
 
     if (e.type === 'drop' && e.originalEvent.dataTransfer && e.originalEvent.dataTransfer.files.length) {
@@ -24,7 +25,7 @@ function dropHandler(e) {
             type.match(/jpeg/) !== null ||
             type.match(/png/) !== null ||
             type.match(/gif/) !== null) {
-            readUploadedImage(files[0]);
+            readUploadedImage(files[0], '[data-image]');
         }
 
     }
@@ -32,7 +33,7 @@ function dropHandler(e) {
     return false;
 }
 
-function readUploadedImage(img) {
+function readUploadedImage(img, targetUpload) {
     var reader;
 
     if (window.FileReader) {
@@ -41,7 +42,7 @@ function readUploadedImage(img) {
 
         reader.onload = function (file) {
             if (file.target && file.target.result) {
-                imageLoader(file.target.result, displayImage);
+                imageLoader(file.target.result, displayImage, targetUpload);
             }
 
         };
@@ -56,7 +57,7 @@ function readUploadedImage(img) {
 
 }
 
-function imageLoader(src, callback) {
+function imageLoader(src, callback, targetUpload) {
     var img;
 
     img = new Image();
@@ -65,51 +66,32 @@ function imageLoader(src, callback) {
     base64 = src.split(",")[1];
 
     img.onload = function () {
-        imageResizer(img, callback);
+        imageResizer(img, callback, targetUpload);
     }
-    //console.log(base64);
-    send(base64);
-
+    if (targetUpload == '[data-image]') {
+        send(base64);
+    }
+    if (targetUpload == '[data-image-creative]') {
+        sendForCreative(base64);
+    }
+    
 
 }
 
-function post(path, params, method) {
-    method = method || "post"; // Set method to post by default if not specified.
+function imageResizer(img, callback, targetUpload) {
 
-    // The rest of this code assumes you are not using a library.
-    // It can be made less wordy if you use one.
-    var form = document.createElement("form");
-    form.setAttribute("method", method);
-    form.setAttribute("action", path);
-
-    for (var key in params) {
-        if (params.hasOwnProperty(key)) {
-            var hiddenField = document.createElement("input");
-            hiddenField.setAttribute("type", "hidden");
-            hiddenField.setAttribute("name", key);
-            hiddenField.setAttribute("value", params[key]);
-
-            form.appendChild(hiddenField);
-        }
-    }
-
-    document.body.appendChild(form);
-    form.submit();
-}
-
-function imageResizer(img, callback) {
     var canvas = document.createElement('canvas');
     canvas.width = 200;
     canvas.height = 200;
     context = canvas.getContext('2d');
     context.drawImage(img, 0, 0, 200, 200);
 
-    callback(canvas.toDataURL());
+    callback(canvas.toDataURL(), targetUpload);
 
 }
 
-function displayImage(img) {
-    $('[data-image]').attr('src', img);
+function displayImage(img, targetUpload) {
+    $(targetUpload).attr('src', img);
 }
 
 //-----------------------
