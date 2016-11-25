@@ -24,9 +24,9 @@
             <div class="col-md-12">
                 <div class="col-md-8 col-sm-8">
                     <h2>@Resources.Resource.SomeUserInfo</h2>
-                    <p id="text">
+                    <span>
                         @Resources.Resource.SomeUserInfoText
-                    </p>
+                    </span>
                 </div>
 
                 <div class="col-md-4 col-sm-4 text-center" id="myScroll">
@@ -188,7 +188,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-12 text-center">
                             <input-stars max="5" ng-model="creative.Rating" readonly></input-stars>
                         </div>
                     </div>
@@ -223,6 +223,7 @@
         angular.element(document.getElementById('dropzone')).scope().uploadImage(base64);
         // post('UploadUserAvatar', { img: base64 });
     }
+
 </script>
 
 @section Scripts {

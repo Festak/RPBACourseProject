@@ -304,19 +304,26 @@
     <value>All chapters</value>
   </data>
   <data name="AllChaptersText" xml:space="preserve">
-    <value>Total count of chapters, which</value>
+    <value>Total count of chapters, which
+you have created for the all time.
+Do you have the biggest collection?</value>
   </data>
   <data name="AllCreativesCount" xml:space="preserve">
     <value>All creatives count</value>
   </data>
   <data name="AllCreativesText" xml:space="preserve">
-    <value>Total count of current creatives,</value>
+    <value>Total count of current creatives, which 
+you have created at this moment. Is you
+the most creative one at this website?
+</value>
   </data>
   <data name="AllMedalsCount" xml:space="preserve">
     <value>All medals count</value>
   </data>
   <data name="AllMedalsText" xml:space="preserve">
-    <value>The medals plays an a very important role for</value>
+    <value>The medals plays an a very important role for
+every person, who wants to be the first at
+the site. Will you be the first?</value>
   </data>
   <data name="ChangeImage" xml:space="preserve">
     <value>Change image</value>

@@ -88,7 +88,8 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Общее количество глав, которые вы создали за все время пребывания на нашем сайте..
+        ///   Looks up a localized string similar to Общее количество глав, которые вы создали за все время пребывания на нашем сайте. Станите ли вы обладателем самой большой коллекции глав?
+        ///.
         /// </summary>
         public static string AllChaptersText {
             get {
@@ -106,7 +107,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Общее количество креативов, которые Вы имеет в данный момент времени.
+        ///   Looks up a localized string similar to Общее количество креативов, которые находятся в вашем портфолио. Может быть вы самый творческий человек на этом веб-сайте?.
         /// </summary>
         public static string AllCreativesText {
             get {
@@ -124,7 +125,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Для большего количества людей достижения играют огромную роль , так как по их количеству можно судить о многом..
+        ///   Looks up a localized string similar to Достижения играют огромную роль  для тех, кто хочет быть первым на сайте. Может быть это вы?.
         /// </summary>
         public static string AllMedalsText {
             get {
@@ -583,7 +584,8 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to МНОГОМНОГОТЕКСТАПОТОМБУДЕТ.
+        ///   Looks up a localized string similar to Эта страница – плод моих творческих исканий. Я, так же как и вы, творческий человек, пишу креативы и увлекаюсь их созданием. И вот однажды у меня, как у нас у всех творческих личностей настал творческий ступор. Ко мне не приходили новые идеи, я совершенно обленился и думал, что больше не смогу писать. Типа поигрался и хватит, займись парень чем-нибудь серьезным. 
+        ///Я не мог в это поверить и начал искать везде, где только можно, литературу о творчестве, путях выхода из творческого кризиса и просто о творчески [rest of string was truncated]&quot;;.
         /// </summary>
         public static string SomeUserInfoText {
             get {
