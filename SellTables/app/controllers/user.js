@@ -27,9 +27,14 @@ angular.module('user', [])
 
       $scope.isCurrentUserIsAnAdmin = function () {
           $http.post('/User/IsCurrentUserIsAnAdmin').success(function (result) {
-             $scope.isAdmin = true;
+              $scope.isAdmin = true;
               return result;
           });
+      }
+
+      $scope.uploadImage = function (image) {
+          $http.post('/User/UploadUserAvatar', {img: image})
+         
       }
 
   }]);

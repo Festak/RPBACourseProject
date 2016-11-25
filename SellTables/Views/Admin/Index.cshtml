@@ -21,39 +21,54 @@
             foreach (var user in Model)
             {
                 <div class="col-xs-12 col-sm-6 col-md-6">
-                    <div class="well well-sm" >
+                    <div class="well well-sm">
                         <div class="row">
                             <div class="col-sm-12 col-md-4 col-xs-12">
                                 <img src="@user.AvatarUri" alt="avatar" style="height: 170px; width: 150px;" class="img-rounded img-responsive" />
-                           
+
                             </div>
                             <div class="col-sm-12 col-md-7 col-xs-12">
                                 <h4>
-                                    @Html.ActionLink(@user.UserName, "UserPage", "Admin", new { area="", username = user.UserName.ToString()}, null)
+                                    @Html.ActionLink(@user.UserName, "UserPage", "Admin", new { area = "", username = user.UserName.ToString() }, null)
                                 </h4>
-              
+
                                 <p>
-                                    <i class="glyphicon glyphicon-gift">@user.Creatives.Count</i>
+                                    <i class="glyphicon glyphicon-file"
+                                       data-container="body"
+                                       data-toggle="popover"
+                                       data-animation="true"
+                                       data-placement="left"
+                                       data-content="Creatives count.">@user.Creatives.Count</i>
                                     <br />
-                                    <i class="glyphicon glyphicon-envelope"></i> @user.Email
+                                    <i class="glyphicon glyphicon-envelope"
+                                       data-container="body"
+                                       data-toggle="popover"
+                                       data-animation="true"
+                                       data-placement="left"
+                                       data-content="Email."></i> @user.Email
                                     <br />
-                                    <i class="glyphicon glyphicon-gift"></i>@user.RegistrationDate
-                                    <br/>
+                                    <i class="glyphicon glyphicon-gift"
+                                       data-container="body"
+                                       data-toggle="popover"
+                                       data-animation="true"
+                                       data-placement="left"
+                                       data-content="Registration date."></i>@user.RegistrationDate
+                                    <br />
                                     @foreach (var medal in user.Medals)
                                     {
                                         <img style="width: 20px; height: 20px" src="@medal.ImageUri" title="@medal.Name" />
                                     }
-                                    
-                                </p> 
+
+                                </p>
                                 @if (user.LockoutEndDateUtc == null)
                                 {
-                                    <span ng-click="BanUser('@user.UserName')" class="fa fa-list">@Resources.Resource.Ban</span>
+                                    <span ng-click="BanUser('@user.UserName')" class="fa fa-ban cursor-pointer">@Resources.Resource.Ban</span>
                                 }
                                 else
                                 {
-                                    <span ng-click="UnbanUser('@user.UserName')" class="fa fa-list">@Resources.Resource.Unban</span>
+                                    <span ng-click="UnbanUser('@user.UserName')" class="fa fa-ban cursor-pointer">@Resources.Resource.Unban</span>
                                 }
-                                <span ng-click="DeleteUser('@user.UserName')" class="fa fa-warning">@Resources.Resource.DeleteUser</span>
+                                <span ng-click="DeleteUser('@user.UserName')" class="fa fa-warning text-danger cursor-pointer">@Resources.Resource.DeleteUser</span>
 
                             </div>
                         </div>
@@ -63,3 +78,8 @@
         }
     </div>
 </div>
+<script>
+    $(function () {
+        $('[data-toggle="popover"]').popover({ trigger: "hover", delay: { "show": 100, "hide": 100 } })
+    })
+</script>

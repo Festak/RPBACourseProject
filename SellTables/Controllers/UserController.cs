@@ -46,10 +46,10 @@ namespace SellTables.Controllers
 
         }
 
-        public ActionResult UploadUserAvatar(byte[] img)
+        public void UploadUserAvatar(byte[] img)
         {
             CloudinaryService.UploadUserAvatar(img, User.Identity.Name);
-            return RedirectToAction("UserPage");
+            
         }
     }
 }
