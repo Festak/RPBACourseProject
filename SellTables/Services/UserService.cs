@@ -56,12 +56,14 @@ namespace SellTables.Services
             DeleteUser(user);
         }
 
-        public string GetUserAvatarUri(string userId) {
+        public string GetUserAvatarUri(string userId)
+        {
             ApplicationUser user = UsersRepository.FindUserById(userId);
             return user.AvatarUri;
         }
 
-        public void BanUser(string userName) {
+        public void BanUser(string userName)
+        {
             ApplicationUser user = UsersRepository.FindUser(userName);
             if (!UsersRepository.IsInAdminRole(user.Id))
             {
@@ -70,7 +72,8 @@ namespace SellTables.Services
             }
         }
 
-        public void UnbanUser(string userName) {
+        public void UnbanUser(string userName)
+        {
             ApplicationUser user = UsersRepository.FindUser(userName);
             user.LockoutEndDateUtc = null;
             UsersRepository.UpdateUser(user);
@@ -84,7 +87,8 @@ namespace SellTables.Services
 
         }
 
-        public void UpdateUserAvatar(string uri, string userName) {
+        public void UpdateUserAvatar(string uri, string userName)
+        {
             ApplicationUser user = UsersRepository.FindUser(userName);
             user.AvatarUri = uri;
             UsersRepository.UpdateUser(user);
@@ -107,24 +111,34 @@ namespace SellTables.Services
                         .Where(r => r.UserId == user.Id).ToList();
         }
 
-
         private void ReCalculateRating()
         {
             var creativesList = CreativeService.GetAllCreativesModels();
             foreach (var creative in creativesList)
             {
-                double a = 0;
-                foreach (var r in creative.Ratings)
-                {
-                    a += r.Value;
-                }
-                if (creative.Ratings.Count != 0)
-                    a /= creative.Ratings.Count;
-                else a /= 1;
-
+                double a = GetAverageValue(creative);
                 creative.Rating = Math.Round(a, 2);
                 CreativesRepository.Update(creative);
             }
+        }
+
+        private double GetAverageValue(Creative creative)
+        {
+            double average = 0;
+            foreach (var r in creative.Ratings)
+            {
+                average += r.Value;
+            }
+            average = GetAverageValueForAllRatings(creative, average);
+            return average;
+        }
+
+        private double GetAverageValueForAllRatings(Creative creative, double average)
+        {
+            if (creative.Ratings.Count != 0)
+                average /= creative.Ratings.Count;
+            else average /= 1;
+            return average;
         }
 
         private void DeleteUser(ApplicationUser user)
@@ -138,50 +152,62 @@ namespace SellTables.Services
         private void DeleteAllUserCreatives(ApplicationUser user)
         {
             var creatives = GetAllUserCreatives(user);
-            foreach(var cr in creatives)
+            DeleteUserCreativesOneByOne(user, creatives);
+            DeleteUserExternalLogins(user);
+            DeleteAllChaptersFromCreatives(creatives);
+            DeleteCreatives(creatives);
+            DataBaseContext.SaveChanges();
+        }
+
+        private void DeleteUserCreativesOneByOne(ApplicationUser user, ICollection<Creative> creatives)
+        {
+            foreach (var cr in creatives)
             {
                 user.Creatives.Remove(cr);
             }
-            foreach (var login in user.Logins.ToList()) {
-                user.Logins.Remove(login);
-            }
-            DeleteAllChaptersFromCreatives(creatives);
-            DeleteCreatives(creatives);
-
-            DataBaseContext.SaveChanges();
-
         }
 
-        private void DeleteCreatives(ICollection<Creative> creatives) {
+        private void DeleteUserExternalLogins(ApplicationUser user)
+        {
+            foreach (var login in user.Logins.ToList())
+            {
+                user.Logins.Remove(login);
+            }
+        }
+
+        private void DeleteCreatives(ICollection<Creative> creatives)
+        {
             if (creatives != null)
             {
                 foreach (var c in creatives)
                 {
                     c.User = null;
                     c.UserId = null;
-                }
-                DataBaseContext.Creatives.RemoveRange(creatives);
-                foreach (var c in creatives)
-                {
                     CreativeSearch.ClearLuceneIndexRecord(c.Id);
                 }
+                DataBaseContext.Creatives.RemoveRange(creatives);
             }
         }
-      
+
 
         private void DeleteAllChaptersFromCreatives(ICollection<Creative> creatives)
         {
             foreach (var creative in creatives)
             {
-                foreach (var chapter in creative.Chapters.ToList())
+                DeleteChaptersFromCreative(creative);
+            }
+        }
+
+        private void DeleteChaptersFromCreative(Creative creative)
+        {
+            foreach (var chapter in creative.Chapters.ToList())
+            {
+                DeleteTagFromChapter(chapter);
+                var c = DataBaseContext.Chapters.Find(chapter.Id);
+                if (c != null)
                 {
-                    DeleteTagFromChapter(chapter);
-                    var c = DataBaseContext.Chapters.Find(chapter.Id);
-                    if (c != null)
-                    {
-                        DataBaseContext.Chapters.Remove(c);
-                        DataBaseContext.SaveChanges();
-                    }
+                    DataBaseContext.Chapters.Remove(c);
+                    DataBaseContext.SaveChanges();
                 }
             }
         }
@@ -196,8 +222,6 @@ namespace SellTables.Services
                 DataBaseContext.SaveChanges();
             }
         }
-
-
 
         private void DeleteAllUserRatings(ApplicationUser user)
         {
@@ -217,10 +241,6 @@ namespace SellTables.Services
                 DataBaseContext.Medals.RemoveRange(medals);
                 DataBaseContext.SaveChanges();
             }
-
         }
-
-
-
     }
 }

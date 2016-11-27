@@ -1,5 +1,6 @@
 ﻿
 using MultilingualSite.Filters;
+using SellTables.Interfaces;
 using SellTables.Models;
 using SellTables.Services;
 using System.Collections.Generic;
@@ -13,14 +14,20 @@ namespace SellTables.Controllers
     {
         ApplicationDbContext DataBaseConnection;
 
-        CreativeService CreativeService;
-        UserService UserService;
+        ICreativeService CreativeService;
+        IUserService UserService;
 
         public AdminController(ApplicationDbContext DataBaseConnection)
         {
             this.DataBaseConnection = DataBaseConnection;
             CreativeService = new CreativeService(DataBaseConnection);
             UserService = new UserService(DataBaseConnection);
+        }
+
+        // for tests
+        public AdminController(IUserService UserService, ICreativeService CreativeService) {
+            this.UserService = UserService;
+            this.CreativeService = CreativeService;
         }
 
 

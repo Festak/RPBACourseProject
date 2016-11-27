@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace SellTables.Interfaces
 {
-    interface IRepository<T> where T : class
+    public interface IRepository<T> where T : class
     {
         ICollection<T> GetAll();
 
         ICollection<T> Find(Func<T, bool> predicate);
 
-      T Get(int id);
+        T Get(int id);
 
         bool Remove(int id);
 

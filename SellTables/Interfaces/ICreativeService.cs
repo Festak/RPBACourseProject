@@ -11,8 +11,8 @@ namespace SellTables.Interfaces
     {
         List<CreativeViewModel> GetAllCreatives();
         List<Creative> GetAllCreativesForLucene();
-        void AddCreative(RegisterCreativeModel creativemodel);
-        ICollection<CreativeViewModel> GetCreativesBySearch(ICollection<CreativeViewModel> list);
+        void AddCreative(RegisterCreativeModel creativemodel, string userId);
+      //  ICollection<CreativeViewModel> GetCreativesBySearch(ICollection<CreativeViewModel> list);
         List<CreativeViewModel> GetCreativesRange(int start, int count, int sortType);
         Creative GetCreative(int id);
         List<Creative> GetAllCreativesModels();
@@ -21,7 +21,7 @@ namespace SellTables.Interfaces
         void DeleteChapterById(int id, string userName);
         List<CreativeViewModel> GetCreativesByUser(string userName);
         void DeleteCreativeById(int id, string userName);
-        void SetRatingToCreative(int rating, CreativeViewModel creativemodel, ApplicationUser user);
+        void SetRatingToCreative(int rating, CreativeViewModel creativemodel, string userId);
         void AddChapterToCreative(RegisterCreativeModel model);
         void EditCreativeChapter(RegisterCreativeModel model);
         void UpdateCreativeName(int id, string name);

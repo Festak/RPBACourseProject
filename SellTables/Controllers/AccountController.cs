@@ -453,6 +453,11 @@ namespace SellTables.Controllers
                     return View("ExternalLoginFailure");
                 }
                 var user = new ApplicationUser { UserName = model.UserName, Email = model.Email };
+                using (ApplicationDbContext DataBaseContext = new ApplicationDbContext())
+                {
+                    Medal medal = DataBaseContext.Medals.FirstOrDefault(m => m.Id == 7);
+                    user.Medals.Add(medal);
+                }
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {

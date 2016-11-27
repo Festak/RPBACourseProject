@@ -12,9 +12,13 @@ namespace SellTables.Models
     public class ApplicationUser : IdentityUser
     {
         public ICollection<Creative> Creatives { get; set; }
+
         public ICollection<Medal> Medals { get; set; }
+
         public int ChaptersCreateCounter { get; set; }
+
         public string AvatarUri { get; set; }
+
         public DateTime RegistrationDate { get; set; }
 
         public ApplicationUser() {
@@ -40,11 +44,11 @@ namespace SellTables.Models
         {
         }
 
-        public DbSet<Chapter> Chapters { get; set; }
-        public DbSet<Rating> Rating { get; set; }
-        public DbSet<Medal> Medals { get; set; }
-        public DbSet<Creative> Creatives { get; set; }
-        public DbSet<Tag> Tags { get; set; }
+        public virtual DbSet<Chapter> Chapters { get; set; }
+        public virtual DbSet<Rating> Rating { get; set; }
+        public virtual DbSet<Medal> Medals { get; set; }
+        public virtual DbSet<Creative> Creatives { get; set; }
+        public virtual DbSet<Tag> Tags { get; set; }
 
         public static ApplicationDbContext Create()
         {

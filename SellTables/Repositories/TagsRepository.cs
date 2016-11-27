@@ -20,7 +20,6 @@ namespace SellTables.Repositories
 
         void IRepository<Tag>.Add(Tag item)
         {
-          
                 dataBaseContext.Tags.Add(item);
                 dataBaseContext.SaveChanges();
             

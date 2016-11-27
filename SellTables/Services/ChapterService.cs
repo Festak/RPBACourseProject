@@ -37,7 +37,10 @@ namespace SellTables.Services
             int oldchapterpos = oldChapter.Number;
             oldChapter.Number = newChapter.Number;
             newChapter.Number = oldchapterpos;
+            UpdateOldAndNewChapter(oldChapter, newChapter);
+        }
 
+        private void UpdateOldAndNewChapter(Chapter oldChapter, Chapter newChapter) {
             ChapterRepository.Update(oldChapter);
             ChapterRepository.Update(newChapter);
         }

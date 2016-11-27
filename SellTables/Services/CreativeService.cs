@@ -41,35 +41,41 @@ namespace SellTables.Services
             return GetAllCreativesFromDataBase();
         }
 
-        public void AddCreative(RegisterCreativeModel creativemodel)
+        public void AddCreative(RegisterCreativeModel creativemodel, string userId)
         {
-            Creative creative = creativemodel.Creative;
-            AddCreativeToCounter(creative.User.Id);
-            Chapter chapter = creativemodel.Chapter; 
+            Creative creative = InitCreativeForAddToDatabase(creativemodel, userId);
+            Chapter chapter = creativemodel.Chapter;
             if (chapter.TagsString != null)
                 chapter.Tags = GetTags(chapter.TagsString);
             AddCreativeAndChapterToDatabase(creative, chapter);
         }
 
-        public ICollection<CreativeViewModel> GetCreativesBySearch(ICollection<CreativeViewModel> list)
-        {
-            List<Creative> creatives = new List<Creative>();
-            foreach (var cr in list)
-            {
-                var creative = dataBaseContext.Creatives.FirstOrDefault(c => c.Name == cr.Name);
-                creatives.Add(creative);
-            }
-            if (creatives != null)
-                return InitCreativesBySearch(creatives);
-            else return new List<CreativeViewModel>();
+        private Creative InitCreativeForAddToDatabase(RegisterCreativeModel model, string userId) {
+            Creative creative = model.Creative;
+            creative.User = UsersRepository.FindUserById(userId);
+            AddCreativeToCounter(creative.User.Id);
+            return creative;
         }
+
+        //public ICollection<CreativeViewModel> GetCreativesBySearch(ICollection<CreativeViewModel> list)
+        //{
+        //    List<Creative> creatives = new List<Creative>();
+        //    foreach (var cr in list)
+        //    {
+        //        var creative = dataBaseContext.Creatives.FirstOrDefault(c => c.Name == cr.Name);
+        //        creatives.Add(creative);
+        //    }
+        //    if (creatives != null)
+        //        return InitCreativesBySearch(creatives);
+        //    else return new List<CreativeViewModel>();
+        //}
 
         public List<CreativeViewModel> GetCreativesRange(int start, int count, int sortType)
         {
             var listOfUsers = InitCreatives(((CreativesRepository)CreativeRepository).GetRange(start, count, sortType));
             if (listOfUsers == null)
             {
-                return null;
+                return new List<CreativeViewModel>();
             }
             return listOfUsers.ToList();
         }
@@ -116,19 +122,14 @@ namespace SellTables.Services
             var creative = dataBaseContext.Creatives.Include(c => c.Chapters).FirstOrDefault(i => i.Id == id);
             ApplicationUser user = UsersRepository.FindUser(userName);
             user.Creatives.Remove(creative);
-            DeleteAllCreativesRating(creative);
-            DeleteAllChaptersFromCreative(creative);
-            if (creative != null)
-            {
-                dataBaseContext.Creatives.Remove(creative);
-                CreativeSearch.ClearLuceneIndexRecord(creative.Id);
-            }
+            DeleteRatingAndChapterFromCreative(creative);
+            RemoveCreativesFromDatabase(creative);
             dataBaseContext.SaveChanges();
         }
 
-        public void SetRatingToCreative(int rating, CreativeViewModel creativemodel, ApplicationUser user)
+        public void SetRatingToCreative(int rating, CreativeViewModel creativemodel, string userId)
         {
-
+            ApplicationUser user = UsersRepository.FindUserById(userId);
             bool isUserNotVoted = IsUserNotVoted(user, creativemodel.Id);
             if (isUserNotVoted)
             {
@@ -138,18 +139,13 @@ namespace SellTables.Services
             }
         }
 
-
-
         public void AddChapterToCreative(RegisterCreativeModel model)
         {
             Creative creative = model.Creative;
-            Chapter chapter = model.Chapter;
-            int lastIndex = GetLastIndexOfChapter(creative);
-            chapter.Creative = creative;
-            chapter.Number = lastIndex + 1;
+            Chapter chapter = InitChapterWithPosition(model);
             if (chapter.TagsString != null)
                 chapter.Tags = GetTags(chapter.TagsString);
-            UpdateDBAfterAddChapterToCreative(creative,chapter);
+            UpdateDBAfterAddChapterToCreative(creative, chapter);
         }
 
         public void EditCreativeChapter(RegisterCreativeModel model)
@@ -157,8 +153,7 @@ namespace SellTables.Services
             Chapter chapter = BuildChapterByRegisterModel(model);
             Creative creative = CreativeRepository.Get(model.creativeId);
             creative.EditDate = DateTime.Now;
-            CreativeRepository.Update(creative);
-            ChapterRepository.Update(chapter);
+            UpdateCreativeAndChapterInDatabase(chapter, creative);
         }
 
         public void UpdateCreativeName(int id, string name)
@@ -169,7 +164,8 @@ namespace SellTables.Services
             CreativeRepository.Update(creative);
         }
 
-        public void UpdateCreativeImage(int id, string path) {
+        public void UpdateCreativeImage(int id, string path)
+        {
             Creative creative = CreativeRepository.Get(id);
             creative.CreativeUri = path;
             CreativeRepository.Update(creative);
@@ -211,6 +207,12 @@ namespace SellTables.Services
             CreativeRepository.Add(creative);
         }
 
+        private void DeleteRatingAndChapterFromCreative(Creative creative)
+        {
+            DeleteAllCreativesRating(creative);
+            DeleteAllChaptersFromCreative(creative);
+        }
+
         private void AddCreativeToUser(Creative creative)
         {
             ApplicationUser user = UsersRepository.FindUserById(creative.User.Id);
@@ -229,6 +231,12 @@ namespace SellTables.Services
                 chapter.Tags = GetTags(model.Chapter.TagsString);
             }
             return chapter;
+        }
+
+        private void UpdateCreativeAndChapterInDatabase(Chapter chapter, Creative creative)
+        {
+            CreativeRepository.Update(creative);
+            ChapterRepository.Update(chapter);
         }
 
         private int GetLastIndexOfChapter(Creative creative)
@@ -253,17 +261,47 @@ namespace SellTables.Services
         {
             if (user.ChaptersCreateCounter == 1)
             {
-                Medal medal = dataBaseContext.Medals.FirstOrDefault(m => m.Id == 3);
-                if (!user.Medals.Contains(medal))
-                    user.Medals.Add(medal);
+                user = GetUserWithMedalOneChapter(user);
             }
             if (user.ChaptersCreateCounter == 5)
             {
-                Medal medal = dataBaseContext.Medals.FirstOrDefault(m => m.Id == 4);
-                if (!user.Medals.Contains(medal))
-                    user.Medals.Add(medal);
+                user = GetUserWithMedalFiveChapters(user);
             }
             return user;
+        }
+
+        private ApplicationUser GetUserWithMedalOneChapter(ApplicationUser user)
+        {
+            Medal medal = dataBaseContext.Medals.FirstOrDefault(m => m.Id == 3);
+            if (!user.Medals.Contains(medal))
+                user.Medals.Add(medal);
+            return user;
+        }
+
+        private ApplicationUser GetUserWithMedalFiveChapters(ApplicationUser user)
+        {
+            Medal medal = dataBaseContext.Medals.FirstOrDefault(m => m.Id == 4);
+            if (!user.Medals.Contains(medal))
+                user.Medals.Add(medal);
+            return user;
+        }
+
+        private Chapter InitChapterWithPosition(RegisterCreativeModel model)
+        {
+            Chapter chapter = model.Chapter;
+            int lastIndex = GetLastIndexOfChapter(model.Creative);
+            chapter.Creative = model.Creative;
+            chapter.Number = lastIndex + 1;
+            return chapter;
+        }
+
+        private void RemoveCreativesFromDatabase(Creative creative)
+        {
+            if (creative != null)
+            {
+                dataBaseContext.Creatives.Remove(creative);
+                CreativeSearch.ClearLuceneIndexRecord(creative.Id);
+            }
         }
 
         private void AddTagsTodataBaseContext(Chapter chapter)
@@ -278,7 +316,6 @@ namespace SellTables.Services
         {
             var stringList = tagList.Split('/');
             var tags = new List<Tag>();
-
             if (stringList != null)
             {
                 tags = GetListOfTagsBySplit(stringList);
@@ -292,15 +329,15 @@ namespace SellTables.Services
             foreach (string text in stringList)
             {
                 if (text == "") continue;
-                Tag tag = new Tag();
-                tag.Description = text;
+                Tag tag = InitTag(text);
                 AddTagToDataBaseByCondition(tag, text);
                 tags.Add(tag);
             }
             return tags;
         }
 
-        private void AddTagToDataBaseByCondition(Tag tag, string text) {
+        private void AddTagToDataBaseByCondition(Tag tag, string text)
+        {
             if (dataBaseContext.Tags
                 .Where(t => t.Description == text).ToList().Count == 0)
             {
@@ -340,28 +377,28 @@ namespace SellTables.Services
             }
         }
 
-        private ICollection<CreativeViewModel> InitCreativesBySearch(ICollection<Creative> list)
-        {
-            if (list != null)
-            {
-                return list.Select(creative => new CreativeViewModel
-                {
-                    Id = creative.Id,
-                    Chapters = InitChaptersBySearch(creative.Chapters),
-                    UserName = creative.User.UserName,
-                    Name = creative.Name,
-                    EditDate = (creative.EditDate.ToString()),
-                    Rating = creative.Rating,
-                    Medals = InitMedals(creative.User.Medals),
-                    CreativeUri = creative.CreativeUri,
-                    CreationDate = creative.CreationDate.ToShortDateString() + " " + creative.CreationDate.ToShortTimeString()
-                }).ToList();
-            }
-            else
-            {
-                return new List<CreativeViewModel>();
-            }
-        }
+        //private ICollection<CreativeViewModel> InitCreativesBySearch(ICollection<Creative> list)
+        //{
+        //    if (list != null)
+        //    {
+        //        return list.Select(creative => new CreativeViewModel
+        //        {
+        //            Id = creative.Id,
+        //            Chapters = InitChaptersBySearch(creative.Chapters),
+        //            UserName = creative.User.UserName,
+        //            Name = creative.Name,
+        //            EditDate = (creative.EditDate.ToString()),
+        //            Rating = creative.Rating,
+        //            Medals = InitMedals(creative.User.Medals),
+        //            CreativeUri = creative.CreativeUri,
+        //            CreationDate = creative.CreationDate.ToShortDateString() + " " + creative.CreationDate.ToShortTimeString()
+        //        }).ToList();
+        //    }
+        //    else
+        //    {
+        //        return new List<CreativeViewModel>();
+        //    }
+        //}
 
         private ICollection<ChapterViewModel> InitChapters(ICollection<Chapter> list)
         {
@@ -376,19 +413,19 @@ namespace SellTables.Services
             return Chapters;
         }
 
-        private ICollection<ChapterViewModel> InitChaptersBySearch(ICollection<Chapter> list)
-        {
-            var Chapters = list.Select(c => new ChapterViewModel
-            {
-                Id = c.Id,
-                Name = c.Name,
-                Text = c.Text,
-                Number = c.Number,
-                Tags = GetTags(c.TagsString),
-                TagString = c.TagsString
-            }).ToList();
-            return Chapters;
-        }
+        //private ICollection<ChapterViewModel> InitChaptersBySearch(ICollection<Chapter> list)
+        //{
+        //    var Chapters = list.Select(c => new ChapterViewModel
+        //    {
+        //        Id = c.Id,
+        //        Name = c.Name,
+        //        Text = c.Text,
+        //        Number = c.Number,
+        //        Tags = GetTags(c.TagsString),
+        //        TagString = c.TagsString
+        //    }).ToList();
+        //    return Chapters;
+        //}
 
         private ICollection<MedalViewModel> InitMedals(ICollection<Medal> list)
         {
@@ -432,6 +469,13 @@ namespace SellTables.Services
             return ratingObj;
         }
 
+        private Tag InitTag(string text)
+        {
+            Tag tag = new Tag();
+            tag.Description = text;
+            return tag;
+        }
+
         private void CalculateRating(Rating rating, Creative creative)
         {
             double a = 0;
@@ -445,7 +489,8 @@ namespace SellTables.Services
             UpdateDataBaseAfterCalculateRating(creative, rating);
         }
 
-        private void UpdateDataBaseAfterCalculateRating(Creative creative, Rating rating) {
+        private void UpdateDataBaseAfterCalculateRating(Creative creative, Rating rating)
+        {
             CreativeRepository.Update(creative);
             RatingsRepository.Add(rating);
         }
@@ -454,15 +499,19 @@ namespace SellTables.Services
         {
             foreach (var chapter in creative.Chapters.ToList())
             {
-                DeleteTagFromChapter(chapter);
-                var c = dataBaseContext.Chapters.Find(chapter.Id);
-                if (c != null)
-                {
-                    dataBaseContext.Chapters.Remove(c);
-
-                }
+                DeleteCurrentChapterFromCreative(chapter);
             }
             dataBaseContext.SaveChanges();
+        }
+
+        private void DeleteCurrentChapterFromCreative(Chapter chapter)
+        {
+            DeleteTagFromChapter(chapter);
+            var c = dataBaseContext.Chapters.Find(chapter.Id);
+            if (c != null)
+            {
+                dataBaseContext.Chapters.Remove(c);
+            }
         }
 
         private void DeleteTagFromChapter(Chapter chapter)

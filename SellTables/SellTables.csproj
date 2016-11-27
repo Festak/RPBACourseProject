@@ -261,6 +261,10 @@
     <Compile Include="Migrations\201611221539506_newbase.Designer.cs">
       <DependentUpon>201611221539506_newbase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611271807441_ratingchange.cs" />
+    <Compile Include="Migrations\201611271807441_ratingchange.Designer.cs">
+      <DependentUpon>201611271807441_ratingchange.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Chapter.cs" />
@@ -1284,6 +1288,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201611221539506_newbase.resx">
       <DependentUpon>201611221539506_newbase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611271807441_ratingchange.resx">
+      <DependentUpon>201611271807441_ratingchange.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Resource.en.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

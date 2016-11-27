@@ -4,6 +4,7 @@ using Microsoft.AspNet.Identity;
 using SellTables.Models;
 using SellTables.Services;
 using System.Web.Mvc;
+using SellTables.Interfaces;
 
 namespace SellTables.Controllers
 {
@@ -12,9 +13,9 @@ namespace SellTables.Controllers
     public class UserController : DefaultController
     {
         ApplicationDbContext dataBaseConnection;
-        CreativeService CreativeService;
-        UserService UserService;
-        CloudinaryService CloudinaryService;
+        ICreativeService CreativeService;
+        IUserService UserService;
+        ICloudinaryService CloudinaryService;
 
         public UserController(ApplicationDbContext DataBaseConnection)
         {
@@ -22,6 +23,13 @@ namespace SellTables.Controllers
             CreativeService = new CreativeService(dataBaseConnection);
             UserService = new UserService(dataBaseConnection);
             CloudinaryService = new CloudinaryService(dataBaseConnection);
+        }
+
+        //for tests
+        public UserController(ICreativeService CreativeService, IUserService UserService, ICloudinaryService CloudinaryService) {
+            this.CreativeService = CreativeService;
+            this.UserService = UserService;
+            this.CloudinaryService = CloudinaryService;
         }
 
 
@@ -40,12 +48,12 @@ namespace SellTables.Controllers
             var creatives = CreativeService.GetCreativesByUser(userName);
             return Json(creatives, JsonRequestBehavior.AllowGet);
         }
+
         public bool IsCurrentUserIsAnAdmin()
         {
             var IsCurrentUserIsAnAdmin = UserService
                 .IsCurrentUserIsAnAdmin(User.Identity.GetUserId());
             return IsCurrentUserIsAnAdmin;
-
         }
 
         public string GetUserAvatarUri(string userId) {
@@ -56,7 +64,7 @@ namespace SellTables.Controllers
         public void UploadUserAvatar(byte[] img)
         {
             CloudinaryService.UploadUserAvatar(img, User.Identity.Name);
-            
+   
         }
     }
 }

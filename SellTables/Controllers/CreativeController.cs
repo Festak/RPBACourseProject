@@ -46,13 +46,11 @@ namespace SellTables.Controllers
         {
             if (ModelState.IsValid)
             {
-                creativemodel.Creative.User = FindUser();
                 string path = CloudinaryService.UploadCreativeImage(creativemodel.Image);
                 creativemodel.Creative.CreativeUri = path;
-                CreativeService.AddCreative(creativemodel);
+                CreativeService.AddCreative(creativemodel, User.Identity.GetUserId());
                 return RedirectToAction("Index");
             }
-
             return View(creativemodel);
         }
 
@@ -103,7 +101,7 @@ namespace SellTables.Controllers
 
         public void GetRatingFromView(int rating, CreativeViewModel creative)
         {
-            CreativeService.SetRatingToCreative(rating, creative, FindUser());
+            CreativeService.SetRatingToCreative(rating, creative, User.Identity.GetUserId());
         }
 
         private ApplicationUser FindUser()

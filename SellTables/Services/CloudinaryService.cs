@@ -34,15 +34,7 @@ namespace SellTables.Services
             Cloudinary cloudinary = new Cloudinary(account);
             if (img != null)
             {
-                using (Stream str = new MemoryStream(img))
-                {
-                    var uploadParams = new ImageUploadParams()
-                    {
-                        File = new FileDescription("name", str)
-                    };
-                    var uploadResult = cloudinary.Upload(uploadParams);
-                    return uploadResult.SecureUri.ToString();
-                }
+                return GetSecureUri(img, cloudinary);
             }
             return null;
         }
@@ -53,6 +45,19 @@ namespace SellTables.Services
             if (img != null) path = UploadImage(img);
             if (path == null) path = "https://res.cloudinary.com/qwe123/image/upload/v1479815852/default-placeholder-1024x1024-570x321_y1j7pd.png";
             return path;
+        }
+
+        private string GetSecureUri(byte[] img, Cloudinary cloudinary)
+        {
+            using (Stream str = new MemoryStream(img))
+            {
+                var uploadParams = new ImageUploadParams()
+                {
+                    File = new FileDescription("name", str)
+                };
+                var uploadResult = cloudinary.Upload(uploadParams);
+                return uploadResult.SecureUri.ToString();
+            }
         }
 
     }

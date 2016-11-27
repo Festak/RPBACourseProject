@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SellTables.Interfaces
 {
-    interface ICloudinaryService
+    public interface ICloudinaryService
     {
         void UploadUserAvatar(byte[] img, string username);
         string UploadImage(byte[] img);

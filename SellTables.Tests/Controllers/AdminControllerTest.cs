@@ -7,25 +7,30 @@ using System.Collections.Generic;
 using SellTables.Controllers;
 using SellTables.Models;
 using SellTables.Services;
+using System.Web.Mvc;
 
 namespace SellTables.Tests
 {
     [TestClass]
-    public class UnitTest1
+    public class AdminControllerTest
     {
         [TestMethod]
-        public void TestMethodTest()
+        public void IndexTest()
         {
+            // Arrange
             var mock = new Mock<IUserService>();
-            mock.Setup(a => a.GetAllUsers()).Returns(new List<ApplicationUser>());
-            HomeController controller = new HomeController(null, mock.Object, null);
+            mock.Setup(a => a.DeleteUser("User"));
+            AdminController controller = new AdminController(mock.Object, null);
 
-            // Act
-            var result = controller.GetUsers();
+            // Atc
+            ViewResult result = controller.Index() as ViewResult;
 
             // Assert
             Assert.IsNotNull(result);
-
         }
+
+
+
+
     }
 }
