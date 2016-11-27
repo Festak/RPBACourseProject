@@ -291,6 +291,7 @@
     <Compile Include="Services\CreativeService.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Utils\NinjectDependencyResolver.cs" />
     <Compile Include="ViewModels\ChapterViewModel.cs" />
     <Compile Include="ViewModels\CreativeViewModel.cs" />
     <Compile Include="ViewModels\LoginRegisterUserModel.cs" />

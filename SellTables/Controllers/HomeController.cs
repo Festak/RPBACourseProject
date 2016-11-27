@@ -12,10 +12,11 @@ namespace SellTables.Controllers
         CreativeService CreativeService;
         UserService UserService;
         TagService TagService;
-        ApplicationDbContext dataBaseConnection = new ApplicationDbContext();
+        ApplicationDbContext dataBaseConnection;
 
-        public HomeController()
+        public HomeController(ApplicationDbContext db)
         {
+            dataBaseConnection = db;
             UserService = new UserService(dataBaseConnection);
             CreativeService = new CreativeService(dataBaseConnection);
             TagService = new TagService(dataBaseConnection); 
