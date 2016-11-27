@@ -7,7 +7,7 @@
 
     <ul class="nav navbar-nav navbar-right" ng-controller="UserController">
         <li ng-init="getUriAvatar('@User.Identity.GetUserId()')">
-            <img class="img-circle navbarImage" src="{{UserAvatarUri}}" />
+            <img class="img-circle navbarImage" style="width: 60px; height: 60px" src="{{UserAvatarUri}}" />
         </li>
         <li>
             @Html.ActionLink(User.Identity.GetUserName(), "UserPage", "User", routeValues: null, htmlAttributes: new { title = "UserPage" })

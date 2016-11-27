@@ -67,7 +67,7 @@
             @foreach (var c in Model.Chapters)
             {
                 <div class="swiper-slide container">
-                    <div class="well col-md-12 col-sm-12 col-xs-12 creativeContainer"
+                    <div class="well col-md-12 col-sm-12 col-xs-12" style="background-color: rgba(245, 245, 245, 0.2)"
                          name="content">
                         <h2 class="text-center">@c.Name</h2>
                         @Html.Raw(c.Text)

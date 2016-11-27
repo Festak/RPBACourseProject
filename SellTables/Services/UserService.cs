@@ -164,6 +164,7 @@ namespace SellTables.Services
             {
                 user.Creatives.Remove(cr);
             }
+            UsersRepository.UpdateUser(user);
         }
 
         private void DeleteUserExternalLogins(ApplicationUser user)
@@ -172,6 +173,7 @@ namespace SellTables.Services
             {
                 user.Logins.Remove(login);
             }
+            UsersRepository.UpdateUser(user);
         }
 
         private void DeleteCreatives(ICollection<Creative> creatives)
@@ -182,10 +184,28 @@ namespace SellTables.Services
                 {
                     c.User = null;
                     c.UserId = null;
+                    DeleteCreativeRatings(c);
+                    CreativesRepository.Remove(c.Id);
                     CreativeSearch.ClearLuceneIndexRecord(c.Id);
                 }
-                DataBaseContext.Creatives.RemoveRange(creatives);
             }
+        }
+
+        private void DeleteCreativeRatings(Creative creative) {
+            var ratings = GetAllCreativeRatings(creative);
+            if (ratings != null)
+            {
+                DataBaseContext.Rating.RemoveRange(ratings);
+                DataBaseContext.SaveChanges();
+            }
+        }
+
+        private ICollection<Rating> GetAllCreativeRatings(Creative creative)
+        {
+            if (creative == null)
+                return new List<Rating>();
+            return DataBaseContext.Rating
+                        .Where(r => r.CreativeId == creative.Id).ToList();
         }
 
 
