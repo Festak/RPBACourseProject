@@ -11,13 +11,14 @@ namespace SellTables.Controllers
     [Authorize]
     public class UserController : DefaultController
     {
-        ApplicationDbContext dataBaseConnection = new ApplicationDbContext();
+        ApplicationDbContext dataBaseConnection;
         CreativeService CreativeService;
         UserService UserService;
         CloudinaryService CloudinaryService;
 
-        public UserController()
+        public UserController(ApplicationDbContext DataBaseConnection)
         {
+            this.dataBaseConnection = DataBaseConnection;
             CreativeService = new CreativeService(dataBaseConnection);
             UserService = new UserService(dataBaseConnection);
             CloudinaryService = new CloudinaryService(dataBaseConnection);

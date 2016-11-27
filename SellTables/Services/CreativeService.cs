@@ -11,7 +11,7 @@ using System.Data.Entity;
 
 namespace SellTables.Services
 {
-    public class CreativeService
+    public class CreativeService : ICreativeService
     {
         private ApplicationDbContext dataBaseContext;
         private IRepository<Creative> CreativeRepository;
@@ -45,15 +45,10 @@ namespace SellTables.Services
         {
             Creative creative = creativemodel.Creative;
             AddCreativeToCounter(creative.User.Id);
-            creative.CreativeUri = creativemodel.Creative.CreativeUri;
-            Chapter chapter = creativemodel.Chapter;
-            chapter.Number = 0;
+            Chapter chapter = creativemodel.Chapter; 
             if (chapter.TagsString != null)
                 chapter.Tags = GetTags(chapter.TagsString);
-            creative.Chapters.Add(chapter);
-            ChapterRepository.Add(chapter);
-            CreativeRepository.Add(creative);
-
+            AddCreativeAndChapterToDatabase(creative, chapter);
         }
 
         public ICollection<CreativeViewModel> GetCreativesBySearch(ICollection<CreativeViewModel> list)
@@ -206,6 +201,14 @@ namespace SellTables.Services
                 .Count();
             if (count == 0) return true;
             else return false;
+        }
+
+        private void AddCreativeAndChapterToDatabase(Creative creative, Chapter chapter)
+        {
+            chapter.Number = 0;
+            creative.Chapters.Add(chapter);
+            ChapterRepository.Add(chapter);
+            CreativeRepository.Add(creative);
         }
 
         private void AddCreativeToUser(Creative creative)

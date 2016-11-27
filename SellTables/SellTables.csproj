@@ -250,6 +250,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\IChapterService.cs" />
+    <Compile Include="Interfaces\ICloudinaryService.cs" />
     <Compile Include="Interfaces\ICreativeService.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\ITagService.cs" />

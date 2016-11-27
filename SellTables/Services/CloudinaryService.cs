@@ -3,10 +3,11 @@ using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
 
 using System.IO;
+using SellTables.Interfaces;
 
 namespace SellTables.Services
 {
-    public class CloudinaryService
+    public class CloudinaryService : ICloudinaryService
     {
         private ApplicationDbContext dataBaseContext;
         private UserService UserService;

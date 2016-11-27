@@ -14,14 +14,15 @@ namespace SellTables.Controllers
     [Authorize]
     public class CreativeController : DefaultController
     {
-        ApplicationDbContext dataBaseConnection = new ApplicationDbContext();
+        ApplicationDbContext dataBaseConnection;
 
         private CreativeService CreativeService;
         private ChapterService ChapterService;
         private CloudinaryService CloudinaryService;
 
-        public CreativeController()
+        public CreativeController(ApplicationDbContext DataBaseConnection)
         {
+            this.dataBaseConnection = DataBaseConnection;
             CreativeService = new CreativeService(dataBaseConnection);
             ChapterService = new ChapterService(dataBaseConnection);
             CloudinaryService = new CloudinaryService(dataBaseConnection);

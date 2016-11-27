@@ -10,9 +10,10 @@ namespace SellTables.Controllers
     public class ChapterController : DefaultController
     {
         ChapterService ChapterService;
-        ApplicationDbContext DataBaseConnection = new ApplicationDbContext();
+        ApplicationDbContext DataBaseConnection;
 
-        public ChapterController() {
+        public ChapterController(ApplicationDbContext DataBaseConnection) {
+            this.DataBaseConnection = DataBaseConnection;
             ChapterService = new ChapterService(DataBaseConnection);
         }
 

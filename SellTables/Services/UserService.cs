@@ -9,7 +9,7 @@ using System.Data.Entity;
 
 namespace SellTables.Services
 {
-    public class UserService
+    public class UserService : IUserService
     {
         private IUserRepository UsersRepository;
         private IRepository<Creative> CreativesRepository;

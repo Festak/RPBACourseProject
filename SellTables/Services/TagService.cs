@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace SellTables.Services
 {
-    public class TagService
+    public class TagService : ITagService
     {
         private IRepository<Tag> Repository;
         private ApplicationDbContext dataBaseContext;

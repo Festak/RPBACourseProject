@@ -11,13 +11,14 @@ namespace SellTables.Controllers
     [Culture]
     public class AdminController : DefaultController
     {
-        ApplicationDbContext DataBaseConnection = new ApplicationDbContext();
+        ApplicationDbContext DataBaseConnection;
 
         CreativeService CreativeService;
         UserService UserService;
 
-        public AdminController()
+        public AdminController(ApplicationDbContext DataBaseConnection)
         {
+            this.DataBaseConnection = DataBaseConnection;
             CreativeService = new CreativeService(DataBaseConnection);
             UserService = new UserService(DataBaseConnection);
         }

@@ -9,5 +9,6 @@ namespace SellTables.Interfaces
     public interface IChapterService
     {
         Chapter GetChapter(int id);
+        void UpdateChapterPos(int oldPosition, int newPosition, int fromChapterId, int toChapterId);
     }
 }

@@ -10,7 +10,7 @@ using System.Data.Entity;
 
 namespace SellTables.Services
 {
-    public class ChapterService
+    public class ChapterService : IChapterService
     {
         private ApplicationDbContext DataBaseContext;
         private IRepository<Chapter> ChapterRepository ;
@@ -29,13 +29,18 @@ namespace SellTables.Services
         {
             Chapter oldChapter = DataBaseContext.Chapters.FirstOrDefault(p=>p.Id == fromChapterId);
             Chapter newChapter = DataBaseContext.Chapters.FirstOrDefault(p => p.Id == toChapterId);
+            SwapAndUpdateChaptersPosition(oldChapter, newChapter);
+
+        }
+
+        private void SwapAndUpdateChaptersPosition(Chapter oldChapter, Chapter newChapter) {
             int oldchapterpos = oldChapter.Number;
             oldChapter.Number = newChapter.Number;
             newChapter.Number = oldchapterpos;
 
             ChapterRepository.Update(oldChapter);
             ChapterRepository.Update(newChapter);
-
         }
+
     }
 }
