@@ -2,14 +2,14 @@
     <img src="https://res.cloudinary.com/qwe123/image/upload/c_scale,w_63/v1480069930/Martz90-Circle-Calendar_fh7nih.ico" />
 </div>
 <div ng-init="getLastEditedCreatives()">
-<ul>
-    <li ng-repeat="creative in lastEdited">
-        <h5>
-            <a href="../../Creative/Details/?id={{creative.Id}}">{{creative.Name}}</a><i> @Resources.Resource.By {{creative.UserName}}</i>
-        </h5>
-        <i>{{creative.Rating}} @Resources.Resource.Stars</i>
-        <br />
-        <i>@Resources.Resource.At {{creative.EditDate}}</i>
-    </li>
-</ul>
-    </div>
+    <ul>
+        <li ng-repeat="creative in lastEdited">
+            <h5>
+                <a href="../../Creative/Details/?id={{creative.Id}}">{{creative.Name}}</a><i> @Resources.Resource.By {{creative.UserName}}</i>
+            </h5>
+            <i>{{creative.Rating}} @Resources.Resource.Stars</i>
+            <br />
+            <i>@Resources.Resource.At {{creative.EditDate}}</i>
+        </li>
+    </ul>
+</div>

@@ -1,20 +1,20 @@
 ﻿@model List<string>
-    @{
-        ViewBag.Title = "Home Page";
-    }
-    <header class="intro-header container-fluid" style="background-image: url('https://res.cloudinary.com/qwe123/image/upload/v1480080672/_Some_of_the_bright_graffiti_on_a_brick_wall_104897__ps7z6s.jpg');">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <div class="site-heading">
-                        <h1>@Resources.Resource.Creatives</h1>
-                        <hr class="small">
-                        <span class="subheading">@Resources.Resource.CreativeTopInfo</span>
-                    </div>
+@{
+    ViewBag.Title = "Home Page";
+}
+<header class="intro-header container-fluid" style="background-image: url('https://res.cloudinary.com/qwe123/image/upload/v1480080672/_Some_of_the_bright_graffiti_on_a_brick_wall_104897__ps7z6s.jpg');">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="site-heading">
+                    <h1>@Resources.Resource.Creatives</h1>
+                    <hr class="small">
+                    <span class="subheading">@Resources.Resource.CreativeTopInfo</span>
                 </div>
             </div>
         </div>
-    </header>
+    </div>
+</header>
 
 <div class="row" ng-controller='CreativeController'>
     <div class="col-md-4 col-sd-4">
@@ -22,7 +22,6 @@
         @Html.Partial("_LastEditedCreatives")
         @Html.Partial("_TagCloud")
     </div>
-
     <div class="col-md-8">
         <div class="col-md-12">
             <div class="pull-right">
@@ -34,7 +33,6 @@
         @Html.Partial("_SortPanel")
         <div class="row">
             @Html.Partial("_CreativesList")
-
         </div>
     </div>
 </div>

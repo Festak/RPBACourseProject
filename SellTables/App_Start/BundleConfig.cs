@@ -86,7 +86,7 @@ namespace SellTables
                       ));
 
             bundles.Add(new ScriptBundle("~/bundles/dropzonescripts").Include(
-                     "~/Scripts/dropzone/dropzone.js"
+                     "~/Scripts/scripts/dropzone.js"
                      ));
 
             bundles.Add(new StyleBundle("~/Content/dropzonescss").Include(
@@ -101,7 +101,37 @@ namespace SellTables
                      "~/Scripts/pageScripts/creativeCreateScript.js"
                      ));
 
-            
+            bundles.Add(new ScriptBundle("~/bundles/swiper").Include(
+                     "~/Scripts/scripts/swiper.js"
+                     ));
+
+            bundles.Add(new StyleBundle("~/Content/swiper").Include(
+                     "~/Content/somestyles/swiper.css"
+                     ));
+
+            bundles.Add(new ScriptBundle("~/bundles/creativeDetailsScript").Include(
+                     "~/Scripts/pageScripts/creativeDetailsScript.js"
+                     ));
+
+            bundles.Add(new StyleBundle("~/Content/creativeDetailsScript").Include(
+                     "~/Content/pageStyles/creativeDetailsStyles.css"
+                     ));
+
+            bundles.Add(new ScriptBundle("~/bundles/pageScrollEvent").Include(
+                     "~/Scripts/pageScripts/pageScrollEventScript.js"
+                ));
+
+            bundles.Add(new ScriptBundle("~/bundles/setCookies").Include(
+                "~/Scripts/pageScripts/setCookiesScript.js"
+                ));
+
+            bundles.Add(new ScriptBundle("~/bundles/dropzoneForCreative").Include(
+                "~/Scripts/scripts/dropzoneForCreative.js"
+            ));
+
+            bundles.Add(new ScriptBundle("~/bundles/userpage").Include(
+                "~/Scripts/pageScripts/userPageScript.js"
+            ));
         }
     }
 }

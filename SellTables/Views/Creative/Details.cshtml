@@ -81,7 +81,11 @@
     </div>
 </div>
 
-<link rel="stylesheet" href="~/Content/somestyles/swiper.css" />
-<link rel="stylesheet" href="~/Content/pageStyles/creativeDetailsStyles.css" />
-<script src="~/Scripts/scripts/swiper.js"></script>
-<script src="~/Scripts/pageScripts/creativeDetailsScript.js"></script>
+@section Scripts{
+    @Scripts.Render("~/bundles/swiper")
+    @Scripts.Render("~/bundles/creativeDetailsScript")
+}
+@section Styles{
+    @Styles.Render("~/Content/swiper")
+    @Styles.Render("~/Content/creativeDetailsScript")
+}
