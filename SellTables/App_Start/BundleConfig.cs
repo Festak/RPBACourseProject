@@ -50,7 +50,6 @@ namespace SellTables
                 "~/Scripts/scripts/star-rating.js"
                 ));
 
-
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js",
@@ -84,15 +83,25 @@ namespace SellTables
                       ));
             bundles.Add(new StyleBundle("~/Content/tags").Include(
                       "~/Content/somestyles/TagsStyles.css"
-
                       ));
 
             bundles.Add(new ScriptBundle("~/bundles/dropzonescripts").Include(
-                     "~/Scripts/dropzone/dropzone.js"));
+                     "~/Scripts/dropzone/dropzone.js"
+                     ));
 
             bundles.Add(new StyleBundle("~/Content/dropzonescss").Include(
-                     "~/Scripts/dropzone/css/basic.css",
-                     "~/Scripts/dropzone/css/dropzone.css"));
+                     "~/Content/somestyles/dropzone.css"
+                     ));
+
+            bundles.Add(new ScriptBundle("~/bundles/popoverscript").Include(
+                     "~/Scripts/pageScripts/popoverScript.js"
+                     ));
+
+            bundles.Add(new ScriptBundle("~/bundles/creativeCreateScript").Include(
+                     "~/Scripts/pageScripts/creativeCreateScript.js"
+                     ));
+
+            
         }
     }
 }
