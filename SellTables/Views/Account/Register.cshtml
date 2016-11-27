@@ -5,7 +5,7 @@
 @{
     ViewBag.Title = "Log in";
 }
-<header class="intro-header container-fluid" style="background-image: url('http://www.freeoboi.ru/images/249509332.jpg')">
+<header class="intro-header container-fluid" style="background-image: url('http://cdn.wonderfulengineering.com/wp-content/uploads/2014/09/graffiti-wallpaper-8.jpg')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
@@ -38,6 +38,7 @@
                             @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form", id = "login-form", style = "display: block;" }))
                             {
                                 @Html.AntiForgeryToken()
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                                 <div class="form-group">
                                     @Html.TextBoxFor(m => m.LoginViewModel.UserName, new { @class = "form-control", placeholder = Resources.Resource.UserName, tabindex = 1, value = "" })
                                     @Html.ValidationMessageFor(m => m.LoginViewModel.UserName, "", new { @class = "text-danger" })
@@ -69,6 +70,7 @@
                             @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { style = "display: none;", role = "form", id = "register-form" }))
                             {
                                 @Html.AntiForgeryToken()
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                                 <div class="form-group">
                                     @Html.TextBoxFor(m => m.RegisterViewModel.UserName, new { @class = "form-control", placeholder = Resources.Resource.UserName })
                                     @Html.ValidationMessageFor(m => m.RegisterViewModel.UserName, "", new { @class = "text-danger" })

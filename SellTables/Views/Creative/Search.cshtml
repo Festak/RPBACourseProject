@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<header class="intro-header container-fluid" style="background-image: url('http://www.freeoboi.ru/images/249509332.jpg')">
+<header class="intro-header container-fluid" style="background-image: url('https://i.ytimg.com/vi/Pp9yoCnYrk0/maxresdefault.jpg')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
@@ -24,7 +24,7 @@
         <input id="input-21b" value="@creative.Rating.ToString().Replace(",",".")" type="number" class="rating" min=0 max=5 step=0.1 data-size="md" disabled>
     </div>
     <div class="col-md-12 col-xs-12 col-lg-12 col-sm-12">
-        <div class="box7">  
+        <div class="box7">
             <div class="post-title text-center">
                 <h2 class="post-title cursor-pointer">
                     <a href="../../Creative/Details/@creative.Id">
@@ -47,11 +47,11 @@
 
                         @foreach (var chapter in creative.Chapters)
                         {
-                            <span class="cursor-pointer">
-                                <a href="../../Creative/Details/@creative.Id">
-                                    @chapter.Name
-                                </a>
-                            </span>
+              
+                                    <a href="../../Creative/Details/@creative.Id" class="cursor-pointer">
+                                        @chapter.Name
+                                    </a><br />
+                           
                         }
                     </div>
                 </div>

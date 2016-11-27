@@ -32,13 +32,13 @@
 
                     <p>
                         <div id="dropzone" ng-controller="UserController">
-                            <img class="file__drop imageDrop" src="@Model.AvatarUri" data-image data-image-uploader />
+                            <img class="file__drop imageDrop" style="width:100%; height: 100%;" src="@Model.AvatarUri" data-image data-image-uploader />
                         </div>
                         <br />
                         <a href="#section1">@Model.UserName<br /></a>
                         @foreach (var medal in Model.Medals)
                         {
-                            <img class="userPageMedals" src="@medal.ImageUri" title="@medal.Name" />
+                            <img class="userPageMedals" style="height: 32px; width: 32px;" src="@medal.ImageUri" title="@medal.Name" />
                         }
                     </p>
                 </div>
@@ -106,7 +106,8 @@
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span></button>
                                         <h4 class="modal-title" id="myModalLabel">Change name</h4>
                                     </div>
                                     <div class="modal-body">
@@ -114,7 +115,8 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                        <button ng-click="updateCreativeName(creative.Id, newCreativeName, '@Model.UserName', $index)" type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+                                        <button ng-click="updateCreativeName(creative.Id, newCreativeName, '@Model.UserName', $index)"
+                                                 type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
                                     </div>
                                 </div>
                             </div>
@@ -122,7 +124,7 @@
                     </div>
                     <div class="col-md-4">
                         <div id="dropzone">
-                            <img class="file__drop imageDrop" src="{{creative.CreativeUri}}" />
+                            <img class="file__drop imageDrop" style="width: 100%; height: 100%" src="{{creative.CreativeUri}}" />
                         </div>
                         @if ((User.Identity.Name == Model.UserName) || User.IsInRole("admin"))
                         {
