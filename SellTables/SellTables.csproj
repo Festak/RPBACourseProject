@@ -216,6 +216,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Content Include="Content\pageStyles\creativeDetailsStyles.css" />
     <Content Include="Content\somestyles\dropzone.css" />
     <Content Include="Content\somestyles\form.css" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -1158,6 +1159,12 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\pageScripts\pageScrollEventScript.js" />
+    <Content Include="Scripts\pageScripts\creativeCreateScript.js" />
+    <Content Include="Scripts\pageScripts\creativeDetailsScript.js" />
+    <Content Include="Scripts\pageScripts\popoverScript.js" />
+    <Content Include="Scripts\pageScripts\setCookiesScript.js" />
+    <Content Include="Scripts\pageScripts\userPageScript.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\scripts\clean-blog.js" />

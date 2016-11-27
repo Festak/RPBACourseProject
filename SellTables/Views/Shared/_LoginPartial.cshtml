@@ -3,14 +3,14 @@
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
-    @Html.AntiForgeryToken()
+        @Html.AntiForgeryToken()
 
-    <ul class="nav navbar-nav navbar-right">
-        <li>
-            @Html.ActionLink(User.Identity.GetUserName(), "UserPage", "User", routeValues: null, htmlAttributes: new { title = "UserPage" })
-        </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">@Resources.Resource.LogOf</a></li>
-    </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                @Html.ActionLink(User.Identity.GetUserName(), "UserPage", "User", routeValues: null, htmlAttributes: new { title = "UserPage" })
+            </li>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">@Resources.Resource.LogOf</a></li>
+        </ul>
 
     }
 }
@@ -19,5 +19,4 @@ else
     <ul class="nav navbar-nav navbar-right">
         <li>@Html.ActionLink(Resources.Resource.Login, "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
     </ul>
-
 }

@@ -1,14 +1,4 @@
-﻿
-<div class="btn-group">
-    @*<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            @Resources.Resource.Sort <span class="caret"></span>
-        </button>
-
-        <ul class="dropdown-menu">
-            <li><a class="btn" ng-click="changeSortType(1)">@Resources.Resource.SortCreateDate</a></li>
-            <li><a class="btn" ng-click="changeSortType(2)">@Resources.Resource.SortEditDate</a></li>
-            <li><a class="btn" ng-click="changeSortType(3)">@Resources.Resource.SortName</a></li>
-        </ul>*@
+﻿<div class="btn-group">
     <i class="glyphicon glyphicon-sort-by-alphabet btn-lg cursor-pointer"
        ng-click="changeSortType(1)"
        data-container="body"
@@ -40,11 +30,5 @@
        data-toggle="popover"
        data-placement="top"
        data-content="Sort by popularity."></i>
-
-
 </div>
-<script>
-    $(function () {
-        $('[data-toggle="popover"]').popover({ trigger: "hover", delay: { "show": 500, "hide": 100 } })
-    })
-</script>
+<script src="~/Scripts/pageScripts/popoverScript.js"></script>

@@ -1,8 +1,6 @@
-﻿
-<div ng-init='getCreatives()' id="scroller">
+﻿<div ng-init='getCreatives()' id="scroller">
     <div data-ng-repeat='creative in creatives' class="col-md-12 col-xs-12 col-lg-12 col-sm-12">
         <div class="box7">
-
             <div class="post-title text-center">
                 <div ng-controller="MainController">
                     <h2 class="post-title cursor-pointer" ng-click="redirectToCreative(creative.Id)">{{creative.Name}}</h2>
@@ -12,7 +10,6 @@
                 <div class="col-md-3">
                     <img src="{{creative.CreativeUri}}" style="width: 200px; height: 200px" title="UserAvatar" />
                 </div>
-
                 <div class="col-md-9">
                     <h4 class="post-subtitle cursor-pointer">
                         <span class="glyphicon glyphicon-chevron-down"></span>
@@ -45,13 +42,4 @@
         </div>
     </div>
 </div>
-<script>
-
-    $(window).scroll(function () {
-
-        if ($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
-
-            angular.element($('#scroller')).scope().load();
-        }
-    });
-</script>
+<script src="~/Scripts/pageScripts/pageScrollEventScript.js"></script>

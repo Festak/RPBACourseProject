@@ -195,7 +195,6 @@ angular.module('creative', ['ngRoute', 'as.sortable', 'angular-input-stars'])
           }
 
           $scope.acceptImageChange = function (user) {
-         
               img = angular.element(document.getElementById('imageUploadInput')).attr('value');
               $http.post('/Creative/UpdateCreativeImage', { id: $scope.creativeId, image: img })
                   .success(function (result) {
