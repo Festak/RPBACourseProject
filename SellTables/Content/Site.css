@@ -3,10 +3,10 @@
     padding-bottom: 20px;
     margin-top: -10px;
     Overflow: auto;
-    
 }
+
 is-dragover {
-  display: none;
+    display: none;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -23,10 +23,11 @@ textarea {
     max-width: 280px;
 }
 
-.scr {    
-overflow-y: scroll;
-overflow-x: hidden;
+.scr {
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
+
     .scr::-webkit-scrollbar {
         width: 10px;
         background-color: transparent;
@@ -72,11 +73,13 @@ overflow-x: hidden;
     #div1 .type-2 {
         color: greenyellow;
     }
+
     #div1 .type-3 {
         color: fuchsia;
     }
+
     #div1 .type-4 {
-        color:hotpink;
+        color: hotpink;
     }
 
 .panel-login {
@@ -208,18 +211,82 @@ overflow-x: hidden;
     font-size: 100%;
     line-height: 100%;
 }
-  
+
 .font200 {
     font-size: 200%;
     line-height: 110%;
 }
-    
+
 .font70 {
     font-size: 70%;
     line-height: 90%;
 }
-    
+
 .font300 {
     font-size: 300%;
     line-height: 120%;
+}
+
+.avatarImage {
+    height: 170px;
+    width: 150px;
+}
+
+.medalImage {
+    width: 20px;
+    height: 20px;
+    quotes: inherit;
+}
+
+.profile-head-position {
+    margin-top: 30px;
+}
+
+.creativeContainer {
+    background-color: rgba(245, 245, 245, 0.2);
+}
+
+.creativeImage {
+    width: 30%;
+    height: 30%;
+}
+
+.searchImage {
+    width: 200px;
+    height: 200px;
+}
+
+.linkWithoutDecor {
+    text-decoration: none;
+}
+
+.solidBorder {
+    border: solid;
+}
+
+.floatRight {
+    float: right;
+}
+
+.navbarImage {
+    width: 60px; 
+    height: 60px;
+}
+
+.imageDrop {
+    width: 100%; 
+    height: 100%;
+}
+
+.userPageMedals {
+    width: 32px; 
+    height: 32px;
+}
+
+.blackColor {
+    color: black;
+}
+
+.centered {
+    text-align: center;
 }

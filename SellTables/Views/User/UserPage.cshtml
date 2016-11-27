@@ -32,13 +32,13 @@
 
                     <p>
                         <div id="dropzone" ng-controller="UserController">
-                            <img class="file__drop" style="width: 100%; height: 100%" src="@Model.AvatarUri" data-image data-image-uploader />
+                            <img class="file__drop imageDrop" src="@Model.AvatarUri" data-image data-image-uploader />
                         </div>
                         <br />
                         <a href="#section1">@Model.UserName<br /></a>
                         @foreach (var medal in Model.Medals)
                         {
-                            <img style="width: 32px; height: 32px" src="@medal.ImageUri" title="@medal.Name" />
+                            <img class="userPageMedals" src="@medal.ImageUri" title="@medal.Name" />
                         }
                     </p>
                 </div>
@@ -122,7 +122,7 @@
                     </div>
                     <div class="col-md-4">
                         <div id="dropzone">
-                            <img class="file__drop" style="width: 100%; height: 100%" src="{{creative.CreativeUri}}" />
+                            <img class="file__drop imageDrop" src="{{creative.CreativeUri}}" />
                         </div>
                         @if ((User.Identity.Name == Model.UserName) || User.IsInRole("admin"))
                         {
@@ -145,7 +145,7 @@
                                         <h4 class="modal-title" id="myModalLabel">@Resources.Resource.ChangeImage</h4>
                                     </div>
                                     <div class="modal-body">
-                                        <img class="file__drop" style="width: 100%; height: 100%" src="{{creative.CreativeUri}}" data-image-creative data-image-creative-uploader />
+                                        <img class="file__drop userPageMedals" src="{{creative.CreativeUri}}" data-image-creative data-image-creative-uploader />
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">@Resources.Resource.Close</button>
@@ -157,7 +157,7 @@
                     </div>
 
                     <h4 class="post-subtitle">
-                        <a href="../../Creative/CreateChapter/?creativeId={{creative.Id}}" style="color: black; text-decoration: none;">
+                        <a href="../../Creative/CreateChapter/?creativeId={{creative.Id}}" class="blackColor linkWithoutDecor">
                             <i class="glyphicon glyphicon-plus"></i>
                         </a>
                         <br />
@@ -196,7 +196,7 @@
         </div>
         @if ((User.Identity.Name == Model.UserName) || User.IsInRole("admin"))
         {
-            <div class="row" id="section1" style="text-align: center">
+            <div class="row centered" id="section1">
                 <div class="col-md-4">
                     @Html.Partial("../Account/ResetPassword", new ResetPasswordViewModel() { Name = Model.UserName, Type = "user" })
                 </div>
