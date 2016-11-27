@@ -41,7 +41,8 @@ namespace SellTables.Controllers
         }
         public bool IsCurrentUserIsAnAdmin()
         {
-            var IsCurrentUserIsAnAdmin = UserService.IsCurrentUserIsAnAdmin(User.Identity.GetUserId());
+            var IsCurrentUserIsAnAdmin = UserService
+                .IsCurrentUserIsAnAdmin(User.Identity.GetUserId());
             return IsCurrentUserIsAnAdmin;
 
         }

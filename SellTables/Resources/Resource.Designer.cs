@@ -161,6 +161,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to от.
+        /// </summary>
+        public static string By {
+            get {
+                return ResourceManager.GetString("By", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Измените электронную почту.
         /// </summary>
         public static string ChangeEmail {
