@@ -25,17 +25,17 @@ namespace SellTables.Repositories
             return userManager.IsInRole(userId, "admin");
         }
 
-       IdentityResult IUserRepository.DeleteUser(ApplicationUser user)
+        IdentityResult IUserRepository.DeleteUser(ApplicationUser user)
         {
             return userManager.Delete(user);
         }
 
-       ApplicationUser IUserRepository.FindUser(string userName)
+        ApplicationUser IUserRepository.FindUser(string userName)
         {
             return userManager.Users.Include(m => m.Medals).Include(c => c.Creatives).FirstOrDefault(u => u.UserName == userName);
         }
 
-       ApplicationUser IUserRepository.FindUserById(string userId)
+        ApplicationUser IUserRepository.FindUserById(string userId)
         {
             return userManager.Users.Include(m => m.Medals).Include(c => c.Creatives).FirstOrDefault(u => u.Id == userId);
         }

@@ -1,4 +1,5 @@
 ﻿using MultilingualSite.Filters;
+using SellTables.Interfaces;
 using SellTables.Lucene;
 using SellTables.Models;
 using SellTables.Services;
@@ -9,9 +10,9 @@ namespace SellTables.Controllers
     [Culture]
     public class HomeController : DefaultController
     {
-        CreativeService CreativeService;
-        UserService UserService;
-        TagService TagService;
+        ICreativeService CreativeService;
+        IUserService UserService;
+        ITagService TagService;
         ApplicationDbContext dataBaseConnection;
 
         public HomeController(ApplicationDbContext db)
@@ -19,11 +20,15 @@ namespace SellTables.Controllers
             dataBaseConnection = db;
             UserService = new UserService(dataBaseConnection);
             CreativeService = new CreativeService(dataBaseConnection);
-            TagService = new TagService(dataBaseConnection); 
-            
+            TagService = new TagService(dataBaseConnection);
         }
 
- 
+        public HomeController(ICreativeService CreativeService, IUserService UserService, ITagService TagService)
+        {
+            this.UserService = UserService;
+            this.CreativeService = CreativeService;
+            this.TagService = TagService;
+        }
 
         public JsonResult GetUsers()
         {
@@ -55,7 +60,8 @@ namespace SellTables.Controllers
             return Json(popularCreatives, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult GetLastEdited() {
+        public JsonResult GetLastEdited()
+        {
             var lastEditedCreatives = CreativeService.GetLastEditedCreatives();
             return Json(lastEditedCreatives, JsonRequestBehavior.AllowGet);
         }
