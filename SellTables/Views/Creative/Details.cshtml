@@ -19,7 +19,7 @@
                     <h1>@Model.Name</h1>
                     <hr class="small">
                     <span class="subheading">by @Model.User.UserName</span>
-                    <img src="@Model.CreativeUri" style="width: 30%; height: 30%" class="img-thumbnail" />
+                    <img src="@Model.CreativeUri" class="img-thumbnail creativeImage" />
                 </div>
             </div>
         </div>
@@ -67,9 +67,8 @@
             @foreach (var c in Model.Chapters)
             {
                 <div class="swiper-slide container">
-                    <div class="well col-md-12 col-sm-12 col-xs-12"
-                         name="content"
-                         style="background-color: rgba(245, 245, 245, 0.2);">
+                    <div class="well col-md-12 col-sm-12 col-xs-12 creativeContainer"
+                         name="content">
                         <h2 class="text-center">@c.Name</h2>
                         @Html.Raw(c.Text)
                     </div>

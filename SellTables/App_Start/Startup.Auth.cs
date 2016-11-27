@@ -69,8 +69,8 @@ namespace SellTables
             });
 
             app.UseFacebookAuthentication(
-                  appId: "1198098603598342",
-                  appSecret: "6bca00e33f1aba8725cc9d2d0c181435");
+                  appId: "319387298429481",
+                  appSecret: "32af11b9c25f7ba039fd8c3c6dfeff47");
 
             app.UseVkontakteAuthentication("5669133", "kQcKw2fOBvirKhP1lNSL", "email");
 
