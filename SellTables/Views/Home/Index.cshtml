@@ -16,28 +16,24 @@
         </div>
     </header>
 
-    <div class="row" ng-controller='CreativeController'>
-        <div class="col-md-4 col-sd-4" >
-            @Html.Partial("_PopularCreatives")
-            @Html.Partial("_LastEditedCreatives")
-            @Html.Partial("_TagCloud")
+<div class="row" ng-controller='CreativeController'>
+    <div class="col-md-4 col-sd-4">
+        @Html.Partial("_PopularCreatives")
+        @Html.Partial("_LastEditedCreatives")
+        @Html.Partial("_TagCloud")
+    </div>
+
+    <div class="col-md-8">
+        <div class="col-md-12">
+            <div class="pull-right">
+                <i class="h2">@Resources.Resource.CreateOwnCreative</i> <span class="glyphicon glyphicon-arrow-right h2"></span>
+                <a class="glyphicon glyphicon-plus-sign h2" style="text-decoration:none; color: lawngreen;" href="@Url.Action("Create", "Creative")"></a>
+            </div>
         </div>
+        @Html.Partial("_SortPanel")
+        <div class="row">
+            @Html.Partial("_CreativesList")
 
-        <div class="col-md-8">
-            <div class="col-md-12">
-                <div class="pull-right">
-                    @*<i class="h2">@Resources.Resource.CreateOwnCreative</i> <span class="glyphicon glyphicon-arrow-right h2"></span>*@
-                    
-                        <a style="text-decoration:none; color: lawngreen;" href="@Url.Action("Create", "Creative")">
-                            <i class="fa fa-2x fa-plus-square-o" aria-hidden="true"></i>
-</a>
-
-                </div>
-            </div>
-            @Html.Partial("_SortPanel")
-            <div class="row">
-                @Html.Partial("_CreativesList")
-
-            </div>
         </div>
     </div>
+</div>

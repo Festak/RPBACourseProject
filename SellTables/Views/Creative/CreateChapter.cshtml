@@ -4,8 +4,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     Model.Creative = ViewBag.Creative;
 }
-
-
 <link href="~/Scripts/summernote/summernote.css" rel="stylesheet">
 <script src="~/Scripts/summernote/summernote.js"></script>
 <header class="intro-header container-fluid" style="background-image: url('http://www.freeoboi.ru/images/249509332.jpg')">
@@ -63,7 +61,6 @@
                     </div>
                 </div>
             </div>
-            @*===================================*@
             <div class="col-md-8">
                 <div class="form-group">
                     <div class="col-md-11">
@@ -85,16 +82,7 @@
         </div>
     }
 </div>
-<script>
-    $(document).ready(function () {
-        $('#summernote').summernote();
-    });
-    document.getElementById("submit").onclick = function () {
-        document.getElementById("Chapter_Text").value = $('#summernote').summernote('code');
-        document.getElementById("Chapter_TagsString").value = takeTags();
-
-    };
-</script>
+<script src="~/Scripts/pageScripts/creativeCreateScript.js"></script>
 @section Scripts {
     @Scripts.Render("~/bundles/tags")
 }

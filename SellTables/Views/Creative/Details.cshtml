@@ -4,8 +4,6 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<link rel="stylesheet" href="~/Content/somestyles/swiper.css" />
-<script src="~/Scripts/scripts/swiper.js"></script>
 
 <div id="video-wrapper" class="video-wrapper">
     <video autoplay loop id="bgvid">
@@ -32,7 +30,6 @@
 </header>
 
 <div class="container">
-
     <div ng-controller="WidthChangeController">
         <div class="row">
             <div class="col-md-12">
@@ -69,8 +66,8 @@
         <div class="swiper-wrapper">
             @foreach (var c in Model.Chapters)
             {
-                <div class="swiper-slide container" >
-                    <div class="well col-md-12 col-sm-12 col-xs-12" 
+                <div class="swiper-slide container">
+                    <div class="well col-md-12 col-sm-12 col-xs-12"
                          name="content"
                          style="background-color: rgba(245, 245, 245, 0.2);">
                         <h2 class="text-center">@c.Name</h2>
@@ -83,92 +80,9 @@
         <div class="swiper-button-prev swiper-button-white"></div>
         <div class="swiper-button-next swiper-button-white"></div>
     </div>
-
-
 </div>
 
-<script>
-    var swiper = new Swiper('.swiper-container', {
-        pagination: '.swiper-pagination',
-        paginationClickable: true,
-        nextButton: '.swiper-button-next',
-        prevButton: '.swiper-button-prev',
-        spaceBetween: 30,
-        grabCursor: true,
-        autoHeight: true,
-        debugger: true
-    });
-
-    var $vid = document.getElementById('bgvid');
-
-    function calculateNewSize() {
-        var videoWidth,
-            videoHeight,
-            videoAspectRatio = 16 / 9,
-            windowWidth = window.innerWidth,
-            windowHeight = window.innerHeight,
-            windowAspectRatio = window.innerWidth / window.innerHeight;
-
-        if (windowAspectRatio < videoAspectRatio) {
-            videoHeight = windowHeight;
-            videoWidth = Math.ceil(videoHeight * videoAspectRatio);
-        } else {
-            videoWidth = windowWidth;
-            videoHeight = videoWidth / videoAspectRatio;
-        }
-
-
-        $vid.style.width = videoWidth + 'px';
-        $vid.style.height = videoHeight + 'px';
-    }
-
-
-    window.onresize = calculateNewSize;
-
-    calculateNewSize();
-</script>
-<style>
-    html,
-    body {
-        width: 100%;
-        height: 100%;
-        margin: 0;
-        font-family: 'sans-serif';
-        color: white;
-        line-height: 1.3em;
-    }
-
-    article {
-        margin: 10px 0;
-        background: rgba(0,0,0,0.7);
-        padding: 4px 20px;
-    }
-
-    .video-wrapper {
-        position: fixed;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        overflow: hidden;
-        z-index: -1;
-    }
-
-        .video-wrapper video {
-            position: fixed;
-            top: 0;
-            right: 0;
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-        }
-
-    .content {
-        position: relative;
-        margin: 60px auto;
-        width: 80%;
-        max-width: 640px;
-        z-index: 1;
-    }
-</style>
+<link rel="stylesheet" href="~/Content/somestyles/swiper.css" />
+<link rel="stylesheet" href="~/Content/pageStyles/creativeDetailsStyles.css" />
+<script src="~/Scripts/scripts/swiper.js"></script>
+<script src="~/Scripts/pageScripts/creativeDetailsScript.js"></script>

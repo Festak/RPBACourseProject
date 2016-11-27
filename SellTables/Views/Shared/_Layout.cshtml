@@ -3,20 +3,17 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Creatives</title>
-
     @Scripts.Render("~/bundles/angular")
     @Scripts.Render("~/bundles/jquery")
     <script type="text/javascript" src="~/Scripts/sortable/ng-sortable.min.js"></script>
-   <link rel="stylesheet" type="text/css" href="~/Scripts/sortable/ng-sortable.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Scripts/sortable/ng-sortable.min.css">
     <script type="text/javascript" src="~/Scripts/stars/angular-input-stars.js"></script>
-    <link rel="stylesheet" type="text/css" href="~/Scripts/stars/angular-input-stars.css">  
+    <link rel="stylesheet" type="text/css" href="~/Scripts/stars/angular-input-stars.css">
     @Scripts.Render("~/bundles/app")
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
     @if (Request.Cookies["style"] == null)
     {
         <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
@@ -51,12 +48,11 @@
                     }
 
                 </ul>
-                    <form style="float: right" class="navbar-form" action="@Url.Action("Search", "Creative")">
-                        <input type="text" name="query" class="form-control col-lg-8" placeholder="@Resources.Resource.Search">
-                    </form>     
+                <form style="float: right" class="navbar-form" action="@Url.Action("Search", "Creative")">
+                    <input type="text" name="query" class="form-control col-lg-8" placeholder="@Resources.Resource.Search">
+                </form>
             </div>
         </div>
-
     </nav>
     <div class="parent2">
         <div class="test1">
@@ -86,10 +82,5 @@
     @RenderSection("styles", required: false)
 </body>
 </html>
-<script type="text/javascript">
-    window.setCookie = setCookie = function (name, value, path) {
-        document.cookie = name + "=" + escape(value) + (path ? "; path=" + path : "");
-        return location.reload();
-    };
-</script>
+<script type="text/javascript" src="~/Scripts/pageScripts/setCookiesScript.js"></script>
 
