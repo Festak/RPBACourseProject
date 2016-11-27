@@ -354,7 +354,7 @@ And let this page will help you with it.</value>
   <data name="String2" xml:space="preserve">
     <value>some persons, who want to be most active.</value>
   </data>
-  <data name="by" xml:space="preserve">
+  <data name="By" xml:space="preserve">
     <value>by</value>
   </data>
 </root>

@@ -92,7 +92,6 @@ namespace SellTables.Services
             ApplicationUser user = UsersRepository.FindUser(userName);
             user.AvatarUri = uri;
             UsersRepository.UpdateUser(user);
-
         }
 
         public ICollection<Rating> GetAllUserRatings(ApplicationUser user)
@@ -116,8 +115,8 @@ namespace SellTables.Services
             var creativesList = CreativeService.GetAllCreativesModels();
             foreach (var creative in creativesList)
             {
-                double a = GetAverageValue(creative);
-                creative.Rating = Math.Round(a, 2);
+                double average = GetAverageValue(creative);
+                creative.Rating = Math.Round(average, 2);
                 CreativesRepository.Update(creative);
             }
         }

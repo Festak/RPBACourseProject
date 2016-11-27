@@ -478,15 +478,20 @@ namespace SellTables.Services
 
         private void CalculateRating(Rating rating, Creative creative)
         {
-            double a = 0;
             creative.Ratings.Add(rating);
+            double average = GetAverageValueOfRating(creative);
+            creative.Rating = Math.Round(average, 2);
+            UpdateDataBaseAfterCalculateRating(creative, rating);
+        }
+
+        private double GetAverageValueOfRating(Creative creative) {
+            double average = 0;
             foreach (var r in creative.Ratings)
             {
-                a += r.Value;
+                average += r.Value;
             }
-            a /= creative.Ratings.Count;
-            creative.Rating = Math.Round(a, 2);
-            UpdateDataBaseAfterCalculateRating(creative, rating);
+            average /= creative.Ratings.Count;
+            return average;
         }
 
         private void UpdateDataBaseAfterCalculateRating(Creative creative, Rating rating)
