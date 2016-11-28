@@ -20,15 +20,12 @@ angular.module('creative', ['ngRoute', 'as.sortable', 'angular-input-stars'])
           var isBusy = false;
           $scope.orderByField = 'firstName';
           $scope.reverseSort = false;
-
           $scope.creativeId;
 
 
           $scope.getCreatives = function () {
               $scope.load();
           }
-
-
 
           $scope.load = function () {
 
@@ -70,14 +67,14 @@ angular.module('creative', ['ngRoute', 'as.sortable', 'angular-input-stars'])
                   containment: '#board'//optional param.
                   clone: true //optional param for clone feature.
                   allowDuplicates: false //optional param allows duplicates to be dropped.
-                 // from this index eventObj.source.index
+                  // from this index eventObj.source.index
                   // to this index eventObj.dest.index
                   $scope.from = angular.element(eventObj)[0].dest
                       .sortableScope.modelValue[eventObj.source.index].Id;
                   $scope.to = angular.element(eventObj)[0].dest
                   .sortableScope.modelValue[eventObj.dest.index].Id;
-          
-                 $scope.SendLastAndNewChapterPos(eventObj.source.index, eventObj.dest.index, $scope.from, $scope.to);
+
+                  $scope.SendLastAndNewChapterPos(eventObj.source.index, eventObj.dest.index, $scope.from, $scope.to);
               }
           };
 
@@ -90,12 +87,12 @@ angular.module('creative', ['ngRoute', 'as.sortable', 'angular-input-stars'])
           }
 
           $scope.vote = function (rate, creativeObj) {
-    
-             $http.post('/Creative/GetRatingFromView', { rating: rate, creative: creativeObj }).success(function (result) {
-             })
-       .error(function (data) {
-           console.log(data);
-       });
+
+              $http.post('/Creative/GetRatingFromView', { rating: rate, creative: creativeObj }).success(function (result) {
+              })
+        .error(function (data) {
+            console.log(data);
+        });
           }
 
           $scope.changeSortType = function (i) {
@@ -125,12 +122,12 @@ angular.module('creative', ['ngRoute', 'as.sortable', 'angular-input-stars'])
               }
           }
 
-          $scope.updateCreativeName = function (creativeId, name, user, index) {              
+          $scope.updateCreativeName = function (creativeId, name, user, index) {
               $http.post('/Creative/UpdateCreativeName', { id: creativeId, newName: name }).success(function (result) {
                   $scope.creatives[index].Name = name;
               });
-              
-              
+
+
           }
 
           $scope.setRating = function (id, i) {
@@ -151,7 +148,6 @@ angular.module('creative', ['ngRoute', 'as.sortable', 'angular-input-stars'])
           }
 
           $scope.getLastEditedCreatives = function () {
-              console.log("here");
               $http.get('/Home/GetLastEdited').success(function (result) {
                   $scope.lastEdited = result;
               })

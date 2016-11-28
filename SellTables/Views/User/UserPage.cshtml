@@ -9,8 +9,8 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="site-heading">
-                    <h2>@Resources.Resource.UserPage</h2>
-                    <h1>@Model.UserName</h1>
+                    <h2 class="fontComic">@Resources.Resource.UserPage</h2>
+                    <h1 class="fontComic">@Model.UserName</h1>
                 </div>
             </div>
         </div>
@@ -27,9 +27,7 @@
                         @Resources.Resource.SomeUserInfoText
                     </span>
                 </div>
-
                 <div class="col-md-4 col-sm-4 text-center" id="myScroll">
-
                     <p>
                         <div id="dropzone" ng-controller="UserController">
                             <img class="file__drop imageDrop" src="@Model.AvatarUri" data-image data-image-uploader />
@@ -43,7 +41,6 @@
                     </p>
                 </div>
             </div>
-
         </div>
         <div class="row text-center">
             <div class="col-md-4  col-sm-4">
@@ -178,7 +175,7 @@
                                         @if ((User.Identity.Name == Model.UserName) || User.IsInRole("admin"))
                                         {
                                             <a href="../../Creative/EditChapter/?creativeId={{creative.Id}}&chapterId={{chapter.Id}}">Edit</a>
-                                            <i ng-click="deleteChapterById(chapter.Id, '@Model.UserName')">Delete</i>
+                                            <i class="cursor-pointer" ng-click="deleteChapterById(chapter.Id, '@Model.UserName')">Delete</i>
                                         }
                                     </div>
                                 </li>
@@ -216,7 +213,7 @@
 @section Scripts {
     @Scripts.Render("~/bundles/scroll")
     @Scripts.Render("~/bundles/dropzonescripts")
-    @Scripts.Render("~/bundles/dropzoneForCreative") 
+    @Scripts.Render("~/bundles/dropzoneForCreative")
     @Scripts.Render("~/bundles/userpage")
 }
 @section Styles {

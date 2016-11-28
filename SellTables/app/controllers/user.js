@@ -15,7 +15,6 @@ angular.module('user', [])
               });
       }
 
-
       $scope.getCurrentUser = function () {
           $http.get('/User/GetCurrentUser').success(function (result) {
               $scope.user = result;
@@ -26,7 +25,6 @@ angular.module('user', [])
       }
 
       $scope.getUriAvatar = function (id) {
-          console.log(id);
           $http.post('/User/GetUserAvatarUri', { userId: id }).success(function (result) {
               $scope.UserAvatarUri = result;
           })
@@ -34,7 +32,6 @@ angular.module('user', [])
           console.log(data);
       });
       }
-
 
       $scope.isCurrentUserIsAnAdmin = function () {
           $http.post('/User/IsCurrentUserIsAnAdmin').success(function (result) {
@@ -44,8 +41,7 @@ angular.module('user', [])
       }
 
       $scope.uploadImage = function (image) {
-          $http.post('/User/UploadUserAvatar', {img: image})
-         
-      }
+          $http.post('/User/UploadUserAvatar', { img: image })
 
+      }
   }]);
