@@ -9,6 +9,7 @@ using SellTables.Models;
 using SellTables.Services;
 using System.Web.Mvc;
 
+
 namespace SellTables.Tests
 {
     [TestClass]
@@ -17,20 +18,45 @@ namespace SellTables.Tests
         [TestMethod]
         public void IndexTest()
         {
-            // Arrange
             var mock = new Mock<IUserService>();
-            mock.Setup(a => a.DeleteUser("User"));
             AdminController controller = new AdminController(mock.Object, null);
 
-            // Atc
             ViewResult result = controller.Index() as ViewResult;
 
-            // Assert
             Assert.IsNotNull(result);
         }
 
+        [TestMethod]
+        public void DeleteUserTest()
+        {
+            var mock = new Mock<IUserService>();
+            AdminController controller = new AdminController(mock.Object, null);
 
+            controller.DeleteUser("asd");
 
+            mock.Verify(m => m.DeleteUser(It.IsNotNull<string>()));
+        }
 
+        [TestMethod]
+        public void BanUserTest()
+        {
+            var mock = new Mock<IUserService>();
+            AdminController controller = new AdminController(mock.Object, null);
+
+            controller.BanUser("asd");
+
+            mock.Verify(m => m.BanUser(It.IsNotNull<string>()));
+        }
+
+        [TestMethod]
+        public void UnbanUserTest()
+        {
+            var mock = new Mock<IUserService>();
+            AdminController controller = new AdminController(mock.Object, null);
+
+            controller.UnbanUser("asd");
+
+            mock.Verify(m => m.UnbanUser(It.IsNotNull<string>()));
+        }
     }
 }

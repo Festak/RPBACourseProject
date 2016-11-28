@@ -25,7 +25,8 @@ namespace SellTables.Controllers
         }
 
         // for tests
-        public AdminController(IUserService UserService, ICreativeService CreativeService) {
+        public AdminController(IUserService UserService, ICreativeService CreativeService)
+        {
             this.UserService = UserService;
             this.CreativeService = CreativeService;
         }
@@ -50,21 +51,29 @@ namespace SellTables.Controllers
         [HttpPost]
         public void BanUser(string userName)
         {
-            UserService.BanUser(userName);
+            if (userName != null)
+            {
+                UserService.BanUser(userName);
+            }
         }
 
         [HttpPost]
         public void UnbanUser(string userName)
         {
-            UserService.UnbanUser(userName);
+            if (userName != null)
+            {
+                UserService.UnbanUser(userName);
+            }
         }
 
-        private ICollection<ApplicationUser> GetUsers() {
+        private ICollection<ApplicationUser> GetUsers()
+        {
             return UserService.GetAllUsers();
         }
 
         [HttpGet]
-        public ActionResult UserPage(string username) {
+        public ActionResult UserPage(string username)
+        {
             return View(UserService.GetUserByName(username));
         }
 

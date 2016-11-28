@@ -284,6 +284,12 @@ textarea {
 }
 
 .blackColor {
+    filter: invert(100%);
+    font-size: 130%;
+}
+
+.blackColor:hover {
+    text-decoration: none;
     color: black;
 }
 
@@ -295,11 +301,11 @@ textarea {
     color: greenyellow;
 }
 
-.userLink:hover {
-    text-decoration: none;
-    color: aqua;
-}
+    .userLink:hover {
+        text-decoration: none;
+        color: aqua;
+    }
 
 .fontComic {
-font-family: 'Comic Sans MS';
+    font-family: 'Comic Sans MS';
 }

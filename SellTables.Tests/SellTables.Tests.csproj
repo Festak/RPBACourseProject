@@ -107,7 +107,9 @@
   <ItemGroup>
     <Compile Include="Controllers\AdminControllerTest.cs" />
     <Compile Include="Controllers\UserControllerTest.cs" />
+    <Compile Include="Repositories\CreativesRepositoryTest.cs" />
     <Compile Include="Repositories\TagsRepositoryTest.cs" />
+    <Compile Include="Services\TagServiceTest.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

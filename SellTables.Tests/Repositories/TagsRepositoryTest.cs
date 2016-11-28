@@ -27,7 +27,7 @@ namespace SellTables.Tests
             mockContext.Setup(m => m.Tags).Returns(mockSet.Object);
 
             IRepository<Tag> tagsRepository = new TagsRepository(mockContext.Object);
-            Tag tag = new Tag() { Id=1 };
+            Tag tag = new Tag() { Id = 1 };
             tagsRepository.Add(tag);
 
             mockSet.Verify(m => m.Add(It.IsAny<Tag>()), Times.Once());
@@ -38,24 +38,34 @@ namespace SellTables.Tests
         }
 
         [TestMethod]
-        public void GetAllTagsOrderByName()
+        public void MethodGetTest()
         {
-    //        var newProduct = new Mock<Tag>();
-    //        newProduct.SetupGet(p => p.Id).Returns(1);
-    //        newProduct.SetupGet(p => p.Description).Returns("Bushmills");
-    //        var productRepository = new Mock<IRepository<Tag>>();
-    //        productRepository
-    // .Setup(p => p.Get(1))
-    //.Returns(newProduct.Object);
+            var mockSet = new Mock<DbSet<Tag>>();
+            var mockContext = new Mock<ApplicationDbContext>();
+            mockContext.Setup(m => m.Tags).Returns(mockSet.Object);
 
-    //        var productReturned = productRepository.Object.Get(1);
+            IRepository<Tag> tagsRepository = new TagsRepository(mockContext.Object);
+      
 
-    //        Assert.AreEqual("Bushmills", productReturned.Description);
-
+            tagsRepository.Get(1);
+            mockSet.Verify(m => m.Find(It.IsAny<int>()), Times.Once);
+          
         }
 
-   
+        [TestMethod]
+        public void MethodGetAllTest()
+        {
+            var mockSet = new Mock<DbSet<Tag>>();
+            var mockContext = new Mock<ApplicationDbContext>();
+            mockContext.Setup(m => m.Tags).Returns(mockSet.Object);
+            mockSet.As<IEnumerable<Tag>>().Setup(m => m.GetEnumerator()).Returns((new List<Tag>()).GetEnumerator());
 
+            IRepository<Tag> tagsRepository = new TagsRepository(mockContext.Object);
+            var tags = tagsRepository.GetAll();
+
+            Assert.IsNotNull(tags);
+
+        }
 
 
     }
