@@ -339,7 +339,7 @@ namespace SellTables.Services
         private void AddTagToDataBaseByCondition(Tag tag, string text)
         {
             if (dataBaseContext.Tags
-                .Where(t => t.Description == text).ToList().Count == 0)
+                .Where(t => t.Description.Equals(text)).ToList().Count == 0)
             {
                 dataBaseContext.Tags.Add(tag);
                 dataBaseContext.SaveChanges();

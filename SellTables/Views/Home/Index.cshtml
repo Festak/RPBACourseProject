@@ -18,9 +18,10 @@
 
 <div class="row" ng-controller='CreativeController'>
     <div class="col-md-4 col-sd-4">
+        @Html.Partial("_TagCloud")
         @Html.Partial("_PopularCreatives")
         @Html.Partial("_LastEditedCreatives")
-        @Html.Partial("_TagCloud")
+        
     </div>
     <div class="col-md-8">
         <div class="col-md-12">
@@ -36,3 +37,7 @@
         </div>
     </div>
 </div>
+@section Scripts{
+    @Scripts.Render("~/bundles/popoverscript")
+    @Scripts.Render("~/bundles/pageScrollEvent")
+}
