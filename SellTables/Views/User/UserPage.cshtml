@@ -179,8 +179,8 @@
                                         {{chapter.Name}}
                                         @if ((User.Identity.Name == Model.UserName) || User.IsInRole("admin"))
                                         {
-                                            <a href="../../Creative/EditChapter/?creativeId={{creative.Id}}&chapterId={{chapter.Id}}">Edit</a>
-                                            <i ng-click="deleteChapterById(chapter.Id, '@Model.UserName')">Delete</i>
+                                                <a href="../../Creative/EditChapter/?creativeId={{creative.Id}}&chapterId={{chapter.Id}}">Edit</a>
+                                                <i ng-click="deleteChapterById(chapter.Id, '@Model.UserName')">Delete</i>
                                         }
                                     </div>
                                 </li>
