@@ -20,9 +20,15 @@ namespace SellTables.Services
             Repository = new TagsRepository(dataBaseContext);
         }
 
+        //for tests
+        public TagService(IRepository<Tag> TagsRepository)
+        {
+            Repository = TagsRepository;
+        }
+
         public List<Tag> GetAllTags()
         {
-            var listOfTags = (Repository.GetAll());
+            var listOfTags = Repository.GetAll();
             return listOfTags.ToList();
         }
 
@@ -64,11 +70,7 @@ namespace SellTables.Services
                 }
             }
             return result;
-        }
-
-   
-
-
+        } 
 
         private int GetTagRepeatNumber(Tag tag)
         {

@@ -11,7 +11,7 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="site-heading">
-                    <h1>@Resources.Resource.CreateChapter</h1>
+                    <h1 class="fontComic">@Resources.Resource.CreateChapter</h1>
                 </div>
             </div>
         </div>
@@ -28,17 +28,11 @@
                     <div class="form-group">
                         @Html.HiddenFor(model => model.Creative)
                         @Html.HiddenFor(model => model.creativeId)
-
-
                         @Html.EditorFor(model => model.Chapter.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = Resources.Resource.FirstChapterName } })
                         @Html.ValidationMessageFor(model => model.Chapter.Name, "", new { @class = "text-danger" })
-
                     </div>
                     <div class="form-group" ng-controller="TagController">
                         <div ng-init="getTags()">
-
-
-
                             <input id="search-field"
                                    type="text"
                                    placeholder="Enter your tags here"
@@ -54,8 +48,6 @@
                                     {{suggestion}}
                                 </li>
                             </ul>
-
-
                             @Html.HiddenFor(model => model.Chapter.TagsString, null)
                         </div>
                     </div>
@@ -86,6 +78,7 @@
 @section Scripts {
     @Scripts.Render("~/bundles/tags")
 }
-<link type="text/css" href="~/Content/somestyles/form.css" rel="stylesheet" />
-<link type="text/css" href="~/Content/somestyles/TagsStyles.css" rel="stylesheet" />
+@section Styles{
+    @Styles.Render("~/Content/tags")
+}
 

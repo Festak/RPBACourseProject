@@ -3,7 +3,7 @@
         <div class="box7">
             <div class="post-title text-center">
                 <div ng-controller="MainController">
-                    <h2 class="post-title cursor-pointer" ng-click="redirectToCreative(creative.Id)">{{creative.Name}}</h2>
+                    <h2 class="post-title cursor-pointer fontComic" ng-click="redirectToCreative(creative.Id)">{{creative.Name}}</h2>
                 </div>
             </div>
             <div class="row">
@@ -36,7 +36,7 @@
                     <input-stars max="5" ng-model="creative.Rating" on-star-click="vote(creative.Rating,creative)"></input-stars>
                 </div>
                 <div class="col-md-9 text-right">
-                    <span class="post-meta">@Resources.Resource.PostedBy <a class="linkWithoutDecor" href="../../User/UserPage/?name={{creative.UserName}}">{{creative.UserName}}</a> @Resources.Resource.On {{creative.CreationDate}}</span>
+                    <span class="post-meta">@Resources.Resource.PostedBy <a class="linkWithoutDecor userLink" href="../../User/UserPage/?name={{creative.UserName}}">{{creative.UserName}}</a> @Resources.Resource.On {{creative.CreationDate}}</span>
                 </div>
             </div>
         </div>

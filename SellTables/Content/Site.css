@@ -269,24 +269,43 @@ textarea {
 }
 
 .navbarImage {
-    width: 60px; 
+    width: 60px;
     height: 60px;
 }
 
 .imageDrop {
-    width: 100%; 
+    width: 100%;
     height: 100%;
 }
 
 .userPageMedals {
-    width: 32px; 
+    width: 32px;
     height: 32px;
 }
 
 .blackColor {
+    filter: invert(100%);
+    font-size: 130%;
+}
+
+.blackColor:hover {
+    text-decoration: none;
     color: black;
 }
 
 .centered {
     text-align: center;
+}
+
+.userLink {
+    color: greenyellow;
+}
+
+    .userLink:hover {
+        text-decoration: none;
+        color: aqua;
+    }
+
+.fontComic {
+    font-family: 'Comic Sans MS';
 }
