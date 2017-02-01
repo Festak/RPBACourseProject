@@ -1,0 +1,84 @@
+﻿@model SellTables.ViewModels.RegisterCreativeModel
+@{
+    ViewBag.Title = "CreateChapter";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Model.Creative = ViewBag.Creative;
+}
+<link href="~/Scripts/summernote/summernote.css" rel="stylesheet">
+<script src="~/Scripts/summernote/summernote.js"></script>
+<header class="intro-header container-fluid" style="background-image: url('http://www.freeoboi.ru/images/249509332.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="site-heading">
+                    <h1 class="fontComic">@Resources.Resource.CreateChapter</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="row">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-horizontal">
+            <div class="col-md-4">
+                <div class="col-md-offset-6">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.HiddenFor(model => model.Creative)
+                        @Html.HiddenFor(model => model.creativeId)
+                        @Html.EditorFor(model => model.Chapter.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = Resources.Resource.FirstChapterName } })
+                        @Html.ValidationMessageFor(model => model.Chapter.Name, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group" ng-controller="TagController">
+                        <div ng-init="getTags()">
+                            <input id="search-field"
+                                   type="text"
+                                   placeholder="Enter your tags here"
+                                   class="form-control"
+                                   ng-keyup="checkKeyUp($event)"
+                                   ng-model="searchText"
+                                   ng-change="search()" />
+                            <ul class="list-group">
+                                <li ng-repeat="suggestion in suggestions track by $index"
+                                    ng-class="{active : selectedIndex === $index}"
+                                    ng-click="AssignValueAndHide($index)"
+                                    class="list-group-item cursor-pointer">
+                                    {{suggestion}}
+                                </li>
+                            </ul>
+                            @Html.HiddenFor(model => model.Chapter.TagsString, null)
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="form-group">
+                    <div class="col-md-11">
+                        @Html.HiddenFor(model => model.Chapter.Text, new { htmlAttributes = new { @class = "form-control" } })
+                        <div class="col-md-offset-2" id="summernote">@Resources.Resource.YourChapterText</div>
+                    </div>
+                </div><div class="row container">
+                    <ul class="tags col-md-9 col-md-offset-1">
+                        <li class="tagAdd taglist">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-4 col-md-offset-4">
+                    <input id="submit" type="submit" value="Create" class="btn btn-success col-md-offset-5 col-md-6" />
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<script src="~/Scripts/pageScripts/creativeCreateScript.js"></script>
+@section Scripts {
+    @Scripts.Render("~/bundles/tags")
+}
+@section Styles{
+    @Styles.Render("~/Content/tags")
+}
+

@@ -1,0 +1,311 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    margin-top: -10px;
+    Overflow: auto;
+}
+
+is-dragover {
+    display: none;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.scr {
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+    .scr::-webkit-scrollbar {
+        width: 10px;
+        background-color: transparent;
+    }
+
+    .scr::-webkit-scrollbar-thumb {
+        background-color: deepskyblue;
+        border-radius: 20px;
+    }
+
+
+#div1 {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin: 20px auto 0;
+}
+
+    #div1 a {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        font-family: Microsoft YaHei;
+        color: orange;
+        font-weight: bold;
+        text-decoration: none;
+        padding: 3px 6px;
+    }
+
+        #div1 a:hover {
+            border: 1px solid #eee;
+            background: transparent;
+        }
+
+    #div1 .type-0 {
+        color: blue;
+    }
+
+    #div1 .type-1 {
+        color: red;
+    }
+
+    #div1 .type-2 {
+        color: greenyellow;
+    }
+
+    #div1 .type-3 {
+        color: fuchsia;
+    }
+
+    #div1 .type-4 {
+        color: hotpink;
+    }
+
+.panel-login {
+    border-color: #ccc;
+    -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+}
+
+    .panel-login > .panel-heading {
+        color: #00415d;
+        background-color: #fff;
+        border-color: #fff;
+        text-align: center;
+    }
+
+        .panel-login > .panel-heading a {
+            text-decoration: none;
+            color: #666;
+            font-weight: bold;
+            font-size: 15px;
+            -webkit-transition: all 0.1s linear;
+            -moz-transition: all 0.1s linear;
+            transition: all 0.1s linear;
+        }
+
+            .panel-login > .panel-heading a.active {
+                color: #029f5b;
+                font-size: 18px;
+            }
+
+        .panel-login > .panel-heading hr {
+            margin-top: 10px;
+            margin-bottom: 0px;
+            clear: both;
+            border: 0;
+            height: 1px;
+            background-image: -webkit-linear-gradient(left,rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.15),rgba(0, 0, 0, 0));
+            background-image: -moz-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+            background-image: -ms-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+            background-image: -o-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+        }
+
+    .panel-login input[type="text"], .panel-login input[type="email"], .panel-login input[type="password"] {
+        height: 45px;
+        border: 1px solid #ddd;
+        font-size: 16px;
+        -webkit-transition: all 0.1s linear;
+        -moz-transition: all 0.1s linear;
+        transition: all 0.1s linear;
+    }
+
+    .panel-login input:hover,
+    .panel-login input:focus {
+        outline: none;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+        border-color: #ccc;
+    }
+
+.btn-login {
+    background-color: #59B2E0;
+    outline: none;
+    color: #fff;
+    font-size: 14px;
+    height: auto;
+    font-weight: normal;
+    padding: 14px 0;
+    text-transform: uppercase;
+    border-color: #59B2E6;
+}
+
+    .btn-login:hover,
+    .btn-login:focus {
+        color: #fff;
+        background-color: #53A3CD;
+        border-color: #53A3CD;
+    }
+
+.forgot-password {
+    text-decoration: underline;
+    color: #888;
+}
+
+    .forgot-password:hover,
+    .forgot-password:focus {
+        text-decoration: underline;
+        color: #666;
+    }
+
+.btn-register {
+    background-color: #1CB94E;
+    outline: none;
+    color: #fff;
+    font-size: 14px;
+    height: auto;
+    font-weight: normal;
+    padding: 14px 0;
+    text-transform: uppercase;
+    border-color: #1CB94A;
+}
+
+    .btn-register:hover,
+    .btn-register:focus {
+        color: #fff;
+        background-color: #1CA347;
+        border-color: #1CA347;
+        /* Hide the carousel text when the screen is less than 600 pixels wide */
+    }
+
+.transparentbar {
+    background-repeat: no-repeat;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    box-shadow: none;
+    background-image: none;
+    background-color: transparent;
+    background: transparent;
+    border-color: transparent;
+}
+
+.rounded {
+    border-radius: 24px;
+}
+
+.font100 {
+    font-size: 100%;
+    line-height: 100%;
+}
+
+.font200 {
+    font-size: 200%;
+    line-height: 110%;
+}
+
+.font70 {
+    font-size: 70%;
+    line-height: 90%;
+}
+
+.font300 {
+    font-size: 300%;
+    line-height: 120%;
+}
+
+.avatarImage {
+    height: 170px;
+    width: 150px;
+}
+
+.medalImage {
+    width: 20px;
+    height: 20px;
+    quotes: inherit;
+}
+
+.profile-head-position {
+    margin-top: 30px;
+}
+
+.creativeContainer {
+    background-color: rgba(245, 245, 245, 0.2);
+}
+
+.creativeImage {
+    width: 30%;
+    height: 30%;
+}
+
+.searchImage {
+    width: 200px;
+    height: 200px;
+}
+
+.linkWithoutDecor {
+    text-decoration: none;
+}
+
+.solidBorder {
+    border: solid;
+}
+
+.floatRight {
+    float: right;
+}
+
+.navbarImage {
+    width: 60px;
+    height: 60px;
+}
+
+.imageDrop {
+    width: 100%;
+    height: 100%;
+}
+
+.userPageMedals {
+    width: 32px;
+    height: 32px;
+}
+
+.blackColor {
+    filter: invert(100%);
+    font-size: 130%;
+}
+
+.blackColor:hover {
+    text-decoration: none;
+    color: black;
+}
+
+.centered {
+    text-align: center;
+}
+
+.userLink {
+    color: greenyellow;
+}
+
+    .userLink:hover {
+        text-decoration: none;
+        color: aqua;
+    }
+
+.fontComic {
+    font-family: 'Comic Sans MS';
+}

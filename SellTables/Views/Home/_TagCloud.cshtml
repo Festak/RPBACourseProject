@@ -1,0 +1,17 @@
+﻿@model List<string>
+
+<div id="myCanvasContainer">
+    <canvas width="300" height="300" id="myCanvas">
+       
+    </canvas>
+</div>
+<div id="tags">
+    <ul>
+        @foreach (var tag in Model)
+            {
+            <li>
+                <a href="~/Creative/Search/?query=@tag">@tag</a>
+            </li>
+        }
+    </ul>
+</div>

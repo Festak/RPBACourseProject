@@ -1,0 +1,74 @@
+﻿@model IEnumerable<SellTables.Models.CreativeViewModel>
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<header class="intro-header container-fluid" style="background-image: url('https://i.ytimg.com/vi/Pp9yoCnYrk0/maxresdefault.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="site-heading">
+                    <h1 class="fontComic">@Resources.Resource.Creatives</h1>
+                    <hr class="small">
+                    <span class="subheading">@Resources.Resource.CreativesBySearch</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+@foreach (var creative in Model)
+{
+    <div class="col-md-12 col-xs-12 col-lg-12 col-sm-12 text-center">
+        <input id="input-21b" value="@creative.Rating.ToString().Replace(",",".")" type="number" class="rating" min=0 max=5 step=0.1 data-size="md" disabled>
+    </div>
+    <div class="col-md-12 col-xs-12 col-lg-12 col-sm-12">
+        <div class="box7">
+            <div class="post-title text-center">
+                <h2 class="post-title cursor-pointer">
+                    <a href="../../Creative/Details/@creative.Id">
+                        @creative.Name
+                    </a>
+                </h2>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <img src="@creative.CreativeUri" class="searchImage" title="Creative image" />
+                </div>
+                <div class="col-md-9">
+                    <h4 class="post-subtitle cursor-pointer">
+                        <span class="glyphicon glyphicon-chevron-down"></span>
+                        <span role="button" data-toggle="collapse" href="#collapseExample{{$index}}" aria-expanded="false" aria-controls="collapseExample">
+                            @Resources.Resource.Chapters: @(creative.Chapters.Count - 1)
+                        </span>
+                    </h4>
+                    <div class="collapse" id="collapseExample{{$index}}">
+
+                        @foreach (var chapter in creative.Chapters)
+                        {
+              
+                                    <a href="../../Creative/Details/@creative.Id" class="cursor-pointer">
+                                        @chapter.Name
+                                    </a><br />
+                           
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 text-center">
+                </div>
+                <div class="col-md-9 text-right">
+                    <span class="post-meta">
+                        @Resources.Resource.PostedBy
+                        <a href="../../User/UserPage/?name=@creative.UserName">
+                            @creative.UserName
+                        </a>
+                        @Resources.Resource.On @creative.CreationDate
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,28 @@
+﻿@model SellTables.Models.ExternalLoginListViewModel
+@using Microsoft.Owin.Security
+
+<h4>@Resources.Resource.UseAnotherService</h4>
+<hr />
+@{ 
+    var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
+        using (Html.BeginForm("ExternalLogin", "Account", new { ReturnUrl = Model.ReturnUrl })) {
+            @Html.AntiForgeryToken()
+            <div id="socialLoginList">
+                <p>
+                    @foreach (AuthenticationDescription p in loginProviders)
+                    {
+                        <button type="submit" 
+                                class="btn btn-link" 
+                                id="@p.AuthenticationType" 
+                                name="provider" 
+                                value="@p.AuthenticationType">
+                            @{
+                                string image = p.AuthenticationType + ".png";
+                            }
+                            <img style="width: 30px; height: 30px;" src="~/Content/images/@image" />
+                        </button>
+                    }
+                </p>
+            </div>
+        }
+}

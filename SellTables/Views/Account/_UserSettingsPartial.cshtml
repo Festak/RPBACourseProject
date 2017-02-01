@@ -1,0 +1,9 @@
+﻿<div class="col-md-4">
+    @Html.Partial("../Account/ResetPassword", new ResetPasswordViewModel() { Name = Model.UserName })
+</div>
+<div class="col-md-4">
+    @Html.Partial("../Account/ResetLogin", new ResetLoginViewModel() { Id = Model.Id })
+</div>
+<div class="col-md-4">
+    @Html.Partial("../Account/ResetEmail", new ResetEmailViewModel() { Id = Model.Id })
+</div>

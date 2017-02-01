@@ -1,0 +1,363 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddYourCreative" xml:space="preserve">
+    <value>Add your creative now</value>
+  </data>
+  <data name="AdminPanel" xml:space="preserve">
+    <value>AdminPanel</value>
+  </data>
+  <data name="Apply" xml:space="preserve">
+    <value>Apply</value>
+  </data>
+  <data name="asd" xml:space="preserve">
+    <value>asd</value>
+  </data>
+  <data name="Ban" xml:space="preserve">
+    <value>Ban</value>
+  </data>
+  <data name="ChangeEmail" xml:space="preserve">
+    <value>Change Email</value>
+  </data>
+  <data name="ChangeLogin" xml:space="preserve">
+    <value>Change Login</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Change Password</value>
+  </data>
+  <data name="Chapters" xml:space="preserve">
+    <value>chapters</value>
+  </data>
+  <data name="ChooseLanguage" xml:space="preserve">
+    <value>Choose Language</value>
+  </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>Confirm Password</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="CreateChapter" xml:space="preserve">
+    <value>Create one more chapter</value>
+  </data>
+  <data name="Creative" xml:space="preserve">
+    <value>Creative</value>
+  </data>
+  <data name="CreativeCreate" xml:space="preserve">
+    <value>Create creative</value>
+  </data>
+  <data name="CreativeName" xml:space="preserve">
+    <value>Creative name</value>
+  </data>
+  <data name="Creatives" xml:space="preserve">
+    <value>Creatives</value>
+  </data>
+  <data name="CreativesBySearch" xml:space="preserve">
+    <value>Found creatives by your request</value>
+  </data>
+  <data name="CreativeTopInfo" xml:space="preserve">
+    <value>See what peoples create</value>
+  </data>
+  <data name="CurCountOfCr" xml:space="preserve">
+    <value>Current count of creatives</value>
+  </data>
+  <data name="CurCountOfMed" xml:space="preserve">
+    <value>Current count of medals</value>
+  </data>
+  <data name="Dark" xml:space="preserve">
+    <value>Dark</value>
+  </data>
+  <data name="DeleteUser" xml:space="preserve">
+    <value>Delete User</value>
+  </data>
+  <data name="EditProfile" xml:space="preserve">
+    <value>Edit profile</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="English" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="EnterYourTags" xml:space="preserve">
+    <value>Enter your tags here</value>
+  </data>
+  <data name="ExternalFailute" xml:space="preserve">
+    <value>Unsuccessful login with service.</value>
+  </data>
+  <data name="FirstChapterName" xml:space="preserve">
+    <value>Сhapter name</value>
+  </data>
+  <data name="Font" xml:space="preserve">
+    <value>Font</value>
+  </data>
+  <data name="LockedOut" xml:space="preserve">
+    <value>Locked out</value>
+  </data>
+  <data name="LockedOutText" xml:space="preserve">
+    <value>This account has been locked out, please try again later.</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="LoginPage" xml:space="preserve">
+    <value>Login page</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="On" xml:space="preserve">
+    <value>on</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="PasswordEquals" xml:space="preserve">
+    <value>Password must be equals!</value>
+  </data>
+  <data name="PostedBy" xml:space="preserve">
+    <value>Posted by</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="Read" xml:space="preserve">
+    <value>Read</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Register</value>
+  </data>
+  <data name="Russian" xml:space="preserve">
+    <value>Russian</value>
+  </data>
+  <data name="Scale" xml:space="preserve">
+    <value>Scale</value>
+  </data>
+  <data name="Sort" xml:space="preserve">
+    <value>Sort</value>
+  </data>
+  <data name="SortCreateDate" xml:space="preserve">
+    <value>Sort by create date</value>
+  </data>
+  <data name="SortEditDate" xml:space="preserve">
+    <value>Sort by edit date</value>
+  </data>
+  <data name="SortName" xml:space="preserve">
+    <value>Sort by name</value>
+  </data>
+  <data name="Stars" xml:space="preserve">
+    <value>stars</value>
+  </data>
+  <data name="Styles" xml:space="preserve">
+    <value>Styles</value>
+  </data>
+  <data name="Tags" xml:space="preserve">
+    <value>Tags</value>
+  </data>
+  <data name="Unban" xml:space="preserve">
+    <value>Unban</value>
+  </data>
+  <data name="UseAnotherService" xml:space="preserve">
+    <value>Use another service to log in.</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>User Name</value>
+  </data>
+  <data name="UserPage" xml:space="preserve">
+    <value>User Page</value>
+  </data>
+  <data name="White" xml:space="preserve">
+    <value>White</value>
+  </data>
+  <data name="YourChapterText" xml:space="preserve">
+    <value>Chapter text</value>
+  </data>
+  <data name="LogOff" xml:space="preserve">
+    <value>Log Off</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>search</value>
+  </data>
+  <data name="At" xml:space="preserve">
+    <value>At</value>
+  </data>
+  <data name="CreateOwnCreative" xml:space="preserve">
+    <value>Create your own creative</value>
+  </data>
+  <data name="AllChapters" xml:space="preserve">
+    <value>All chapters</value>
+  </data>
+  <data name="AllChaptersText" xml:space="preserve">
+    <value>Total count of chapters, which
+you have created for the all time.
+Do you have the biggest collection?</value>
+  </data>
+  <data name="AllCreativesCount" xml:space="preserve">
+    <value>All creatives count</value>
+  </data>
+  <data name="AllCreativesText" xml:space="preserve">
+    <value>Total count of current creatives, which 
+you have created at this moment. Is you
+the most creative one at this website?
+</value>
+  </data>
+  <data name="AllMedalsCount" xml:space="preserve">
+    <value>All medals count</value>
+  </data>
+  <data name="AllMedalsText" xml:space="preserve">
+    <value>The medals plays an a very important role for
+every person, who wants to be the first at
+the site. Will you be the first?</value>
+  </data>
+  <data name="ChangeImage" xml:space="preserve">
+    <value>Change image</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Close window</value>
+  </data>
+  <data name="SaveChanges" xml:space="preserve">
+    <value>Save image</value>
+  </data>
+  <data name="SomeUserInfo" xml:space="preserve">
+    <value>Some information about User Page</value>
+  </data>
+  <data name="SomeUserInfoText" xml:space="preserve">
+    <value>This page – a fruit of my creative search. I as well as you, the creative person, I write creatives and am fond of their creation. And once at me as at us at all creative persons the creative stupor has come. To me the new ideas didn't come, I have absolutely grown lazy and thought that I won't be able to write any more. Type it was played and will be enough, be engaged the guy in something serious. 
+I couldn't believe in it and have begun to look for everywhere where it is only possible, literature on creativity, ways of an exit from creative crisis and just about creative people. As it has appeared, the stupor is one of extents of creativity, a peculiar exchange of the silver which is available for you for future enormous gold. A stupor it is just necessary to endure, touch old materials and to be inspired in a new way. As they say, desperate situations don't happen and who looks for, that will always find. 
+And as I have a peculiar gift to allocate and fix the main thoughts, all stream of literature on creativity which has passed through me has turned into this page. 
+I want that these thoughts, aphorisms and quotes have helped you to believe in themselves as in the creative person again, to find new sources of inspiration and support and to create such masterpiece which will strike all on the spot. 
+I want that your creativity has risen as a phoenix from ashes and have lit with the unique light the world around, and you became capable to turn sand into pearls again. 
+And let this page will help you with it.</value>
+  </data>
+  <data name="String" xml:space="preserve">
+    <value>was created for the all time.</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value>which user have got right now</value>
+  </data>
+  <data name="String2" xml:space="preserve">
+    <value>some persons, who want to be most active.</value>
+  </data>
+  <data name="By" xml:space="preserve">
+    <value>by</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>Category:</value>
+  </data>
+</root>
