@@ -24,7 +24,11 @@ angular.module('tag', ["ngTouch", "angucomplete"])
               $scope.tagsDescriptions.forEach(function (element) {
                   console.log(element);
               });
-}
+          }
+
+          $scope.setCategory = function () {
+              console.log("xuy");
+          }
 
           $scope.getCategories = function () {
 

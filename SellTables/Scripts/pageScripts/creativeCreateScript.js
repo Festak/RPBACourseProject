@@ -4,10 +4,8 @@
 
 document.getElementById("submit").onclick = function () { 
     document.getElementById("Chapter_Text").value = $('#summernote').summernote('code');
-    var element = document.getElementById("ex1_value");
-    console.log(element[0].value);
- 
-    document.getElementById("Creative_Category_Name").value = $('ex1').val();
+   
+    console.log(document.getElementById("Creative_Category_Name"));
     document.getElementById("Chapter_TagsString").value = takeTags();
 };
 

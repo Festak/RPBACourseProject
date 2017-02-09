@@ -106,13 +106,13 @@ namespace SellTables.Services
         public void SendEmailToSubscribes(RegisterCreativeModel creativemodel) {
             SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
             smtp.EnableSsl = true;
-            smtp.Credentials = new NetworkCredential("fiatskovich.w@gmail.com", "s1tzq8mg2");
+            smtp.Credentials = new NetworkCredential("rpbafiatskovich@gmail.com", "!Q@w3e4r5");
 
             Category category = dataBaseContext.Categories.FirstOrDefault(m=>m.Name == creativemodel.Creative.Category.Name);
             List<Subscribe> subscribes = dataBaseContext.Subscribes.Where(n=>n.CategoryId == category.Id).ToList();
             foreach (var sub in subscribes) {
                 MailMessage mail = new MailMessage();
-                mail.From = new MailAddress("fiatskovich.w@gmail.com");
+                mail.From = new MailAddress("rpbafiatskovich@gmail.com");
                 mail.To.Add(sub.UserEmail);
                 mail.Subject = "New Product was created";
                 mail.Body = "Product was named as " + creativemodel.Creative.Name + " had created with category " + creativemodel.Creative.Category.Name;
