@@ -1,0 +1,80 @@
+﻿@model IEnumerable<SellTables.Models.ApplicationUser>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<header class="intro-header container-fluid" style="background-image: url('https://res.cloudinary.com/qwe123/image/upload/v1480080377/D0_BC_D0_BE_D0_B4_D0_B5_D1_80_D0_BD_D0_B8_D0_B7_D0_B0_D1_86_D0_B8_D1_8F-__D1_81_D0_B5_D1_80_D0_B2_D0_B5_D1_80_D0_BD_D0_B0_D1_8F_hjogdm.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="site-heading">
+                    <h1 class="fontComic">@Resources.Resource.AdminPanel</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="container" ng-controller="AdminController">
+    <div class="row" id="userList">
+        @{
+            foreach (var user in Model)
+            {
+                <div class="col-xs-12 col-sm-6 col-md-6">
+                    <div class="well well-sm">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-4 col-xs-12">
+                                <img src="@user.AvatarUri" alt="avatar" class="avatarImage img-rounded img-responsive" />
+                            </div>
+                            <div class="col-sm-12 col-md-7 col-xs-12">
+                                <h4>
+                                    <a href="../../User/UserPage/?name=@user.UserName">@user.UserName</a>
+                                </h4>
+                                <p>
+                                    <i class="glyphicon glyphicon-file"
+                                       data-container="body"
+                                       data-toggle="popover"
+                                       data-animation="true"
+                                       data-placement="left"
+                                       data-content="Creatives count.">@user.Creatives.Count</i>
+                                    <br />
+                                    <i class="glyphicon glyphicon-envelope"
+                                       data-container="body"
+                                       data-toggle="popover"
+                                       data-animation="true"
+                                       data-placement="left"
+                                       data-content="Email."></i> @user.Email
+                                    <br />
+                                    <i class="glyphicon glyphicon-gift"
+                                       data-container="body"
+                                       data-toggle="popover"
+                                       data-animation="true"
+                                       data-placement="left"
+                                       data-content="Registration date."></i>@user.RegistrationDate
+                                    <br />
+                                    @foreach (var medal in user.Medals)
+                                    {
+                                        <img class="medalImage" src="@medal.ImageUri" title="@medal.Name" />
+                                    }
+                                </p>
+                                @if (user.LockoutEndDateUtc == null)
+                                {
+                                    <span ng-click="BanUser('@user.UserName')" class="fa fa-ban cursor-pointer">@Resources.Resource.Ban</span>
+                                }
+                                else
+                                {
+                                    <span ng-click="UnbanUser('@user.UserName')" class="fa fa-ban cursor-pointer">@Resources.Resource.Unban</span>
+                                }
+                                <span ng-click="DeleteUser('@user.UserName')" class="fa fa-warning text-danger cursor-pointer">@Resources.Resource.DeleteUser</span>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/popoverscript")
+}

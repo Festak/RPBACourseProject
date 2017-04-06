@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html ng-app="main">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Creatives</title>
+    @Scripts.Render("~/bundles/angular")
+    @Scripts.Render("~/bundles/jquery")
+    <script type="text/javascript" src="~/Scripts/sortable/ng-sortable.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="~/Scripts/sortable/ng-sortable.min.css">
+    <script type="text/javascript" src="~/Scripts/stars/angular-input-stars.js"></script>
+    <link rel="stylesheet" type="text/css" href="~/Scripts/stars/angular-input-stars.css">
+    @Scripts.Render("~/bundles/app")
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @if (Request.Cookies["style"] == null)
+    {
+        <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    }
+    else if (Request.Cookies["style"].Value == "1")
+    {
+        <link href="~/Content/bootstrapDark.min.css" rel="stylesheet" />
+    }
+    else if (Request.Cookies["style"].Value == "2")
+    {
+        <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    }
+</head>
+<body class="scr">
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar sr-only"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">
+                    Creatives
+                </a>
+            </div>
+            <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1">
+                @Html.Partial("_LoginPartial")
+                <ul class="nav navbar-nav navbar-right">
+                    @if (User.IsInRole("admin"))
+                    {
+                        <li><a href=@Url.Action("Index", "Admin")>@Resources.Resource.AdminPanel</a></li>
+                    }
+
+                </ul>
+                <form class="navbar-form floatRight" action="@Url.Action("Search", "Creative")" style="float: right">
+                    <input type="text" name="query" class="form-control col-lg-8" placeholder="@Resources.Resource.Search">
+                </form>
+            </div>
+        </div>
+    </nav>
+    <div class="parent2">
+        <div class="test1">
+            <a href="@Url.Action("ChangeCulture", "Home", new { lang = "ru"})">
+                <img class="language" src="https://res.cloudinary.com/festak/image/upload/v1479630141/russia_640_jjm7s9.png" />
+            </a>
+        </div>
+        <div class="test2">
+            <a href="@Url.Action("ChangeCulture", "Home", new { lang = "en"})">
+                <img class="language" src="https://res.cloudinary.com/festak/image/upload/v1479630142/usa_ihhnj0.png" />
+            </a>
+        </div>
+        <div class="test3 solidBorder" onclick="setCookie('style', '2', '/')">
+        </div>
+
+        <div class="test4 solidBorder" onclick="setCookie('style', '1', '/')">
+        </div>
+
+        <div class="mask2"><i class="fa fa-home fa-3x"></i></div>
+    </div>
+    <div class="col-md-12">
+        @RenderBody()
+    </div>
+
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/setCookies")
+    @RenderSection("scripts", required: false)
+    @RenderSection("styles", required: false)
+</body>
+</html>
+

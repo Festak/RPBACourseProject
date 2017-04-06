@@ -1,0 +1,134 @@
+﻿@using SellTables.Models
+@model ApplicationUser
+@{
+    ViewBag.Title = "UserPage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="~/Content/somestyles/AdminUserPage.css" />
+<header class="intro-header container-fluid" style="background-image: url('http://file.mobilmusic.ru/20/62/1a/716537.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="site-heading">
+                    <h1>@Model.UserName</h1>
+                    <hr class="small">
+                    <span class="subheading">@Resources.Resource.UserPage</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div ng-controller="UserController">
+    <section>
+        <div class="container profile-head-position">
+            <div class="profile-head">
+                <div class="col-md- col-sm-4 col-xs-12">
+                    <img src="@Model.AvatarUri" class="img-responsive" />
+                    <h6>@Model.UserName</h6>
+                </div>
+
+                <div class="col-md-5 col-sm-5 col-xs-12">
+                    <h5>@Model.UserName</h5>
+                    <ul>
+                        <li><span class="glyphicon glyphicon-home"></span> @Resources.Resource.CurCountOfMed: @Model.Medals.Count</li>
+                        <li><span class="glyphicon glyphicon-phone"></span> @Resources.Resource.CurCountOfCr: @Model.Creatives.Count</li>
+                        <li><span class="glyphicon glyphicon-envelope"></span>@Model.Email</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="sticky" class="container">
+            <ul class="nav nav-tabs nav-menu" role="tablist">
+                <li class="active">
+                    <a href="#profile" role="tab" data-toggle="tab">
+                        <i class="fa fa-male"></i> @Resources.Resource.Profile
+                    </a>
+                </li>
+                <li>
+                    <a href="#change" role="tab" data-toggle="tab">
+                        <i class="fa fa-key"></i> @Resources.Resource.EditProfile
+                    </a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane fade active in" id="profile">
+                    <div class="container" ng-controller="CreativeController" ng-init="getCreativesByUser('@Model.UserName')">
+                        <div class="row">
+                            <div ng-repeat='creative in creatives' class="col-md-12 col-xs-12 col-lg-12 col-sm-12">
+                                <div class="box3">
+                                    <header>
+                                        <div class="row">
+                                            <div class="col-md-11 col-sm-11 col-xs-11 col-lg-11"></div>
+                                            <div class="col-md-1 col-sm-1 col-xs-1 col-lg-1">
+                                                <button ng-click="deleteCreativeById(creative.Id, '@Model.UserName')">
+                                                    <i class="fa fa-times" aria-hidden="true"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </header>
+                                    <div class="post-title">
+                                        <div ng-controller="MainController">
+                                            <h2 class="post-title cursor-pointer"
+                                                ng-click="redirectToCreative(creative.Id)">
+                                                @Resources.Resource.Read
+                                            </h2>
+                                        </div>
+                                        <div contenteditable data-directive ng-model="creative.Name">
+                                            <h2 class="post-title">{{creative.Name}}</h2>
+                                        </div>
+                                        <i ng-click="updateCreativeName(creative.Id, creative.Name)">Update Name</i>
+                                    </div>
+
+                                    <h4 class="post-subtitle cursor-pointer">
+                                        <a href="../../Creative/CreateChapter/?creativeId={{creative.Id}}">Add</a><br />
+                                        <span class="glyphicon glyphicon-chevron-down"></span>
+                                        <span role="button" data-toggle="collapse" href="#collapseExample{{$index}}"
+                                              aria-expanded="false" aria-controls="collapseExample">
+                                            @Resources.Resource.Chapters: {{creative.Chapters.length}}
+                                        </span>
+                                    </h4>
+                                    <div class="collapse" id="collapseExample{{$index}}">
+                                        <div ng-repeat="chapter in creative.Chapters" ng-controller="MainController">
+                                            <span class="cursor-pointer" ng-click="redirect(chapter.Id)">
+                                                {{chapter.Name}}
+                                            </span>
+                                            <a href="../../Creative/EditChapter/?creativeId={{creative.Id}}&chapterId={{chapter.Id}}">Edit</a>
+                                            <i ng-click="deleteChapterById(chapter.Id, '@Model.UserName')">Delete</i>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <input-stars max="5" ng-model="creative.Rating" readonly></input-stars>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="change">
+                    <div class="container fom-main">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h2 class="register">@Resources.Resource.EditProfile</h2>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-4">
+                                @Html.Partial("../Account/ResetPassword", new ResetPasswordViewModel() { Name = Model.UserName, Type = "admin" })
+                            </div>
+                            <div class="col-md-4">
+                                @Html.Partial("../Account/ResetLogin", new ResetLoginViewModel() { Id = Model.Id, Type = "admin" })
+                            </div>
+                            <div class="col-md-4">
+                                @Html.Partial("../Account/ResetEmail", new ResetEmailViewModel() { Id = Model.Id, Type = "admin" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

@@ -1,0 +1,24 @@
+﻿@model SellTables.Models.ResetLoginViewModel
+<hr />
+<h4>@Resources.Resource.ChangeLogin</h4>
+@using (Html.BeginForm("ResetLogin", "Account", FormMethod.Post, new { @class = "form-horizontal main_form", role = "form" }))
+{
+    <fieldset>
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+        @Html.HiddenFor(m=>m.Id)
+        @Html.HiddenFor(m => m.Type)
+        <div class="form-group">
+            @Html.EditorFor(m => m.Name, new { @class = "form-control default-input", @placeholder = Resources.Resource.UserName })
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" class="btn btn-default" value="@Resources.Resource.Apply" />
+            </div>
+        </div>
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

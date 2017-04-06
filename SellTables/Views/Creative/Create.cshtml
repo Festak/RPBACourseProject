@@ -1,0 +1,110 @@
+﻿@model SellTables.ViewModels.RegisterCreativeModel
+
+<link href="~/Scripts/summernote/summernote.css" rel="stylesheet">
+<script src="~/Scripts/summernote/summernote.js"></script>
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<header class="intro-header container-fluid" style="background-image: url('http://tutfon.ru/wallpapers/image.raw?view=image&type=orig&id=10882')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="site-heading">
+                    <h1 class="fontComic">
+                        @Resources.Resource.CreativeCreate
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="row">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="col-md-3">
+            <div class="row col-md-offset-1">
+                @Html.HiddenFor(model => model.Image)
+                <div id="dropzone">
+
+                    <img src="https://res.cloudinary.com/qwe123/image/upload/v1479815852/default-placeholder-1024x1024-570x321_y1j7pd.png" class="file__drop" data-image-uploader data-image />
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-2">
+            <div class="row">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.EditorFor(model => model.Creative.Name, new { htmlAttributes = new { @class = "form-control", @id = "input-name", @placeholder = Resources.Resource.CreativeName, aria_describedby = "sizing-addon1" } })
+                    @Html.ValidationMessageFor(model => model.Creative.Name, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.EditorFor(model => model.Chapter.Name, new { htmlAttributes = new { @class = "form-control", @id = "input-email", @placeholder = Resources.Resource.FirstChapterName } })
+                    @Html.ValidationMessageFor(model => model.Chapter.Name, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group" ng-controller="TagController">
+                    <div ng-init="getTags()">
+                        <input id="search-field"
+                               type="text"
+                               placeholder="Enter your tags here"
+                               class="form-control"
+                               ng-keyup="checkKeyUp($event)"
+                               ng-model="searchText"
+                               ng-change="search()" />
+                        <ul class="list-group">
+                            <li ng-repeat="suggestion in suggestions track by $index"
+                                ng-class="{active : selectedIndex === $index}"
+                                ng-click="AssignValueAndHide($index)"
+                                class="list-group-item cursor-pointer">
+                                {{suggestion}}
+                            </li>
+                        </ul>
+
+
+                        @Html.HiddenFor(model => model.Chapter.TagsString, null)
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <br />
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-11">
+                        @Html.HiddenFor(model => model.Chapter.Text, new { htmlAttributes = new { @class = "form-control" } })
+                        <div class="col-md-offset-2" id="summernote"><p>@Resources.Resource.YourChapterText</p></div>
+                    </div>
+                </div>
+                <div class="row container">
+                    <ul class="tags col-md-9 col-md-offset-1">
+
+                        <li class="tagAdd taglist">
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-2 col-md-offset-2">
+                    <input id="submit" type="submit" value="Create" class="btn btn-success pull-right" />
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/tags")
+    @Scripts.Render("~/bundles/dropzonescripts")
+    @Scripts.Render("~/bundles/creativeCreateScript")
+}
+@section Styles{
+    @Styles.Render("~/Content/tags")
+    @Styles.Render("~/Content/dropzonescss")
+}
