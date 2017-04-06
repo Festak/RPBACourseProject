@@ -357,4 +357,7 @@ And let this page will help you with it.</value>
   <data name="By" xml:space="preserve">
     <value>by</value>
   </data>
+  <data name="Category" xml:space="preserve">
+    <value>Category:</value>
+  </data>
 </root>

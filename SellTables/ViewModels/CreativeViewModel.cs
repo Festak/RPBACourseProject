@@ -18,6 +18,7 @@ namespace SellTables.Models
         public string EditDate { get; set; }
         public string UserName { get; set; }
         public string Tags { get; set; }
+        public string Category { get; set; }
         public string UserUri { get; set; }
         public string CreativeUri { get; set; }
         public ICollection<ChapterViewModel> Chapters { get; set; }

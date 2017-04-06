@@ -13,6 +13,7 @@ namespace SellTables.Controllers
         ICreativeService CreativeService;
         IUserService UserService;
         ITagService TagService;
+        CategoryService CategoryService;
         ApplicationDbContext dataBaseConnection;
 
         public HomeController(ApplicationDbContext db)
@@ -21,6 +22,7 @@ namespace SellTables.Controllers
             UserService = new UserService(dataBaseConnection);
             CreativeService = new CreativeService(dataBaseConnection);
             TagService = new TagService(dataBaseConnection);
+            CategoryService = new CategoryService(dataBaseConnection);
         }
 
         // for tests
@@ -53,6 +55,12 @@ namespace SellTables.Controllers
         {
             var allTags = TagService.GetAllModelTags();
             return Json(allTags, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetCategories()
+        {
+            var allCategories = CategoryService.GetAllCategories() ;
+            return Json(allCategories, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult GetPopular()

@@ -12,7 +12,7 @@ namespace SellTables.Interfaces
     {
         ICollection<ApplicationUser> GetAllUsers();
         ApplicationUser FindUser(string userName);
-        ApplicationUser FindUserById(string userId);
+     ApplicationUser FindUserById(string userId);
         IdentityResult UpdateUser(ApplicationUser user);
         IdentityResult DeleteUser(ApplicationUser user);
         bool IsInAdminRole(string userId);

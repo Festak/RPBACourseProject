@@ -21,11 +21,20 @@
     <div class="container" ng-controller="CreativeController" ng-init="getCreativesByUser('@Model.UserName')">
         <div class="row ">
             <div class="col-md-12">
+                
                 <div class="col-md-8 col-sm-8">
-                    <h2>@Resources.Resource.SomeUserInfo</h2>
-                    <span>
-                        @Resources.Resource.SomeUserInfoText
-                    </span>
+
+                    <h2>Креативы, на категорию которых вы подписаны:</h2>
+                    @*<span>
+                @Resources.Resource.SomeUserInfoText
+            </span>*@
+                    <div ng-controller="MainController">
+                        @foreach (var j in ViewBag.Creatives)
+                        {
+                            <span class="post-title cursor-pointer fontComic" ng-click="redirectToCreative('@j.Id')">@j.Name</span><span></span><br />
+                        
+                        }
+                    </div>
                 </div>
                 <div class="col-md-4 col-sm-4 text-center" id="myScroll">
                     <p>

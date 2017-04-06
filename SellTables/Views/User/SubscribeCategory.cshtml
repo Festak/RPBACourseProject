@@ -1,0 +1,42 @@
+﻿@model IEnumerable<SellTables.ViewModels.CategorySubModel>
+@{
+    ViewBag.Title = "SubscribeCategory";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<header class="intro-header container-fluid" style="background-image: url('https://res.cloudinary.com/qwe123/image/upload/v1480080465/luxfon.com_2029_wpz8xl.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="site-heading">
+                    <h2 class="fontComic">Подписаться</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<table class="table table-striped">
+    <tr class="table warning">
+        <td>Название</td>
+        <td>Действие</td>
+    </tr>
+    @foreach (var cat in Model)
+    {
+    <tr>
+        <td>@cat.Name</td>
+        @if (cat.isSubscribed == false)
+        {
+            <td>
+                <a href="../../User/Subscribe/?id=@cat.Id">Подписаться</a>
+            </td>
+        }
+        else {
+            <td>
+                <a href="../../User/UnSubscribe?id=@cat.Id">Отписаться</a>
+            </td>
+        }
+    </tr>
+    }
+</table>
+

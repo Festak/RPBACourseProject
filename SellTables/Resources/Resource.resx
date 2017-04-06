@@ -345,4 +345,7 @@
   <data name="By" xml:space="preserve">
     <value>от</value>
   </data>
+  <data name="Category" xml:space="preserve">
+    <value>Категория:</value>
+  </data>
 </root>

@@ -35,7 +35,7 @@ namespace SellTables.Repositories
             return userManager.Users.Include(m => m.Medals).Include(c => c.Creatives).FirstOrDefault(u => u.UserName == userName);
         }
 
-        ApplicationUser IUserRepository.FindUserById(string userId)
+      ApplicationUser IUserRepository.FindUserById(string userId)
         {
             return userManager.Users.Include(m => m.Medals).Include(c => c.Creatives).FirstOrDefault(u => u.Id == userId);
         }

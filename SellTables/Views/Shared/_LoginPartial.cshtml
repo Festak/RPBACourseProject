@@ -12,6 +12,9 @@
         <li>
             @Html.ActionLink(User.Identity.GetUserName(), "UserPage", "User", routeValues: null, htmlAttributes: new { title = "UserPage" })
         </li>
+        <li>
+            @Html.ActionLink("Подписки", "SubscribeCategory", "User", routeValues: null, htmlAttributes: new { title = "Subscribes" })
+        </li>
        
         <li><a href="javascript:document.getElementById('logoutForm').submit()">@Resources.Resource.LogOf</a></li>
     </ul>

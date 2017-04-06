@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using System.Linq;
 
 using System.Data.Entity;
+using System.Net.Mail;
+using System.Net;
 
 namespace SellTables.Services
 {
@@ -44,10 +46,21 @@ namespace SellTables.Services
         public void AddCreative(RegisterCreativeModel creativemodel, string userId)
         {
             Creative creative = InitCreativeForAddToDatabase(creativemodel, userId);
+            creative.Category = InitCategory(creative);     
             Chapter chapter = creativemodel.Chapter;
             if (chapter.TagsString != null)
                 chapter.Tags = GetTags(chapter.TagsString);
             AddCreativeAndChapterToDatabase(creative, chapter);
+        }
+
+        private Category InitCategory(Creative creative) {
+            Category category = dataBaseContext.Categories.FirstOrDefault(m => m.Name == creative.Category.Name);
+            if (category != null)
+            {
+                return category;
+            }
+            else return creative.Category;
+          
         }
 
         private Creative InitCreativeForAddToDatabase(RegisterCreativeModel model, string userId) {
@@ -88,6 +101,26 @@ namespace SellTables.Services
         public List<Creative> GetAllCreativesModels()
         {
             return GetAllCreativesFromDataBase();
+        }
+
+        public void SendEmailToSubscribes(RegisterCreativeModel creativemodel) {
+            SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
+            smtp.EnableSsl = true;
+            smtp.Credentials = new NetworkCredential("rpbafiatskovich@gmail.com", "!Q@w3e4r5");
+
+            Category category = dataBaseContext.Categories.FirstOrDefault(m=>m.Name == creativemodel.Creative.Category.Name);
+            List<Subscribe> subscribes = dataBaseContext.Subscribes.Where(n=>n.CategoryId == category.Id).ToList();
+            foreach (var sub in subscribes) {
+                MailMessage mail = new MailMessage();
+                mail.From = new MailAddress("rpbafiatskovich@gmail.com");
+                mail.To.Add(sub.UserEmail);
+                mail.Subject = "New Product was created";
+                mail.Body = "Product was named as " + creativemodel.Creative.Name + " had created with category " + creativemodel.Creative.Category.Name;
+                mail.IsBodyHtml = false;
+                smtp.Send(mail);
+            }
+            
+         
         }
 
         public List<CreativeViewModel> GetPopularCreatives()
@@ -169,6 +202,11 @@ namespace SellTables.Services
             Creative creative = CreativeRepository.Get(id);
             creative.CreativeUri = path;
             CreativeRepository.Update(creative);
+        }
+
+        public ICollection<CreativeViewModel> GetCreativesBySubscribe(string userId) {
+            var list = GetSubCreativesFromDataBase(userId).ToList();
+            return InitCreatives(list);
         }
 
         public ICollection<Rating> GetAllCreativeRatings(Creative creative)
@@ -270,6 +308,21 @@ namespace SellTables.Services
             return user;
         }
 
+        private ICollection<Creative> GetSubCreativesFromDataBase(string userId) {
+            var list = CheckCategory(userId);
+            return list;
+        }
+
+        private ICollection<Creative> CheckCategory(string userId) {
+            var listOfCategories = dataBaseContext.Subscribes.Where(u => u.UserId == userId).OrderByDescending(c=>c.EditDate).ToList();
+            var listOfCreatives = new List<Creative>();
+            foreach (var category in listOfCategories) {
+                var listTemp = dataBaseContext.Creatives.Include(j=>j.Category).Where(c=>c.Category.Id == category.CategoryId).ToList();
+                listOfCreatives.AddRange(listTemp);
+            }
+            return listOfCreatives;
+        }
+
         private ApplicationUser GetUserWithMedalOneChapter(ApplicationUser user)
         {
             Medal medal = dataBaseContext.Medals.FirstOrDefault(m => m.Id == 3);
@@ -346,6 +399,15 @@ namespace SellTables.Services
             }
         }
 
+        private void AddCategoryToDataBase(Category category) {
+            if (dataBaseContext.Categories
+              .Where(t => t.Name == category.Name).ToList().Count == 0)
+            {
+                dataBaseContext.Categories.Add(category);
+                dataBaseContext.SaveChanges();
+            }
+        }
+
         private void UpdateDBAfterAddChapterToCreative(Creative creative, Chapter chapter)
         {
             creative.Chapters.Add(chapter);
@@ -357,12 +419,20 @@ namespace SellTables.Services
         {
             if (list != null)
             {
+                foreach (var a in list) {
+                    if (a.Category == null) {
+                        var category = new Category();
+                        category.Name = "Неопределено";
+                        a.Category = category;
+                    }
+                }
                 return list.Select(creative => new CreativeViewModel
                 {
                     Id = creative.Id,
                     Chapters = InitChapters(creative.Chapters),
                     UserName = creative.User.UserName,
                     UserUri = creative.User.AvatarUri,
+                    Category = creative.Category.Name,
                     Name = creative.Name,
                     EditDate = creative.EditDate.ToShortDateString() + " " + creative.EditDate.ToShortTimeString(),
                     Rating = creative.Rating,
@@ -541,5 +611,7 @@ namespace SellTables.Services
                 dataBaseContext.SaveChanges();
             }
         }
+
+       
     }
 }
