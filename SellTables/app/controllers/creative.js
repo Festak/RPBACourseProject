@@ -9,6 +9,7 @@ angular.module('creative', ['ngRoute', 'as.sortable', 'angular-input-stars'])
       function ($scope, $http, $window) {
           $scope.creatives = [];
           $scope.popular = [];
+          $scope.subsCreatives = [];
           $scope.lastEdited = [];
           $scope.shownCreatives = [];
           $scope.sortedCreatives = [];
@@ -145,6 +146,15 @@ angular.module('creative', ['ngRoute', 'as.sortable', 'angular-input-stars'])
            .error(function (data) {
                console.log(data);
            });
+          }
+
+          $scope.getCreativesBySubscribe = function () {
+              $http.get('/Creative/getCreativesBySubscribe').success(function (result) {
+                  $scope.subsCreatives = result;
+              })
+         .error(function (data) {
+             console.log(data);
+         });
           }
 
           $scope.getLastEditedCreatives = function () {

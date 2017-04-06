@@ -1,46 +1,22 @@
 ﻿
-angular.module('tag', ["ngTouch", "angucomplete"])
-      .controller('TagController', function ($scope, $http, $rootScope) {
-          $scope.tags = [];
+angular.module('category', [])
+      .controller('CategoryController', function ($scope, $http, $rootScope) {
+         
           $scope.categories = [];
           $rootScope.searchItems = [];
           $scope.colors = ("red", "yellow", "blue");
           $scope.color = "red";
 
-
-          $scope.getTags = function () {
-              $http.get('/Home/GetTags').success(function (result) {
-                  $scope.tags = result;
-                  $scope.tags.forEach(function (element) {
-                      $scope.searchItems.push(element.Description);
-                  });
-              })
-                  .error(function (data) {
-                      console.log(data);
-                  });
-          }
+         
 
           $scope.get = function () {
               $scope.tagsDescriptions.forEach(function (element) {
                   console.log(element);
               });
-          }
 
-          $scope.setCategory = function () {
-              console.log("xuy");
           }
 
           $scope.getCategories = function () {
-
-              $http.get('/Home/GetCategories').success(function (result) {
-                  $scope.categories = result;
-              })
-                  .error(function (data) {
-                      console.log(data);
-                  });
-          }
-
-          $scope.getCategories1 = function () {
               $http.get('/Home/GetCategories').success(function (result) {
                   $scope.categories = result;
                   $scope.categories.forEach(function (element) {
@@ -52,6 +28,7 @@ angular.module('tag', ["ngTouch", "angucomplete"])
                   });
           }
 
+          
 
           //Sort Array
           $rootScope.searchItems.sort();

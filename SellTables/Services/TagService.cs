@@ -38,6 +38,11 @@ namespace SellTables.Services
             return listOfTags.ToList();
         }
 
+        public List<Category> GetAllCategories() {
+            var listOfCategories = dataBaseContext.Categories.ToList();
+            return listOfCategories;
+        }
+
         public ICollection<string> GetMostPopularTags(int number = 20)
         {
             var mostPopular = new int[number];

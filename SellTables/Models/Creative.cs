@@ -17,6 +17,9 @@ namespace SellTables.Models
 
         public virtual ICollection<Rating> Ratings { get; set; }
 
+        public int? CategoryId { get; set; }
+        public virtual Category Category { get; set; }
+
         public double Rating { get; set; }
 
         public DateTime CreationDate { get; set; }

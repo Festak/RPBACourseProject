@@ -233,12 +233,14 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Content Include="app\controllers\category.js" />
     <Content Include="Content\pageStyles\creativeDetailsStyles.css" />
     <Content Include="Content\bootstrapDark.min.css" />
     <Content Include="Content\somestyles\dropzone.css" />
     <Content Include="Content\somestyles\form.css" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\ChapterController.cs" />
     <Compile Include="Controllers\CreativeController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
@@ -257,28 +259,43 @@
     <Compile Include="Interfaces\IUserRepository.cs" />
     <Compile Include="Interfaces\IUserService.cs" />
     <Compile Include="Lucene\CreativeSearch.cs" />
-    <Compile Include="Migrations\201611221539506_newbase.cs" />
-    <Compile Include="Migrations\201611221539506_newbase.Designer.cs">
-      <DependentUpon>201611221539506_newbase.cs</DependentUpon>
+    <Compile Include="Migrations\201701261607422_testone.cs" />
+    <Compile Include="Migrations\201701261607422_testone.Designer.cs">
+      <DependentUpon>201701261607422_testone.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201611271807441_ratingchange.cs" />
-    <Compile Include="Migrations\201611271807441_ratingchange.Designer.cs">
-      <DependentUpon>201611271807441_ratingchange.cs</DependentUpon>
+    <Compile Include="Migrations\201701261629105_addCatSubs.cs" />
+    <Compile Include="Migrations\201701261629105_addCatSubs.Designer.cs">
+      <DependentUpon>201701261629105_addCatSubs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701261712544_test.cs" />
+    <Compile Include="Migrations\201701261712544_test.Designer.cs">
+      <DependentUpon>201701261712544_test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701291412105_newone.cs" />
+    <Compile Include="Migrations\201701291412105_newone.Designer.cs">
+      <DependentUpon>201701291412105_newone.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701310932402_EmailAdres.cs" />
+    <Compile Include="Migrations\201701310932402_EmailAdres.Designer.cs">
+      <DependentUpon>201701310932402_EmailAdres.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Chapter.cs" />
     <Compile Include="Models\Creative.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Medal.cs" />
     <Compile Include="Models\Rating.cs" />
+    <Compile Include="Models\Subscribe.cs" />
     <Compile Include="Models\Tag.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ChaptersRepository.cs" />
     <Compile Include="Repositories\CreativesRepository.cs" />
     <Compile Include="Repositories\MedalsRepository.cs" />
     <Compile Include="Repositories\RatingsRepository.cs" />
+    <Compile Include="Repositories\CategoriesRepository.cs" />
     <Compile Include="Repositories\TagsRepository.cs" />
     <Compile Include="Repositories\UsersRepository.cs" />
     <Compile Include="Resources\Resource.en.Designer.cs">
@@ -291,6 +308,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource.resx</DependentUpon>
     </Compile>
+    <Compile Include="Services\CategoryService.cs" />
     <Compile Include="Services\ChapterService.cs" />
     <Compile Include="Services\CloudinaryService.cs" />
     <Compile Include="Services\TagService.cs" />
@@ -298,6 +316,7 @@
     <Compile Include="Services\UserService.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Utils\NinjectDependencyResolver.cs" />
+    <Compile Include="ViewModels\CategorySubModel.cs" />
     <Compile Include="ViewModels\ChapterViewModel.cs" />
     <Compile Include="ViewModels\CreativeViewModel.cs" />
     <Compile Include="ViewModels\LoginRegisterUserModel.cs" />
@@ -353,13 +372,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="node_modules\angular-tag-cloud\dist\ng-tag-cloud-module.js" />
-    <Content Include="node_modules\angular-tag-cloud\dist\ng-tag-cloud.min.js" />
-    <Content Include="node_modules\angular-tag-cloud\examples\custom.css" />
-    <Content Include="node_modules\angular-tag-cloud\examples\index.html" />
-    <Content Include="node_modules\angular-tag-cloud\examples\js\app.js" />
-    <Content Include="node_modules\angular-tag-cloud\src\css\ng-tag-cloud.css" />
-    <Content Include="node_modules\angular-tag-cloud\src\ng-tag-cloud.js" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
     <Content Include="Scripts\angular-aria.js" />
@@ -391,6 +403,8 @@
     <Content Include="Scripts\angular-ui\ui-bootstrap.min.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
+    <Content Include="Scripts\autocomplete\angucomplete.js" />
+    <Content Include="Scripts\autocomplete\angular-touch.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\errors.json" />
@@ -416,13 +430,9 @@
     <Content Include="fonts\fontawesome-webfontba72.woff" />
     <Content Include="fonts\fontawesome-webfontd41d.eot" />
     <Content Include="fonts\glyphicons-halflings-regulard41d.eot" />
-    <Content Include="node_modules\angular-tag-cloud\.npmignore" />
-    <Content Include="node_modules\angular-tag-cloud\bower.json" />
-    <Content Include="node_modules\angular-tag-cloud\CHANGELOG.md" />
-    <Content Include="node_modules\angular-tag-cloud\LICENSE" />
-    <Content Include="node_modules\angular-tag-cloud\package.json" />
-    <Content Include="node_modules\angular-tag-cloud\README.md" />
-    <Content Include="node_modules\angular-tag-cloud\tests\README.md" />
+    <None Include="Properties\PublishProfiles\Jeka.pubxml">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-dj.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-er.js" />
@@ -1269,6 +1279,12 @@
     <Content Include="Views\Creative\EditChapter.cshtml" />
     <Content Include="Views\Home\_LastEditedCreatives.cshtml" />
     <Content Include="Views\Account\DisplayEmail.cshtml" />
+    <Content Include="Views\Categories\Create.cshtml" />
+    <Content Include="Views\Categories\Delete.cshtml" />
+    <Content Include="Views\Categories\Details.cshtml" />
+    <Content Include="Views\Categories\Edit.cshtml" />
+    <Content Include="Views\Categories\Index.cshtml" />
+    <Content Include="Views\User\SubscribeCategory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1286,11 +1302,20 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201611221539506_newbase.resx">
-      <DependentUpon>201611221539506_newbase.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201701261607422_testone.resx">
+      <DependentUpon>201701261607422_testone.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611271807441_ratingchange.resx">
-      <DependentUpon>201611271807441_ratingchange.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201701261629105_addCatSubs.resx">
+      <DependentUpon>201701261629105_addCatSubs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701261712544_test.resx">
+      <DependentUpon>201701261712544_test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701291412105_newone.resx">
+      <DependentUpon>201701291412105_newone.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701310932402_EmailAdres.resx">
+      <DependentUpon>201701310932402_EmailAdres.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Resource.en.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

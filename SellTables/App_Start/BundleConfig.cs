@@ -40,6 +40,8 @@ namespace SellTables
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                 "~/app/main.js",
+                "~/Scripts/autocomplete/angular-touch.min.js",
+                  "~/Scripts/autocomplete/angucomplete.js",
               "~/app/controllers/admin.js",
              "~/app/controllers/widthChange.js",
                 "~/app/controllers/creative.js",
@@ -47,7 +49,9 @@ namespace SellTables
                 "~/app/controllers/tag.js",
                  "~/app/controllers/chapter.js",
                 "~/Scripts/scripts/clean-blog.js",
-                "~/Scripts/scripts/star-rating.js"
+                 
+                "~/Scripts/scripts/star-rating.js",
+                "~/app/controllers/category.js"
                 ));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(

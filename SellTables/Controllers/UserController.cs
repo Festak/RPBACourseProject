@@ -13,7 +13,8 @@ namespace SellTables.Controllers
     public class UserController : DefaultController
     {
         ApplicationDbContext dataBaseConnection;
-        ICreativeService CreativeService;
+        CreativeService CreativeService;
+        CategoryService CategoryService;
         IUserService UserService;
         ICloudinaryService CloudinaryService;
 
@@ -23,25 +24,45 @@ namespace SellTables.Controllers
             CreativeService = new CreativeService(dataBaseConnection);
             UserService = new UserService(dataBaseConnection);
             CloudinaryService = new CloudinaryService(dataBaseConnection);
+            CategoryService = new CategoryService(dataBaseConnection);
         }
 
         //for tests
-        public UserController(ICreativeService CreativeService, IUserService UserService, ICloudinaryService CloudinaryService) {
-            this.CreativeService = CreativeService;
-            this.UserService = UserService;
-            this.CloudinaryService = CloudinaryService;
-        }
+        //public UserController(ICreativeService CreativeService, IUserService UserService, ICloudinaryService CloudinaryService) {
+        //    this.CreativeService = CreativeService;
+        //    this.UserService = UserService;
+        //    this.CloudinaryService = CloudinaryService;
+        //}
 
 
         public ActionResult UserPage(string name)
         {
+            ViewBag.Creatives = CreativeService.GetCreativesBySubscribe(User.Identity.GetUserId());
             if (name == null)
             {
                 return View(UserService.GetCurrentUser(User.Identity.Name));
             }
             else
+            {
+           
                 return View(UserService.GetUserByName(name));
+            }
         }
+
+        public ActionResult SubscribeCategory() {
+            return View(CategoryService.GetCategoriesWithSbs(User.Identity.GetUserId()));
+        }
+
+        public ActionResult Subscribe(int id) {
+            CategoryService.SubscribeToCategory(id, User.Identity.GetUserId());
+            return RedirectToAction("SubscribeCategory", "User");
+        }
+
+        public ActionResult UnSubscribe(int id) {
+            CategoryService.UnSubscribeFromCategory(id, User.Identity.GetUserId());
+            return RedirectToAction("SubscribeCategory", "User");
+        }
+
 
         public JsonResult GetCreativesByUser(string userName)
         {

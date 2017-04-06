@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
+using System.Net.Mail;
+using System.Threading.Tasks;
 
 namespace SellTables.Controllers
 {
@@ -44,14 +46,16 @@ namespace SellTables.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(RegisterCreativeModel creativemodel)
         {
-            if (ModelState.IsValid)
-            {
-                string path = CloudinaryService.UploadCreativeImage(creativemodel.Image);
-                creativemodel.Creative.CreativeUri = path;
-                CreativeService.AddCreative(creativemodel, User.Identity.GetUserId());
-                return RedirectToAction("Index");
-            }
-            return View(creativemodel);
+
+            string path = CloudinaryService.UploadCreativeImage(creativemodel.Image);
+            creativemodel.Creative.CreativeUri = path;
+            CreativeService.AddCreative(creativemodel, User.Identity.GetUserId());
+
+            CreativeService.SendEmailToSubscribes(creativemodel);
+
+          
+
+            return RedirectToAction("Index", "Home", new { area = "" });
         }
 
         [AllowAnonymous]
@@ -71,12 +75,14 @@ namespace SellTables.Controllers
         }
 
         [HttpPost]
-        public void UpdateCreativeName(int id, string newName) {
+        public void UpdateCreativeName(int id, string newName)
+        {
             CreativeService.UpdateCreativeName(id, newName);
         }
 
         [HttpPost]
-        public void UpdateCreativeImage(int id, byte[] image) {
+        public void UpdateCreativeImage(int id, byte[] image)
+        {
             string path = CloudinaryService.UploadImage(image);
             CreativeService.UpdateCreativeImage(id, path);
         }
@@ -111,7 +117,8 @@ namespace SellTables.Controllers
             return dataBaseConnection.Users.Find(System.Web.HttpContext.Current.User.Identity.GetUserId());
         }
 
-        public void DeleteChapterById(int id, string userName) {
+        public void DeleteChapterById(int id, string userName)
+        {
             CreativeService.DeleteChapterById(id, userName);
         }
 
@@ -122,7 +129,7 @@ namespace SellTables.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            var listOfLuceneObjectsByTags = Lucene.CreativeSearch.Search(query);  
+            var listOfLuceneObjectsByTags = Lucene.CreativeSearch.Search(query);
             return View(listOfLuceneObjectsByTags.ToList());
         }
 
@@ -130,6 +137,12 @@ namespace SellTables.Controllers
         public JsonResult GetCreativesByUser(string userName)
         {
             var creatives = CreativeService.GetCreativesByUser(userName);
+            return Json(creatives, JsonRequestBehavior.AllowGet);
+        }
+        [AllowAnonymous]
+        public JsonResult getCreativesBySubscribe()
+        {
+            var creatives = CreativeService.GetCreativesBySubscribe(User.Identity.GetUserId());
             return Json(creatives, JsonRequestBehavior.AllowGet);
         }
 
@@ -161,8 +174,9 @@ namespace SellTables.Controllers
             return View(model);
         }
 
-        public void UpdateChapterPos(int oldPosition,int newPosition, int fromChapterId, int toChapterId) {
-           ChapterService.UpdateChapterPos(oldPosition, newPosition, fromChapterId, toChapterId);
+        public void UpdateChapterPos(int oldPosition, int newPosition, int fromChapterId, int toChapterId)
+        {
+            ChapterService.UpdateChapterPos(oldPosition, newPosition, fromChapterId, toChapterId);
         }
 
     }

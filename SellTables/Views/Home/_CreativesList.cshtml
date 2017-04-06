@@ -35,7 +35,10 @@
                 <div class="col-md-3 text-center">
                     <input-stars max="5" ng-model="creative.Rating" on-star-click="vote(creative.Rating,creative)"></input-stars>
                 </div>
-                <div class="col-md-9 text-right">
+                <div class="col-md-2">
+                    <span class="post-meta">@Resources.Resource.Category {{creative.Category}}</span>
+                </div>
+                <div class="col-md-7 text-right">
                     <span class="post-meta">@Resources.Resource.PostedBy <a class="linkWithoutDecor userLink" href="../../User/UserPage/?name={{creative.UserName}}">{{creative.UserName}}</a> @Resources.Resource.On {{creative.CreationDate}}</span>
                 </div>
             </div>

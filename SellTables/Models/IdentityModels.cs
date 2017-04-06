@@ -49,6 +49,8 @@ namespace SellTables.Models
         public virtual DbSet<Medal> Medals { get; set; }
         public virtual DbSet<Creative> Creatives { get; set; }
         public virtual DbSet<Tag> Tags { get; set; }
+        public virtual DbSet<Subscribe> Subscribes { get; set; }
+        public virtual DbSet<Category> Categories { get; set; }
 
         public static ApplicationDbContext Create()
         {
